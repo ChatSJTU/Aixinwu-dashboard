@@ -54,12 +54,12 @@ export default defineConfig(({ command, mode }) => {
   const plugins = [
     react(),
     createHtmlPlugin({
-      entry: "index.tsx",
+      entry: path.resolve(__dirname, "src", "index.tsx"),
       template: "index.html",
       inject: {
         data: {
           API_URL: API_URI,
-          APP_MOUNT_URI: APP_MOUNT_URI,
+          APP_MOUNT_URI,
           APPS_MARKETPLACE_API_URI,
           APPS_TUNNEL_URL_KEYWORDS,
           IS_CLOUD_INSTANCE,
@@ -118,7 +118,7 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     root: "src",
-    base: "/dashboard",
+    base,
     envDir: "..",
     server: {
       port: 9000,
@@ -191,7 +191,6 @@ export default defineConfig(({ command, mode }) => {
         "@assets": path.resolve(__dirname, "./assets"),
         "@locale": path.resolve(__dirname, "./locale"),
         "@dashboard": path.resolve(__dirname, "./src"),
-        '@material-ui/icons': '@material-ui/icons/esm',
         src: path.resolve(__dirname, "./src"),
         /*
           Moment.js/react-moment does not fully suport ES modules.
