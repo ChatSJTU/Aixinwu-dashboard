@@ -29,12 +29,12 @@ export const MetadataCard: React.FC<MetadataCardProps> = ({
   const title = isPrivate
     ? {
         id: "ETHnjq",
-        defaultMessage: "Private Metadata",
+        defaultMessage: "私密元数据",
         description: "header",
       }
     : {
         id: "VcI+Zh",
-        defaultMessage: "Metadata",
+        defaultMessage: "元数据",
         description: "header",
       };
 
