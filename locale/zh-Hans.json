@@ -776,7 +776,7 @@
   },
   "38dc43": {
     "context": "Features preview",
-    "string": "Features preview"
+    "string": "测试功能"
   },
   "39yi8w": {
     "context": "selected currency",
@@ -1018,7 +1018,7 @@
   },
   "4yRwN+": {
     "context": "content",
-    "string": "Saleor 无法获取安装的关键信息. 系统在信息缺失的情况下无法将应用安装到 Saleor. 请使用下面的按钮回到系统 dashboard."
+    "string": "无法获取安装的关键信息。系统在信息缺失的情况下无法安装应用。请使用下面的按钮回到控制面板。"
   },
   "54KYgS": {
     "context": "months after label",
@@ -1481,7 +1481,7 @@
   },
   "8aV98y": {
     "context": "new version notification content",
-    "string": "You need to update Saleor to the newest version. Before doing so - save all changes to prevent loss of data. To update use the button below."
+    "string": "请更新Saleor系统版本"
   },
   "8cUEPV": {
     "context": "page title",
@@ -1535,7 +1535,7 @@
   },
   "95oJ5d": {
     "context": "button",
-    "string": "回到 dashboard"
+    "string": "回到管理面板"
   },
   "98Nw4g": {
     "context": "card subtitle",
@@ -1654,7 +1654,7 @@
   },
   "9mGA/Q": {
     "context": "button linking to dashboard",
-    "string": "dashboard"
+    "string": "管理面板"
   },
   "9mrWKz": {
     "context": "no products placeholder",
@@ -1799,7 +1799,7 @@
   },
   "AubJ/S": {
     "context": "button",
-    "string": "Sign in"
+    "string": "登录"
   },
   "AulH/n": {
     "string": "{counter,plural,other {确认移除商品 {displayQuantity} 分配?}}"
@@ -2078,7 +2078,7 @@
   },
   "ChGI4V": {
     "context": "error message",
-    "string": "Saleor is unavailable, please check your network connection and try again."
+    "string": "无法连接到服务器，请检查网络连接后重试"
   },
   "CjSRT1": {
     "context": "button",
@@ -2358,7 +2358,7 @@
     "string": "礼品卡"
   },
   "ErNH3D": {
-    "string": "定义该属性在 Saleor 系统中的何处被使用"
+    "string": "定义该属性在系统中的何处被使用"
   },
   "ErvPaM": {
     "context": "header",
@@ -3389,7 +3389,7 @@
     "string": "This password is too short"
   },
   "LVa5ew": {
-    "string": "Saleor ran into an unexpected problem"
+    "string": "出现了未知错误"
   },
   "LWmYSU": {
     "string": "完整翻译"
@@ -3480,7 +3480,7 @@
     "string": "Used by"
   },
   "MKtgZB": {
-    "string": "Only staff users can access the dashboard"
+    "string": "只有工作人员才能查看管理面板"
   },
   "MNZY28": {
     "context": "table column header",
@@ -3494,7 +3494,7 @@
     "string": "激活"
   },
   "MSItJD": {
-    "string": "You are about to leave the Dashboard. Do you want to continue?"
+    "string": "是否要离开管理面板？"
   },
   "MTGT8E": {
     "context": "column header",
@@ -3506,7 +3506,7 @@
   },
   "MVU6ol": {
     "context": "exceeded permissions description",
-    "string": "该组权限已高于你所拥有的权限, 你只能管理授权范围内的权限."
+    "string": "该组权限已高于你所拥有的权限，你只能管理授权范围内的权限。"
   },
   "MWSacl": {
     "string": "销售渠道"
@@ -3668,7 +3668,7 @@
   },
   "NhQboB": {
     "context": "dialog header",
-    "string": "Saleor couldn’t cancel order"
+    "string": "无法取消订单"
   },
   "NivJal": {
     "context": "section header",
@@ -3754,7 +3754,7 @@
   },
   "OA+fw+": {
     "context": "conjunction, choice between going to dashboard or refreshing page",
-    "string": "or"
+    "string": "或"
   },
   "OAcl78": {
     "context": "order, granted refunds card, title",
@@ -4351,7 +4351,7 @@
     "string": "Search by product name, attribute, product type etc..."
   },
   "SI3/nl": {
-    "string": "Nothing will change in terms of permissions. The Dashboard will redirect to the app and inform it that you denied the request."
+    "string": "权限不足，无法修改。"
   },
   "SKFr04": {
     "string": "Attribute not found."
@@ -5099,7 +5099,7 @@
   },
   "XCIV8H": {
     "context": "button",
-    "string": "Refresh"
+    "string": "刷新"
   },
   "XDBeA+": {
     "context": "discount type",
@@ -5369,7 +5369,7 @@
     "string": "{selectedItemsCount,plural,one {I am aware that I am removing a gift card with balance} other {I am aware that I am removing gift cards with balance}}"
   },
   "Yy/yDL": {
-    "string": "Reset password"
+    "string": "重置密码"
   },
   "YzLUXA": {
     "string": "Ensure this value is greater than 0."
@@ -5543,7 +5543,7 @@
   },
   "aCX8rl": {
     "context": "subheader",
-    "string": "欢迎登陆爱心屋后台"
+    "string": "欢迎访问爱心屋后台"
   },
   "aEc9Ar": {
     "context": "gift card history message",
@@ -5551,7 +5551,7 @@
   },
   "aFU0vm": {
     "context": "description",
-    "string": "or continue with"
+    "string": "或者使用"
   },
   "aHc89n": {
     "context": "select warehouse to restock items",
@@ -6589,7 +6589,7 @@
     "string": "激活"
   },
   "hzSNj4": {
-    "string": "dashboard"
+    "string": "管理面板"
   },
   "i+JSEZ": {
     "string": "{counter,plural,one {Are you sure you want to cancel this order?} other {Are you sure you want to cancel {displayQuantity} orders?}}"
@@ -6604,7 +6604,7 @@
   },
   "i0AcKY": {
     "context": "notification message after log in",
-    "string": "温馨提示: demo模式下你可以在dashboard里使用各种功能, 但是无法保存更改."
+    "string": "温馨提示：演示模式下你可以在管理面板里使用各种功能，但是无法保存更改。"
   },
   "i3Mvj8": {
     "context": "product attribute error",
@@ -6899,7 +6899,7 @@
     "string": "You have reached your warehouse limit, you will be no longer able to add warehouses to your store. If you would like to up your limit, contact your administration staff about raising your limits."
   },
   "kFYlu2": {
-    "string": "Saleor runs in read-only mode. Changes not saved."
+    "string": "系统已设置为只读模式，无法保存更改"
   },
   "kFkMoG": {
     "context": "set balance dialog subtitle",
@@ -7066,7 +7066,7 @@
   },
   "lCxfDe": {
     "context": "attribute properties regarding dashboard",
-    "string": "Dashboard 属性"
+    "string": "管理面板属性"
   },
   "lEG/12": {
     "context": "Webhook subscription query card title",
@@ -8122,7 +8122,7 @@
   },
   "tEdFmZ": {
     "context": "notification title",
-    "string": "System update required"
+    "string": "需要更新"
   },
   "tIc2/h": {
     "context": "input helper text, search attributes",
@@ -8553,7 +8553,7 @@
   },
   "vzgZ3U": {
     "context": "card header",
-    "string": "Sign In"
+    "string": "登录 - 爱心屋后台管理"
   },
   "w+3Q3e": {
     "context": "input label",
@@ -8930,7 +8930,7 @@
   },
   "ypW4Mi": {
     "context": "button refreshing page",
-    "string": "Refresh page"
+    "string": "刷新页面"
   },
   "ys0jH2": {
     "context": "channel publication status",
