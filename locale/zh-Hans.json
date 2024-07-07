@@ -196,7 +196,7 @@
   },
   "/8/Ffn": {
     "context": "button",
-    "string": "Show"
+    "string": "显示"
   },
   "/AbHy4": {
     "context": "creation label",
@@ -204,7 +204,7 @@
   },
   "/BJQIq": {
     "context": "dialog header",
-    "string": "Add Tracking Code"
+    "string": "添加运单号"
   },
   "/C//FB": {
     "context": "header, allocated product quantity",
@@ -257,14 +257,14 @@
   },
   "/Xwjww": {
     "context": "button",
-    "string": "下发"
+    "string": "交付"
   },
   "/Zee1r": {
     "string": "Only added postal codes will be able to use this shipping rate"
   },
   "/cow4T": {
     "context": "WarehousesSection select field placeholder",
-    "string": "Select Warehouse"
+    "string": "选择仓库"
   },
   "/dnWE8": {
     "context": "products in collection",
@@ -289,7 +289,7 @@
   },
   "/lBLBI": {
     "context": "channels alphabetically title",
-    "string": "Channels from A to Z"
+    "string": "渠道列表"
   },
   "/nZy6A": {
     "context": "page subtitle",
@@ -320,7 +320,7 @@
   },
   "/xXvjF": {
     "context": "section header",
-    "string": "未下发"
+    "string": "未交付"
   },
   "/yJJvI": {
     "context": "dialog header",
@@ -391,7 +391,7 @@
     "string": "Send shipment details to customer"
   },
   "0VkxrS": {
-    "string": "GraphQL Playground"
+    "string": "GraphQL环境"
   },
   "0Vyr8h": {
     "context": "menu item name",
@@ -406,7 +406,7 @@
     "string": "There are no countries assigned"
   },
   "0dPP8O": {
-    "string": "Order #{orderId} was placed"
+    "string": "订单 #{orderId} 已下单"
   },
   "0em8tI": {
     "context": "ProductTypeDeleteWarningDialog multiple consent label",
@@ -426,11 +426,11 @@
   },
   "0krqBj": {
     "context": "page header",
-    "string": "Order no. {orderNumber} - Refund"
+    "string": "订单 #{orderNumber} - 退款"
   },
   "0mhR+F": {
     "context": "Header row quantity label",
-    "string": "Quantity"
+    "string": "数量"
   },
   "0nL1D6": {
     "context": "number of menu items",
@@ -441,7 +441,7 @@
   },
   "0oo+BT": {
     "context": "section header",
-    "string": "Refunded Amount"
+    "string": "退款金额"
   },
   "0qg33z": {
     "context": "table column header",
@@ -496,11 +496,11 @@
   },
   "16PGt9": {
     "context": "WarehouseSettings all warehouses label",
-    "string": "All warehouses"
+    "string": "所有仓库"
   },
   "16iwCI": {
     "context": "section header",
-    "string": "Fulfilled"
+    "string": "已交付"
   },
   "16sza6": {
     "string": "Refund grants reserve a money which later can be sent to customers via original payment methods or a manual transaction."
@@ -677,7 +677,7 @@
   },
   "2W4EBM": {
     "context": "button",
-    "string": "Set maximal quantities"
+    "string": "设为最大值"
   },
   "2WenNh": {
     "string": "Send refund"
@@ -691,7 +691,7 @@
     "string": "{counter,plural,other {你想删除的页面类型被一些页面所使用。删除这些页面类型也将删除这些页面。你确定你要删除{displayQuantity} 页面类型吗？这样做之后，你将无法恢复更改。}}"
   },
   "2atspc": {
-    "string": "草稿"
+    "string": "草稿订单"
   },
   "2cjt25": {
     "context": "window title",
@@ -724,7 +724,7 @@
   },
   "2pw5dQ": {
     "context": "payment status",
-    "string": "Fully paid"
+    "string": "全额支付"
   },
   "2rJcFa": {
     "context": "delete app",
@@ -736,7 +736,7 @@
   },
   "2yU+q9": {
     "context": "tab name",
-    "string": "All Warehouses"
+    "string": "所有仓库"
   },
   "2yV+s8": {
     "context": "order history message",
@@ -780,7 +780,7 @@
   },
   "39yi8w": {
     "context": "selected currency",
-    "string": "Selected currency"
+    "string": "货币"
   },
   "3AqOxp": {
     "context": "no category set error",
@@ -826,7 +826,7 @@
     "string": "You are about to delete multiple product types. Some of them are assigned to products. Deleting those product types will also delete those products"
   },
   "3evXPj": {
-    "string": "Leave your note here..."
+    "string": "添加备注"
   },
   "3fgyFh": {
     "context": "order history message",
@@ -1150,7 +1150,7 @@
   },
   "5i/InH": {
     "context": "open new window button",
-    "string": "Open this order in GraphiQL"
+    "string": "在GraphiQL中打开此订单"
   },
   "5kvaFR": {
     "context": "product field",
@@ -1177,7 +1177,7 @@
   },
   "5te3Tp": {
     "context": "order payment",
-    "string": "Outstanding Balance"
+    "string": "欠款"
   },
   "5u7b3V": {
     "context": "voucher is active from date",
@@ -1353,7 +1353,7 @@
   },
   "7KRGqz": {
     "context": "Payment card title",
-    "string": "Payment balance"
+    "string": "支付明细"
   },
   "7MUx0T": {
     "string": "Discount of {value} through the {channel}"
@@ -1393,7 +1393,7 @@
     "string": "Delete Variant"
   },
   "7l5Bh9": {
-    "string": "{counter,plural,other {确认删除 {displayQuantity} 商品?}}"
+    "string": "{counter,plural,other {确认删除 {displayQuantity} 个商品？}}"
   },
   "7nKXni": {
     "context": "option description",
@@ -1473,7 +1473,7 @@
     "string": "库存单位"
   },
   "8Q504V": {
-    "string": "Metadata"
+    "string": "元数据"
   },
   "8RnPGF": {
     "context": "order history message",
@@ -1875,7 +1875,7 @@
   },
   "BLX9dz": {
     "context": "fulfill order, button",
-    "string": "下发"
+    "string": "交付"
   },
   "BM1JiJ": {
     "context": "error message",
@@ -1900,7 +1900,7 @@
   },
   "BXkF8Z": {
     "context": "header",
-    "string": " 活动"
+    "string": " 动态"
   },
   "BYTvv/": {
     "context": "Dry run events unavailable",
@@ -1988,7 +1988,7 @@
   },
   "C6bb6x": {
     "context": "order refund amount",
-    "string": "Refund total amount"
+    "string": "总计退款金额"
   },
   "C7I2lg": {
     "context": "input label",
@@ -2029,11 +2029,11 @@
   },
   "CJpx4E": {
     "context": "page header",
-    "string": "Order no. {orderNumber} - Add Fulfillment"
+    "string": "订单 #{orderNumber} - 交付"
   },
   "CLB1k9": {
     "context": "refund type",
-    "string": "Refund Products"
+    "string": "退货退款"
   },
   "CLeDae": {
     "context": "section header",
@@ -2059,7 +2059,7 @@
   },
   "CYEnGq": {
     "context": "order fulfilled success message",
-    "string": "Fulfilled Items"
+    "string": "交付商品"
   },
   "CYZse9": {
     "context": "card description",
@@ -2254,7 +2254,7 @@
     "string": "Date Time"
   },
   "E/yzIO": {
-    "string": "View metadata"
+    "string": "查看元数据"
   },
   "E1C9pp": {
     "context": "transaction event type, authorization amount was changed",
@@ -2328,7 +2328,7 @@
     "string": "Charge taxes for this channel"
   },
   "Eau5AV": {
-    "string": "Manage Products Channel Availability"
+    "string": "管理商品渠道"
   },
   "EbVf0Z": {
     "context": "transaction reference",
@@ -2352,7 +2352,7 @@
   },
   "Epm41J": {
     "context": "change warehouse dialog warehouse list label",
-    "string": "Warehouses A to Z"
+    "string": "所有仓库"
   },
   "Eq3GFh": {
     "string": "Is giftcard"
@@ -2453,7 +2453,7 @@
   },
   "FOehC/": {
     "context": "label",
-    "string": "Manual Amount"
+    "string": "手动输入金额"
   },
   "FPzzh7": {
     "context": "dialog content",
@@ -2613,7 +2613,7 @@
   },
   "GJAX0z": {
     "context": "order history message",
-    "string": "Order was placed"
+    "string": "创建订单"
   },
   "GJwcSd": {
     "string": "PSP Reference (optional)"
@@ -2693,7 +2693,7 @@
   },
   "GhcypC": {
     "context": "header",
-    "string": "Create Warehouse"
+    "string": "新建仓库"
   },
   "GiDxS4": {
     "context": "add metadata field,button",
@@ -2752,11 +2752,11 @@
   },
   "H3Uirw": {
     "context": "create new menu item, header",
-    "string": "添加物品"
+    "string": "添加商品"
   },
   "H52OCA": {
     "context": "Order summary payment header",
-    "string": "Payment"
+    "string": "支付状态"
   },
   "H5NKfr": {
     "context": "button",
@@ -2902,7 +2902,7 @@
   },
   "I7HyJZ": {
     "context": "order refund amount",
-    "string": "Max Refund"
+    "string": "最多退款金额"
   },
   "I8mqqj": {
     "context": "PageTypeDeleteWarningDialog single assigned items button label",
@@ -3033,7 +3033,7 @@
     "string": "Authorized"
   },
   "IzECoP": {
-    "string": "Search draft orders..."
+    "string": "搜索草稿订单..."
   },
   "IzEVek": {
     "context": "bulk disable label",
@@ -3071,7 +3071,7 @@
   },
   "JEIN47": {
     "context": "label",
-    "string": "Automatic Amount"
+    "string": "自动计算金额"
   },
   "JFmOfi": {
     "context": "button",
@@ -3278,7 +3278,7 @@
   },
   "Kg0Fiu": {
     "context": "quantity of fulfilled products",
-    "string": "下发数量"
+    "string": "交付数量"
   },
   "Kgxlsf": {
     "context": "order",
@@ -3319,7 +3319,7 @@
   },
   "L/O4LQ": {
     "context": "order refund amount",
-    "string": "Authorized Amount"
+    "string": "付款金额"
   },
   "L/sNGY": {
     "string": "Local apps are custom webhooks & token pairs that can be used to connect apps and access Saleor API."
@@ -3375,7 +3375,7 @@
   },
   "LKpQYh": {
     "context": "refund type",
-    "string": "Miscellaneous Refund"
+    "string": "不退货退款"
   },
   "LLrOK3": {
     "context": "paragraph, description in manual refund card",
@@ -3431,7 +3431,7 @@
   },
   "LshEVn": {
     "context": "button",
-    "string": "Create order"
+    "string": "新建订单"
   },
   "LwX0Ug": {
     "context": "Button with Manage app label",
@@ -3473,7 +3473,7 @@
     "string": "Pickup"
   },
   "MJ2jZQ": {
-    "string": "Total"
+    "string": "总计"
   },
   "MJBAqv": {
     "context": "column title used by/customer",
@@ -3532,7 +3532,7 @@
   },
   "MewrtN": {
     "context": "section header",
-    "string": "Fulfillment"
+    "string": "交付明细"
   },
   "MgdgpT": {
     "context": "customer input label",
@@ -3582,7 +3582,7 @@
   },
   "N5UuEK": {
     "context": "header",
-    "string": "Items ready to ship"
+    "string": "要交付的商品"
   },
   "N6lfS/": {
     "context": "header",
@@ -3649,7 +3649,7 @@
     "string": "Swatch"
   },
   "NWxomz": {
-    "string": "下发状态"
+    "string": "交付状态"
   },
   "NZtcLb": {
     "context": "gift card bulk create success dialog content",
@@ -3884,7 +3884,7 @@
   },
   "PDw0YN": {
     "context": "open new window button",
-    "string": "Open this product in GraphiQL"
+    "string": "在GraphiQL中打开此商品"
   },
   "PFXGaR": {
     "string": "Shipping Zones"
@@ -3918,7 +3918,7 @@
   },
   "PV0SQd": {
     "context": "WarehousesSection select field label",
-    "string": "货仓"
+    "string": "仓库"
   },
   "PX2zWy": {
     "context": "customer is not set in draft order",
@@ -3933,7 +3933,7 @@
   },
   "PbqNhi": {
     "context": "order status",
-    "string": "部分下发"
+    "string": "部分交付"
   },
   "PcPMjC": {
     "context": "order history message",
@@ -3971,7 +3971,7 @@
     "string": "Value"
   },
   "Pp/7T7": {
-    "string": "{counter,plural,other {确认删除 {displayQuantity} 分类?}}"
+    "string": "{counter,plural,other {确认删除 {displayQuantity} 个分类？}}"
   },
   "PqMbma": {
     "context": "add attribute value",
@@ -4027,11 +4027,11 @@
   },
   "Q55cTG": {
     "context": "order refund amount",
-    "string": "Previously refunded"
+    "string": "之前已退款金额"
   },
   "Q6VRrE": {
     "context": "dialog content",
-    "string": "{counter,plural,one {你确定要删除此未完成订单吗？} other {你确定要删除{displayQuantity}个未完成订单吗？}}"
+    "string": "{counter,plural,one {你确定要删除此草稿订单吗？} other {你确定要删除{displayQuantity}个草稿订单吗？}}"
   },
   "Q6wcZ5": {
     "string": "姓名"
@@ -4319,7 +4319,7 @@
   },
   "S5/nSq": {
     "context": "grant refund table, column header",
-    "string": "Quantity"
+    "string": "数量"
   },
   "S52JMl": {
     "context": "default gift card delete description",
@@ -4428,7 +4428,7 @@
   },
   "Sxzua5": {
     "context": "order payment",
-    "string": "Settled"
+    "string": "结清"
   },
   "T/5OyA": {
     "string": "No translation yet"
@@ -4508,7 +4508,7 @@
   },
   "TLNf6K": {
     "context": "window title",
-    "string": "Draft Order #{orderNumber}"
+    "string": "草稿订单 #{orderNumber}"
   },
   "TLYeo5": {
     "context": "label",
@@ -4562,7 +4562,7 @@
   },
   "Tl+7X4": {
     "context": "tabel column header",
-    "string": "Refunded Qty"
+    "string": "退货数量"
   },
   "TnTi/a": {
     "context": "pricing card title",
@@ -4586,7 +4586,7 @@
   },
   "U+79k0": {
     "context": "order expiration card description",
-    "string": "The time in days after expired orders will be deleted. Allowed range between 1 and 120."
+    "string": "多少天后删除过期订单。可设置为1~120"
   },
   "U1eJIw": {
     "context": "order history message",
@@ -4603,7 +4603,7 @@
     "string": "Are you sure you want to delete {name} preset?"
   },
   "U5Da30": {
-    "string": "Warehouses"
+    "string": "仓库"
   },
   "U5aVd8": {
     "context": "product",
@@ -4744,7 +4744,7 @@
   },
   "V+gwx7": {
     "context": "order payment",
-    "string": "Captured amount"
+    "string": "付款金额"
   },
   "V+h02n": {
     "context": "issued by label",
@@ -4782,7 +4782,7 @@
   },
   "VCzrEZ": {
     "context": "link",
-    "string": "View Profile"
+    "string": "查看用户资料"
   },
   "VDwkEZ": {
     "context": "refunded event title",
@@ -4826,7 +4826,7 @@
     "string": "Fulfill anyway"
   },
   "VSztEE": {
-    "string": "取消此订单将释放未下发的单品，因此它们可以被其他客户购买。<b>取消订单时，订单将不会被退款 - 您需要人工操作。</b>你确定要取消这个订单吗？"
+    "string": "取消此订单将释放未交付的单品，因此它们可以被其他客户购买。<b>取消订单时，订单将不会被退款 - 您需要人工操作。</b>你确定要取消这个订单吗？"
   },
   "VTITVe": {
     "context": "section header",
@@ -4858,7 +4858,7 @@
     "string": "此用户组是该权限的最基本管理单位"
   },
   "VrFy8e": {
-    "string": "No notes from customer"
+    "string": "客户无备注"
   },
   "VsGcdP": {
     "context": "section header",
@@ -4953,7 +4953,7 @@
   },
   "WQMTKI": {
     "context": "list of warehouses",
-    "string": "Warehouses A to Z"
+    "string": 仓库列表"
   },
   "WR8rir": {
     "context": "button",
@@ -4991,7 +4991,7 @@
   },
   "WbV1Xm": {
     "context": "button",
-    "string": "Order Settings"
+    "string": "订单设置"
   },
   "Wd8vG7": {
     "context": "dialog content",
@@ -5034,7 +5034,7 @@
   },
   "WwNtFn": {
     "context": "delete product variant",
-    "string": "您确认想要删除 {name}?？"
+    "string": "您确认想要删除 {name}？"
   },
   "WwZfNK": {
     "string": "添加新的菜单至开始菜单"
@@ -5115,7 +5115,7 @@
   },
   "XJSRDK": {
     "context": "payment status",
-    "string": "Fully refunded"
+    "string": "全额退款"
   },
   "XLYssG": {
     "context": "assign categories to sale and save",
@@ -5123,7 +5123,7 @@
   },
   "XMrYaA": {
     "context": "checkbox label",
-    "string": "活动的用户"
+    "string": "活跃的用户"
   },
   "XMvH/d": {
     "context": "button label",
@@ -5296,7 +5296,7 @@
   },
   "YMBn8d": {
     "context": "draft orders section name",
-    "string": "拟稿单"
+    "string": "草稿订单"
   },
   "YQ3EXR": {
     "context": "product types section name",
@@ -5414,7 +5414,7 @@
   },
   "ZHF4Z9": {
     "context": "delete product dialog subtitle",
-    "string": "您确认想要删除 {name}?？"
+    "string": "您确认想要删除 {name}？"
   },
   "ZIc5lM": {
     "string": "Product Name"
@@ -5432,7 +5432,7 @@
   },
   "ZPOyI1": {
     "context": "fulfilled fulfillment, section header",
-    "string": "Fulfilled from {warehouseName}"
+    "string": "交付仓库： {warehouseName}"
   },
   "ZRz3hM": {
     "string": "Export Product Stock Quantity to CSV"
@@ -5543,7 +5543,7 @@
   },
   "aCX8rl": {
     "context": "subheader",
-    "string": "这是我们收集的有关您商店的一些信息"
+    "string": "欢迎登陆爱心屋后台"
   },
   "aEc9Ar": {
     "context": "gift card history message",
@@ -5657,7 +5657,7 @@
     "string": "Adding permission allows app to have more access to your data."
   },
   "b+jcaN": {
-    "string": "仍然有已下发的商品为这个订单创建。在取消订单之前，请先取消这些已下发的商品。"
+    "string": "仍然有已交付的商品为这个订单创建。在取消订单之前，请先取消这些已交付的商品。"
   },
   "b088Xv": {
     "string": "App doesn't provide a description."
@@ -5722,7 +5722,7 @@
   },
   "bS7A8u": {
     "context": "add tracking button",
-    "string": "添加追踪"
+    "string": "添加运单号"
   },
   "bT71VU": {
     "context": "total of all sent refunds",
@@ -5745,7 +5745,7 @@
   },
   "bb4nSp": {
     "context": "dialog header",
-    "string": "取消下发"
+    "string": "取消交付"
   },
   "bcf60I": {
     "context": "voucher",
@@ -5806,7 +5806,7 @@
   },
   "bqAJCT": {
     "context": "section header",
-    "string": "Refund Order"
+    "string": "订单退款方式"
   },
   "bsP4f3": {
     "string": "没有发现令牌"
@@ -5844,7 +5844,7 @@
     "string": "渠道名称"
   },
   "c8nvms": {
-    "string": "促销"
+    "string": "销售额"
   },
   "cBHRxx": {
     "context": "button",
@@ -5981,7 +5981,7 @@
   },
   "d7dT8o": {
     "context": "button, sets granted refund amount in input",
-    "string": "Set max"
+    "string": "设为最大值"
   },
   "d9UqaJ": {
     "context": "error message",
@@ -6879,7 +6879,7 @@
   },
   "k9hf7F": {
     "context": "total order price",
-    "string": "总数"
+    "string": "总价"
   },
   "kAAlGL": {
     "string": "Rules"
@@ -6937,7 +6937,7 @@
   },
   "kPIZ65": {
     "context": "page header",
-    "string": "Order #{orderNumber}"
+    "string": "订单 #{orderNumber}"
   },
   "kQq6/o": {
     "context": "info when addresses search is unsuccessful",
@@ -6952,7 +6952,7 @@
   },
   "kVKTwC": {
     "context": "order expiration card title",
-    "string": "Order expiration"
+    "string": "订单过期时间"
   },
   "kVL3LM": {
     "string": "Voucher codes"
@@ -6985,7 +6985,7 @@
   },
   "kak5vT": {
     "context": "order refund amount",
-    "string": "Selected Products Value"
+    "string": "本次退货金额"
   },
   "kbkjEc": {
     "context": "navigator catalog mode description",
@@ -7111,7 +7111,7 @@
   },
   "lOMgms": {
     "context": "fulfillment group",
-    "string": "Fulfilled from:"
+    "string": "交付仓库："
   },
   "lQRnYK": {
     "context": "selectt all options",
@@ -7152,7 +7152,7 @@
     "string": "Are you sure you want to delete selected page types? If you remove them you won’t be able to assign them to created pages."
   },
   "llBnr+": {
-    "string": "Warehouse Name"
+    "string": "仓库名称"
   },
   "lm9NSK": {
     "context": "password reset, button",
@@ -7332,7 +7332,7 @@
   },
   "nHmugP": {
     "context": "order history message",
-    "string": "Fulfilled {quantity} items"
+    "string": "已交付 {quantity} 个商品"
   },
   "nII/qB": {
     "context": "number of ordered products",
@@ -7344,7 +7344,7 @@
   },
   "nJ0tek": {
     "context": "tab name",
-    "string": "All draft orders"
+    "string": "所有草稿订单"
   },
   "nKjLjT": {
     "context": "error message",
@@ -7468,7 +7468,7 @@
   },
   "o5KXAN": {
     "context": "delete webhook",
-    "string": "您确认想要删除 {name}?？"
+    "string": "您确认想要删除 {name}？"
   },
   "o6260f": {
     "context": "attributes, section header",
@@ -7487,7 +7487,7 @@
   },
   "oB0y5Y": {
     "context": "order status",
-    "string": "未下发"
+    "string": "未交付"
   },
   "oHbgcK": {
     "context": "PageTypeDeleteWarningDialog title",
@@ -7650,7 +7650,7 @@
   },
   "pkjXPD": {
     "context": "order status",
-    "string": "已下发"
+    "string": "已交付"
   },
   "ppLwx3": {
     "context": "number of categories",
@@ -7879,7 +7879,7 @@
   },
   "rVIlBs": {
     "context": "page header with order number",
-    "string": "Order #{orderNumber}"
+    "string": "订单 #{orderNumber}"
   },
   "rZMT44": {
     "context": "created channels counter",
@@ -7923,7 +7923,7 @@
     "string": "搜索商品类型"
   },
   "rqiCWU": {
-    "string": "保存更改"
+    "string": "已保存更改"
   },
   "rqtV5d": {
     "context": "order status",
@@ -8015,7 +8015,7 @@
   },
   "sR0urA": {
     "context": "dialog content",
-    "string": "您确认想要删除 {name}?？"
+    "string": "您确认想要删除 {name}？"
   },
   "sS5aVm": {
     "context": "voucher discount type",
@@ -8150,7 +8150,7 @@
     "string": "Translating"
   },
   "tV+Dcm": {
-    "string": "Default country"
+    "string": "默认地区"
   },
   "tVybuM": {
     "context": "WarehouseSettings local warehouse label",
@@ -8310,7 +8310,7 @@
   },
   "ubasgL": {
     "context": "order history message",
-    "string": "Order was confirmed"
+    "string": "支付订单"
   },
   "ucLtY8": {
     "string": "Discount rules for products, collections or categories."
@@ -8434,7 +8434,7 @@
   },
   "vEwjub": {
     "context": "button",
-    "string": "Open in GraphiQL"
+    "string": "在GraphiQL中打开"
   },
   "vN3qdA": {
     "context": "button",
@@ -8511,7 +8511,7 @@
   },
   "viFkCw": {
     "context": "site settings section name",
-    "string": "Site Settings"
+    "string": "站点设置"
   },
   "vjsfyn": {
     "string": "Max Value"
@@ -8711,7 +8711,7 @@
   },
   "xGC2Ge": {
     "context": "grant refund, button",
-    "string": "Set max. quantities"
+    "string": "设为最大值"
   },
   "xHj9Qe": {
     "context": "gift card settings header",
@@ -8763,7 +8763,7 @@
     "string": "Assign Products"
   },
   "xco5tZ": {
-    "string": "你确定你要取消下发吗？取消下发将商品退回在一个选定的仓库。"
+    "string": "你确定你要取消交付吗？取消交付将商品退回在一个选定的仓库。"
   },
   "xfGZsi": {
     "context": "configuration section name",
@@ -8882,10 +8882,10 @@
     "string": "Assign variants"
   },
   "yT/GAp": {
-    "string": "追踪编号"
+    "string": "运单号"
   },
   "yT5zvU": {
-    "string": "{counter,plural,other {确认删除 {displayQuantity} 系列?}}"
+    "string": "{counter,plural,other {确认删除 {displayQuantity} 个系列？}}"
   },
   "yZB41s": {
     "context": "section header",
@@ -8896,11 +8896,11 @@
     "string": "Order Value"
   },
   "ybaLoZ": {
-    "string": "Search through channels"
+    "string": "搜索渠道"
   },
   "ycMLN9": {
     "context": "warehouses section name",
-    "string": "货仓"
+    "string": "仓库"
   },
   "ychKsb": {
     "context": "error message",
@@ -9000,15 +9000,15 @@
   },
   "zQnYKn": {
     "context": "status section subtitle",
-    "string": "Channel status"
+    "string": "渠道状态"
   },
   "zR9Ozi": {
     "context": "select all channels label",
-    "string": "Select All Channels"
+    "string": "选择所有渠道"
   },
   "zRrcOG": {
     "context": "order history message",
-    "string": "Order was cancelled"
+    "string": "订单已取消"
   },
   "zSOvI0": {
     "string": "筛选"
