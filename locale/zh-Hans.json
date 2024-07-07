@@ -797,11 +797,11 @@
     "string": "Filter preset"
   },
   "3SVI5p": {
-    "string": "Warning"
+    "string": "提示"
   },
   "3Sz1/t": {
     "context": "dialog header",
-    "string": "Delete Pages"
+    "string": "删除文章"
   },
   "3TlhJS": {
     "context": "navigator command mode description",
@@ -1765,7 +1765,7 @@
   },
   "Aeq79M": {
     "context": "PluginDetailsChannelsCard no channels subtitle",
-    "string": "Plugin’s settings are set common across all channels"
+    "string": "插件设置为全局设置"
   },
   "AgY5Mv": {
     "context": "attribute properties regarding storefront",
@@ -2344,7 +2344,7 @@
   },
   "Egyh2T": {
     "context": "section header",
-    "string": "Plugin Settings"
+    "string": "插件设置"
   },
   "Eh6KYS": {
     "context": "info card title",
@@ -2370,7 +2370,7 @@
   },
   "EtGDeK": {
     "context": "header",
-    "string": "{pluginName} Details"
+    "string": "{pluginName} 详情"
   },
   "EuOXmr": {
     "context": "add items title",
@@ -2422,7 +2422,7 @@
     "string": "子分类"
   },
   "FA+MRz": {
-    "string": "Set plugin as active"
+    "string": "激活此插件"
   },
   "FBtqtl": {
     "context": "payment status",
@@ -2837,7 +2837,7 @@
   },
   "HedXnw": {
     "context": "plugin channel availability status title",
-    "string": "{activeChannelsCount,plural, =0 {Deactivated} other {Active in {activeChannelsCount}}}"
+    "string": "{activeChannelsCount,plural, =0 {未激活} other {{activeChannelsCount} 已激活}}"
   },
   "Hgz44z": {
     "context": "dialog header",
@@ -2957,7 +2957,7 @@
   },
   "IUeGzv": {
     "context": "plugin name",
-    "string": "Plugin Name"
+    "string": "插件名称"
   },
   "IVOjqW": {
     "context": "gift card bulk create success dialog export button",
@@ -3274,7 +3274,7 @@
     "string": "Error activating gift {count,plural,one{card} other{cards}}"
   },
   "KeO51o": {
-    "string": "Channel"
+    "string": "渠道"
   },
   "Kg0Fiu": {
     "context": "quantity of fulfilled products",
@@ -3345,11 +3345,11 @@
   },
   "LA13a5": {
     "context": "channel select label",
-    "string": "Channel"
+    "string": "渠道"
   },
   "LATHyi": {
     "context": "dialog header",
-    "string": "Delete Channel: {channelSlug}"
+    "string": "删除渠道：{channelSlug}"
   },
   "LEZZkK": {
     "context": "WarehouseSettings all warehouses description",
@@ -5003,7 +5003,7 @@
   },
   "WhvuCb": {
     "context": "plugins section name",
-    "string": "Plugins"
+    "string": "插件"
   },
   "WkxE8/": {
     "context": "percentage or fixed, header",
@@ -6455,7 +6455,7 @@
   },
   "gz9v22": {
     "context": "PluginChannelConfigurationCell channel title",
-    "string": "Per channel"
+    "string": "每个渠道独立设置"
   },
   "gzM1em": {
     "string": "Add rule"
@@ -8578,7 +8578,7 @@
   },
   "w424P4": {
     "context": "section header",
-    "string": "Plugin Information and Status"
+    "string": "插件信息和状态"
   },
   "w6kcxY": {
     "string": "What happens if I approve?"
@@ -8741,7 +8741,7 @@
   },
   "xTIKA/": {
     "context": "PluginChannelConfigurationCell global title",
-    "string": "Global"
+    "string": "全局设置"
   },
   "xTyg+p": {
     "string": "No options to select"
@@ -8911,7 +8911,7 @@
     "string": "Channel"
   },
   "yfhLcv": {
-    "string": "We are working on replacing plugins with apps. Read more about"
+    "string": "更多插件请查看"
   },
   "yhv3HX": {
     "context": "voucher requirements, header",
