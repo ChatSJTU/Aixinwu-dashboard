@@ -324,7 +324,7 @@
   },
   "/yJJvI": {
     "context": "dialog header",
-    "string": "Select a product type"
+    "string": "选择商品类型"
   },
   "/z9uo1": {
     "context": "order returned success message",
@@ -507,7 +507,7 @@
   },
   "18wvf7": {
     "context": "section header",
-    "string": "Order Details"
+    "string": "订单详情"
   },
   "19/lwV": {
     "string": "确认创建商品类型的属性"
@@ -680,7 +680,7 @@
     "string": "设为最大值"
   },
   "2WenNh": {
-    "string": "Send refund"
+    "string": "退款"
   },
   "2Xt+sw": {
     "context": "dialog header",
@@ -838,7 +838,7 @@
   },
   "3oQzWR": {
     "context": "product availability",
-    "string": "Set publication date"
+    "string": "设置发布日期"
   },
   "3psvRS": {
     "context": "attribute values list: slug column header",
@@ -968,7 +968,7 @@
   },
   "4XhJY+": {
     "context": "dialog header",
-    "string": "Add product from {channelName}"
+    "string": "从 {channelName} 添加商品"
   },
   "4Z0O2B": {
     "context": "section header title",
@@ -976,7 +976,7 @@
   },
   "4Z14xW": {
     "context": "button",
-    "string": "Finalize"
+    "string": "完成"
   },
   "4Z6BtA": {
     "context": "order history message",
@@ -1110,7 +1110,7 @@
   },
   "5ZYUn5": {
     "context": "Filter and element text",
-    "string": "And"
+    "string": "且"
   },
   "5ZvuVw": {
     "string": "No products matching given query"
@@ -1158,7 +1158,7 @@
   },
   "5o84YO": {
     "context": "Filter where element text",
-    "string": "Where"
+    "string": "满足"
   },
   "5pHBSU": {
     "context": "switch button",
@@ -1452,7 +1452,7 @@
   },
   "8F2D1H": {
     "context": "order refund amount, input button",
-    "string": "Refund {currency} {amount}"
+    "string": "退款 {currency} {amount}"
   },
   "8GC/ah": {
     "context": "variants section name",
@@ -1500,7 +1500,7 @@
   },
   "8qL/tV": {
     "context": "CannotDefineChannelsAvailabilityCard subtitle",
-    "string": "You will be able to define availability of product after creating variants."
+    "string": "商品创建完成后才可设置"
   },
   "8u7els": {
     "context": "channel config plugin status popup title",
@@ -1564,7 +1564,7 @@
     "string": "Allow access to orders of all channels"
   },
   "9MGrEp": {
-    "string": "Is available"
+    "string": "可用性"
   },
   "9Mro3c": {
     "context": "Transaction event status - pending",
@@ -1728,7 +1728,7 @@
   },
   "APcoSA": {
     "context": "dialog header",
-    "string": "Delete Daft Order"
+    "string": "删除草稿订单"
   },
   "AQ+9Ez": {
     "string": "We’ve encountered an unexpected error"
@@ -2355,7 +2355,7 @@
     "string": "所有仓库"
   },
   "Eq3GFh": {
-    "string": "Is giftcard"
+    "string": "礼品卡"
   },
   "ErNH3D": {
     "string": "定义该属性在 Saleor 系统中的何处被使用"
@@ -2400,7 +2400,7 @@
     "string": "Error details: {message}"
   },
   "F3Upht": {
-    "string": "Product type deleted"
+    "string": "商品类型已删除"
   },
   "F4WdSO": {
     "context": "dialog header",
@@ -2891,7 +2891,7 @@
   },
   "I+UwqI": {
     "context": "is filter range or value",
-    "string": "equal to"
+    "string": "等于"
   },
   "I1Mz7h": {
     "string": "管理商品在渠道中的可用性"
@@ -3055,7 +3055,7 @@
   },
   "J4NBVR": {
     "context": "link",
-    "string": "View Orders"
+    "string": "查看订单"
   },
   "J7mFhU": {
     "context": "currency code select",
@@ -3183,7 +3183,7 @@
   },
   "JmdBa3": {
     "context": "product availability publish date",
-    "string": "Publish on"
+    "string": "发布于"
   },
   "JnzDrI": {
     "context": "discount type",
@@ -3408,7 +3408,7 @@
   },
   "Ljtqmt": {
     "context": "page header, order id unknown",
-    "string": "Order"
+    "string": "订单"
   },
   "LkuDEb": {
     "context": "metadata field value, header",
@@ -3598,7 +3598,7 @@
   },
   "NBP8uu": {
     "context": "page header",
-    "string": "New Product"
+    "string": "新的商品"
   },
   "ND5x+V": {
     "string": "We’re generating the invoice you requested. Please wait a couple of moments"
@@ -3796,7 +3796,7 @@
   },
   "OVOU1z": {
     "context": "section header",
-    "string": "公开元数据"
+    "string": "元数据"
   },
   "OaA0f9": {
     "string": "You have reached your staff member limit, you will be no longer able to add staff members to your store. If you would like to up your limit, contact your administration staff about raising your limits."
@@ -4059,7 +4059,7 @@
   },
   "QBxN6z": {
     "context": "is filter range or value",
-    "string": "between"
+    "string": "在区间"
   },
   "QCwBUI": {
     "context": "button",
@@ -4081,7 +4081,7 @@
     "string": "名称"
   },
   "QHDtwH": {
-    "string": "Has category"
+    "string": "分类"
   },
   "QJG+d/": {
     "context": "staff added type order discount",
@@ -4167,7 +4167,7 @@
     "string": "Add a new address:"
   },
   "QqnNUm": {
-    "string": "Visible in listing"
+    "string": "列表可见"
   },
   "QzseV7": {
     "context": "dialog header",
@@ -4543,7 +4543,7 @@
   },
   "Taa5V7": {
     "context": "dialog subtitle",
-    "string": "You can only add products available for the order's channel"
+    "string": "只能从订单对应的渠道中添加商品"
   },
   "TdTXXf": {
     "string": "Learn more"
@@ -4884,10 +4884,10 @@
   },
   "Vze3qI": {
     "context": "column category descriptor",
-    "string": "Channels"
+    "string": "渠道"
   },
   "W/Es0H": {
-    "string": "Order successfully cancelled"
+    "string": "订单已取消"
   },
   "W0kQd+": {
     "context": "dialog title",
@@ -4953,7 +4953,7 @@
   },
   "WQMTKI": {
     "context": "list of warehouses",
-    "string": 仓库列表"
+    "string": "仓库列表"
   },
   "WR8rir": {
     "context": "button",
@@ -5127,7 +5127,7 @@
   },
   "XMvH/d": {
     "context": "button label",
-    "string": "ACCEPT"
+    "string": "接受"
   },
   "XNeJay": {
     "context": "section header",
@@ -5138,7 +5138,7 @@
     "string": "Void"
   },
   "XPruqs": {
-    "string": "Order"
+    "string": "订单"
   },
   "XQBVEJ": {
     "context": "order return error description when cannot refund",
@@ -5516,14 +5516,14 @@
   },
   "a4qX2+": {
     "context": "order",
-    "string": "Created"
+    "string": "已创建"
   },
   "a55zOn": {
     "context": "section header",
     "string": "数据隐私政策"
   },
   "a5msuh": {
-    "string": "Yes"
+    "string": "是"
   },
   "a6GDem": {
     "context": "tab name",
@@ -6035,11 +6035,11 @@
     "string": "从以下列表中选择你想让优惠券限制在的国家"
   },
   "da1ebU": {
-    "string": "Product type"
+    "string": "商品类型"
   },
   "dc5KWn": {
     "context": "products export type label",
-    "string": "products"
+    "string": "商品"
   },
   "diOQm7": {
     "context": "product status",
@@ -6535,7 +6535,7 @@
   },
   "hWO1SD": {
     "context": "order history message",
-    "string": "Draft order was created"
+    "string": "创建草稿订单"
   },
   "hX5PAb": {
     "string": "无结果"
@@ -6571,7 +6571,7 @@
   },
   "hqVMLQ": {
     "context": "button",
-    "string": "Send"
+    "string": "添加"
   },
   "ht9yOD": {
     "context": "table head",
@@ -6732,7 +6732,7 @@
     "string": "Exchange Rates"
   },
   "j2fPVo": {
-    "string": "Order successfully updated"
+    "string": "订单已更新"
   },
   "j2l6cL": {
     "context": "checkbox label",
@@ -7207,7 +7207,7 @@
     "string": "上传"
   },
   "mIRBuW": {
-    "string": "Is published"
+    "string": "是否发布"
   },
   "mIUNgR": {
     "context": "button",
@@ -7272,7 +7272,7 @@
     "string": "Resend code to customer"
   },
   "mxtAFx": {
-    "string": "Are you sure you want to delete draft #{orderNumber}?"
+    "string": "你确定要删除草稿订单 #{orderNumber} 吗？"
   },
   "mzASqs": {
     "context": "days after label",
@@ -7294,7 +7294,7 @@
   },
   "n5vskv": {
     "context": "customer's address book, header",
-    "string": "{fullName}'s Address Book"
+    "string": "{fullName}的收货地址"
   },
   "n7Fg8i": {
     "string": "Successfully created sale"
@@ -7359,7 +7359,7 @@
   },
   "nMojhT": {
     "context": "Clear filters button text",
-    "string": "Reset"
+    "string": "重置"
   },
   "nNeWAx": {
     "context": "dialog header",
@@ -7512,7 +7512,7 @@
     "string": "地址行2"
   },
   "oUWADl": {
-    "string": "No"
+    "string": "否"
   },
   "oUWXLO": {
     "context": "header",
@@ -8394,7 +8394,7 @@
   },
   "v/1VA6": {
     "context": "add order note, button",
-    "string": "Send"
+    "string": "添加"
   },
   "v01/tY": {
     "context": "consent to send gift card to different address checkbox label",
@@ -8557,7 +8557,7 @@
   },
   "w+3Q3e": {
     "context": "input label",
-    "string": "Product type"
+    "string": "商品类型"
   },
   "w+5Djm": {
     "string": "Min. Order Weight"
@@ -8627,7 +8627,7 @@
   },
   "wUQCnQ": {
     "context": "Save filters button text",
-    "string": "Save"
+    "string": "保存"
   },
   "wWTUrM": {
     "string": "查无活动"
