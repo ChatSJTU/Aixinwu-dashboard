@@ -31,6 +31,7 @@ export interface CustomerInfoProps {
     firstName: string;
     lastName: string;
     email: string;
+    balance: number;
   };
   disabled: boolean;
   errors: AccountErrorFragment[];
@@ -111,6 +112,26 @@ const CustomerInfo: React.FC<CustomerInfoProps> = props => {
           inputProps={{
             spellCheck: false,
           }}
+        />
+        <Hr className={classes.hr} />
+        <Typography className={classes.sectionHeader}>
+          <FormattedMessage
+            id="axb-number"
+            defaultMessage="爱心币"
+          />
+        </Typography>
+        <TextField
+          disabled={disabled}
+          helperText={""}
+          error={false}
+          name="balance"
+          onChange={onChange}
+          label={intl.formatMessage({
+            id: "axb-balance",
+            defaultMessage: "爱心币余额",
+          })}
+          value={data.balance}
+          type="number"
         />
       </CardContent>
     </Card>

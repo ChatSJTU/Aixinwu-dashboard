@@ -47,6 +47,7 @@ export interface CustomerDetailsPageFormData extends MetadataFormData {
   email: string;
   isActive: boolean;
   note: string;
+  balance: number;
 }
 
 export interface CustomerDetailsPageProps {
@@ -81,6 +82,7 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
     metadata: customer?.metadata.map(mapMetadataItemToInput),
     note: customer?.note || "",
     privateMetadata: customer?.privateMetadata.map(mapMetadataItemToInput),
+    balance: customer?.balance || 0,
   };
 
   const { makeChangeHandler: makeMetadataChangeHandler } =
