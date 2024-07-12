@@ -85,6 +85,7 @@ const CustomerDetailsViewInner: React.FC<CustomerDetailsViewProps> = ({
             isActive: data.isActive,
             lastName: data.lastName,
             note: data.note,
+            balance: data.balance,
           },
         },
       }),
