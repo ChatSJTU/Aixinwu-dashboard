@@ -1721,12 +1721,12 @@ type Attribute implements Node & ObjectWithMetadata {
     filter: AttributeValueFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -1812,12 +1812,12 @@ type Attribute implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ProductTypeCountableConnection!
@@ -1833,12 +1833,12 @@ type Attribute implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ProductTypeCountableConnection!
@@ -3126,6 +3126,87 @@ input AttributeWhereInput {
   withChoices: Boolean
 }
 
+"""Represents balance events."""
+type BalanceEvent implements Node {
+  """User account of a balance event."""
+  account: String
+
+  """Balance of a balance event."""
+  balance: Float
+
+  """Code of the customer."""
+  code: String
+
+  """Datetime of the event."""
+  date: DateTime
+
+  """The ID of the balance event."""
+  id: ID!
+
+  """User name of a balance event."""
+  name: String
+
+  """Type of a balance event."""
+  type: String
+}
+
+type BalanceEventCountableConnection {
+  edges: [BalanceEventCountableEdge!]!
+
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """A total count of items in the collection."""
+  totalCount: Int
+}
+
+type BalanceEventCountableEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: BalanceEvent!
+}
+
+input BalanceEventFilterInput {
+  date: DateRangeInput
+  metadata: [MetadataFilter!]
+  type: BalanceEventsEnum
+  user: String
+}
+
+input BalanceEventSortingInput {
+  """Specifies the direction in which to sort balances."""
+  direction: OrderDirection!
+
+  """Sort balances by the selected field."""
+  field: EventSortField!
+}
+
+"""An enumeration."""
+enum BalanceEventsEnum {
+  CONSECUTIVE_LOGIN
+  CONSUMED
+  DONATION_GRANTED
+  FIRST_LOGIN
+  MANUALLY_UPDATED
+  REFUNDED
+}
+
+"""
+Update user's balance. 
+
+Requires one of the following permissions: MANAGE_USERS.
+
+Triggers the following webhook events:
+- ADDRESS_CREATED (async): A new address was created.
+"""
+type BalanceUpdate {
+  accountErrors: [AccountError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
+  errors: [AccountError!]!
+  user: User
+}
+
 input BulkAttributeValueInput {
   """
   The boolean value of an attribute to resolve. If the passed value is non-existent, it will be created.
@@ -3308,6 +3389,17 @@ input CardInput {
   money: MoneyInput!
 }
 
+"""Shop Carousel."""
+type Carousel {
+  """Carousel Images"""
+  urls: [String!]
+}
+
+input CarouselInput {
+  """Url list of new carousel."""
+  urls: [String!]!
+}
+
 input CatalogueInput {
   """Categories related to the discount."""
   categories: [ID!]
@@ -3359,12 +3451,12 @@ type Category implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): CategoryCountableConnection
@@ -3393,12 +3485,12 @@ type Category implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): CategoryCountableConnection
@@ -3488,12 +3580,12 @@ type Category implements Node & ObjectWithMetadata {
     filter: ProductFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -5671,12 +5763,12 @@ type Collection implements Node & ObjectWithMetadata {
     filter: ProductFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -7380,6 +7472,174 @@ type Domain {
   url: String!
 }
 
+"""Represents donation."""
+type Donation implements Node {
+  """Whether this donation is completed or not."""
+  completed: Boolean
+
+  """The date and time when the donation was created."""
+  createdAt: DateTime!
+
+  """The description of the donation."""
+  description: String!
+
+  """
+  The user who made the donation. Requires one of permissions: MANAGE_USERS, MANAGE_DONATIONS, fOWNER
+  """
+  donator: User
+
+  """The ID of the donation."""
+  id: ID!
+
+  """The price of the donation."""
+  price: Money!
+
+  """The quantity of the donation."""
+  quantity: Int!
+
+  """The title of the donation."""
+  title: String!
+
+  """The date and time when the donation was last updated."""
+  updatedAt: DateTime!
+}
+
+"""
+Complete a new donation.
+
+Triggers the following webhook events:
+- DONATION_COMPLETED (sync): A donation has been created.
+"""
+type DonationComplete {
+  donation: Donation
+  errors: [DonationError!]!
+}
+
+type DonationCountableConnection {
+  edges: [DonationCountableEdge!]!
+
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """A total count of items in the collection."""
+  totalCount: Int
+}
+
+type DonationCountableEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Donation!
+}
+
+"""
+Create a new donation.
+
+Triggers the following webhook events:
+- DONATION_CREATED (sync): A donation has been created.
+"""
+type DonationCreate {
+  donation: Donation
+  errors: [DonationError!]!
+}
+
+input DonationCreateInput {
+  """The description of the donation."""
+  description: String!
+
+  """The price of the donation."""
+  price: MoneyInput!
+
+  """The quantity of the donation."""
+  quantity: Int!
+
+  """The title of the donation."""
+  title: String!
+}
+
+"""
+Delete an old donation.
+
+Triggers the following webhook events:
+- DONATION_DELETED (sync): A donation has been deleted.
+"""
+type DonationDelete {
+  errors: [DonationError!]!
+  success: Boolean
+}
+
+type DonationError {
+  """The error code."""
+  code: DonationErrorCode!
+
+  """
+  Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+  """
+  field: String
+
+  """The error message."""
+  message: String
+}
+
+"""An enumeration."""
+enum DonationErrorCode {
+  CANNOT_ASSIGN_NODE
+  GRAPHQL_ERROR
+  INVALID
+  NOT_FOUND
+  PERMISSION_DENIED
+  REQUIRED
+}
+
+input DonationFilterInput {
+  created: DateRangeInput
+  donator: String
+  metadata: [MetadataFilter!]
+  updated: DateRangeInput
+}
+
+enum DonationSortField {
+  """Sort checkouts by creation date."""
+  CREATION_DATE
+}
+
+input DonationSortingInput {
+  """Specifies the direction in which to sort donations."""
+  direction: OrderDirection!
+
+  """Sort donations by the selected field."""
+  field: DonationSortField!
+}
+
+"""
+Update a new donation.
+
+Triggers the following webhook events:
+- DONATION_UPDATED (sync): A donation has been updated.
+"""
+type DonationUpdate {
+  donation: Donation
+  errors: [DonationError!]!
+}
+
+input DonationUpdateInput {
+  """The description of the donation."""
+  description: String
+
+  """ID of the donation."""
+  id: ID!
+
+  """The price of the donation."""
+  price: MoneyInput
+
+  """The quantity of the donation."""
+  quantity: Int
+
+  """The title of the donation."""
+  title: String
+}
+
 """
 Deletes draft orders. 
 
@@ -7653,12 +7913,12 @@ type EventDelivery implements Node {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -7794,6 +8054,11 @@ enum EventDeliveryStatusEnum {
   FAILED
   PENDING
   SUCCESS
+}
+
+enum EventSortField {
+  """Sort checkouts by creation date."""
+  CREATION_DATE
 }
 
 type ExportError {
@@ -10649,12 +10914,42 @@ type LanguageDisplay {
 }
 
 """Store the current and allowed usage."""
-type LimitInfo {
+type LimitInfo implements ObjectWithMetadata {
   """Defines the allowed maximum resource usage, null means unlimited."""
   allowedUsage: Limits!
 
   """Defines the current resource usage."""
   currentUsage: Limits!
+
+  """List of public metadata items. Can be accessed without permissions."""
+  metadata: [MetadataItem!]!
+
+  """
+  A single key from public metadata.
+  
+  Tip: Use GraphQL aliases to fetch multiple keys.
+  """
+  metafield(key: String!): String
+
+  """
+  Public metadata. Use `keys` to control which fields you want to include. The default is to include everything.
+  """
+  metafields(keys: [String!]): Metadata
+
+  """List of private metadata items. Requires staff permissions to access."""
+  privateMetadata: [MetadataItem!]!
+
+  """
+  A single key from private metadata. Requires staff permissions to access.
+  
+  Tip: Use GraphQL aliases to fetch multiple keys.
+  """
+  privateMetafield(key: String!): String
+
+  """
+  Private metadata. Requires staff permissions to access. Use `keys` to control which fields you want to include. The default is to include everything.
+  """
+  privateMetafields(keys: [String!]): Metadata
 }
 
 type Limits {
@@ -12238,6 +12533,34 @@ type Mutation {
   ): AttributeValueUpdate
 
   """
+  Update user's balance. 
+  
+  Requires one of the following permissions: MANAGE_USERS.
+  
+  Triggers the following webhook events:
+  - ADDRESS_CREATED (async): A new address was created.
+  """
+  balanceUpdate(
+    """Fields required to create address."""
+    balance: Float!
+
+    """ID of a user to create address for."""
+    userId: ID!
+  ): BalanceUpdate
+
+  """
+  Updates site domain of the shop.
+  
+  DEPRECATED: this mutation will be removed in Saleor 4.0. Use `PUBLIC_URL` environment variable instead. 
+  
+  Requires one of the following permissions: MANAGE_SETTINGS.
+  """
+  carouselSettingsUpdate(
+    """Fields required to update or create the current carousel."""
+    input: CarouselInput!
+  ): ShopCarouselUpdate
+
+  """
   Deletes categories. 
   
   Requires one of the following permissions: MANAGE_PRODUCTS.
@@ -13291,6 +13614,47 @@ type Mutation {
   ): DigitalContentUrlCreate
 
   """
+  Complete a new donation.
+  
+  Triggers the following webhook events:
+  - DONATION_COMPLETED (sync): A donation has been created.
+  """
+  donationComplete(
+    """ID of the donation to complete."""
+    id: ID!
+  ): DonationComplete
+
+  """
+  Create a new donation.
+  
+  Triggers the following webhook events:
+  - DONATION_CREATED (sync): A donation has been created.
+  """
+  donationCreate(
+    """Fields required to create a donation."""
+    input: DonationCreateInput!
+  ): DonationCreate
+
+  """
+  Delete an old donation.
+  
+  Triggers the following webhook events:
+  - DONATION_DELETED (sync): A donation has been deleted.
+  """
+  donationDelete(id: ID!): DonationDelete
+
+  """
+  Update a new donation.
+  
+  Triggers the following webhook events:
+  - DONATION_UPDATED (sync): A donation has been updated.
+  """
+  donationUpdate(
+    """Fields required to update a donation."""
+    input: DonationUpdateInput!
+  ): DonationUpdate
+
+  """
   Deletes draft orders. 
   
   Requires one of the following permissions: MANAGE_ORDERS.
@@ -13944,11 +14308,7 @@ type Mutation {
     stockUpdatePolicy: StockUpdatePolicyEnum
   ): OrderBulkCreate
 
-  """
-  Cancel an order. 
-  
-  Requires one of the following permissions: MANAGE_ORDERS.
-  """
+  """Cancel an order."""
   orderCancel(
     """ID of the order to cancel."""
     id: ID!
@@ -13967,11 +14327,7 @@ type Mutation {
     id: ID!
   ): OrderCapture
 
-  """
-  Confirms an unconfirmed order by changing status to unfulfilled. 
-  
-  Requires one of the following permissions: MANAGE_ORDERS.
-  """
+  """Confirms an unconfirmed order by changing status to unfulfilled."""
   orderConfirm(
     """ID of an order to confirm."""
     id: ID!
@@ -15987,7 +16343,7 @@ type Mutation {
   ): StaffUpdate
 
   """
-  Updates stocks for a given variant and warehouse.
+  Updates stocks for a given variant and warehouse. Variant and warehouse selectors have to be the same for all stock inputs. Is not allowed to use 'variantId' in one input and 'variantExternalReference' in another.
   
   Added in Saleor 3.13.
   
@@ -16207,8 +16563,8 @@ type Mutation {
     """
     externalUrl: String
 
-    """The ID of the transaction."""
-    id: ID!
+    """The ID of the transaction. One of field id or token is required."""
+    id: ID
 
     """The message related to the event."""
     message: String
@@ -16220,6 +16576,13 @@ type Mutation {
     The time of the event to report. If not provide, the current time will be used.
     """
     time: DateTime
+
+    """
+    The token of the transaction. One of field id or token is required.
+    
+    Added in Saleor 3.14.
+    """
+    token: UUID
 
     """Current status of the event to report."""
     type: TransactionEventTypeEnum!
@@ -16253,6 +16616,13 @@ type Mutation {
     """The ID of the checkout or order."""
     id: ID!
 
+    """
+    The idempotency key assigned to the action. It will be passed to the payment app to discover potential duplicate actions. If not provided, the default one will be generated. If empty string provided, INVALID error code will be raised.
+    
+    Added in Saleor 3.14.
+    """
+    idempotencyKey: String
+
     """Payment gateway used to initialize the transaction."""
     paymentGateway: PaymentGatewayToInitialize!
   ): TransactionInitialize
@@ -16275,8 +16645,17 @@ type Mutation {
     """The data that will be passed to the payment gateway."""
     data: JSON
 
-    """The ID of the transaction to process."""
-    id: ID!
+    """
+    The ID of the transaction to process. One of field id or token is required.
+    """
+    id: ID
+
+    """
+    The token of the transaction to process. One of field id or token is required.
+    
+    Added in Saleor 3.14.
+    """
+    token: UUID
   ): TransactionProcess
 
   """
@@ -16297,8 +16676,15 @@ type Mutation {
     """
     amount: PositiveDecimal
 
-    """The ID of the transaction."""
-    id: ID!
+    """The ID of the transaction. One of field id or token is required."""
+    id: ID
+
+    """
+    The token of the transaction. One of field id or token is required.
+    
+    Added in Saleor 3.14.
+    """
+    token: UUID
   ): TransactionRequestAction
 
   """
@@ -16314,8 +16700,15 @@ type Mutation {
     """The ID of the granted refund."""
     grantedRefundId: ID!
 
-    """The ID of the transaction."""
-    id: ID!
+    """The ID of the transaction. One of field id or token is required."""
+    id: ID
+
+    """
+    The token of the transaction. One of field id or token is required.
+    
+    Added in Saleor 3.14.
+    """
+    token: UUID
   ): TransactionRequestRefundForGrantedRefund
 
   """
@@ -16328,8 +16721,15 @@ type Mutation {
   Requires the following permissions: OWNER and HANDLE_PAYMENTS for apps, HANDLE_PAYMENTS for staff users. Staff user cannot update a transaction that is owned by the app.
   """
   transactionUpdate(
-    """The ID of the transaction."""
-    id: ID!
+    """The ID of the transaction. One of field id or token is required."""
+    id: ID
+
+    """
+    The token of the transaction. One of field id or token is required.
+    
+    Added in Saleor 3.14.
+    """
+    token: UUID
 
     """Input data required to create a new transaction object."""
     transaction: TransactionUpdateInput
@@ -17510,11 +17910,7 @@ type OrderBulkCreated implements Event {
   version: String
 }
 
-"""
-Cancel an order. 
-
-Requires one of the following permissions: MANAGE_ORDERS.
-"""
+"""Cancel an order."""
 type OrderCancel {
   errors: [OrderError!]!
 
@@ -17586,11 +17982,7 @@ enum OrderChargeStatusEnum {
   PARTIAL
 }
 
-"""
-Confirms an unconfirmed order by changing status to unfulfilled. 
-
-Requires one of the following permissions: MANAGE_ORDERS.
-"""
+"""Confirms an unconfirmed order by changing status to unfulfilled."""
 type OrderConfirm {
   errors: [OrderError!]!
   order: Order
@@ -19347,6 +19739,7 @@ enum OrderStatus {
   DRAFT
   EXPIRED
   FULFILLED
+  LEASED
   PARTIALLY_FULFILLED
   PARTIALLY_RETURNED
   RETURNED
@@ -19995,12 +20388,12 @@ type PageType implements Node & ObjectWithMetadata {
     filter: AttributeFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
     where: AttributeWhereInput
@@ -21769,6 +22162,9 @@ type Product implements Node & ObjectWithMetadata {
   """
   isAvailableForPurchase: Boolean
 
+  """Product Lending"""
+  lending: Boolean
+
   """List of media for the product."""
   media(
     """
@@ -22071,6 +22467,9 @@ input ProductBulkCreateInput {
 
   """External ID of this product."""
   externalReference: String
+
+  """Product Lending."""
+  lending: Boolean
 
   """List of media inputs associated with the product."""
   media: [MediaInput!]
@@ -22440,6 +22839,9 @@ input ProductCreateInput {
   """
   externalReference: String
 
+  """Product Lending."""
+  lending: Boolean
+
   """
   Fields required to update the product metadata.
   
@@ -22754,6 +23156,9 @@ input ProductInput {
   Added in Saleor 3.10.
   """
   externalReference: String
+
+  """Product Lending."""
+  lending: Boolean
 
   """
   Fields required to update the product metadata.
@@ -23327,12 +23732,12 @@ type ProductType implements Node & ObjectWithMetadata {
     filter: AttributeFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
     where: AttributeWhereInput
@@ -23409,12 +23814,12 @@ type ProductType implements Node & ObjectWithMetadata {
     channel: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ProductCountableConnection @deprecated(reason: "This field will be removed in Saleor 4.0. Use the top-level `products` query with the `productTypes` filter.")
@@ -23794,11 +24199,7 @@ type ProductVariant implements Node & ObjectWithMetadata {
   """The SKU (stock keeping unit) of the product variant."""
   sku: String
 
-  """
-  Stocks for the product variant.
-  
-  Requires one of the following permissions: MANAGE_PRODUCTS, MANAGE_ORDERS.
-  """
+  """Stocks for the product variant."""
   stocks(
     """
     Destination address used to find warehouses where stock availability for this product is checked. If address is empty, uses `Shop.companyAddress` or fallbacks to server's `settings.DEFAULT_COUNTRY` configuration.
@@ -26015,12 +26416,12 @@ type Query {
     filter: AppExtensionFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): AppExtensionCountableConnection
@@ -26041,12 +26442,12 @@ type Query {
     filter: AppFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26092,12 +26493,12 @@ type Query {
     filter: AttributeFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26121,6 +26522,34 @@ type Query {
     where: AttributeWhereInput
   ): AttributeCountableConnection
 
+  """User Balance Events"""
+  balanceEvents(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """Filter the balance events"""
+    filter: BalanceEventFilterInput
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+
+    """Sorting the balance events"""
+    sortBy: BalanceEventSortingInput
+  ): BalanceEventCountableConnection
+
+  """Return the carousel of the current site."""
+  carousel: Carousel
+
   """List of the shop's categories."""
   categories(
     """Return the elements in the list that come after the specified cursor."""
@@ -26133,12 +26562,12 @@ type Query {
     filter: CategoryFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26221,12 +26650,12 @@ type Query {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): CheckoutLineCountableConnection
@@ -26254,12 +26683,12 @@ type Query {
     filter: CheckoutFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26302,12 +26731,12 @@ type Query {
     filter: CollectionFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26340,12 +26769,12 @@ type Query {
     filter: CustomerFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26376,15 +26805,45 @@ type Query {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): DigitalContentCountableConnection
+
+  """
+  Donations made by the user or collected by users if requested by staff.
+  """
+  donations(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """Slug of a channel for which the data should be returned."""
+    channel: String
+
+    """Filtering options for orders."""
+    filter: DonationFilterInput
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+
+    """Sort orders."""
+    sortBy: DonationSortingInput
+  ): DonationCountableConnection
 
   """
   List of draft orders.
@@ -26402,12 +26861,12 @@ type Query {
     filter: OrderDraftFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26441,12 +26900,12 @@ type Query {
     filter: ExportFileFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26498,12 +26957,12 @@ type Query {
     filter: GiftCardTagFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): GiftCardTagCountableConnection
@@ -26528,12 +26987,12 @@ type Query {
     filter: GiftCardFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26567,12 +27026,12 @@ type Query {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): OrderEventCountableConnection
@@ -26619,12 +27078,12 @@ type Query {
     filter: MenuItemFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26651,12 +27110,12 @@ type Query {
     filter: MenuFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26709,12 +27168,12 @@ type Query {
     filter: OrderFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26762,12 +27221,12 @@ type Query {
     filter: PageTypeFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26787,12 +27246,12 @@ type Query {
     filter: PageFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26826,12 +27285,12 @@ type Query {
     filter: PaymentFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): PaymentCountableConnection
@@ -26862,12 +27321,12 @@ type Query {
     filter: PermissionGroupFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26901,12 +27360,12 @@ type Query {
     filter: PluginFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -26953,12 +27412,12 @@ type Query {
     filter: ProductTypeFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -27004,7 +27463,7 @@ type Query {
     filter: ProductVariantFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
@@ -27012,7 +27471,7 @@ type Query {
     ids: [ID!]
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -27046,12 +27505,12 @@ type Query {
     filter: ProductFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -27106,12 +27565,12 @@ type Query {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -27138,12 +27597,12 @@ type Query {
     channel: String!
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -27183,12 +27642,12 @@ type Query {
     filter: SaleFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -27235,18 +27694,18 @@ type Query {
     filter: ShippingZoneFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ShippingZoneCountableConnection
 
   """Return information about the shop."""
-  shop: Shop!
+  shop: Shop
 
   """
   List of the shop's staff users.
@@ -27264,18 +27723,21 @@ type Query {
     filter: StaffUserInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
     """Sort staff users."""
     sortBy: UserSortingInput
   ): UserCountableConnection
+
+  """Return the current statistics of the shop"""
+  statistics: Statistics
 
   """
   Look up a stock by ID
@@ -27301,12 +27763,12 @@ type Query {
     filter: StockFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): StockCountableConnection
@@ -27341,12 +27803,12 @@ type Query {
     filter: TaxClassFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -27384,12 +27846,12 @@ type Query {
     filter: TaxConfigurationFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): TaxConfigurationCountableConnection
@@ -27424,8 +27886,15 @@ type Query {
   Requires one of the following permissions: HANDLE_PAYMENTS.
   """
   transaction(
-    """ID of a transaction."""
-    id: ID!
+    """
+    ID of a transaction. Either it or token is required to fetch the transaction data.
+    """
+    id: ID
+
+    """
+    Token of a transaction. Either it or ID is required to fetch the transaction data.
+    """
+    token: UUID
   ): TransactionItem
 
   """
@@ -27454,7 +27923,7 @@ type Query {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
@@ -27462,7 +27931,7 @@ type Query {
     kind: TranslatableKinds!
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): TranslatableItemConnection
@@ -27519,12 +27988,12 @@ type Query {
     filter: VoucherFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -27570,12 +28039,12 @@ type Query {
     filter: WarehouseFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
     sortBy: WarehouseSortingInput
@@ -27694,12 +28163,12 @@ type Sale implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): CategoryCountableConnection
@@ -27724,12 +28193,12 @@ type Sale implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): CollectionCountableConnection
@@ -27803,12 +28272,12 @@ type Sale implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ProductCountableConnection
@@ -27843,12 +28312,12 @@ type Sale implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ProductVariantCountableConnection
@@ -28640,12 +29109,12 @@ type ShippingMethodType implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ProductCountableConnection
@@ -29572,6 +30041,20 @@ DEPRECATED: this mutation will be removed in Saleor 4.0. Use `PUBLIC_URL` enviro
 
 Requires one of the following permissions: MANAGE_SETTINGS.
 """
+type ShopCarouselUpdate {
+  """Updated carousel."""
+  carousel: Carousel
+  errors: [ShopError!]!
+  shopErrors: [ShopError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
+}
+
+"""
+Updates site domain of the shop.
+
+DEPRECATED: this mutation will be removed in Saleor 4.0. Use `PUBLIC_URL` environment variable instead. 
+
+Requires one of the following permissions: MANAGE_SETTINGS.
+"""
 type ShopDomainUpdate {
   errors: [ShopError!]!
 
@@ -30152,6 +30635,51 @@ input StaffUserInput {
   status: StaffMemberStatus
 }
 
+"""Shop Statistics."""
+type Statistics implements ObjectWithMetadata {
+  """Site circulated currency"""
+  circulatedCurrency: Int
+
+  """Site circulated items"""
+  circulatedItems: Int
+
+  """List of public metadata items. Can be accessed without permissions."""
+  metadata: [MetadataItem!]!
+
+  """
+  A single key from public metadata.
+  
+  Tip: Use GraphQL aliases to fetch multiple keys.
+  """
+  metafield(key: String!): String
+
+  """
+  Public metadata. Use `keys` to control which fields you want to include. The default is to include everything.
+  """
+  metafields(keys: [String!]): Metadata
+
+  """List of private metadata items. Requires staff permissions to access."""
+  privateMetadata: [MetadataItem!]!
+
+  """
+  A single key from private metadata. Requires staff permissions to access.
+  
+  Tip: Use GraphQL aliases to fetch multiple keys.
+  """
+  privateMetafield(key: String!): String
+
+  """
+  Private metadata. Requires staff permissions to access. Use `keys` to control which fields you want to include. The default is to include everything.
+  """
+  privateMetafields(keys: [String!]): Metadata
+
+  """Site Registered Users"""
+  users: Int
+
+  """Site views"""
+  views: Int
+}
+
 """Represents stock."""
 type Stock implements Node {
   """The ID of stock."""
@@ -30162,23 +30690,13 @@ type Stock implements Node {
 
   """
   Quantity of a product in the warehouse's possession, including the allocated stock that is waiting for shipment.
-  
-  Requires one of the following permissions: MANAGE_PRODUCTS, MANAGE_ORDERS.
   """
   quantity: Int!
 
-  """
-  Quantity allocated for orders.
-  
-  Requires one of the following permissions: MANAGE_PRODUCTS, MANAGE_ORDERS.
-  """
+  """Quantity allocated for orders."""
   quantityAllocated: Int!
 
-  """
-  Quantity reserved for checkouts.
-  
-  Requires one of the following permissions: MANAGE_PRODUCTS, MANAGE_ORDERS.
-  """
+  """Quantity reserved for checkouts."""
   quantityReserved: Int!
 
   """The warehouse associated with the stock."""
@@ -30199,7 +30717,7 @@ type StockBulkResult {
 }
 
 """
-Updates stocks for a given variant and warehouse.
+Updates stocks for a given variant and warehouse. Variant and warehouse selectors have to be the same for all stock inputs. Is not allowed to use 'variantId' in one input and 'variantExternalReference' in another.
 
 Added in Saleor 3.13.
 
@@ -31495,6 +32013,13 @@ type TransactionEvent implements Node {
   id: ID!
 
   """
+  Idempotency key assigned to the event.
+  
+  Added in Saleor 3.14.
+  """
+  idempotencyKey: String
+
+  """
   Message related to the transaction's event.
   
   Added in Saleor 3.13.
@@ -31675,6 +32200,7 @@ enum TransactionInitializeErrorCode {
   GRAPHQL_ERROR
   INVALID
   NOT_FOUND
+  UNIQUE
 }
 
 """
@@ -31697,6 +32223,13 @@ type TransactionInitializeSession implements Event {
 
   """Payment gateway data in JSON format, received from storefront."""
   data: JSON
+
+  """
+  Idempotency key assigned to the transaction initialize.
+  
+  Added in Saleor 3.14.
+  """
+  idempotencyKey: String!
 
   """Time of the event."""
   issuedAt: DateTime
@@ -31766,6 +32299,13 @@ type TransactionItem implements Node & ObjectWithMetadata {
 
   """Total amount charged for this payment."""
   chargedAmount: Money!
+
+  """
+  The related checkout.
+  
+  Added in Saleor 3.14.
+  """
+  checkout: Checkout
 
   """Date and time at which payment transaction was created."""
   createdAt: DateTime!
@@ -31868,6 +32408,13 @@ type TransactionItem implements Node & ObjectWithMetadata {
 
   """Total amount refunded for this payment."""
   refundedAmount: Money!
+
+  """
+  The transaction token.
+  
+  Added in Saleor 3.14.
+  """
+  token: UUID!
 }
 
 """
@@ -32390,6 +32937,9 @@ type User implements Node & ObjectWithMetadata {
   """
   accessibleChannels: [Channel!]
 
+  """The name of the user IODC account."""
+  account: String!
+
   """List of all user's addresses."""
   addresses: [Address!]!
 
@@ -32407,6 +32957,9 @@ type User implements Node & ObjectWithMetadata {
     """
     size: Int
   ): Image
+
+  """The balance of the user."""
+  balance: Float!
 
   """Returns the last open checkout of this user."""
   checkout: Checkout @deprecated(reason: "This field will be removed in Saleor 4.0. Use the `checkoutTokens` field to fetch the user checkouts.")
@@ -32439,15 +32992,21 @@ type User implements Node & ObjectWithMetadata {
     channel: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): CheckoutCountableConnection
+
+  """The code of a user."""
+  code: String!
+
+  """The continous login days of the user."""
+  continuous: Int!
 
   """The data when the user create account."""
   dateJoined: DateTime!
@@ -32490,12 +33049,12 @@ type User implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): GiftCardCountableConnection
@@ -32562,12 +33121,12 @@ type User implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): OrderCountableConnection
@@ -32628,6 +33187,9 @@ type User implements Node & ObjectWithMetadata {
 
   """List of user's permissions."""
   userPermissions: [UserPermission!]
+
+  """The type of the user. Defined by the OIDC provider"""
+  userType: String!
 }
 
 """
@@ -32914,12 +33476,12 @@ type Voucher implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): CategoryCountableConnection
@@ -32947,12 +33509,12 @@ type Voucher implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): VoucherCodeCountableConnection
@@ -32970,12 +33532,12 @@ type Voucher implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): CollectionCountableConnection
@@ -33061,12 +33623,12 @@ type Voucher implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ProductCountableConnection
@@ -33113,12 +33675,12 @@ type Voucher implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ProductVariantCountableConnection
@@ -33770,12 +34332,12 @@ type Warehouse implements Node & ObjectWithMetadata {
     before: String
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
   ): ShippingZoneCountableConnection!
@@ -34093,12 +34655,12 @@ type Webhook implements Node {
     filter: EventDeliveryFilterInput
 
     """
-    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     first: Int
 
     """
-    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
 
@@ -35802,7 +36364,7 @@ type Weight {
   """Weight unit."""
   unit: WeightUnitsEnum!
 
-  """Weight value."""
+  """Weight value. Returns a value with maximal three decimal places"""
   value: Float!
 }
 
