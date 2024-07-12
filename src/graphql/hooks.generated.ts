@@ -4644,6 +4644,80 @@ export function useUserDetailsLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type UserDetailsQueryHookResult = ReturnType<typeof useUserDetailsQuery>;
 export type UserDetailsLazyQueryHookResult = ReturnType<typeof useUserDetailsLazyQuery>;
 export type UserDetailsQueryResult = Apollo.QueryResult<Types.UserDetailsQuery, Types.UserDetailsQueryVariables>;
+export const CarouselUpdateDocument = gql`
+    mutation CarouselUpdate($urls: [String!]!) {
+  carouselSettingsUpdate(input: {urls: $urls}) {
+    carousel {
+      urls
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}
+    `;
+export type CarouselUpdateMutationFn = Apollo.MutationFunction<Types.CarouselUpdateMutation, Types.CarouselUpdateMutationVariables>;
+
+/**
+ * __useCarouselUpdateMutation__
+ *
+ * To run a mutation, you first call `useCarouselUpdateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCarouselUpdateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [carouselUpdateMutation, { data, loading, error }] = useCarouselUpdateMutation({
+ *   variables: {
+ *      urls: // value for 'urls'
+ *   },
+ * });
+ */
+export function useCarouselUpdateMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.CarouselUpdateMutation, Types.CarouselUpdateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.CarouselUpdateMutation, Types.CarouselUpdateMutationVariables>(CarouselUpdateDocument, options);
+      }
+export type CarouselUpdateMutationHookResult = ReturnType<typeof useCarouselUpdateMutation>;
+export type CarouselUpdateMutationResult = Apollo.MutationResult<Types.CarouselUpdateMutation>;
+export type CarouselUpdateMutationOptions = Apollo.BaseMutationOptions<Types.CarouselUpdateMutation, Types.CarouselUpdateMutationVariables>;
+export const CarouselUrlsDocument = gql`
+    query CarouselUrls {
+  carousel {
+    urls
+  }
+}
+    `;
+
+/**
+ * __useCarouselUrlsQuery__
+ *
+ * To run a query within a React component, call `useCarouselUrlsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCarouselUrlsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCarouselUrlsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCarouselUrlsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.CarouselUrlsQuery, Types.CarouselUrlsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.CarouselUrlsQuery, Types.CarouselUrlsQueryVariables>(CarouselUrlsDocument, options);
+      }
+export function useCarouselUrlsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.CarouselUrlsQuery, Types.CarouselUrlsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.CarouselUrlsQuery, Types.CarouselUrlsQueryVariables>(CarouselUrlsDocument, options);
+        }
+export type CarouselUrlsQueryHookResult = ReturnType<typeof useCarouselUrlsQuery>;
+export type CarouselUrlsLazyQueryHookResult = ReturnType<typeof useCarouselUrlsLazyQuery>;
+export type CarouselUrlsQueryResult = Apollo.QueryResult<Types.CarouselUrlsQuery, Types.CarouselUrlsQueryVariables>;
 export const CategoryDeleteDocument = gql`
     mutation CategoryDelete($id: ID!) {
   categoryDelete(id: $id) {

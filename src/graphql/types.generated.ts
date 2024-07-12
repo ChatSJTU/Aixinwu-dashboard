@@ -9030,6 +9030,18 @@ export type UserDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type UserDetailsQuery = { __typename: 'Query', me: { __typename: 'User', id: string, email: string, firstName: string, lastName: string, isStaff: boolean, restrictedAccessToChannels: boolean, metadata: Array<{ __typename: 'MetadataItem', key: string, value: string }>, userPermissions: Array<{ __typename: 'UserPermission', code: PermissionEnum, name: string }> | null, avatar: { __typename: 'Image', url: string } | null, accessibleChannels: Array<{ __typename: 'Channel', id: string, isActive: boolean, name: string, slug: string, currencyCode: string, defaultCountry: { __typename: 'CountryDisplay', code: string, country: string }, stockSettings: { __typename: 'StockSettings', allocationStrategy: AllocationStrategyEnum } }> | null } | null };
 
+export type CarouselUpdateMutationVariables = Exact<{
+  urls: Array<Scalars['String']> | Scalars['String'];
+}>;
+
+
+export type CarouselUpdateMutation = { __typename: 'Mutation', carouselSettingsUpdate: { __typename: 'ShopCarouselUpdate', carousel: { __typename: 'Carousel', urls: Array<string> | null } | null, errors: Array<{ __typename: 'ShopError', code: ShopErrorCode, field: string | null, message: string | null }> } | null };
+
+export type CarouselUrlsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CarouselUrlsQuery = { __typename: 'Query', carousel: { __typename: 'Carousel', urls: Array<string> | null } | null };
+
 export type CategoryDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
