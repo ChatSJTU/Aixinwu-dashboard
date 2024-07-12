@@ -18,6 +18,7 @@ import ProductTypes from "@dashboard/icons/ProductTypes";
 import ShippingMethods from "@dashboard/icons/ShippingMethods";
 import SiteSettings from "@dashboard/icons/SiteSettings";
 import StaffMembers from "@dashboard/icons/StaffMembers";
+import Carousel from "@dashboard/icons/Carousel";
 import Taxes from "@dashboard/icons/Taxes";
 import Warehouses from "@dashboard/icons/Warehouses";
 import { sectionNames } from "@dashboard/intl";
@@ -220,6 +221,17 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           title: intl.formatMessage(sectionNames.siteSettings),
           url: siteSettingsUrl(),
           testId: "configuration-menu-site-settings",
+        },
+        {
+          description: intl.formatMessage({
+            id: "e57itX",
+            defaultMessage: "修改主页轮播图",
+          }),
+          icon: <Carousel />,
+          permissions: [PermissionEnum.MANAGE_SETTINGS],
+          title: "轮播图设置",
+          url: "/carousel-settings",
+          testId: "configuration-menu-carousel-settings"
         },
         {
           description: intl.formatMessage({

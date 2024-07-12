@@ -71,6 +71,7 @@ import ProductTypesSection from "./productTypes";
 import errorTracker from "./services/errorTracking";
 import ShippingSection from "./shipping";
 import SiteSettingsSection from "./siteSettings";
+import CarouselSettingsSection from "./carouselSettings";
 import StaffSection from "./staff";
 import TaxesSection from "./taxes";
 import { paletteOverrides, themeOverrides } from "./themeOverrides";
@@ -254,6 +255,11 @@ const Routes: React.FC = () => {
                     permissions={[PermissionEnum.MANAGE_SETTINGS]}
                     path="/site-settings"
                     component={SiteSettingsSection}
+                  />
+                  <SectionRoute
+                    permissions={[PermissionEnum.MANAGE_SETTINGS]}
+                    path="/carousel-settings"
+                    component={CarouselSettingsSection}
                   />
                   <SectionRoute path="/taxes" component={TaxesSection} />
                   <SectionRoute

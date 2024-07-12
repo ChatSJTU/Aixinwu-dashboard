@@ -544,6 +544,11 @@ export const sectionNames = defineMessages({
     defaultMessage: "Site Settings",
     description: "site settings section name",
   },
+  carouselSettings: {
+    id: "e57itX",
+    defaultMessage: "轮播图设置",
+    description: "carousel settings section name"
+  },
   staff: {
     id: "AQFMYU",
     defaultMessage: "Staff Members",
