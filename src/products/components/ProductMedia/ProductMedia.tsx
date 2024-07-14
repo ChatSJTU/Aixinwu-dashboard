@@ -68,6 +68,7 @@ const MediaListContainer = SortableContainer<MediaListContainerProps>(
 interface ProductMediaProps {
   media: ProductMediaFragment[];
   loading?: boolean;
+  allowMultipleUpload?: boolean;
   getImageEditUrl: (id: string) => string;
   onImageDelete: (id: string) => () => void;
   onImageReorder?: ReorderAction;
@@ -78,6 +79,7 @@ interface ProductMediaProps {
 const ProductMedia: React.FC<ProductMediaProps> = props => {
   const {
     media,
+    allowMultipleUpload,
     getImageEditUrl,
     onImageDelete,
     onImageReorder,
@@ -176,7 +178,7 @@ const ProductMedia: React.FC<ProductMediaProps> = props => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               handleImageUpload(event.target.files)
             }
-            multiple
+            multiple={allowMultipleUpload ?? true}
             type="file"
             ref={imagesUpload}
             accept="image/*"
