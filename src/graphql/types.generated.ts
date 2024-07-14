@@ -9037,6 +9037,13 @@ export type CarouselUpdateMutationVariables = Exact<{
 
 export type CarouselUpdateMutation = { __typename: 'Mutation', carouselSettingsUpdate: { __typename: 'ShopCarouselUpdate', carousel: { __typename: 'Carousel', urls: Array<string> | null } | null, errors: Array<{ __typename: 'ShopError', code: ShopErrorCode, field: string | null, message: string | null }> } | null };
 
+export type SingleFileUploadMutationVariables = Exact<{
+  file: Scalars['Upload'];
+}>;
+
+
+export type SingleFileUploadMutation = { __typename: 'Mutation', fileUpload: { __typename: 'FileUpload', uploadedFile: { __typename: 'File', url: string, contentType: string | null } | null, errors: Array<{ __typename: 'UploadError', code: UploadErrorCode, field: string | null, message: string | null }> } | null };
+
 export type CarouselUrlsQueryVariables = Exact<{ [key: string]: never; }>;
 
 

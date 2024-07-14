@@ -14,3 +14,19 @@ export const carouselUpdate = gql`
     }
   }
 `;
+
+export const carouselUpload = gql`
+  mutation SingleFileUpload($file: Upload!) {
+    fileUpload(file: $file) {
+      uploadedFile {
+        url
+        contentType
+      }
+      errors {
+        code
+        field
+        message
+      }
+    }
+  }
+`;

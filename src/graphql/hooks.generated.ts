@@ -4684,6 +4684,47 @@ export function useCarouselUpdateMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type CarouselUpdateMutationHookResult = ReturnType<typeof useCarouselUpdateMutation>;
 export type CarouselUpdateMutationResult = Apollo.MutationResult<Types.CarouselUpdateMutation>;
 export type CarouselUpdateMutationOptions = Apollo.BaseMutationOptions<Types.CarouselUpdateMutation, Types.CarouselUpdateMutationVariables>;
+export const SingleFileUploadDocument = gql`
+    mutation SingleFileUpload($file: Upload!) {
+  fileUpload(file: $file) {
+    uploadedFile {
+      url
+      contentType
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}
+    `;
+export type SingleFileUploadMutationFn = Apollo.MutationFunction<Types.SingleFileUploadMutation, Types.SingleFileUploadMutationVariables>;
+
+/**
+ * __useSingleFileUploadMutation__
+ *
+ * To run a mutation, you first call `useSingleFileUploadMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSingleFileUploadMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [singleFileUploadMutation, { data, loading, error }] = useSingleFileUploadMutation({
+ *   variables: {
+ *      file: // value for 'file'
+ *   },
+ * });
+ */
+export function useSingleFileUploadMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.SingleFileUploadMutation, Types.SingleFileUploadMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.SingleFileUploadMutation, Types.SingleFileUploadMutationVariables>(SingleFileUploadDocument, options);
+      }
+export type SingleFileUploadMutationHookResult = ReturnType<typeof useSingleFileUploadMutation>;
+export type SingleFileUploadMutationResult = Apollo.MutationResult<Types.SingleFileUploadMutation>;
+export type SingleFileUploadMutationOptions = Apollo.BaseMutationOptions<Types.SingleFileUploadMutation, Types.SingleFileUploadMutationVariables>;
 export const CarouselUrlsDocument = gql`
     query CarouselUrls {
   carousel {
