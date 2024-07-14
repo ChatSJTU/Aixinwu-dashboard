@@ -35,14 +35,16 @@ const UrlInputModal: React.FC<UrlInputModalProps> = ({ open, onClose, onUrlSubmi
       aria-describedby="modal-modal-description"
     >
       <Box sx={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        width: 400,
+        position: 'fixed',
+        top: '40%',
+        marginLeft: '35%',
+        width: 700,
         bgcolor: 'background.paper',
-        border: '2px solid #000',
+        border: '1px solid #000',
+        borderRadius: '4px',
         boxShadow: 24,
         p: 4,
+        zIndex: 10,
       }}>
         <form onSubmit={handleSubmit(handleUrlSubmit)}>
           <TextField
@@ -58,7 +60,7 @@ const UrlInputModal: React.FC<UrlInputModalProps> = ({ open, onClose, onUrlSubmi
             helperText={errors.url ? errors.url.message : ''}
             fullWidth
           />
-          <Box mt={2}>
+          <Box mt={2} display="flex" justifyContent="space-between" style={{marginTop: '24px'}}>
             <Button type="submit" variant="contained" color="primary">
               提交
             </Button>
