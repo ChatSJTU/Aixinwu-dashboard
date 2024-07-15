@@ -1512,7 +1512,7 @@
   },
   "8uo4v1": {
     "context": "title",
-    "string": "Checkout limits"
+    "string": "用户限购"
   },
   "8vJCJ4": {
     "string": "定义和管理你的销售渠道"
@@ -1992,7 +1992,7 @@
   },
   "C7I2lg": {
     "context": "input label",
-    "string": "Limit quantity per checkout (optional)"
+    "string": "限购数量（留空代表不限购）"
   },
   "C7eDb9": {
     "string": "权限组"
@@ -3079,7 +3079,7 @@
   },
   "JFtFgc": {
     "context": "tabel column header",
-    "string": "Selling Price"
+    "string": "售卖价格"
   },
   "JGm7E5": {
     "context": "option",
@@ -3556,7 +3556,7 @@
   },
   "MwfSVA": {
     "context": "input helper text",
-    "string": "Customers can not add quantities to a single cart above the limit when value is provided."
+    "string": "用户只能购买指定数量以内的该商品（包括历史完成的订单）"
   },
   "MxhVZv": {
     "string": "确认删除系列图片?"
