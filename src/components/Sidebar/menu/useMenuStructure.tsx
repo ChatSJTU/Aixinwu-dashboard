@@ -86,13 +86,13 @@ export function useMenuStructure() {
           permissions: [PermissionEnum.MANAGE_PRODUCTS],
           type: "item",
         },
-        {
-          label: intl.formatMessage(sectionNames.giftCards),
-          id: "giftCards",
-          url: giftCardListUrl(),
-          permissions: [PermissionEnum.MANAGE_GIFT_CARD],
-          type: "item",
-        },
+        // {
+        //   label: intl.formatMessage(sectionNames.giftCards),
+        //   id: "giftCards",
+        //   url: giftCardListUrl(),
+        //   permissions: [PermissionEnum.MANAGE_GIFT_CARD],
+        //   type: "item",
+        // },
         ...mapToExtensionsItems(
           extensions.NAVIGATION_CATALOG,
           appExtensionsHeaderItem,
@@ -151,13 +151,13 @@ export function useMenuStructure() {
       type: !isEmpty(extensions.NAVIGATION_CUSTOMERS) ? "itemGroup" : "item",
     },
     {
-      children: [
-        {
-          label: intl.formatMessage(sectionNames.vouchers),
-          id: "vouchers",
-          url: voucherListUrl(),
-          type: "item",
-        },
+      children: !isEmpty(extensions.NAVIGATION_DISCOUNTS) && [
+        // {
+        //   label: intl.formatMessage(sectionNames.vouchers),
+        //   id: "vouchers",
+        //   url: voucherListUrl(),
+        //   type: "item",
+        // },
         ...mapToExtensionsItems(
           extensions.NAVIGATION_DISCOUNTS,
           appExtensionsHeaderItem,
@@ -168,7 +168,7 @@ export function useMenuStructure() {
       permissions: [PermissionEnum.MANAGE_DISCOUNTS],
       url: saleListUrl(),
       id: "discounts",
-      type: "itemGroup",
+      type: !isEmpty(extensions.NAVIGATION_PAGES) ? "itemGroup" : "item",
     },
     {
       children: !isEmpty(extensions.NAVIGATION_PAGES) && [
@@ -184,20 +184,20 @@ export function useMenuStructure() {
       url: pageListPath,
       type: !isEmpty(extensions.NAVIGATION_PAGES) ? "itemGroup" : "item",
     },
-    {
-      children: !isEmpty(extensions.NAVIGATION_TRANSLATIONS) && [
-        ...mapToExtensionsItems(
-          extensions.NAVIGATION_TRANSLATIONS,
-          appExtensionsHeaderItem,
-        ),
-      ],
-      icon: <TranslationsIcon {...iconSettings} />,
-      label: intl.formatMessage(sectionNames.translations),
-      permissions: [PermissionEnum.MANAGE_TRANSLATIONS],
-      id: "translations",
-      url: languageListUrl,
-      type: !isEmpty(extensions.NAVIGATION_TRANSLATIONS) ? "itemGroup" : "item",
-    },
+    // {
+    //   children: !isEmpty(extensions.NAVIGATION_TRANSLATIONS) && [
+    //     ...mapToExtensionsItems(
+    //       extensions.NAVIGATION_TRANSLATIONS,
+    //       appExtensionsHeaderItem,
+    //     ),
+    //   ],
+    //   icon: <TranslationsIcon {...iconSettings} />,
+    //   label: intl.formatMessage(sectionNames.translations),
+    //   permissions: [PermissionEnum.MANAGE_TRANSLATIONS],
+    //   id: "translations",
+    //   url: languageListUrl,
+    //   type: !isEmpty(extensions.NAVIGATION_TRANSLATIONS) ? "itemGroup" : "item",
+    // },
     getAppSection(),
     {
       icon: <ConfigurationIcon {...iconSettings} />,
