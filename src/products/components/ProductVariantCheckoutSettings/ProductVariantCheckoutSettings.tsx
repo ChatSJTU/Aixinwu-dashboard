@@ -33,7 +33,7 @@ const ProductVariantCheckoutSettings: React.FC<
     <DashboardCard>
       <DashboardCard.Title>
         {intl.formatMessage(messages.checkoutLimits)}
-        <PreviewPill className={classes.preview} />
+        {/* <PreviewPill className={classes.preview} /> */}
       </DashboardCard.Title>
       <DashboardCard.Content>
         <Input
