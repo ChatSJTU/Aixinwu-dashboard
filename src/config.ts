@@ -66,6 +66,7 @@ export interface AppListViewSettings {
   [ListViews.ORDER_DRAFT_DETAILS_LIST]: ListSettings;
   [ListViews.PRODUCT_DETAILS]: ListSettings;
   [ListViews.VOUCHER_CODES]: ListSettings;
+  [ListViews.DONATION_LIST]: ListSettings;
 }
 
 export const defaultListSettings: AppListViewSettings = {
@@ -188,6 +189,9 @@ export const defaultListSettings: AppListViewSettings = {
     columns: ["name", "sku"],
   },
   [ListViews.VOUCHER_CODES]: {
+    rowNumber: PAGINATE_BY,
+  },
+  [ListViews.DONATION_LIST]: {
     rowNumber: PAGINATE_BY,
   },
 };

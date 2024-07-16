@@ -8559,6 +8559,80 @@ export function useRuleConditionsSelectedOptionsDetailsLazyQuery(baseOptions?: A
 export type RuleConditionsSelectedOptionsDetailsQueryHookResult = ReturnType<typeof useRuleConditionsSelectedOptionsDetailsQuery>;
 export type RuleConditionsSelectedOptionsDetailsLazyQueryHookResult = ReturnType<typeof useRuleConditionsSelectedOptionsDetailsLazyQuery>;
 export type RuleConditionsSelectedOptionsDetailsQueryResult = Apollo.QueryResult<Types.RuleConditionsSelectedOptionsDetailsQuery, Types.RuleConditionsSelectedOptionsDetailsQueryVariables>;
+export const ListDonationsDocument = gql`
+    query ListDonations($after: String, $before: String, $first: Int, $last: Int, $filter: DonationFilterInput, $sort: DonationSortingInput) {
+  donations(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    filter: $filter
+    sortBy: $sort
+  ) {
+    edges {
+      node {
+        id
+        barcode
+        createdAt
+        description
+        quantity
+        status
+        title
+        updatedAt
+        price {
+          amount
+          currency
+        }
+        donator {
+          id
+          account
+          firstName
+          code
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}
+    `;
+
+/**
+ * __useListDonationsQuery__
+ *
+ * To run a query within a React component, call `useListDonationsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useListDonationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useListDonationsQuery({
+ *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      filter: // value for 'filter'
+ *      sort: // value for 'sort'
+ *   },
+ * });
+ */
+export function useListDonationsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.ListDonationsQuery, Types.ListDonationsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.ListDonationsQuery, Types.ListDonationsQueryVariables>(ListDonationsDocument, options);
+      }
+export function useListDonationsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.ListDonationsQuery, Types.ListDonationsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.ListDonationsQuery, Types.ListDonationsQueryVariables>(ListDonationsDocument, options);
+        }
+export type ListDonationsQueryHookResult = ReturnType<typeof useListDonationsQuery>;
+export type ListDonationsLazyQueryHookResult = ReturnType<typeof useListDonationsLazyQuery>;
+export type ListDonationsQueryResult = Apollo.QueryResult<Types.ListDonationsQuery, Types.ListDonationsQueryVariables>;
 export const FileUploadDocument = gql`
     mutation FileUpload($file: Upload!) {
   fileUpload(file: $file) {

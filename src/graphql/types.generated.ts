@@ -9842,6 +9842,18 @@ export type RuleConditionsSelectedOptionsDetailsQueryVariables = Exact<{
 
 export type RuleConditionsSelectedOptionsDetailsQuery = { __typename: 'Query', categories: { __typename: 'CategoryCountableConnection', edges: Array<{ __typename: 'CategoryCountableEdge', node: { __typename: 'Category', id: string, name: string } }> } | null, collections: { __typename: 'CollectionCountableConnection', edges: Array<{ __typename: 'CollectionCountableEdge', node: { __typename: 'Collection', id: string, name: string } }> } | null, products: { __typename: 'ProductCountableConnection', edges: Array<{ __typename: 'ProductCountableEdge', node: { __typename: 'Product', id: string, name: string } }> } | null, productVariants: { __typename: 'ProductVariantCountableConnection', edges: Array<{ __typename: 'ProductVariantCountableEdge', node: { __typename: 'ProductVariant', id: string, name: string } }> } | null };
 
+export type ListDonationsQueryVariables = Exact<{
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<DonationFilterInput>;
+  sort?: InputMaybe<DonationSortingInput>;
+}>;
+
+
+export type ListDonationsQuery = { __typename: 'Query', donations: { __typename: 'DonationCountableConnection', edges: Array<{ __typename: 'DonationCountableEdge', node: { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
+
 export type FileUploadMutationVariables = Exact<{
   file: Scalars['Upload'];
 }>;
