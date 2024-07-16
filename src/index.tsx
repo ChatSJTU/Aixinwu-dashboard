@@ -79,6 +79,7 @@ import TranslationsSection from "./translations";
 import WarehouseSection from "./warehouses";
 import { warehouseSection } from "./warehouses/urls";
 import { DonationSection } from "./donations";
+import { BarcodeSection } from "./barcodes";
 
 if (GTM_ID) {
   TagManager.initialize({ gtmId: GTM_ID });
@@ -199,6 +200,11 @@ const Routes: React.FC = () => {
                     permissions={[PermissionEnum.MANAGE_DONATIONS]}
                     path="/donations"
                     component={DonationSection}
+                  />
+                  <SectionRoute
+                    permissions={[PermissionEnum.MANAGE_DONATIONS]}
+                    path="/barcodes"
+                    component={BarcodeSection}
                   />
                   <SectionRoute
                     permissions={[PermissionEnum.MANAGE_USERS]}

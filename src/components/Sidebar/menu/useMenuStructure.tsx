@@ -37,6 +37,7 @@ import { SidebarMenuItem } from "./types";
 import { mapToExtensionsItems } from "./utils";
 import DonationIcon from "@dashboard/icons/Donation";
 import { donationListUrl } from "@dashboard/donations/urls";
+import { barcodeManageUrl } from "@dashboard/barcodes/urls";
 
 const iconSettings = {
   color: "default2",
@@ -153,7 +154,17 @@ export function useMenuStructure() {
       type: !isEmpty(extensions.NAVIGATION_CUSTOMERS) ? "itemGroup" : "item",
     },
     {
-      children: null,
+      children: [
+        {
+          label: intl.formatMessage({
+            id: "barcode",
+            defaultMessage: "条形码",
+          }),
+          id: "barcodes",
+          url: barcodeManageUrl(),
+          type: "item",
+        },
+      ],
       icon: <DonationIcon />,
       label: intl.formatMessage({
         id: "donation-page",
@@ -162,7 +173,7 @@ export function useMenuStructure() {
       permissions: [PermissionEnum.MANAGE_DONATIONS],
       id: "donations",
       url: donationListUrl(),
-      type: "item",
+      type: "itemGroup",
     },
     {
       children: !isEmpty(extensions.NAVIGATION_DISCOUNTS) && [
