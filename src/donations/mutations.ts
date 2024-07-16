@@ -15,14 +15,16 @@ export const updateDonation = gql`
   }
 `;
 
-export const createCustomer = gql`
-  mutation CreateCustomer($input: UserCreateInput!) {
-    customerCreate(input: $input) {
+export const createDonation = gql`
+  mutation CreateDonation($input: DonationCreateInput!) {
+    donationCreate(input: $input) {
       errors {
-        ...AccountError
+        code
+        field
+        message
       }
-      user {
-        id
+      donation {
+        ...DonationDetails
       }
     }
   }

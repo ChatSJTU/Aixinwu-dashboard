@@ -16,6 +16,7 @@ import {
 } from "./urls";
 import DonationListViewComponent from "./views/DonationList";
 import DonationDetailsViewComponent from "./views/DonationDetails";
+import DonationCreateView from "./views/DonationCreate";
 
 const DonationListView: React.FC<RouteComponentProps<{}>> = ({ location }) => {
   const qs = parseQs(location.search.substr(1)) as any;
@@ -56,7 +57,7 @@ export const DonationSection: React.FC<{}> = () => {
       })} />
       <Switch>
         <Route exact path={donationListPath} component={DonationListView} />
-        {/* <Route exact path={donationAddPath} component={DonationCreateView} /> */}
+        <Route exact path={donationAddPath} component={DonationCreateView} />
         <Route path={donationPath(":id")} component={DonationDetailsView} />
       </Switch>
     </>

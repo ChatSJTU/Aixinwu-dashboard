@@ -149,7 +149,7 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
           fullWidth
           multiline
           // helperText={getAccountErrorMessage(formErrors.lastName, intl)}
-          name="desc"
+          name="description"
           type="text"
           label={intl.formatMessage({
             id: "donation-desc",
@@ -168,7 +168,7 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
           fullWidth
           multiline
           // helperText={getAccountErrorMessage(formErrors.lastName, intl)}
-          name="desc"
+          name="barcode"
           type="text"
           label={intl.formatMessage({
             id: "donation-barcode",

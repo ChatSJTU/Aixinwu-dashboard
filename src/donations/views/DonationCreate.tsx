@@ -1,8 +1,7 @@
 // @ts-strict-ignore
 import { WindowTitle } from "@dashboard/components/WindowTitle";
 import {
-  useCreateCustomerMutation,
-  useCustomerCreateDataQuery,
+  useCreateDonationMutation,
 } from "@dashboard/graphql";
 import useNavigator from "@dashboard/hooks/useNavigator";
 import useNotifier from "@dashboard/hooks/useNotifier";
@@ -10,46 +9,46 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 import { extractMutationErrors, maybe } from "../../misc";
-import CustomerCreatePage, {
-  CustomerCreatePageSubmitData,
-} from "../components/CustomerCreatePage";
-import { customerUrl } from "../urls";
+import DonationCreatePage, {
+  DonationCreatePageSubmitData,
+} from "../components/DonationCreatePage";
+import { donationUrl } from "../urls";
 
-export const CustomerCreate: React.FC = () => {
+export const DonationCreate: React.FC = () => {
   const navigate = useNavigator();
   const notify = useNotifier();
   const intl = useIntl();
 
-  const { data, loading } = useCustomerCreateDataQuery({
-    displayLoader: true,
-  });
-
-  const [createCustomer, createCustomerOpts] = useCreateCustomerMutation({
+  const [createDonation, createDonationOpts] = useCreateDonationMutation({
     onCompleted: data => {
-      if (data.customerCreate.errors.length === 0) {
+      if (data.donationCreate.errors.length === 0) {
         notify({
           status: "success",
           text: intl.formatMessage({
             id: "ftcHpD",
-            defaultMessage: "Customer created",
+            defaultMessage: "Donation created",
           }),
         });
-        navigate(customerUrl(data.customerCreate.user.id));
+        navigate(donationUrl(data.donationCreate.donation.id));
       }
     },
   });
 
-  const handleSubmit = (formData: CustomerCreatePageSubmitData) =>
+  const handleSubmit = (formData: DonationCreatePageSubmitData) =>
     extractMutationErrors(
-      createCustomer({
+      createDonation({
         variables: {
           input: {
-            defaultBillingAddress: formData.address,
-            defaultShippingAddress: formData.address,
-            email: formData.email,
-            firstName: formData.customerFirstName,
-            lastName: formData.customerLastName,
-            note: formData.note,
+            barcode: formData.barcode,
+            description: formData.description,
+            donator: formData.donator,
+            name: formData.name,
+            price: {
+              amount: formData.price,
+              currency: "AXB",
+            },
+            quantity: formData.quantity,
+            title: formData.title,
           },
         },
       }),
@@ -59,19 +58,17 @@ export const CustomerCreate: React.FC = () => {
     <>
       <WindowTitle
         title={intl.formatMessage({
-          id: "nX2pCU",
-          defaultMessage: "Create customer",
-          description: "window title",
+          id: "donation-create",
+          defaultMessage: "新增捐赠",
         })}
       />
-      <CustomerCreatePage
-        countries={maybe(() => data.shop.countries, [])}
-        disabled={loading || createCustomerOpts.loading}
-        errors={createCustomerOpts.data?.customerCreate.errors || []}
-        saveButtonBar={createCustomerOpts.status}
+      <DonationCreatePage
+        disabled={createDonationOpts.loading}
+        errors={createDonationOpts.data?.donationCreate.errors || []}
+        saveButtonBar={createDonationOpts.status}
         onSubmit={handleSubmit}
       />
     </>
   );
 };
-export default CustomerCreate;
+export default DonationCreate;
