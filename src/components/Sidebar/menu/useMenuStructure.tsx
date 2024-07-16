@@ -36,6 +36,7 @@ import { useIntl } from "react-intl";
 import { SidebarMenuItem } from "./types";
 import { mapToExtensionsItems } from "./utils";
 import DonationIcon from "@dashboard/icons/Donation";
+import { donationListUrl } from "@dashboard/donations/urls";
 
 const iconSettings = {
   color: "default2",
@@ -158,9 +159,9 @@ export function useMenuStructure() {
         id: "donation-page",
         defaultMessage: "捐赠",
       }),
-      permissions: [PermissionEnum.MANAGE_USERS],
+      permissions: [PermissionEnum.MANAGE_DONATIONS],
       id: "donations",
-      url: customerListUrl(),
+      url: donationListUrl(),
       type: "item",
     },
     {

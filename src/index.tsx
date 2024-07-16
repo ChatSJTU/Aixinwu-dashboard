@@ -78,6 +78,7 @@ import { paletteOverrides, themeOverrides } from "./themeOverrides";
 import TranslationsSection from "./translations";
 import WarehouseSection from "./warehouses";
 import { warehouseSection } from "./warehouses/urls";
+import { DonationSection } from "./donations";
 
 if (GTM_ID) {
   TagManager.initialize({ gtmId: GTM_ID });
@@ -193,6 +194,11 @@ const Routes: React.FC = () => {
                     permissions={[PermissionEnum.MANAGE_PRODUCTS]}
                     path="/collections"
                     component={CollectionSection}
+                  />
+                  <SectionRoute
+                    permissions={[PermissionEnum.MANAGE_DONATIONS]}
+                    path="/donations"
+                    component={DonationSection}
                   />
                   <SectionRoute
                     permissions={[PermissionEnum.MANAGE_USERS]}
