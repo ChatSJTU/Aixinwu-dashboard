@@ -9,6 +9,7 @@ import { WindowTitle } from "../components/WindowTitle";
 import {
   barcodeManagePath,
 } from "./urls";
+import BarcodeView from "./views/BarcodeView";
 
 export const BarcodeSection: React.FC<{}> = () => {
   const intl = useIntl();

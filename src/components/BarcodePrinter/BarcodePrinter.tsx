@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
+import { Button } from '@saleor/macaw-ui-next';
 import Barcode from 'react-barcode';
 import { useIntl } from 'react-intl';
 
@@ -10,6 +10,8 @@ export interface BarcodeProps {
 
 export interface BarcodePrinterProps {
     barcodes: BarcodeProps[];
+    print: boolean;
+    onPrint: () => void;
 }
 
 {/* Example
@@ -25,7 +27,7 @@ export interface BarcodePrinterProps {
   
 */}
 
-const BarcodePrinter: React.FC<BarcodePrinterProps> = ({ barcodes }) => {
+const BarcodePrinter: React.FC<BarcodePrinterProps> = ({ barcodes, print, onPrint }) => {
     const intl = useIntl();
     const barcodeRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [heights, setHeights] = useState<number[]>([]);
@@ -34,6 +36,13 @@ const BarcodePrinter: React.FC<BarcodePrinterProps> = ({ barcodes }) => {
         const newHeights = barcodeRefs.current.map(ref => ref!.offsetHeight + 54 || 0);
         setHeights(newHeights);
     }, [barcodes]);
+
+    useEffect(() => {
+        if (print) {
+            onPrint();
+            printBarcodes();
+        }
+    }, [print]);
 
     const printBarcodes = () => {
         const pageWidth = 800;
@@ -92,16 +101,16 @@ const BarcodePrinter: React.FC<BarcodePrinterProps> = ({ barcodes }) => {
 
     return (
         <>
-            <Button variant="contained" color="primary" onClick={printBarcodes}>
+            {/* <Button onClick={printBarcodes}>
                 {intl.formatMessage({
                     id: "esz148",
                     defaultMessage: "生成并打印",
                 })}
-            </Button>
+            </Button> */}
             <div style={{ position: 'absolute', visibility: 'hidden', zIndex: -1 }}>
                 {barcodes.map((barcode, index) => (
                     <div key={index} ref={el => (barcodeRefs.current[index] = el)} className="barcode-item">
-                        <Barcode value={barcode.value} width={3} height={100} />
+                        <Barcode value={barcode.value} width={3} height={100} font="Consolas" />
                     </div>
                 ))}
             </div>
