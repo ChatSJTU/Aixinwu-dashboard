@@ -49,31 +49,30 @@ export const donationList = gql`
   }
 `;
 
-export const customerDetails = gql`
-  query CustomerDetails($id: ID!, $PERMISSION_MANAGE_ORDERS: Boolean!) {
-    user(id: $id) {
-      ...CustomerDetails
-      orders(last: 5) @include(if: $PERMISSION_MANAGE_ORDERS) {
-        edges {
-          node {
-            id
-            created
-            number
-            paymentStatus
-            total {
-              gross {
-                currency
-                amount
-              }
-            }
+export const donationDetails = gql`
+  query DonationDetail {
+    donations(
+      first: 1
+    ) {
+      edges {
+        node {
+          id
+          barcode
+          createdAt
+          description
+          quantity
+          status
+          title
+          updatedAt
+          price {
+            amount
+            currency
           }
-        }
-      }
-      lastPlacedOrder: orders(last: 1) @include(if: $PERMISSION_MANAGE_ORDERS) {
-        edges {
-          node {
+          donator {
             id
-            created
+            account
+            firstName
+            code
           }
         }
       }
@@ -81,21 +80,21 @@ export const customerDetails = gql`
   }
 `;
 
-export const customerAddresses = gql`
-  query CustomerAddresses($id: ID!) {
-    user(id: $id) {
-      ...CustomerAddresses
-    }
-  }
-`;
+// export const donationAddresses = gql`
+//   query CustomerAddresses($id: ID!) {
+//     user(id: $id) {
+//       ...CustomerAddresses
+//     }
+//   }
+// `;
 
-export const customerCreateData = gql`
-  query CustomerCreateData {
-    shop {
-      countries {
-        code
-        country
-      }
-    }
-  }
-`;
+// export const donationCreateData = gql`
+//   query CustomerCreateData {
+//     shop {
+//       countries {
+//         code
+//         country
+//       }
+//     }
+//   }
+// `;

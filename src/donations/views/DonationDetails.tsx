@@ -3,8 +3,7 @@ import ActionDialog from "@dashboard/components/ActionDialog";
 import NotFoundPage from "@dashboard/components/NotFoundPage";
 import { WindowTitle } from "@dashboard/components/WindowTitle";
 import {
-  useRemoveCustomerMutation,
-  useUpdateCustomerMutation,
+  useUpdateDonationMutation,
   useUpdateMetadataMutation,
   useUpdatePrivateMetadataMutation,
 } from "@dashboard/graphql";
@@ -17,19 +16,19 @@ import { DialogContentText } from "@material-ui/core";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import CustomerDetailsPage, {
-  CustomerDetailsPageFormData,
-} from "../components/CustomerDetailsPage";
-import { useCustomerDetails } from "../hooks/useCustomerDetails";
-import { CustomerDetailsProvider } from "../providers/CustomerDetailsProvider";
-import { customerListUrl, customerUrl, CustomerUrlQueryParams } from "../urls";
+import DonationDetailsPage, {
+  DonationDetailsPageFormData,
+} from "../components/DonationDetailsPage";
+import { useDonationDetails } from "../hooks/useDonationDetails";
+import { DonationDetailsProvider } from "../providers/DonationDetailsProvider";
+import { donationListUrl, donationUrl, DonationUrlQueryParams } from "../urls";
 
-interface CustomerDetailsViewProps {
+interface DonationDetailsViewProps {
   id: string;
-  params: CustomerUrlQueryParams;
+  params: DonationUrlQueryParams;
 }
 
-const CustomerDetailsViewInner: React.FC<CustomerDetailsViewProps> = ({
+const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
   id,
   params,
 }) => {
@@ -37,28 +36,28 @@ const CustomerDetailsViewInner: React.FC<CustomerDetailsViewProps> = ({
   const notify = useNotifier();
   const intl = useIntl();
 
-  const customerDetails = useCustomerDetails();
-  const user = customerDetails?.customer?.user;
-  const customerDetailsLoading = customerDetails?.loading;
+  const donationDetails = useDonationDetails();
+  const donation = donationDetails?.donation?.donations.edges[0].node;
+  const donationDetailsLoading = donationDetails?.loading;
 
-  const [removeCustomer, removeCustomerOpts] = useRemoveCustomerMutation({
-    onCompleted: data => {
-      if (data.customerDelete.errors.length === 0) {
-        notify({
-          status: "success",
-          text: intl.formatMessage({
-            id: "PXatmC",
-            defaultMessage: "Customer Removed",
-          }),
-        });
-        navigate(customerListUrl());
-      }
-    },
-  });
+  // const [removeDonation, removeDonationOpts] = useRemoveDonationMutation({
+  //   onCompleted: data => {
+  //     if (data.donationDelete.errors.length === 0) {
+  //       notify({
+  //         status: "success",
+  //         text: intl.formatMessage({
+  //           id: "PXatmC",
+  //           defaultMessage: "Donation Removed",
+  //         }),
+  //       });
+  //       navigate(donationListUrl());
+  //     }
+  //   },
+  // });
 
-  const [updateCustomer, updateCustomerOpts] = useUpdateCustomerMutation({
+  const [updateDonation, updateDonationOpts] = useUpdateDonationMutation({
     onCompleted: data => {
-      if (data.customerUpdate.errors.length === 0) {
+      if (data.donationUpdate.errors.length === 0) {
         notify({
           status: "success",
           text: intl.formatMessage(commonMessages.savedChanges),
@@ -70,61 +69,61 @@ const CustomerDetailsViewInner: React.FC<CustomerDetailsViewProps> = ({
   const [updateMetadata] = useUpdateMetadataMutation({});
   const [updatePrivateMetadata] = useUpdatePrivateMetadataMutation({});
 
-  if (user === null) {
-    return <NotFoundPage backHref={customerListUrl()} />;
+  if (donation === null) {
+    return <NotFoundPage backHref={donationListUrl()} />;
   }
 
-  const updateData = async (data: CustomerDetailsPageFormData) =>
-    extractMutationErrors(
-      updateCustomer({
-        variables: {
-          id,
-          input: {
-            email: data.email,
-            firstName: data.firstName,
-            isActive: data.isActive,
-            lastName: data.lastName,
-            note: data.note,
-            balance: data.balance,
-          },
-        },
-      }),
-    );
+  const updateData = async (data: DonationDetailsPageFormData) => null;
+    // extractMutationErrors(
+    //   updateDonation({
+    //     variables: {
+    //       id,
+    //       input: {
+    //         email: data.email,
+    //         firstName: data.firstName,
+    //         isActive: data.isActive,
+    //         lastName: data.lastName,
+    //         note: data.note,
+    //         balance: data.balance,
+    //       },
+    //     },
+    //   }),
+    // );
 
-  const handleSubmit = createMetadataUpdateHandler(
-    user,
-    updateData,
-    variables => updateMetadata({ variables }),
-    variables => updatePrivateMetadata({ variables }),
-  );
+  // const handleSubmit = createMetadataUpdateHandler(
+  //   donation,
+  //   updateData,
+  //   variables => updateMetadata({ variables }),
+  //   variables => updatePrivateMetadata({ variables }),
+  // );
+  const handleSubmit = updateData;
 
   return (
     <>
-      <WindowTitle title={user?.email} />
-      <CustomerDetailsPage
-        customerId={id}
-        customer={user}
+      <WindowTitle title={donation?.title} />
+      <DonationDetailsPage
+        donationId={id}
+        donation={donation}
         disabled={
-          customerDetailsLoading ||
-          updateCustomerOpts.loading ||
-          removeCustomerOpts.loading
+          donationDetailsLoading ||
+          updateDonationOpts.loading
         }
-        errors={updateCustomerOpts.data?.customerUpdate.errors || []}
-        saveButtonBar={updateCustomerOpts.status}
+        errors={updateDonationOpts.data?.donationUpdate.errors || []}
+        saveButtonBar={updateDonationOpts.status}
         onSubmit={handleSubmit}
-        onDelete={() =>
-          navigate(
-            customerUrl(id, {
-              action: "remove",
-            }),
-          )
+        onDelete={() => {}
+          // navigate(
+          //   donationUrl(id, {
+          //     action: "remove",
+          //   }),
+          // )
         }
       />
-      <ActionDialog
-        confirmButtonState={removeCustomerOpts.status}
-        onClose={() => navigate(customerUrl(id), { replace: true })}
+      {/* <ActionDialog
+        confirmButtonState={removeDonationOpts.status}
+        onClose={() => navigate(donationUrl(id), { replace: true })}
         onConfirm={() =>
-          removeCustomer({
+          removeDonation({
             variables: {
               id,
             },
@@ -132,7 +131,7 @@ const CustomerDetailsViewInner: React.FC<CustomerDetailsViewProps> = ({
         }
         title={intl.formatMessage({
           id: "ey0lZj",
-          defaultMessage: "Delete Customer",
+          defaultMessage: "Delete Donation",
           description: "dialog header",
         })}
         variant="delete"
@@ -142,23 +141,23 @@ const CustomerDetailsViewInner: React.FC<CustomerDetailsViewProps> = ({
           <FormattedMessage
             id="2p0tZx"
             defaultMessage="Are you sure you want to delete {email}?"
-            description="delete customer, dialog content"
+            description="delete donation, dialog content"
             values={{
-              email: <strong>{getStringOrPlaceholder(user?.email)}</strong>,
+              email: <strong>{getStringOrPlaceholder(donation?.email)}</strong>,
             }}
           />
         </DialogContentText>
-      </ActionDialog>
+      </ActionDialog> */}
     </>
   );
 };
 
-export const CustomerDetailsView: React.FC<CustomerDetailsViewProps> = ({
+export const DonationDetailsView: React.FC<DonationDetailsViewProps> = ({
   id,
   params,
 }) => (
-  <CustomerDetailsProvider id={id}>
-    <CustomerDetailsViewInner id={id} params={params} />
-  </CustomerDetailsProvider>
+  <DonationDetailsProvider id={id}>
+    <DonationDetailsViewInner id={id} params={params} />
+  </DonationDetailsProvider>
 );
-export default CustomerDetailsView;
+export default DonationDetailsView;

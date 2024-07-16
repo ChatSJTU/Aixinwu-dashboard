@@ -14,7 +14,8 @@ import {
   donationPath,
   DonationUrlQueryParams,
 } from "./urls";
-import DonationList from "./views/DonationList";
+import DonationListViewComponent from "./views/DonationList";
+import DonationDetailsViewComponent from "./views/DonationDetails";
 
 const DonationListView: React.FC<RouteComponentProps<{}>> = ({ location }) => {
   const qs = parseQs(location.search.substr(1)) as any;
@@ -24,7 +25,7 @@ const DonationListView: React.FC<RouteComponentProps<{}>> = ({ location }) => {
     "created"
   );
 
-  return <DonationList params={params} />;
+  return <DonationListViewComponent params={params} />;
 };
 
 interface DonationDetailsRouteParams {
@@ -37,7 +38,7 @@ const DonationDetailsView: React.FC<
   const params: DonationUrlQueryParams = qs;
 
   return (
-    <DonationList
+    <DonationDetailsViewComponent
       id={decodeURIComponent(match.params.id)}
       params={params}
     />
@@ -56,7 +57,7 @@ export const DonationSection: React.FC<{}> = () => {
       <Switch>
         <Route exact path={donationListPath} component={DonationListView} />
         {/* <Route exact path={donationAddPath} component={DonationCreateView} /> */}
-        {/* <Route path={donationPath(":id")} component={DonationDetailsView} /> */}
+        <Route path={donationPath(":id")} component={DonationDetailsView} />
       </Switch>
     </>
   );

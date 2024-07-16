@@ -665,6 +665,28 @@ export const PromotionFragmentDoc = gql`
   endDate
 }
     ${MetadataFragmentDoc}`;
+export const DonationDetailsFragmentDoc = gql`
+    fragment DonationDetails on Donation {
+  id
+  barcode
+  createdAt
+  description
+  quantity
+  status
+  title
+  updatedAt
+  price {
+    amount
+    currency
+  }
+  donator {
+    id
+    account
+    firstName
+    code
+  }
+}
+    `;
 export const AttributeErrorFragmentDoc = gql`
     fragment AttributeError on AttributeError {
   code
@@ -8559,6 +8581,47 @@ export function useRuleConditionsSelectedOptionsDetailsLazyQuery(baseOptions?: A
 export type RuleConditionsSelectedOptionsDetailsQueryHookResult = ReturnType<typeof useRuleConditionsSelectedOptionsDetailsQuery>;
 export type RuleConditionsSelectedOptionsDetailsLazyQueryHookResult = ReturnType<typeof useRuleConditionsSelectedOptionsDetailsLazyQuery>;
 export type RuleConditionsSelectedOptionsDetailsQueryResult = Apollo.QueryResult<Types.RuleConditionsSelectedOptionsDetailsQuery, Types.RuleConditionsSelectedOptionsDetailsQueryVariables>;
+export const UpdateDonationDocument = gql`
+    mutation UpdateDonation($id: ID!, $input: DonationUpdateInput!) {
+  donationUpdate(id: $id, input: $input) {
+    errors {
+      code
+      field
+      message
+    }
+    donation {
+      ...DonationDetails
+    }
+  }
+}
+    ${DonationDetailsFragmentDoc}`;
+export type UpdateDonationMutationFn = Apollo.MutationFunction<Types.UpdateDonationMutation, Types.UpdateDonationMutationVariables>;
+
+/**
+ * __useUpdateDonationMutation__
+ *
+ * To run a mutation, you first call `useUpdateDonationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateDonationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateDonationMutation, { data, loading, error }] = useUpdateDonationMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useUpdateDonationMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.UpdateDonationMutation, Types.UpdateDonationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.UpdateDonationMutation, Types.UpdateDonationMutationVariables>(UpdateDonationDocument, options);
+      }
+export type UpdateDonationMutationHookResult = ReturnType<typeof useUpdateDonationMutation>;
+export type UpdateDonationMutationResult = Apollo.MutationResult<Types.UpdateDonationMutation>;
+export type UpdateDonationMutationOptions = Apollo.BaseMutationOptions<Types.UpdateDonationMutation, Types.UpdateDonationMutationVariables>;
 export const ListDonationsDocument = gql`
     query ListDonations($after: String, $before: String, $first: Int, $last: Int, $filter: DonationFilterInput, $sort: DonationSortingInput) {
   donations(
@@ -8633,6 +8696,61 @@ export function useListDonationsLazyQuery(baseOptions?: ApolloReactHooks.LazyQue
 export type ListDonationsQueryHookResult = ReturnType<typeof useListDonationsQuery>;
 export type ListDonationsLazyQueryHookResult = ReturnType<typeof useListDonationsLazyQuery>;
 export type ListDonationsQueryResult = Apollo.QueryResult<Types.ListDonationsQuery, Types.ListDonationsQueryVariables>;
+export const DonationDetailDocument = gql`
+    query DonationDetail {
+  donations(first: 1) {
+    edges {
+      node {
+        id
+        barcode
+        createdAt
+        description
+        quantity
+        status
+        title
+        updatedAt
+        price {
+          amount
+          currency
+        }
+        donator {
+          id
+          account
+          firstName
+          code
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useDonationDetailQuery__
+ *
+ * To run a query within a React component, call `useDonationDetailQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDonationDetailQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDonationDetailQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useDonationDetailQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>(DonationDetailDocument, options);
+      }
+export function useDonationDetailLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>(DonationDetailDocument, options);
+        }
+export type DonationDetailQueryHookResult = ReturnType<typeof useDonationDetailQuery>;
+export type DonationDetailLazyQueryHookResult = ReturnType<typeof useDonationDetailLazyQuery>;
+export type DonationDetailQueryResult = Apollo.QueryResult<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>;
 export const FileUploadDocument = gql`
     mutation FileUpload($file: Upload!) {
   fileUpload(file: $file) {
