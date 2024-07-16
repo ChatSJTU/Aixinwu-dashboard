@@ -6943,6 +6943,9 @@ input CustomerFilterInput {
 }
 
 input CustomerInput {
+  """The balance of a certain user."""
+  balance: Float
+
   """Billing address of the customer."""
   defaultBillingAddress: AddressInput
 
@@ -7474,14 +7477,14 @@ type Domain {
 
 """Represents donation."""
 type Donation implements Node {
-  """Whether this donation is completed or not."""
-  completed: Boolean
+  """Barcode of the donation."""
+  barcode: String
 
   """The date and time when the donation was created."""
-  createdAt: DateTime!
+  createdAt: DateTime
 
   """The description of the donation."""
-  description: String!
+  description: String
 
   """
   The user who made the donation. Requires one of permissions: MANAGE_USERS, MANAGE_DONATIONS, fOWNER
@@ -7492,16 +7495,19 @@ type Donation implements Node {
   id: ID!
 
   """The price of the donation."""
-  price: Money!
+  price: Money
 
   """The quantity of the donation."""
-  quantity: Int!
+  quantity: Int
+
+  """The status of the donation"""
+  status: String
 
   """The title of the donation."""
-  title: String!
+  title: String
 
   """The date and time when the donation was last updated."""
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 """
@@ -7513,6 +7519,11 @@ Triggers the following webhook events:
 type DonationComplete {
   donation: Donation
   errors: [DonationError!]!
+}
+
+input DonationCompleteInput {
+  """Whether this donation is accepted or not."""
+  accepted: Boolean!
 }
 
 type DonationCountableConnection {
@@ -7545,8 +7556,17 @@ type DonationCreate {
 }
 
 input DonationCreateInput {
+  """The barcode of the donation."""
+  barcode: String!
+
   """The description of the donation."""
   description: String!
+
+  """Student ID of the donator"""
+  donator: String
+
+  """The name of the donator"""
+  name: String!
 
   """The price of the donation."""
   price: MoneyInput!
@@ -7624,11 +7644,14 @@ type DonationUpdate {
 }
 
 input DonationUpdateInput {
+  """The barcode of the donation."""
+  barcode: String
+
   """The description of the donation."""
   description: String
 
-  """ID of the donation."""
-  id: ID!
+  """The Student ID of the donation"""
+  donator: String
 
   """The price of the donation."""
   price: MoneyInput
@@ -13620,8 +13643,11 @@ type Mutation {
   - DONATION_COMPLETED (sync): A donation has been created.
   """
   donationComplete(
-    """ID of the donation to complete."""
+    """ID of the donation."""
     id: ID!
+
+    """The input required to complete a donation."""
+    input: DonationCompleteInput!
   ): DonationComplete
 
   """
@@ -13650,6 +13676,9 @@ type Mutation {
   - DONATION_UPDATED (sync): A donation has been updated.
   """
   donationUpdate(
+    """ID of the donation."""
+    id: ID!
+
     """Fields required to update a donation."""
     input: DonationUpdateInput!
   ): DonationUpdate
@@ -21622,6 +21651,7 @@ type Permission {
 
 """An enumeration."""
 enum PermissionEnum {
+  ADD_DONATIONS
   HANDLE_CHECKOUTS
   HANDLE_PAYMENTS
   HANDLE_TAXES
@@ -21630,6 +21660,7 @@ enum PermissionEnum {
   MANAGE_CHANNELS
   MANAGE_CHECKOUTS
   MANAGE_DISCOUNTS
+  MANAGE_DONATIONS
   MANAGE_GIFT_CARD
   MANAGE_MENUS
   MANAGE_OBSERVABILITY
@@ -24162,6 +24193,9 @@ type ProductVariant implements Node & ObjectWithMetadata {
   """The product to which the variant belongs."""
   product: Product!
 
+  """Quantity of a product that a user is allowed to buy."""
+  quantityAllowed: Int
+
   """
   Quantity of a product available for sale in one checkout. Field value will be `null` when no `limitQuantityPerCheckout` in global settings has been set, and `productVariant` stocks are not tracked.
   """
@@ -24195,6 +24229,9 @@ type ProductVariant implements Node & ObjectWithMetadata {
   Requires one of the following permissions: MANAGE_PRODUCTS.
   """
   revenue(period: ReportingPeriod): TaxedMoney
+
+  """Total Sales of the product."""
+  sales: Int
 
   """The SKU (stock keeping unit) of the product variant."""
   sku: String
@@ -24327,6 +24364,9 @@ input ProductVariantBulkCreateInput {
   Added in Saleor 3.1.
   """
   quantityLimitPerCustomer: Int
+
+  """Whether or not to return the products on refund."""
+  returnOnCancel: Boolean
 
   """Stock keeping unit."""
   sku: String
@@ -24560,6 +24600,9 @@ input ProductVariantBulkUpdateInput {
   """
   quantityLimitPerCustomer: Int
 
+  """Whether or not to return the products on refund."""
+  returnOnCancel: Boolean
+
   """Stock keeping unit."""
   sku: String
 
@@ -24726,6 +24769,9 @@ input ProductVariantCreateInput {
   """
   quantityLimitPerCustomer: Int
 
+  """Whether or not to return the products on refund."""
+  returnOnCancel: Boolean
+
   """Stock keeping unit."""
   sku: String
 
@@ -24851,6 +24897,9 @@ input ProductVariantInput {
   Added in Saleor 3.1.
   """
   quantityLimitPerCustomer: Int
+
+  """Whether or not to return the products on refund."""
+  returnOnCancel: Boolean
 
   """Stock keeping unit."""
   sku: String
@@ -30333,6 +30382,9 @@ input StaffCreateInput {
   """List of permission group IDs to which user should be assigned."""
   addGroups: [ID!]
 
+  """The balance of a certain user."""
+  balance: Float
+
   """The unique email address of the user."""
   email: String
 
@@ -30573,6 +30625,9 @@ type StaffUpdate {
 input StaffUpdateInput {
   """List of permission group IDs to which user should be assigned."""
   addGroups: [ID!]
+
+  """The balance of a certain user."""
+  balance: Float
 
   """The unique email address of the user."""
   email: String
@@ -33250,6 +33305,9 @@ type UserCountableEdge {
 }
 
 input UserCreateInput {
+  """The balance of a certain user."""
+  balance: Float
+
   """
   Slug of a channel which will be used for notify user. Optional when only one channel exists.
   """

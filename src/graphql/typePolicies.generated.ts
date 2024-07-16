@@ -1707,15 +1707,16 @@ export type DomainFieldPolicy = {
 	sslEnabled?: FieldPolicy<any> | FieldReadFunction<any>,
 	url?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type DonationKeySpecifier = ('completed' | 'createdAt' | 'description' | 'donator' | 'id' | 'price' | 'quantity' | 'title' | 'updatedAt' | DonationKeySpecifier)[];
+export type DonationKeySpecifier = ('barcode' | 'createdAt' | 'description' | 'donator' | 'id' | 'price' | 'quantity' | 'status' | 'title' | 'updatedAt' | DonationKeySpecifier)[];
 export type DonationFieldPolicy = {
-	completed?: FieldPolicy<any> | FieldReadFunction<any>,
+	barcode?: FieldPolicy<any> | FieldReadFunction<any>,
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	donator?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	price?: FieldPolicy<any> | FieldReadFunction<any>,
 	quantity?: FieldPolicy<any> | FieldReadFunction<any>,
+	status?: FieldPolicy<any> | FieldReadFunction<any>,
 	title?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>
 };
@@ -4646,7 +4647,7 @@ export type ProductUpdatedFieldPolicy = {
 	recipient?: FieldPolicy<any> | FieldReadFunction<any>,
 	version?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ProductVariantKeySpecifier = ('attributes' | 'channel' | 'channelListings' | 'created' | 'digitalContent' | 'externalReference' | 'id' | 'images' | 'margin' | 'media' | 'metadata' | 'metafield' | 'metafields' | 'name' | 'preorder' | 'pricing' | 'privateMetadata' | 'privateMetafield' | 'privateMetafields' | 'product' | 'quantityAvailable' | 'quantityLimitPerCustomer' | 'quantityOrdered' | 'revenue' | 'sku' | 'stocks' | 'trackInventory' | 'translation' | 'updatedAt' | 'weight' | ProductVariantKeySpecifier)[];
+export type ProductVariantKeySpecifier = ('attributes' | 'channel' | 'channelListings' | 'created' | 'digitalContent' | 'externalReference' | 'id' | 'images' | 'margin' | 'media' | 'metadata' | 'metafield' | 'metafields' | 'name' | 'preorder' | 'pricing' | 'privateMetadata' | 'privateMetafield' | 'privateMetafields' | 'product' | 'quantityAllowed' | 'quantityAvailable' | 'quantityLimitPerCustomer' | 'quantityOrdered' | 'revenue' | 'sales' | 'sku' | 'stocks' | 'trackInventory' | 'translation' | 'updatedAt' | 'weight' | ProductVariantKeySpecifier)[];
 export type ProductVariantFieldPolicy = {
 	attributes?: FieldPolicy<any> | FieldReadFunction<any>,
 	channel?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -4668,10 +4669,12 @@ export type ProductVariantFieldPolicy = {
 	privateMetafield?: FieldPolicy<any> | FieldReadFunction<any>,
 	privateMetafields?: FieldPolicy<any> | FieldReadFunction<any>,
 	product?: FieldPolicy<any> | FieldReadFunction<any>,
+	quantityAllowed?: FieldPolicy<any> | FieldReadFunction<any>,
 	quantityAvailable?: FieldPolicy<any> | FieldReadFunction<any>,
 	quantityLimitPerCustomer?: FieldPolicy<any> | FieldReadFunction<any>,
 	quantityOrdered?: FieldPolicy<any> | FieldReadFunction<any>,
 	revenue?: FieldPolicy<any> | FieldReadFunction<any>,
+	sales?: FieldPolicy<any> | FieldReadFunction<any>,
 	sku?: FieldPolicy<any> | FieldReadFunction<any>,
 	stocks?: FieldPolicy<any> | FieldReadFunction<any>,
 	trackInventory?: FieldPolicy<any> | FieldReadFunction<any>,

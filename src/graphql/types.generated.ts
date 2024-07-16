@@ -1897,6 +1897,8 @@ export type CustomerFilterInput = {
 };
 
 export type CustomerInput = {
+  /** The balance of a certain user. */
+  balance?: InputMaybe<Scalars['Float']>;
   /** Billing address of the customer. */
   defaultBillingAddress?: InputMaybe<AddressInput>;
   /** Shipping address of the customer. */
@@ -2081,9 +2083,20 @@ export enum DistanceUnitsEnum {
   YD = 'YD'
 }
 
+export type DonationCompleteInput = {
+  /** Whether this donation is accepted or not. */
+  accepted: Scalars['Boolean'];
+};
+
 export type DonationCreateInput = {
+  /** The barcode of the donation. */
+  barcode: Scalars['String'];
   /** The description of the donation. */
   description: Scalars['String'];
+  /** Student ID of the donator */
+  donator?: InputMaybe<Scalars['String']>;
+  /** The name of the donator */
+  name: Scalars['String'];
   /** The price of the donation. */
   price: MoneyInput;
   /** The quantity of the donation. */
@@ -2122,10 +2135,12 @@ export type DonationSortingInput = {
 };
 
 export type DonationUpdateInput = {
+  /** The barcode of the donation. */
+  barcode?: InputMaybe<Scalars['String']>;
   /** The description of the donation. */
   description?: InputMaybe<Scalars['String']>;
-  /** ID of the donation. */
-  id: Scalars['ID'];
+  /** The Student ID of the donation */
+  donator?: InputMaybe<Scalars['String']>;
   /** The price of the donation. */
   price?: InputMaybe<MoneyInput>;
   /** The quantity of the donation. */
@@ -4876,6 +4891,7 @@ export type PaymentSettingsInput = {
 
 /** An enumeration. */
 export enum PermissionEnum {
+  ADD_DONATIONS = 'ADD_DONATIONS',
   HANDLE_CHECKOUTS = 'HANDLE_CHECKOUTS',
   HANDLE_PAYMENTS = 'HANDLE_PAYMENTS',
   HANDLE_TAXES = 'HANDLE_TAXES',
@@ -4884,6 +4900,7 @@ export enum PermissionEnum {
   MANAGE_CHANNELS = 'MANAGE_CHANNELS',
   MANAGE_CHECKOUTS = 'MANAGE_CHECKOUTS',
   MANAGE_DISCOUNTS = 'MANAGE_DISCOUNTS',
+  MANAGE_DONATIONS = 'MANAGE_DONATIONS',
   MANAGE_GIFT_CARD = 'MANAGE_GIFT_CARD',
   MANAGE_MENUS = 'MANAGE_MENUS',
   MANAGE_OBSERVABILITY = 'MANAGE_OBSERVABILITY',
@@ -5675,6 +5692,8 @@ export type ProductVariantBulkCreateInput = {
    * Added in Saleor 3.1.
    */
   quantityLimitPerCustomer?: InputMaybe<Scalars['Int']>;
+  /** Whether or not to return the products on refund. */
+  returnOnCancel?: InputMaybe<Scalars['Boolean']>;
   /** Stock keeping unit. */
   sku?: InputMaybe<Scalars['String']>;
   /** Stocks of a product available for sale. */
@@ -5763,6 +5782,8 @@ export type ProductVariantBulkUpdateInput = {
    * Added in Saleor 3.1.
    */
   quantityLimitPerCustomer?: InputMaybe<Scalars['Int']>;
+  /** Whether or not to return the products on refund. */
+  returnOnCancel?: InputMaybe<Scalars['Boolean']>;
   /** Stock keeping unit. */
   sku?: InputMaybe<Scalars['String']>;
   /**
@@ -5840,6 +5861,8 @@ export type ProductVariantCreateInput = {
    * Added in Saleor 3.1.
    */
   quantityLimitPerCustomer?: InputMaybe<Scalars['Int']>;
+  /** Whether or not to return the products on refund. */
+  returnOnCancel?: InputMaybe<Scalars['Boolean']>;
   /** Stock keeping unit. */
   sku?: InputMaybe<Scalars['String']>;
   /** Stocks of a product available for sale. */
@@ -5893,6 +5916,8 @@ export type ProductVariantInput = {
    * Added in Saleor 3.1.
    */
   quantityLimitPerCustomer?: InputMaybe<Scalars['Int']>;
+  /** Whether or not to return the products on refund. */
+  returnOnCancel?: InputMaybe<Scalars['Boolean']>;
   /** Stock keeping unit. */
   sku?: InputMaybe<Scalars['String']>;
   /** Determines if the inventory of this variant should be tracked. If false, the quantity won't change when customers buy this item. If the field is not provided, `Shop.trackInventoryByDefault` will be used. */
@@ -6555,6 +6580,8 @@ export type SiteDomainInput = {
 export type StaffCreateInput = {
   /** List of permission group IDs to which user should be assigned. */
   addGroups?: InputMaybe<Array<Scalars['ID']>>;
+  /** The balance of a certain user. */
+  balance?: InputMaybe<Scalars['Float']>;
   /** The unique email address of the user. */
   email?: InputMaybe<Scalars['String']>;
   /** Given name. */
@@ -6602,6 +6629,8 @@ export type StaffNotificationRecipientInput = {
 export type StaffUpdateInput = {
   /** List of permission group IDs to which user should be assigned. */
   addGroups?: InputMaybe<Array<Scalars['ID']>>;
+  /** The balance of a certain user. */
+  balance?: InputMaybe<Scalars['Float']>;
   /** The unique email address of the user. */
   email?: InputMaybe<Scalars['String']>;
   /** Given name. */
@@ -7248,6 +7277,8 @@ export enum UploadErrorCode {
 }
 
 export type UserCreateInput = {
+  /** The balance of a certain user. */
+  balance?: InputMaybe<Scalars['Float']>;
   /** Slug of a channel which will be used for notify user. Optional when only one channel exists. */
   channel?: InputMaybe<Scalars['String']>;
   /** Billing address of the customer. */
