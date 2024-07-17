@@ -3,6 +3,7 @@ import ActionDialog from "@dashboard/components/ActionDialog";
 import NotFoundPage from "@dashboard/components/NotFoundPage";
 import { WindowTitle } from "@dashboard/components/WindowTitle";
 import {
+  useCompleteDonationMutation,
   useUpdateDonationMutation,
   useUpdateMetadataMutation,
   useUpdatePrivateMetadataMutation,
@@ -13,7 +14,7 @@ import { commonMessages } from "@dashboard/intl";
 import { extractMutationErrors, getStringOrPlaceholder } from "@dashboard/misc";
 import createMetadataUpdateHandler from "@dashboard/utils/handlers/metadataUpdateHandler";
 import { DialogContentText } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import DonationDetailsPage, {
@@ -21,7 +22,8 @@ import DonationDetailsPage, {
 } from "../components/DonationDetailsPage";
 import { useDonationDetails } from "../hooks/useDonationDetails";
 import { DonationDetailsProvider } from "../providers/DonationDetailsProvider";
-import { donationListUrl, donationUrl, DonationUrlQueryParams } from "../urls";
+import { donationListUrl, donationUrl, DonationUrlDialog, DonationUrlQueryParams } from "../urls";
+import createDialogActionHandlers from "@dashboard/utils/handlers/dialogActionHandlers";
 
 interface DonationDetailsViewProps {
   id: string;
@@ -40,20 +42,25 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
   const donation = donationDetails?.donation?.donations.edges[0].node;
   const donationDetailsLoading = donationDetails?.loading;
 
-  // const [removeDonation, removeDonationOpts] = useRemoveDonationMutation({
-  //   onCompleted: data => {
-  //     if (data.donationDelete.errors.length === 0) {
-  //       notify({
-  //         status: "success",
-  //         text: intl.formatMessage({
-  //           id: "PXatmC",
-  //           defaultMessage: "Donation Removed",
-  //         }),
-  //       });
-  //       navigate(donationListUrl());
-  //     }
-  //   },
-  // });
+  const [openModal, closeModal] = createDialogActionHandlers<
+    DonationUrlDialog,
+    DonationUrlQueryParams
+  >(navigate, params => donationUrl(id, params), params, ["action"]);
+
+  const [completeDonation, completeDonationOpts] = useCompleteDonationMutation({
+    onCompleted: data => {
+      if (data.donationComplete.errors.length === 0) {
+        notify({
+          status: "success",
+          text: intl.formatMessage({
+            id: "donation-complete-notify",
+            defaultMessage: "操作成功",
+          }),
+        });
+        navigate(donationListUrl());
+      }
+    },
+  });
 
   const [updateDonation, updateDonationOpts] = useUpdateDonationMutation({
     onCompleted: data => {
@@ -110,6 +117,7 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
         }
         errors={updateDonationOpts.data?.donationUpdate.errors || []}
         saveButtonBar={updateDonationOpts.status}
+        onOpenModal={openModal}
         onSubmit={handleSubmit}
         onDelete={() => {}
           // navigate(
@@ -119,35 +127,56 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
           // )
         }
       />
-      {/* <ActionDialog
-        confirmButtonState={removeDonationOpts.status}
+      <ActionDialog
+        confirmButtonState={completeDonationOpts.status}
         onClose={() => navigate(donationUrl(id), { replace: true })}
         onConfirm={() =>
-          removeDonation({
+          completeDonation({
             variables: {
-              id,
+              id: id,
+              accepted: true
             },
           })
         }
         title={intl.formatMessage({
-          id: "ey0lZj",
-          defaultMessage: "Delete Donation",
-          description: "dialog header",
+          id: "donation-complete-action",
+          defaultMessage: "捐赠操作",
         })}
-        variant="delete"
-        open={params.action === "remove"}
+        variant="default"
+        open={params.action === "accept"}
       >
         <DialogContentText>
           <FormattedMessage
-            id="2p0tZx"
-            defaultMessage="Are you sure you want to delete {email}?"
-            description="delete donation, dialog content"
-            values={{
-              email: <strong>{getStringOrPlaceholder(donation?.email)}</strong>,
-            }}
+            id="donation-complete-accept"
+            defaultMessage="确认接受该捐赠？"
           />
         </DialogContentText>
-      </ActionDialog> */}
+      </ActionDialog>
+      <ActionDialog
+        confirmButtonState={completeDonationOpts.status}
+        onClose={() => navigate(donationUrl(id), { replace: true })}
+        onConfirm={() =>
+          completeDonation({
+            variables: {
+              id: id,
+              accepted: false
+            },
+          })
+        }
+        title={intl.formatMessage({
+          id: "donation-complete-action",
+          defaultMessage: "捐赠操作",
+        })}
+        variant="default"
+        open={params.action === "reject"}
+      >
+        <DialogContentText>
+          <FormattedMessage
+            id="donation-complete-reject"
+            defaultMessage="确认拒绝该捐赠？"
+          />
+        </DialogContentText>
+      </ActionDialog>
     </>
   );
 };

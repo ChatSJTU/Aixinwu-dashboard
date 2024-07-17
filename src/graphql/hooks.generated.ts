@@ -8662,6 +8662,47 @@ export function useCreateDonationMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type CreateDonationMutationHookResult = ReturnType<typeof useCreateDonationMutation>;
 export type CreateDonationMutationResult = Apollo.MutationResult<Types.CreateDonationMutation>;
 export type CreateDonationMutationOptions = Apollo.BaseMutationOptions<Types.CreateDonationMutation, Types.CreateDonationMutationVariables>;
+export const CompleteDonationDocument = gql`
+    mutation CompleteDonation($id: ID!, $accepted: Boolean!) {
+  donationComplete(id: $id, input: {accepted: $accepted}) {
+    donation {
+      ...DonationDetails
+    }
+    errors {
+      code
+      field
+      message
+    }
+  }
+}
+    ${DonationDetailsFragmentDoc}`;
+export type CompleteDonationMutationFn = Apollo.MutationFunction<Types.CompleteDonationMutation, Types.CompleteDonationMutationVariables>;
+
+/**
+ * __useCompleteDonationMutation__
+ *
+ * To run a mutation, you first call `useCompleteDonationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCompleteDonationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [completeDonationMutation, { data, loading, error }] = useCompleteDonationMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      accepted: // value for 'accepted'
+ *   },
+ * });
+ */
+export function useCompleteDonationMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.CompleteDonationMutation, Types.CompleteDonationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.CompleteDonationMutation, Types.CompleteDonationMutationVariables>(CompleteDonationDocument, options);
+      }
+export type CompleteDonationMutationHookResult = ReturnType<typeof useCompleteDonationMutation>;
+export type CompleteDonationMutationResult = Apollo.MutationResult<Types.CompleteDonationMutation>;
+export type CompleteDonationMutationOptions = Apollo.BaseMutationOptions<Types.CompleteDonationMutation, Types.CompleteDonationMutationVariables>;
 export const ListDonationsDocument = gql`
     query ListDonations($after: String, $before: String, $first: Int, $last: Int, $filter: DonationFilterInput, $sort: DonationSortingInput) {
   donations(
@@ -8674,24 +8715,7 @@ export const ListDonationsDocument = gql`
   ) {
     edges {
       node {
-        id
-        barcode
-        createdAt
-        description
-        quantity
-        status
-        title
-        updatedAt
-        price {
-          amount
-          currency
-        }
-        donator {
-          id
-          account
-          firstName
-          code
-        }
+        ...DonationDetails
       }
     }
     pageInfo {
@@ -8702,7 +8726,7 @@ export const ListDonationsDocument = gql`
     }
   }
 }
-    `;
+    ${DonationDetailsFragmentDoc}`;
 
 /**
  * __useListDonationsQuery__
@@ -8741,29 +8765,12 @@ export const DonationDetailDocument = gql`
   donations(first: 1) {
     edges {
       node {
-        id
-        barcode
-        createdAt
-        description
-        quantity
-        status
-        title
-        updatedAt
-        price {
-          amount
-          currency
-        }
-        donator {
-          id
-          account
-          firstName
-          code
-        }
+        ...DonationDetails
       }
     }
   }
 }
-    `;
+    ${DonationDetailsFragmentDoc}`;
 
 /**
  * __useDonationDetailQuery__

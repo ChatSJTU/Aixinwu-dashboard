@@ -19,24 +19,7 @@ export const donationList = gql`
     ) {
       edges {
         node {
-          id
-          barcode
-          createdAt
-          description
-          quantity
-          status
-          title
-          updatedAt
-          price {
-            amount
-            currency
-          }
-          donator {
-            id
-            account
-            firstName
-            code
-          }
+          ...DonationDetails
         }
       }
       pageInfo {
@@ -56,45 +39,9 @@ export const donationDetails = gql`
     ) {
       edges {
         node {
-          id
-          barcode
-          createdAt
-          description
-          quantity
-          status
-          title
-          updatedAt
-          price {
-            amount
-            currency
-          }
-          donator {
-            id
-            account
-            firstName
-            code
-          }
+          ...DonationDetails
         }
       }
     }
   }
 `;
-
-// export const donationAddresses = gql`
-//   query CustomerAddresses($id: ID!) {
-//     user(id: $id) {
-//       ...CustomerAddresses
-//     }
-//   }
-// `;
-
-// export const donationCreateData = gql`
-//   query CustomerCreateData {
-//     shop {
-//       countries {
-//         code
-//         country
-//       }
-//     }
-//   }
-// `;

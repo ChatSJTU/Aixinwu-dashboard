@@ -170,7 +170,7 @@ export function useMenuStructure() {
         id: "donation-page",
         defaultMessage: "捐赠",
       }),
-      permissions: [PermissionEnum.MANAGE_DONATIONS],
+      permissions: [PermissionEnum.ADD_DONATIONS],
       id: "donations",
       url: donationListUrl(),
       type: "itemGroup",

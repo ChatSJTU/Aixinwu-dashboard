@@ -9857,6 +9857,14 @@ export type CreateDonationMutationVariables = Exact<{
 
 export type CreateDonationMutation = { __typename: 'Mutation', donationCreate: { __typename: 'DonationCreate', errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }>, donation: { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null } | null };
 
+export type CompleteDonationMutationVariables = Exact<{
+  id: Scalars['ID'];
+  accepted: Scalars['Boolean'];
+}>;
+
+
+export type CompleteDonationMutation = { __typename: 'Mutation', donationComplete: { __typename: 'DonationComplete', donation: { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null, errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }> } | null };
+
 export type ListDonationsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;

@@ -2,14 +2,14 @@
 import CardTitle from "@dashboard/components/CardTitle";
 import { ControlledCheckbox } from "@dashboard/components/ControlledCheckbox";
 import Skeleton from "@dashboard/components/Skeleton";
-import { AccountErrorFragment, DonationDetailQuery } from "@dashboard/graphql";
+import { AccountErrorFragment, DonationDetailQuery, PermissionEnum } from "@dashboard/graphql";
 import { maybe } from "@dashboard/misc";
 import { getFormErrors } from "@dashboard/utils/errors";
 import getAccountErrorMessage from "@dashboard/utils/errors/account";
 import { Card, CardContent, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from "@saleor/macaw-ui";
 import moment from "moment-timezone";
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { DonationDetailsPageFormData } from "../DonationDetailsPage";
 import CardSpacer from "@dashboard/components/CardSpacer";
@@ -18,6 +18,10 @@ import Grid from "@dashboard/components/Grid";
 import { commonMessages } from "@dashboard/intl";
 import { DateTime } from "@dashboard/components/Date";
 import FormSpacer from "@dashboard/components/FormSpacer";
+import RequirePermissions from "@dashboard/components/RequirePermissions";
+import { Button } from "@saleor/macaw-ui-next";
+import { OpenModalFunction } from "@dashboard/utils/handlers/dialogActionHandlers";
+import { DonationUrlDialog, DonationUrlQueryParams } from "@dashboard/donations/urls";
 
 const useStyles = makeStyles(
   theme => ({
@@ -49,10 +53,11 @@ export interface DonationDetailsProps {
   disabled: boolean;
   errors: AccountErrorFragment[];
   onChange: (event: React.ChangeEvent<any>) => void;
+  onOpenModal: OpenModalFunction<DonationUrlDialog, DonationUrlQueryParams>;
 }
 
 const DonationDetails: React.FC<DonationDetailsProps> = props => {
-  const { donation, data, disabled, errors, onChange } = props;
+  const { donation, data, disabled, errors, onChange, onOpenModal } = props;
 
   const classes = useStyles(props);
   const intl = useIntl();
@@ -61,14 +66,14 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
 
   return (
     <>
-    <Card>
+    {/* <Card>
       <CardContent style={{fontSize: "14px"}} className={classes.content}>
         <Typography className={classes.sectionHeader}>
           <FormattedMessage id= "donation-info-date" defaultMessage="捐赠日期" />
         </Typography>
         <DateTime date={data.created} plain />
       </CardContent>
-    </Card>
+    </Card> */}
     <Card>
       <CardTitle
         title={
@@ -182,6 +187,30 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
         />
       </CardContent>
     </Card>
+    <RequirePermissions
+      requiredPermissions={[PermissionEnum.MANAGE_DONATIONS]}
+    >
+      <Card>
+        <CardTitle
+          title={
+            <FormattedMessage
+              id="donation-action"
+              defaultMessage="操作"
+            />
+          }
+        />
+        <CardContent className={classes.content}>
+          <div style={{display: "flex"}}>
+            <Button onClick={()=>onOpenModal("accept")}>
+              确认捐赠
+            </Button>
+            <Button onClick={()=>onOpenModal("reject")} marginLeft={2} variant="secondary">
+              拒绝捐赠
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </RequirePermissions>
     </>
   );
 };

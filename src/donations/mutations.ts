@@ -30,11 +30,16 @@ export const createDonation = gql`
   }
 `;
 
-export const removeCustomer = gql`
-  mutation RemoveCustomer($id: ID!) {
-    customerDelete(id: $id) {
+export const completeDonation = gql`
+  mutation CompleteDonation($id: ID!, $accepted: Boolean!) {
+    donationComplete(id: $id, input: {accepted: $accepted}) {
+      donation {
+        ...DonationDetails
+      }
       errors {
-        ...AccountError
+        code
+        field
+        message
       }
     }
   }

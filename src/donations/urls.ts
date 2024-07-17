@@ -34,7 +34,7 @@ export const donationListUrl = (params?: DonationListUrlQueryParams) =>
   donationListPath + "?" + stringifyQs(params);
 
 export const donationPath = (id: string) => urlJoin(donationSection, id);
-export type DonationUrlDialog = "remove";
+export type DonationUrlDialog = "accept" | "reject";
 export type DonationUrlQueryParams = Dialog<DonationUrlDialog>;
 export const donationUrl = (id: string, params?: DonationUrlQueryParams) =>
   donationPath(encodeURIComponent(id)) + "?" + stringifyQs(params);

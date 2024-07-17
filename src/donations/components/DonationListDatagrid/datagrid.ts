@@ -10,6 +10,7 @@ import { IntlShape, useIntl } from "react-intl";
 import { DefaultTheme, useTheme } from "@saleor/macaw-ui-next";
 import { columnsMessages } from "./messages";
 import { ListDonationsQuery } from "@dashboard/graphql";
+import { transformDonationStatus } from "@dashboard/donations/utils";
 
 export const donationListStaticColumnsAdapter = (
   intl: IntlShape,
@@ -106,43 +107,6 @@ export const useGetCellContent = (
     }
   };
 }
-  
-
-export const transformDonationStatus = (
-  status: string,
-  intl: IntlShape,
-): { localized: string; status: StatusType } => {
-  switch (status) {
-    case "unreviewed":
-      return {
-        localized: intl.formatMessage({
-          id: "donation-status-unreviewed",
-          defaultMessage: "未确认",
-        }),
-        status: StatusType.WARNING,
-      };
-    case "completed":
-      return {
-        localized: intl.formatMessage({
-          id: "donation-status-completed",
-          defaultMessage: "已完成",
-        }),
-        status: StatusType.SUCCESS,
-      };
-    case "rejected":
-      return {
-        localized: intl.formatMessage({
-          id: "donation-status-rejected",
-          defaultMessage: "已拒绝",
-        }),
-        status: StatusType.ERROR,
-      };
-  }
-  return {
-    localized: status,
-    status: StatusType.ERROR,
-  };
-};
 
 export function getStatusCellContent(
   intl: IntlShape,

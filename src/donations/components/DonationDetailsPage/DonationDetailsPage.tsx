@@ -6,6 +6,8 @@ import Form from "@dashboard/components/Form";
 import { DetailPageLayout } from "@dashboard/components/Layouts";
 import Savebar from "@dashboard/components/Savebar";
 import {
+  DonationUrlDialog,
+  DonationUrlQueryParams,
   donationListUrl,
 } from "@dashboard/donations/urls";
 import {
@@ -14,10 +16,12 @@ import {
 } from "@dashboard/graphql";
 import { SubmitPromise } from "@dashboard/hooks/useForm";
 import useNavigator from "@dashboard/hooks/useNavigator";
-import React from "react";
+import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 
 import DonationDetails from "../DonationDetails";
+import Title from "./Title";
+import { OpenModalFunction } from "@dashboard/utils/handlers/dialogActionHandlers";
 
 export interface DonationDetailsPageFormData {
   barcode: string;
@@ -39,6 +43,7 @@ export interface DonationDetailsPageProps {
   disabled: boolean;
   errors: AccountErrorFragment[];
   saveButtonBar: ConfirmButtonTransitionState;
+  onOpenModal: OpenModalFunction<DonationUrlDialog, DonationUrlQueryParams>;
   onSubmit: (
     data: DonationDetailsPageFormData,
   ) => SubmitPromise<AccountErrorFragment[]>;
@@ -53,6 +58,7 @@ const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
   saveButtonBar,
   onSubmit,
   onDelete,
+  onOpenModal
 }: DonationDetailsPageProps) => {
   const intl = useIntl();
   const navigate = useNavigator();
@@ -112,6 +118,7 @@ const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
                 data={data}
                 disabled={disabled}
                 errors={errors}
+                onOpenModal={onOpenModal}
                 onChange={change}
               />
               {/* <CardSpacer />
