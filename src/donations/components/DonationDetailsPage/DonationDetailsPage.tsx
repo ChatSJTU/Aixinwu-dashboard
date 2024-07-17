@@ -100,7 +100,7 @@ const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
           <DetailPageLayout>
             <TopNav
               href={donationListUrl()}
-              title={`捐赠 #${donation?.id}`}
+              title={<Title doantion={donation}/>}
             >
               {/* {extensionMenuItems.length > 0 && (
                 <CardMenu menuItems={extensionMenuItems} />
