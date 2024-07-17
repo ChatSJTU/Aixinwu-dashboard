@@ -38,6 +38,7 @@ import { mapToExtensionsItems } from "./utils";
 import DonationIcon from "@dashboard/icons/Donation";
 import { donationListUrl } from "@dashboard/donations/urls";
 import { barcodeManageUrl } from "@dashboard/barcodes/urls";
+import StatIcon from "@dashboard/icons/Stat";
 
 const iconSettings = {
   color: "default2",
@@ -223,7 +224,38 @@ export function useMenuStructure() {
     //   url: languageListUrl,
     //   type: !isEmpty(extensions.NAVIGATION_TRANSLATIONS) ? "itemGroup" : "item",
     // },
-    getAppSection(),
+    // getAppSection(),
+    {
+      children: [
+        {
+          label: intl.formatMessage({
+            id: "axb-log",
+            defaultMessage: "爱心币日志",
+          }),
+          id: "axb-log",
+          url: barcodeManageUrl(),
+          type: "item",
+        },
+        {
+          label: intl.formatMessage({
+            id: "system-log",
+            defaultMessage: "操作日志",
+          }),
+          id: "system-log",
+          url: barcodeManageUrl(),
+          type: "item",
+        },
+      ],
+      icon: <StatIcon />,
+      label: intl.formatMessage({
+        id: "stat",
+        defaultMessage: "数据",
+      }),
+      permissions: [PermissionEnum.MANAGE_ORDERS],
+      id: "stat",
+      url: donationListUrl(),
+      type: "itemGroup",
+    },
     {
       icon: <ConfigurationIcon {...iconSettings} />,
       label: intl.formatMessage(sectionNames.configuration),
