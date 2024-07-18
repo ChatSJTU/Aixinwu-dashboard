@@ -22,6 +22,8 @@ import RequirePermissions from "@dashboard/components/RequirePermissions";
 import { Button } from "@saleor/macaw-ui-next";
 import { OpenModalFunction } from "@dashboard/utils/handlers/dialogActionHandlers";
 import { DonationUrlDialog, DonationUrlQueryParams } from "@dashboard/donations/urls";
+import Link from "@dashboard/components/Link";
+import { customerUrl } from "@dashboard/customers/urls";
 
 const useStyles = makeStyles(
   theme => ({
@@ -40,6 +42,9 @@ const useStyles = makeStyles(
     hr: {
       margin: theme.spacing(3, 0),
     },
+    profileLink: {
+      marginTop: theme.spacing(),
+    },
     sectionHeader: {
       marginBottom: theme.spacing(),
     },
@@ -54,10 +59,11 @@ export interface DonationDetailsProps {
   errors: AccountErrorFragment[];
   onChange: (event: React.ChangeEvent<any>) => void;
   onOpenModal: OpenModalFunction<DonationUrlDialog, DonationUrlQueryParams>;
+  onProfileView: () => void;
 }
 
 const DonationDetails: React.FC<DonationDetailsProps> = props => {
-  const { donation, data, disabled, errors, onChange, onOpenModal } = props;
+  const { donation, data, disabled, errors, onChange, onOpenModal, onProfileView } = props;
 
   const classes = useStyles(props);
   const intl = useIntl();
@@ -104,7 +110,7 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
             error={null}
             fullWidth
             // helperText={getAccountErrorMessage(formErrors.lastName, intl)}
-            name="lastName"
+            name="code"
             type="text"
             label={intl.formatMessage({
               id: "donation-donator-code",
@@ -117,6 +123,23 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
             }}
           />
         </Grid>
+        <RequirePermissions
+          requiredPermissions={[PermissionEnum.MANAGE_USERS]}
+        >
+          <div className={classes.profileLink}>
+            <Link
+              underline={false}
+              href={customerUrl(data.donator.id)}
+              onClick={onProfileView}
+            >
+              <FormattedMessage
+                id="VCzrEZ"
+                defaultMessage="View Profile"
+                description="link"
+              />
+            </Link>
+          </div>
+        </RequirePermissions>
       </CardContent>
     </Card>
     <CardSpacer />

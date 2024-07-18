@@ -40,6 +40,7 @@ import CustomerDetails from "../CustomerDetails";
 import CustomerInfo from "../CustomerInfo";
 import CustomerOrders from "../CustomerOrders";
 import CustomerStats from "../CustomerStats";
+import Title from "./Title";
 
 export interface CustomerDetailsPageFormData extends MetadataFormData {
   firstName: string;
@@ -48,6 +49,8 @@ export interface CustomerDetailsPageFormData extends MetadataFormData {
   isActive: boolean;
   note: string;
   balance: number;
+  code: string;
+  userType: string;
 }
 
 export interface CustomerDetailsPageProps {
@@ -83,6 +86,8 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
     note: customer?.note || "",
     privateMetadata: customer?.privateMetadata.map(mapMetadataItemToInput),
     balance: customer?.balance || 0,
+    code: customer?.code || "",
+    userType: customer?.userType || "",
   };
 
   const { makeChangeHandler: makeMetadataChangeHandler } =
@@ -111,7 +116,7 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
           <DetailPageLayout>
             <TopNav
               href={customerListUrl()}
-              title={getUserName(customer, true)}
+              title={<Title customer={customer}/>}
             >
               {extensionMenuItems.length > 0 && (
                 <CardMenu menuItems={extensionMenuItems} />

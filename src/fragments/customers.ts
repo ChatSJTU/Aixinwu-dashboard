@@ -24,6 +24,8 @@ export const customerDetailsFragment = gql`
     note
     isActive
     balance
+    userType
+    code
   }
 `;
 
