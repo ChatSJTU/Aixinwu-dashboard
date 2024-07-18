@@ -38,11 +38,6 @@ export const orderDraftDetailsStaticColumnsAdapter = (
     width: 300,
   },
   {
-    id: "sku",
-    title: "SKU",
-    width: 150,
-  },
-  {
     id: "variantName",
     title: intl.formatMessage(columnsMessages.variantName),
     width: 150,
@@ -55,12 +50,12 @@ export const orderDraftDetailsStaticColumnsAdapter = (
   {
     id: "price",
     title: intl.formatMessage(columnsMessages.price),
-    width: 150,
+    width: 10,
   },
   {
     id: "total",
     title: intl.formatMessage(columnsMessages.total),
-    width: 150,
+    width: 10,
   },
   {
     id: "metadata",

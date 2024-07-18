@@ -305,7 +305,7 @@
   },
   "/qk66u": {
     "context": "window title",
-    "string": "Grant refund #{orderNumber}"
+    "string": "退款订单 #{orderNumber}"
   },
   "/vCXIP": {
     "string": "Translation"
@@ -388,7 +388,7 @@
   },
   "0VDwAP": {
     "context": "checkbox label",
-    "string": "Send shipment details to customer"
+    "string": "向客户发送配送详情"
   },
   "0VkxrS": {
     "string": "GraphQL环境"
@@ -1290,7 +1290,7 @@
     "string": "搜索姓名、邮箱等..."
   },
   "6udlH+": {
-    "string": "Order draft successfully created"
+    "string": "草稿订单已成功创建"
   },
   "6uy2gU": {
     "string": "Manually change permission for the app."
@@ -1791,7 +1791,7 @@
     "string": "Provided email address"
   },
   "AqXzM2": {
-    "string": "Order #{orderNumber}"
+    "string": "订单 #{orderNumber}"
   },
   "ArctEg": {
     "context": "requires activation checkbox caption",
@@ -1928,11 +1928,11 @@
   },
   "BjxQ3u": {
     "context": "add shipping address first label",
-    "string": "add shipping address first"
+    "string": "请先添加配送地址"
   },
   "BkFke9": {
     "context": "section header",
-    "string": "Unfulfilled Items"
+    "string": "未交付商品"
   },
   "Bkxrhw": {
     "context": "no webhooks message",
@@ -2662,7 +2662,7 @@
   },
   "GbBCmr": {
     "context": "window title",
-    "string": "Order #{orderNumber}"
+    "string": "订单 #{orderNumber}"
   },
   "GbhZJ4": {
     "context": "button",
@@ -2859,14 +2859,14 @@
     "string": "文章管理"
   },
   "HlCkMT": {
-    "string": "Order line added"
+    "string": "已添加商品"
   },
   "HlEpii": {
     "string": "SEO页面标题"
   },
   "HnVtSS": {
     "context": "search",
-    "string": "No results"
+    "string": "结果为空"
   },
   "HnZCl7": {
     "context": "search input placeholder",
@@ -3026,7 +3026,7 @@
   },
   "IyHQr0": {
     "context": "navigator action",
-    "string": "Go to order #{orderNumber}"
+    "string": "前往订单 #{orderNumber}"
   },
   "IyV8CY": {
     "context": "all authorized amount from transactions in order",
@@ -4397,7 +4397,7 @@
   },
   "SZH0fw": {
     "context": "set variant as default, button",
-    "string": "Set as default"
+    "string": "设为默认品种"
   },
   "SZt9kC": {
     "context": "export filtered items to csv file",
@@ -6008,7 +6008,7 @@
   },
   "dJVXIb": {
     "context": "vat included in order price",
-    "string": "VAT included"
+    "string": "包含消费税"
   },
   "dM86a2": {
     "string": "没有分类"
@@ -6096,7 +6096,7 @@
     "string": "没有设置"
   },
   "e822us": {
-    "string": "日期和文本翻译可能存在缺失，尽情谅解。"
+    "string": "日期和文本翻译可能存在缺失，尽请谅解。"
   },
   "e92Uxp": {
     "context": "order history message",
@@ -6398,7 +6398,7 @@
   },
   "gaOXvo": {
     "context": "notification, form submitted",
-    "string": "Refund grant for order #{orderNumber} was updated"
+    "string": "订单 #{orderNumber} 退款已更新"
   },
   "ghGLbJ": {
     "context": "OrderPayment click&collect shipping method",
@@ -7015,7 +7015,7 @@
   },
   "kkIw+l": {
     "context": "replacement created order history message draft number",
-    "string": "Draft #{orderNumber}"
+    "string": "订单草稿 #{orderNumber}"
   },
   "kn7jjd": {
     "context": "section header",
@@ -7050,7 +7050,7 @@
   },
   "l3iOju": {
     "context": "transaction event type, transaction was refunded to client",
-    "string": "Refund"
+    "string": "退款"
   },
   "l5V0QT": {
     "context": "boolean attribute type",
@@ -7058,7 +7058,7 @@
   },
   "l9ETHu": {
     "context": "checkbox label description",
-    "string": "可以在交货时不收款。"
+    "string": "允许不收款就交货。"
   },
   "l9Lwjh": {
     "context": "order return error title when cannot refund",
@@ -7078,7 +7078,7 @@
   },
   "lF+VJQ": {
     "context": "Shipment information card header",
-    "string": "Shipment information"
+    "string": "配送信息"
   },
   "lG/MDw": {
     "context": "dialog content",
@@ -7775,7 +7775,7 @@
   },
   "qbFKVI": {
     "context": "notification, form submitted",
-    "string": "Refund for order #{orderNumber} was granted"
+    "string": "订单 #{orderNumber} 已退款"
   },
   "qbcNjQ": {
     "context": "table header column",

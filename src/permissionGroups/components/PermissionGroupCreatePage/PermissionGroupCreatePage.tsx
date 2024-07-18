@@ -103,7 +103,7 @@ export const PermissionGroupCreatePage: React.FC<
 
         return (
           <DetailPageLayout>
-            <TopNav title="New Permission Group" />
+            <TopNav title="新建权限组" />
             <DetailPageLayout.Content>
               <Backlink href={permissionGroupListUrl()}>
                 {intl.formatMessage(sectionNames.permissionGroups)}
