@@ -22,6 +22,7 @@ import { useIntl } from "react-intl";
 import DonationDetails from "../DonationDetails";
 import Title from "./Title";
 import { OpenModalFunction } from "@dashboard/utils/handlers/dialogActionHandlers";
+import { customerUrl } from "@dashboard/customers/urls";
 
 export interface DonationDetailsPageFormData {
   barcode: string;
@@ -32,6 +33,7 @@ export interface DonationDetailsPageFormData {
   donator: {
     firstName: string;
     code: string;
+    id: string;
   };
   quantity: number;
   created: string;
@@ -120,6 +122,7 @@ const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
                 errors={errors}
                 onOpenModal={onOpenModal}
                 onChange={change}
+                onProfileView={() => navigate(customerUrl(donation.donator.id))}
               />
               {/* <CardSpacer />
               <DonationInfo
