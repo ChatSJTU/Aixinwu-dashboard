@@ -42,10 +42,46 @@ import { MenuSection } from "./types";
 export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
   return [
     {
-      label: intl.formatMessage({
-        id: "HP6m+q",
-        defaultMessage: "Attributes and Product Types",
-      }),
+      label: "常用设置",
+      menuItems: [
+        {
+          description: intl.formatMessage({
+            id: "e57itX",
+            defaultMessage: "修改主页轮播图",
+          }),
+          icon: <Carousel />,
+          permissions: [PermissionEnum.MANAGE_SETTINGS],
+          title: "轮播图设置",
+          url: "/carousel-settings",
+          testId: "configuration-menu-carousel-settings"
+        },
+        {
+          description: intl.formatMessage({
+            id: "RQUkVW",
+            defaultMessage: "Manage your employees and their permissions",
+          }),
+          icon: <StaffMembers />,
+          permissions: [PermissionEnum.MANAGE_STAFF],
+          title: intl.formatMessage(sectionNames.staff),
+          url: staffListUrl(),
+          testId: "configuration-menu-staff",
+        },
+        {
+          description: intl.formatMessage({
+            id: "ivJ1qt",
+            defaultMessage:
+                "Manage your permission groups and their permissions",
+          }),
+          icon: <PermissionGroups />,
+          permissions: [PermissionEnum.MANAGE_STAFF],
+          title: intl.formatMessage(sectionNames.permissionGroups),
+          url: permissionGroupListUrl(),
+          testId: "configuration-menu-permission-groups",
+        },
+      ],
+    },
+    {
+      label: "开发者设置",
       menuItems: [
         {
           description: intl.formatMessage({
@@ -72,14 +108,6 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           url: productTypeListUrl(),
           testId: "configuration-menu-product-types",
         },
-      ],
-    },
-    {
-      label: intl.formatMessage({
-        id: "jFrdB5",
-        defaultMessage: "Product Settings",
-      }),
-      menuItems: [
         {
           description: intl.formatMessage({
             id: "EIULpW",
@@ -90,45 +118,6 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           url: taxConfigurationListUrl(),
           testId: "configuration-menu-taxes",
         },
-      ],
-    },
-    {
-      label: intl.formatMessage({
-        id: "UN+yTt",
-        defaultMessage: "Staff Settings",
-      }),
-      menuItems: [
-        {
-          description: intl.formatMessage({
-            id: "RQUkVW",
-            defaultMessage: "Manage your employees and their permissions",
-          }),
-          icon: <StaffMembers />,
-          permissions: [PermissionEnum.MANAGE_STAFF],
-          title: intl.formatMessage(sectionNames.staff),
-          url: staffListUrl(),
-          testId: "configuration-menu-staff",
-        },
-        {
-          description: intl.formatMessage({
-            id: "ivJ1qt",
-            defaultMessage:
-              "Manage your permission groups and their permissions",
-          }),
-          icon: <PermissionGroups />,
-          permissions: [PermissionEnum.MANAGE_STAFF],
-          title: intl.formatMessage(sectionNames.permissionGroups),
-          url: permissionGroupListUrl(),
-          testId: "configuration-menu-permission-groups",
-        },
-      ],
-    },
-    {
-      label: intl.formatMessage({
-        id: "gTr0qE",
-        defaultMessage: "Shipping Settings",
-      }),
-      menuItems: [
         {
           description: intl.formatMessage({
             id: "zxs6G3",
@@ -151,14 +140,6 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           url: warehouseSection,
           testId: "configuration-menu-warehouses",
         },
-      ],
-    },
-    {
-      label: intl.formatMessage({
-        id: "MWSacl",
-        defaultMessage: "Multichannel",
-      }),
-      menuItems: [
         {
           description: intl.formatMessage({
             id: "8vJCJ4",
@@ -170,14 +151,6 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           url: channelsListUrl(),
           testId: "configuration-menu-channels",
         },
-      ],
-    },
-    {
-      label: intl.formatMessage({
-        id: "HjXnIf",
-        defaultMessage: "Content Management",
-      }),
-      menuItems: [
         {
           description: intl.formatMessage({
             id: "JPH/uP",
@@ -192,14 +165,6 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           url: pageTypeListUrl(),
           testId: "configuration-menu-page-types",
         },
-      ],
-    },
-    {
-      label: intl.formatMessage({
-        id: "YZl6cv",
-        defaultMessage: "Miscellaneous",
-      }),
-      menuItems: [
         {
           description: intl.formatMessage({
             id: "hpMcW8",
@@ -221,17 +186,6 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           title: intl.formatMessage(sectionNames.siteSettings),
           url: siteSettingsUrl(),
           testId: "configuration-menu-site-settings",
-        },
-        {
-          description: intl.formatMessage({
-            id: "e57itX",
-            defaultMessage: "修改主页轮播图",
-          }),
-          icon: <Carousel />,
-          permissions: [PermissionEnum.MANAGE_SETTINGS],
-          title: "轮播图设置",
-          url: "/carousel-settings",
-          testId: "configuration-menu-carousel-settings"
         },
         {
           description: intl.formatMessage({
