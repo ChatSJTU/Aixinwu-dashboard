@@ -358,6 +358,8 @@ export const CustomerDetailsFragmentDoc = gql`
   note
   isActive
   balance
+  userType
+  code
 }
     ${CustomerFragmentDoc}
 ${MetadataFragmentDoc}

@@ -32,6 +32,8 @@ export interface CustomerInfoProps {
     lastName: string;
     email: string;
     balance: number;
+    code: string;
+    userType: string;
   };
   disabled: boolean;
   errors: AccountErrorFragment[];
@@ -78,13 +80,14 @@ const CustomerInfo: React.FC<CustomerInfoProps> = props => {
           />
           <TextField
             disabled={disabled}
-            error={!!formErrors.lastName}
             fullWidth
-            helperText={getAccountErrorMessage(formErrors.lastName, intl)}
-            name="lastName"
+            name="code"
             type="text"
-            label={intl.formatMessage(commonMessages.lastName)}
-            value={data.lastName}
+            label={intl.formatMessage({
+              id: "user-code",
+              defaultMessage: "学号"
+            })}
+            value={data.code}
             onChange={onChange}
             inputProps={{
               spellCheck: false,
