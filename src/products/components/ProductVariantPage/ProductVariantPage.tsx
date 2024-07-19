@@ -345,13 +345,13 @@ const ProductVariantPage: React.FC<ProductVariantPageProps> = ({
                     />
                     <CardSpacer />
 
-                    <ProductShipping
-                      data={data}
-                      disabled={loading}
-                      errors={errors}
-                      weightUnit={variant?.weight?.unit || defaultWeightUnit}
-                      onChange={change}
-                    />
+{/*                     <ProductShipping
+                        data={data}
+                        disabled={loading}
+                        errors={errors}
+                        weightUnit={variant?.weight?.unit || defaultWeightUnit}
+                        onChange={change}
+                    /> */}
                     <CardSpacer />
                     <ProductStocks
                       productVariantChannelListings={data.channelListings.map(

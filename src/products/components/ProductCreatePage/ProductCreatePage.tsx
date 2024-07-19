@@ -362,16 +362,16 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
               ) : (
                 <CannotDefineChannelsAvailabilityCard />
               )}
-              <Box paddingBottom={52}>
+{/*               <Box paddingBottom={52}>
                 <ProductTaxes
-                  value={data.taxClassId}
-                  disabled={loading}
-                  onChange={handlers.selectTaxClass}
-                  taxClassDisplayName={selectedTaxClass}
-                  taxClasses={taxClasses}
-                  onFetchMore={fetchMoreTaxClasses}
+                    value={data.taxClassId}
+                    disabled={loading}
+                    onChange={handlers.selectTaxClass}
+                    taxClassDisplayName={selectedTaxClass}
+                    taxClasses={taxClasses}
+                    onFetchMore={fetchMoreTaxClasses}
                 />
-              </Box>
+              </Box> */}
             </DetailPageLayout.RightSidebar>
             <Savebar
               onCancel={() => navigate(productListUrl())}

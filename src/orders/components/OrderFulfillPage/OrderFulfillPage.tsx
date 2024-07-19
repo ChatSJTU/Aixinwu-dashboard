@@ -271,24 +271,22 @@ const OrderFulfillPage: React.FC<OrderFulfillPageProps> = props => {
                 )}
               </Card>
 
-              <CardSpacer />
-
+{/*               <CardSpacer />
               {shopSettings?.fulfillmentAutoApprove && (
-                <Card>
-                  <CardTitle
-                    title={intl.formatMessage(messages.shipmentInformation)}
-                  />
-                  <CardContent>
-                    <ControlledCheckbox
-                      checked={data.sendInfo}
-                      label={intl.formatMessage(messages.sentShipmentDetails)}
-                      name="sendInfo"
-                      onChange={change}
+                  <Card>
+                    <CardTitle
+                        title={intl.formatMessage(messages.shipmentInformation)}
                     />
-                  </CardContent>
-                </Card>
-              )}
-
+                    <CardContent>
+                      <ControlledCheckbox
+                          checked={data.sendInfo}
+                          label={intl.formatMessage(messages.sentShipmentDetails)}
+                          name="sendInfo"
+                          onChange={change}
+                      />
+                    </CardContent>
+                  </Card>
+              )} */}
               <Savebar
                 disabled={!shouldEnableSave()}
                 labels={{

@@ -77,7 +77,7 @@ export const ProductVariants: React.FC<ProductVariantsProps> = ({
       channels && warehouses && variantAttributes
         ? [
             "name",
-            "sku",
+              /* "sku", */
             ...channels.flatMap(channel => [
               `availableInChannel:${channel.id}`,
               `channel:${channel.id}`,

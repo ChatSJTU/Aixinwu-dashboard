@@ -185,8 +185,8 @@ export function useMenuStructure() {
         //   type: "item",
         // },
         ...mapToExtensionsItems(
-          extensions.NAVIGATION_DISCOUNTS,
-          appExtensionsHeaderItem,
+            extensions.NAVIGATION_DISCOUNTS,
+            appExtensionsHeaderItem,
         ),
       ],
       icon: <VouchersIcon {...iconSettings} />,

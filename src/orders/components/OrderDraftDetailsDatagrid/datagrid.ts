@@ -37,11 +37,11 @@ export const orderDraftDetailsStaticColumnsAdapter = (
     title: intl.formatMessage(columnsMessages.product),
     width: 300,
   },
-  {
+/*   {
     id: "sku",
-    title: "SKU",
+    title: intl.formatMessage(columnsMessages.sku),
     width: 150,
-  },
+  }, */
   {
     id: "variantName",
     title: intl.formatMessage(columnsMessages.variantName),
@@ -55,12 +55,12 @@ export const orderDraftDetailsStaticColumnsAdapter = (
   {
     id: "price",
     title: intl.formatMessage(columnsMessages.price),
-    width: 150,
+    width: 100,
   },
   {
     id: "total",
     title: intl.formatMessage(columnsMessages.total),
-    width: 150,
+    width: 100,
   },
   {
     id: "metadata",
