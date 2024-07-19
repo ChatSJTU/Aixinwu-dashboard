@@ -424,7 +424,16 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                 {...availabilityCommonProps}
                 channels={listings ?? []}
               />
-
+{/*               <Box paddingBottom={52}>
+                <ProductTaxes
+                    value={data.taxClassId}
+                    disabled={disabled}
+                    onChange={handlers.selectTaxClass}
+                    taxClassDisplayName={selectedTaxClass}
+                    taxClasses={taxClasses}
+                    onFetchMore={fetchMoreTaxClasses}
+                />
+              </Box> */}
             </DetailPageLayout.RightSidebar>
 
             <Savebar

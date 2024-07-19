@@ -57,7 +57,31 @@ const OrderSettings: React.FC<OrderSettingsProps> = ({
           data-test-id="automatically-confirm-all-new-orders-checkbox"
         />
         <CardSpacer />
-
+{/*           <ControlledCheckbox
+              name="automaticallyFulfillNonShippableGiftCard"
+              label={
+                  <Box display="flex" flexDirection="column">
+                      <Text>
+                          <FormattedMessage
+                              id="7UG1Lx"
+                              defaultMessage="Automatically fulfill non shippable gift cards"
+                              description="checkbox gift cards label"
+                          />
+                      </Text>
+                      <Text variant="caption" color="default2">
+                          <FormattedMessage
+                              id="EewziG"
+                              defaultMessage="When activated non-shippable gift cards will be automatically set as fulfilled and sent to customer"
+                              description="checkbox gift cards label description"
+                          />
+                      </Text>
+                  </Box>
+              }
+              checked={data.automaticallyFulfillNonShippableGiftCard}
+              onChange={onChange}
+              disabled={disabled}
+              data-test-id="automatically-fulfill-non-shippable-gift-cards-checkbox"
+          /> */}
       </CardContent>
     </Card>
   );

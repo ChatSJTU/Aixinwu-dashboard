@@ -166,7 +166,7 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
               <RequirePermissions
                 requiredPermissions={[PermissionEnum.MANAGE_GIFT_CARD]}
               >
-
+                 {/* <CustomerGiftCardsCard />  */}
               </RequirePermissions>
             </DetailPageLayout.RightSidebar>
             <Savebar

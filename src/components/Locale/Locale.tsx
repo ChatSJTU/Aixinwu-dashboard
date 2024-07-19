@@ -112,7 +112,7 @@ function getKeyValueJson(messages: LocaleMessages): Record<string, string> {
   }
 }
 
-const defaultLocale = Locale.ZH_HANS;
+const defaultLocale = Locale.EN;
 
 export interface LocaleContextType {
   locale: Locale;

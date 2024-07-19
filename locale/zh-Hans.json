@@ -45,7 +45,7 @@
   },
   "+MJW+8": {
     "context": "button",
-    "string": "Create Discount"
+    "string": "新建折扣"
   },
   "+NUzaQ": {
     "context": "check to mark this account as active",
@@ -97,7 +97,7 @@
     "string": "激活"
   },
   "+bhokL": {
-    "string": "Search discounts..."
+    "string": "搜索折扣..."
   },
   "+do3gl": {
     "context": "input helper text",
@@ -192,7 +192,7 @@
   },
   "/6uK4C": {
     "context": "button",
-    "string": "分配系列"
+    "string": "添加系列"
   },
   "/8/Ffn": {
     "context": "button",
@@ -223,7 +223,7 @@
   },
   "/KWNJW": {
     "context": "order discount was updated event title",
-    "string": "Order discount was updated by"
+    "string": "订单折扣已更新："
   },
   "/L8wzi": {
     "context": "dialog header",
@@ -437,7 +437,7 @@
     "string": "商品"
   },
   "0nLsyM": {
-    "string": "No product types found"
+    "string": "找不到商品类型"
   },
   "0oo+BT": {
     "context": "section header",
@@ -669,7 +669,7 @@
   },
   "2Sx05f": {
     "context": "Previous discount label",
-    "string": "Previous discount value"
+    "string": "之前的折扣值"
   },
   "2VSP8C": {
     "context": "delete token",
@@ -705,7 +705,7 @@
     "string": "Search shipping zones..."
   },
   "2gsiR1": {
-    "string": "No warehouses found"
+    "string": "找不到仓库"
   },
   "2i81/P": {
     "context": "section header button",
@@ -949,7 +949,7 @@
     "string": "This unit will be used as default shipping weight"
   },
   "4LRapg": {
-    "string": "Discount removed"
+    "string": "折扣已移除"
   },
   "4PlW0w": {
     "context": "tracking number",
@@ -1138,7 +1138,7 @@
     "string": "References"
   },
   "5dOOAB": {
-    "string": "Successfully created discount"
+    "string": "成功创建折扣"
   },
   "5elC9k": {
     "context": "taxes section name",
@@ -1173,7 +1173,7 @@
   },
   "5tMkmJ": {
     "context": "dialog header",
-    "string": "Assign Collection"
+    "string": "添加系列"
   },
   "5te3Tp": {
     "context": "order payment",
@@ -1181,7 +1181,7 @@
   },
   "5u7b3V": {
     "context": "voucher is active from date",
-    "string": "Starts"
+    "string": "开始时间"
   },
   "5x6yT9": {
     "context": "weight",
@@ -1215,7 +1215,7 @@
     "string": "支付状态"
   },
   "6FLezz": {
-    "string": "Are you sure you want to delete this discount?"
+    "string": "你确定要删除此折扣吗？"
   },
   "6G41zU": {
     "context": "WarehouseSettings local warehouse description",
@@ -1260,7 +1260,7 @@
   },
   "6cMkfT": {
     "context": "table head",
-    "string": "Product Name"
+    "string": "商品名称"
   },
   "6cS4Rd": {
     "context": "card section description",
@@ -1268,10 +1268,10 @@
   },
   "6cq+c+": {
     "context": "header",
-    "string": "Discount Type"
+    "string": "折扣类型"
   },
   "6fORLY": {
-    "string": "No page types found"
+    "string": "找不到文章类型"
   },
   "6fxdUO": {
     "context": "section header",
@@ -1356,7 +1356,7 @@
     "string": "支付明细"
   },
   "7MUx0T": {
-    "string": "Discount of {value} through the {channel}"
+    "string": "{channel} 渠道的 {value} 折扣"
   },
   "7NFfmz": {
     "string": "商品"
@@ -1593,7 +1593,7 @@
   },
   "9TAzb5": {
     "context": "order line discount added title",
-    "string": "{productName} discount was added by"
+    "string": "{productName} 的折扣已添加："
   },
   "9TbDQD": {
     "context": "order number label",
@@ -1693,7 +1693,7 @@
   },
   "A0Wlg7": {
     "context": "product discount removed title",
-    "string": "{productName} discount was removed by"
+    "string": "{productName} 的折扣已移除："
   },
   "A7W4KO": {
     "string": "Catalog rule"
@@ -1739,7 +1739,7 @@
   },
   "AQSmqG": {
     "context": "order discount was updated automatically event title",
-    "string": "Order discount was updated automatically updated"
+    "string": "订单折扣已自动更新"
   },
   "ARfw53": {
     "context": "description",
@@ -1747,17 +1747,17 @@
   },
   "AVF5T5": {
     "context": "voucher end date, switch button",
-    "string": "Set end date"
+    "string": "设置结束日期"
   },
   "AY7Tuz": {
     "string": "The same object cannot be in both lists"
   },
   "AbyDC7": {
     "context": "section header",
-    "string": "Eligible Categories"
+    "string": "可用分类"
   },
   "AcMzwj": {
-    "string": "Menu items"
+    "string": "菜单项"
   },
   "AdmPca": {
     "context": "error message",
@@ -1855,7 +1855,7 @@
     "string": "Unassign Categories From Sale"
   },
   "B9yrkK": {
-    "string": "No Channels found"
+    "string": "找不到渠道"
   },
   "BCPrmK": {
     "context": "order history message",
@@ -2232,7 +2232,7 @@
     "string": "Restrict order value"
   },
   "DhFqJF": {
-    "string": "Edit discount"
+    "string": "编辑折扣"
   },
   "Dhherd": {
     "context": "dialog header, title",
@@ -2308,10 +2308,10 @@
     "string": "Max. value"
   },
   "ESDTC/": {
-    "string": "Manage Sales Channel Availability"
+    "string": "管理销售渠道可用性"
   },
   "EWCUdP": {
-    "string": "Channels A to Z"
+    "string": "渠道按首字母排列"
   },
   "EWD/wU": {
     "context": "delete app",
@@ -2476,7 +2476,7 @@
   },
   "FWbv/u": {
     "context": "page header",
-    "string": "Create Discount"
+    "string": "新建折扣"
   },
   "FYfoiF": {
     "context": "section name",
@@ -2529,7 +2529,7 @@
     "string": "Your username and/or password are incorrect. Please try again."
   },
   "FpIcp9": {
-    "string": "No customers found"
+    "string": "找不到客户"
   },
   "Ftz7VI": {
     "context": "input label, transaction amount",
@@ -2813,7 +2813,7 @@
   },
   "HVlMK2": {
     "context": "number of variants",
-    "string": "商品品种（{quantity}个）"
+    "string": "商品品种（{quantity}）"
   },
   "HYC6cH": {
     "context": "input description",
@@ -2880,7 +2880,7 @@
     "string": "Create a gift card product"
   },
   "Hswqx2": {
-    "string": "Delete discounts"
+    "string": "删除折扣"
   },
   "HvJPcU": {
     "string": "分类已删除"
@@ -2964,7 +2964,7 @@
     "string": "Export To Email"
   },
   "IYuKD6": {
-    "string": "No discounts found"
+    "string": "未找到折扣"
   },
   "Iafyt5": {
     "context": "page attribute entity type",
@@ -3187,7 +3187,7 @@
   },
   "JnzDrI": {
     "context": "discount type",
-    "string": "Fixed Amount"
+    "string": "固定金额"
   },
   "Jo01VZ": {
     "context": "bought by label",
@@ -3245,7 +3245,7 @@
     "string": "This feature is in a preview state and can be subject to changes at later point"
   },
   "KHZlmi": {
-    "string": "Discount Type"
+    "string": "折扣类型"
   },
   "KKQUMK": {
     "context": "edit menu item, header",
@@ -3267,7 +3267,7 @@
   },
   "KXkdMH": {
     "context": "order discount removed title",
-    "string": "Order discount was removed by"
+    "string": "订单折扣已移除："
   },
   "KcsJKm": {
     "context": "error with activatation alert message",
@@ -3285,7 +3285,7 @@
     "string": "Paid with Gift Card"
   },
   "KkufwD": {
-    "string": "No voucher codes found"
+    "string": "找不到优惠码"
   },
   "KmPicj": {
     "string": "备注成功添加"
@@ -3502,7 +3502,7 @@
   },
   "MTl5o6": {
     "context": "new discount label",
-    "string": "New discount value"
+    "string": "新的折扣值"
   },
   "MVU6ol": {
     "context": "exceeded permissions description",
@@ -3661,10 +3661,10 @@
   },
   "NgCb99": {
     "context": "order line discount updated title",
-    "string": "{productName} discount was updated by"
+    "string": "{productName} 的折扣已更新："
   },
   "NgRa6m": {
-    "string": "Discount of {value} on the purchase of {items} through the {channel}"
+    "string": "{channel} 渠道购买 {items} 物品有 {value} 折扣"
   },
   "NhQboB": {
     "context": "dialog header",
@@ -3769,7 +3769,7 @@
   },
   "OFW7nq": {
     "context": "placeholder",
-    "string": "Search by page name, etc..."
+    "string": "搜索文章名称等…"
   },
   "OGemtu": {
     "context": "payment status",
@@ -3806,7 +3806,7 @@
     "string": "Stock reservation for authenticated user (in minutes)"
   },
   "ObRk1O": {
-    "string": "If this option is disabled, discount will be counted for every eligible product"
+    "string": "如果禁用此选项，每个符合条件的商品都会使用折扣"
   },
   "Oe62bR": {
     "context": "product availability",
@@ -3880,7 +3880,7 @@
   },
   "PCoO4D": {
     "context": "error message",
-    "string": "Page not found."
+    "string": "找不到页面"
   },
   "PDw0YN": {
     "context": "open new window button",
@@ -4085,7 +4085,7 @@
   },
   "QJG+d/": {
     "context": "staff added type order discount",
-    "string": "Staff added"
+    "string": "员工添加"
   },
   "QL4a0Z": {
     "context": "alert message",
@@ -4134,11 +4134,11 @@
     "string": "活跃"
   },
   "QirE3M": {
-    "string": "Start Date"
+    "string": "开始日期"
   },
   "Qj/3sH": {
     "context": "limit voucher",
-    "string": "Limit number of times this discount can be used in total"
+    "string": "折扣总共能使用的次数"
   },
   "QjPJ78": {
     "context": "close full-screen",
@@ -4348,7 +4348,7 @@
     "string": "Enter code"
   },
   "SHm7ee": {
-    "string": "Search by product name, attribute, product type etc..."
+    "string": "搜索商品名称、属性、商品类型等…"
   },
   "SI3/nl": {
     "string": "权限不足，无法修改。"
@@ -4449,7 +4449,7 @@
     "string": "This order has no payment yet."
   },
   "T4GOiX": {
-    "string": "End Date"
+    "string": "结束日期"
   },
   "T4wa2Y": {
     "context": "global config plugin status popup title",
@@ -4969,7 +4969,7 @@
   },
   "WTj17Z": {
     "context": "dialog title item discount",
-    "string": "Discount Item"
+    "string": "折扣商品"
   },
   "WUf3Iu": {
     "context": "percentage option",
@@ -4987,7 +4987,7 @@
   },
   "WasHjQ": {
     "context": "voucher discount",
-    "string": "Shipment"
+    "string": "配送"
   },
   "WbV1Xm": {
     "context": "button",
@@ -5007,7 +5007,7 @@
   },
   "WkxE8/": {
     "context": "percentage or fixed, header",
-    "string": "Discount Type"
+    "string": "折扣类型"
   },
   "Wlc67M": {
     "context": "error message",
@@ -5103,7 +5103,7 @@
   },
   "XDBeA+": {
     "context": "discount type",
-    "string": "Fixed amount"
+    "string": "固定金额"
   },
   "XFtKV5": {
     "context": "input placeholder tag",
@@ -5119,7 +5119,7 @@
   },
   "XLYssG": {
     "context": "assign categories to sale and save",
-    "string": "Assign and save"
+    "string": "添加并保存"
   },
   "XMrYaA": {
     "context": "checkbox label",
@@ -5131,7 +5131,7 @@
   },
   "XNeJay": {
     "context": "section header",
-    "string": "Eligible Collections"
+    "string": "可用系列"
   },
   "XPiJex": {
     "context": "Transaction void button - return preauthorized amount to client",
@@ -5276,7 +5276,7 @@
   },
   "YFDAaX": {
     "context": "dialog title order discount",
-    "string": "Discount this Order by:"
+    "string": "给此订单的折扣："
   },
   "YFQBs1": {
     "context": "product availability date label",
@@ -5482,10 +5482,10 @@
   },
   "Zptsep": {
     "context": "order was discounted event title",
-    "string": "Order was discounted by"
+    "string": "折扣已添加："
   },
   "ZrIt1W": {
-    "string": "Delete discount"
+    "string": "删除折扣"
   },
   "ZuqkSp": {
     "context": "note input subtitle",
@@ -5527,7 +5527,7 @@
   },
   "a6GDem": {
     "context": "tab name",
-    "string": "All discounts"
+    "string": "所有折扣"
   },
   "a9S9Je": {
     "context": "page types section name",
@@ -5675,7 +5675,7 @@
   },
   "b6L9n7": {
     "context": "voucher is active until date",
-    "string": "Ends"
+    "string": "结束时间"
   },
   "b810WJ": {
     "context": "product price",
@@ -5848,7 +5848,7 @@
   },
   "cBHRxx": {
     "context": "button",
-    "string": "Assign Warehouse"
+    "string": "添加仓库"
   },
   "cBVHN5": {
     "context": "grant refund, reason input field placeholder",
@@ -5890,7 +5890,7 @@
   },
   "cPAc45": {
     "context": "column picker search no results message",
-    "string": "No results found"
+    "string": "找不到结果"
   },
   "cS1wAx": {
     "string": "I know what I'm doing - confirm"
@@ -5958,7 +5958,7 @@
   },
   "cryH86": {
     "context": "assign collections to sale and save",
-    "string": "Assign and save"
+    "string": "添加并保存"
   },
   "cvVIV/": {
     "context": "dialog header",
@@ -6111,7 +6111,7 @@
     "string": "You are using an old version of filter presets. The following presets: {presetNames} must be updated to continue using filters"
   },
   "eKEL/g": {
-    "string": "Pending"
+    "string": "处理中"
   },
   "eLJQSh": {
     "context": "column title gift card",
@@ -6119,7 +6119,7 @@
   },
   "eOrLzG": {
     "context": "button",
-    "string": "Done"
+    "string": "完成"
   },
   "eQ7bCN": {
     "string": "App Webhooks"
@@ -6201,7 +6201,7 @@
   },
   "fEfCtO": {
     "context": "voucher discount type",
-    "string": "Percentage"
+    "string": "百分比"
   },
   "fExm0/": {
     "context": "gift card history message",
@@ -6340,7 +6340,7 @@
   },
   "g3qjSf": {
     "context": "button",
-    "string": "Assign categories"
+    "string": "添加分类"
   },
   "g5zIpS": {
     "context": "No attribute values found",
@@ -6410,7 +6410,7 @@
   },
   "giF5UV": {
     "context": "sale end date",
-    "string": "Ends"
+    "string": "结束时间"
   },
   "giVGCH": {
     "string": "Enter Voucher Code"
@@ -6624,7 +6624,7 @@
   },
   "iBSq6l": {
     "context": "sale start date",
-    "string": "Starts"
+    "string": "开始时间"
   },
   "iBW3rG": {
     "context": "button",
@@ -6647,7 +6647,7 @@
     "string": "Cancel"
   },
   "iMJka8": {
-    "string": "No pages found"
+    "string": "找不到文章"
   },
   "iPk640": {
     "context": "dialog header",
@@ -6683,7 +6683,7 @@
   },
   "idr+JK": {
     "context": "assign reference to a page, button",
-    "string": "Assign and save"
+    "string": "添加并保存"
   },
   "if9gAZ": {
     "context": "Transaction event status - unknown status, info without event data",
@@ -6827,11 +6827,11 @@
     "string": "Added postal codes will be excluded from using this delivery methods. If none are added all postal codes will be able to use that shipping rate"
   },
   "juBV+h": {
-    "string": "End Hour"
+    "string": "结束时间"
   },
   "juxCV3": {
     "context": "dialog header",
-    "string": "分配商品"
+    "string": "添加商品"
   },
   "jvo0vs": {
     "string": "保存"
@@ -6937,7 +6937,7 @@
     "string": "Min Value"
   },
   "kNK4es": {
-    "string": "Discount value"
+    "string": "折扣值"
   },
   "kPIZ65": {
     "context": "page header",
@@ -6963,7 +6963,7 @@
   },
   "kVOslW": {
     "context": "reason for discount label",
-    "string": "Reason for discount"
+    "string": "折扣原因"
   },
   "kVTWtR": {
     "context": "product updated at",
@@ -7090,7 +7090,7 @@
   },
   "lHccsy": {
     "context": "table head",
-    "string": "Variant Name"
+    "string": "品种名称"
   },
   "lJP1iw": {
     "context": "order",
@@ -7098,7 +7098,7 @@
   },
   "lJXkFS": {
     "context": "discount name",
-    "string": "Discount name"
+    "string": "折扣名称"
   },
   "lL1HTg": {
     "string": "Order marked as paid"
@@ -7142,7 +7142,7 @@
   },
   "lehGc9": {
     "context": "section header",
-    "string": "Eligible Variants"
+    "string": "可用商品品种"
   },
   "lfXze9": {
     "string": "Delete vouchers"
@@ -7266,7 +7266,7 @@
     "string": "你应该每个月改变你的密码，以避免安全问题。"
   },
   "mmcHeH": {
-    "string": "Discount Value"
+    "string": "折扣值"
   },
   "mr9jbO": {
     "string": "语言"
@@ -7378,7 +7378,7 @@
     "string": "搜索文章"
   },
   "nRiOg+": {
-    "string": "Sorry, the page was not found"
+    "string": "找不到此页面"
   },
   "nSMe3f": {
     "context": "Refund in progress transaction amount, data display header",
@@ -7445,7 +7445,7 @@
   },
   "nvSJNR": {
     "context": "discount reason input lavel",
-    "string": "Reason"
+    "string": "原因"
   },
   "nwcJVT": {
     "context": "When enabled, all transactions would require an additional step to be charged.",
@@ -7453,7 +7453,7 @@
   },
   "nwnwJ0": {
     "context": "payment status",
-    "string": "Refused"
+    "string": "已拒绝"
   },
   "nwvQPg": {
     "context": "section header",
@@ -7542,7 +7542,7 @@
   },
   "ojHyj3": {
     "context": "discount value label",
-    "string": "discount value"
+    "string": "折扣值"
   },
   "opIDox": {
     "context": "unassign product from sale and save, button",
@@ -7569,11 +7569,11 @@
   },
   "p3eRUm": {
     "context": "indicator that feature is in preview mode",
-    "string": "Preview"
+    "string": "预览"
   },
   "p4X/0H": {
     "context": "button, assign variants to sale and save",
-    "string": "Assign and save"
+    "string": "添加并保存"
   },
   "p4zuQp": {
     "context": "product no longer exists error title",
@@ -7672,7 +7672,7 @@
     "string": "Edit permissions"
   },
   "ptPPVk": {
-    "string": "No languages found"
+    "string": "找不到语言"
   },
   "puALFo": {
     "context": "notes about customer, header",
@@ -7960,11 +7960,11 @@
   },
   "s17U7u": {
     "context": "discount type",
-    "string": "Percentage"
+    "string": "百分比"
   },
   "s1IQuN": {
     "context": "resend button label",
-    "string": "Resend"
+    "string": "重新发送"
   },
   "s2y5eG": {
     "context": "Status label",
@@ -8027,7 +8027,7 @@
   },
   "sW9IyX": {
     "context": "dialog header",
-    "string": "分配分类"
+    "string": "添加分类"
   },
   "sZ27WU": {
     "context": "error message",
@@ -8161,7 +8161,7 @@
     "string": "Local stock only"
   },
   "tWbE34": {
-    "string": "Start Hour"
+    "string": "开始时间"
   },
   "tXIgmR": {
     "context": "balance curreny missing error message",
@@ -8195,7 +8195,7 @@
   },
   "tqJwfo": {
     "context": "button",
-    "string": "Set end date"
+    "string": "设置结束日期"
   },
   "tsL3IW": {
     "context": "gift card history message",
@@ -8317,7 +8317,7 @@
     "string": "支付订单"
   },
   "ucLtY8": {
-    "string": "Discount rules for products, collections or categories."
+    "string": "商品、系列、分类的折扣规则"
   },
   "uccjUM": {
     "context": "Dry run objects",
@@ -8699,7 +8699,7 @@
   },
   "x3g4Ry": {
     "context": "sale discount",
-    "string": "Discount Value"
+    "string": "折扣值"
   },
   "x3leH4": {
     "context": "ProductTypeDeleteWarningDialog title",
@@ -8711,7 +8711,7 @@
   },
   "xAHOGV": {
     "context": "dialog header",
-    "string": "分配品种"
+    "string": "添加品种"
   },
   "xGC2Ge": {
     "context": "grant refund, button",
@@ -8764,7 +8764,7 @@
   },
   "xZhxBJ": {
     "context": "dialog header",
-    "string": "Assign Products"
+    "string": "添加商品"
   },
   "xco5tZ": {
     "string": "你确定你要取消交付吗？取消交付将商品退回在一个选定的仓库。"
@@ -8794,10 +8794,10 @@
   },
   "xqXYF+": {
     "context": "section header",
-    "string": "Eligible Products"
+    "string": "可用商品"
   },
   "xrKHS6": {
-    "string": "Success"
+    "string": "成功"
   },
   "xrPv2K": {
     "context": "by preposition",
@@ -8859,7 +8859,7 @@
   },
   "yJynYK": {
     "context": "discount value",
-    "string": "discount"
+    "string": "折扣"
   },
   "yKuba7": {
     "context": "attribute can be searched in dashboard",
@@ -8883,7 +8883,7 @@
   },
   "ySqrUU": {
     "context": "button",
-    "string": "Assign variants"
+    "string": "添加品种"
   },
   "yT/GAp": {
     "string": "运单号"
@@ -8988,11 +8988,11 @@
   },
   "zHx85l": {
     "context": "value input helper text",
-    "string": "Cannot be higher than 100%"
+    "string": "不能大于100%"
   },
   "zKOGkU": {
     "context": "time during discount is active, header",
-    "string": "Active Dates"
+    "string": "可用日期"
   },
   "zLtb4N": {
     "context": "gift card removed success alert message",

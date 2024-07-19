@@ -177,6 +177,26 @@ export function useMenuStructure() {
       type: "itemGroup",
     },
     {
+      children: !isEmpty(extensions.NAVIGATION_DISCOUNTS) && [
+        // {
+        //   label: intl.formatMessage(sectionNames.vouchers),
+        //   id: "vouchers",
+        //   url: voucherListUrl(),
+        //   type: "item",
+        // },
+        ...mapToExtensionsItems(
+            extensions.NAVIGATION_DISCOUNTS,
+            appExtensionsHeaderItem,
+        ),
+      ],
+      icon: <VouchersIcon {...iconSettings} />,
+      label: intl.formatMessage(commonMessages.discounts),
+      permissions: [PermissionEnum.MANAGE_DISCOUNTS],
+      url: saleListUrl(),
+      id: "discounts",
+      type: !isEmpty(extensions.NAVIGATION_PAGES) ? "itemGroup" : "item",
+    },
+    {
       children: !isEmpty(extensions.NAVIGATION_PAGES) && [
         ...mapToExtensionsItems(
           extensions.NAVIGATION_PAGES,
