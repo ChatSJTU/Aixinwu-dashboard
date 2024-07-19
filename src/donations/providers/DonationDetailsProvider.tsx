@@ -23,9 +23,9 @@ export const DonationDetailsProvider: React.FC<
   
   const { data, loading } = useDonationDetailQuery({
     displayLoader: true,
-    // variables: {
-    //   id,
-    // },
+    variables: {
+      id,
+    },
   });
 
   const providerValues: DonationDetailsConsumerProps = {

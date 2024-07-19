@@ -25,8 +25,8 @@ export const DonationCreate: React.FC = () => {
         notify({
           status: "success",
           text: intl.formatMessage({
-            id: "ftcHpD",
-            defaultMessage: "Donation created",
+            id: "donation-created",
+            defaultMessage: "捐赠已创建",
           }),
         });
         navigate(donationUrl(data.donationCreate.donation.id));

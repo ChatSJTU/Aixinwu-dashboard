@@ -670,6 +670,7 @@ export const PromotionFragmentDoc = gql`
 export const DonationDetailsFragmentDoc = gql`
     fragment DonationDetails on Donation {
   id
+  number
   barcode
   createdAt
   description
@@ -8763,13 +8764,9 @@ export type ListDonationsQueryHookResult = ReturnType<typeof useListDonationsQue
 export type ListDonationsLazyQueryHookResult = ReturnType<typeof useListDonationsLazyQuery>;
 export type ListDonationsQueryResult = Apollo.QueryResult<Types.ListDonationsQuery, Types.ListDonationsQueryVariables>;
 export const DonationDetailDocument = gql`
-    query DonationDetail {
-  donations(first: 1) {
-    edges {
-      node {
-        ...DonationDetails
-      }
-    }
+    query DonationDetail($id: ID!) {
+  donation(id: $id) {
+    ...DonationDetails
   }
 }
     ${DonationDetailsFragmentDoc}`;
@@ -8786,10 +8783,11 @@ export const DonationDetailDocument = gql`
  * @example
  * const { data, loading, error } = useDonationDetailQuery({
  *   variables: {
+ *      id: // value for 'id'
  *   },
  * });
  */
-export function useDonationDetailQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>) {
+export function useDonationDetailQuery(baseOptions: ApolloReactHooks.QueryHookOptions<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return ApolloReactHooks.useQuery<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>(DonationDetailDocument, options);
       }

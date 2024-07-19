@@ -33,15 +33,9 @@ export const donationList = gql`
 `;
 
 export const donationDetails = gql`
-  query DonationDetail {
-    donations(
-      first: 1
-    ) {
-      edges {
-        node {
-          ...DonationDetails
-        }
-      }
+  query DonationDetail($id: ID!) {
+    donation(id: $id) {
+      ...DonationDetails
     }
   }
 `;

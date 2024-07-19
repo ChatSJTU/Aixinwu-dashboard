@@ -1899,6 +1899,8 @@ export type CustomerFilterInput = {
 export type CustomerInput = {
   /** The balance of a certain user. */
   balance?: InputMaybe<Scalars['Float']>;
+  /** User code. */
+  code?: InputMaybe<Scalars['String']>;
   /** Billing address of the customer. */
   defaultBillingAddress?: InputMaybe<AddressInput>;
   /** Shipping address of the customer. */
@@ -2123,7 +2125,7 @@ export type DonationFilterInput = {
 };
 
 export enum DonationSortField {
-  /** Sort checkouts by creation date. */
+  /** Sort donations by creation date. */
   CREATION_DATE = 'CREATION_DATE'
 }
 
@@ -4510,6 +4512,7 @@ export enum OrderStatus {
   LEASED = 'LEASED',
   PARTIALLY_FULFILLED = 'PARTIALLY_FULFILLED',
   PARTIALLY_RETURNED = 'PARTIALLY_RETURNED',
+  REFUNDED = 'REFUNDED',
   RETURNED = 'RETURNED',
   UNCONFIRMED = 'UNCONFIRMED',
   UNFULFILLED = 'UNFULFILLED'
@@ -6582,6 +6585,8 @@ export type StaffCreateInput = {
   addGroups?: InputMaybe<Array<Scalars['ID']>>;
   /** The balance of a certain user. */
   balance?: InputMaybe<Scalars['Float']>;
+  /** User code. */
+  code?: InputMaybe<Scalars['String']>;
   /** The unique email address of the user. */
   email?: InputMaybe<Scalars['String']>;
   /** Given name. */
@@ -6631,6 +6636,8 @@ export type StaffUpdateInput = {
   addGroups?: InputMaybe<Array<Scalars['ID']>>;
   /** The balance of a certain user. */
   balance?: InputMaybe<Scalars['Float']>;
+  /** User code. */
+  code?: InputMaybe<Scalars['String']>;
   /** The unique email address of the user. */
   email?: InputMaybe<Scalars['String']>;
   /** Given name. */
@@ -7281,6 +7288,8 @@ export type UserCreateInput = {
   balance?: InputMaybe<Scalars['Float']>;
   /** Slug of a channel which will be used for notify user. Optional when only one channel exists. */
   channel?: InputMaybe<Scalars['String']>;
+  /** User code. */
+  code?: InputMaybe<Scalars['String']>;
   /** Billing address of the customer. */
   defaultBillingAddress?: InputMaybe<AddressInput>;
   /** Shipping address of the customer. */
@@ -9848,14 +9857,14 @@ export type UpdateDonationMutationVariables = Exact<{
 }>;
 
 
-export type UpdateDonationMutation = { __typename: 'Mutation', donationUpdate: { __typename: 'DonationUpdate', errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }>, donation: { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null } | null };
+export type UpdateDonationMutation = { __typename: 'Mutation', donationUpdate: { __typename: 'DonationUpdate', errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }>, donation: { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null } | null };
 
 export type CreateDonationMutationVariables = Exact<{
   input: DonationCreateInput;
 }>;
 
 
-export type CreateDonationMutation = { __typename: 'Mutation', donationCreate: { __typename: 'DonationCreate', errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }>, donation: { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null } | null };
+export type CreateDonationMutation = { __typename: 'Mutation', donationCreate: { __typename: 'DonationCreate', errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }>, donation: { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null } | null };
 
 export type CompleteDonationMutationVariables = Exact<{
   id: Scalars['ID'];
@@ -9863,7 +9872,7 @@ export type CompleteDonationMutationVariables = Exact<{
 }>;
 
 
-export type CompleteDonationMutation = { __typename: 'Mutation', donationComplete: { __typename: 'DonationComplete', donation: { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null, errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }> } | null };
+export type CompleteDonationMutation = { __typename: 'Mutation', donationComplete: { __typename: 'DonationComplete', donation: { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null, errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }> } | null };
 
 export type ListDonationsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['String']>;
@@ -9875,12 +9884,14 @@ export type ListDonationsQueryVariables = Exact<{
 }>;
 
 
-export type ListDonationsQuery = { __typename: 'Query', donations: { __typename: 'DonationCountableConnection', edges: Array<{ __typename: 'DonationCountableEdge', node: { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
+export type ListDonationsQuery = { __typename: 'Query', donations: { __typename: 'DonationCountableConnection', edges: Array<{ __typename: 'DonationCountableEdge', node: { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
 
-export type DonationDetailQueryVariables = Exact<{ [key: string]: never; }>;
+export type DonationDetailQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
 
 
-export type DonationDetailQuery = { __typename: 'Query', donations: { __typename: 'DonationCountableConnection', edges: Array<{ __typename: 'DonationCountableEdge', node: { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } }> } | null };
+export type DonationDetailQuery = { __typename: 'Query', donation: { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null };
 
 export type FileUploadMutationVariables = Exact<{
   file: Scalars['Upload'];
@@ -9963,7 +9974,7 @@ export type PromotionDetailsFragment = { __typename: 'Promotion', id: string, na
 
 export type PromotionFragment = { __typename: 'Promotion', id: string, name: string, startDate: any, endDate: any | null, metadata: Array<{ __typename: 'MetadataItem', key: string, value: string }>, privateMetadata: Array<{ __typename: 'MetadataItem', key: string, value: string }> };
 
-export type DonationDetailsFragment = { __typename: 'Donation', id: string, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null };
+export type DonationDetailsFragment = { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null };
 
 export type AttributeErrorFragment = { __typename: 'AttributeError', code: AttributeErrorCode, field: string | null, message: string | null };
 

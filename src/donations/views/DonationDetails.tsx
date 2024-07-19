@@ -39,7 +39,7 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
   const intl = useIntl();
 
   const donationDetails = useDonationDetails();
-  const donation = donationDetails?.donation?.donations.edges[0].node;
+  const donation = donationDetails?.donation?.donation;
   const donationDetailsLoading = donationDetails?.loading;
 
   const [openModal, closeModal] = createDialogActionHandlers<

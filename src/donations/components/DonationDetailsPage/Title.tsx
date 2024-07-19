@@ -43,7 +43,7 @@ const Title: React.FC<TitleProps> = props => {
       <Box display="flex" justifyContent="center" alignItems="center">
         {intl.formatMessage(
           { id: "donation-title", defaultMessage: "捐赠 #{orderNumber}" },
-          { orderNumber: doantion?.id },
+          { orderNumber: doantion?.number },
         )}
         <div className={classes.statusContainer}>
           <Pill label={localized} color={status} />

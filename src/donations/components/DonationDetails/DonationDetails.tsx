@@ -24,6 +24,7 @@ import { OpenModalFunction } from "@dashboard/utils/handlers/dialogActionHandler
 import { DonationUrlDialog, DonationUrlQueryParams } from "@dashboard/donations/urls";
 import Link from "@dashboard/components/Link";
 import { customerUrl } from "@dashboard/customers/urls";
+import { Donation } from "@dashboard/donations/types";
 
 const useStyles = makeStyles(
   theme => ({
@@ -53,7 +54,7 @@ const useStyles = makeStyles(
 );
 
 export interface DonationDetailsProps {
-  donation: DonationDetailQuery["donations"]["edges"][0]["node"];
+  donation: Donation;
   data: DonationDetailsPageFormData;
   disabled: boolean;
   errors: AccountErrorFragment[];
