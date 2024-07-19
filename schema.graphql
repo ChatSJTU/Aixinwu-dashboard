@@ -6946,6 +6946,9 @@ input CustomerInput {
   """The balance of a certain user."""
   balance: Float
 
+  """User code."""
+  code: String
+
   """Billing address of the customer."""
   defaultBillingAddress: AddressInput
 
@@ -7494,6 +7497,9 @@ type Donation implements Node {
   """The ID of the donation."""
   id: ID!
 
+  """The number of the donation."""
+  number: String
+
   """The price of the donation."""
   price: Money
 
@@ -7620,7 +7626,7 @@ input DonationFilterInput {
 }
 
 enum DonationSortField {
-  """Sort checkouts by creation date."""
+  """Sort donations by creation date."""
   CREATION_DATE
 }
 
@@ -19771,6 +19777,7 @@ enum OrderStatus {
   LEASED
   PARTIALLY_FULFILLED
   PARTIALLY_RETURNED
+  REFUNDED
   RETURNED
   UNCONFIRMED
   UNFULFILLED
@@ -26863,6 +26870,10 @@ type Query {
     """
     last: Int
   ): DigitalContentCountableConnection
+  donation(
+    """ID of the donation"""
+    id: ID
+  ): Donation
 
   """
   Donations made by the user or collected by users if requested by staff.
@@ -30385,6 +30396,9 @@ input StaffCreateInput {
   """The balance of a certain user."""
   balance: Float
 
+  """User code."""
+  code: String
+
   """The unique email address of the user."""
   email: String
 
@@ -30628,6 +30642,9 @@ input StaffUpdateInput {
 
   """The balance of a certain user."""
   balance: Float
+
+  """User code."""
+  code: String
 
   """The unique email address of the user."""
   email: String
@@ -33312,6 +33329,9 @@ input UserCreateInput {
   Slug of a channel which will be used for notify user. Optional when only one channel exists.
   """
   channel: String
+
+  """User code."""
+  code: String
 
   """Billing address of the customer."""
   defaultBillingAddress: AddressInput
