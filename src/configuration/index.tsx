@@ -85,18 +85,16 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
       menuItems: [
         {
           description: intl.formatMessage({
-            id: "19/lwV",
-            defaultMessage: "Determine attributes used to create product types",
+            id: "8vJCJ4",
+            defaultMessage: "Define and manage your sales channels",
           }),
-          icon: <Attributes />,
-          permissions: [
-            PermissionEnum.MANAGE_PRODUCT_TYPES_AND_ATTRIBUTES,
-            PermissionEnum.MANAGE_PAGE_TYPES_AND_ATTRIBUTES,
-          ],
-          title: intl.formatMessage(sectionNames.attributes),
-          url: attributeListUrl(),
-          testId: "configuration-menu-attributes",
+          icon: <Channels />,
+          permissions: [PermissionEnum.MANAGE_CHANNELS],
+          title: intl.formatMessage(sectionNames.channels),
+          url: channelsListUrl(),
+          testId: "configuration-menu-channels",
         },
+
         {
           description: intl.formatMessage({
             id: "n0RwMK",
@@ -108,27 +106,7 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           url: productTypeListUrl(),
           testId: "configuration-menu-product-types",
         },
-        {
-          description: intl.formatMessage({
-            id: "EIULpW",
-            defaultMessage: "Manage how your store charges tax",
-          }),
-          icon: <Taxes />,
-          title: intl.formatMessage(sectionNames.taxes),
-          url: taxConfigurationListUrl(),
-          testId: "configuration-menu-taxes",
-        },
-        {
-          description: intl.formatMessage({
-            id: "zxs6G3",
-            defaultMessage: "Manage how you ship out orders",
-          }),
-          icon: <ShippingMethods />,
-          permissions: [PermissionEnum.MANAGE_SHIPPING],
-          title: intl.formatMessage(sectionNames.shipping),
-          url: shippingZonesListUrl(),
-          testId: "configurationMenuShipping",
-        },
+
         {
           description: intl.formatMessage({
             id: "5RmuD+",
@@ -142,15 +120,17 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
         },
         {
           description: intl.formatMessage({
-            id: "8vJCJ4",
-            defaultMessage: "Define and manage your sales channels",
+            id: "zxs6G3",
+            defaultMessage: "Manage how you ship out orders",
           }),
-          icon: <Channels />,
-          permissions: [PermissionEnum.MANAGE_CHANNELS],
-          title: intl.formatMessage(sectionNames.channels),
-          url: channelsListUrl(),
-          testId: "configuration-menu-channels",
+          icon: <ShippingMethods />,
+          permissions: [PermissionEnum.MANAGE_SHIPPING],
+          title: intl.formatMessage(sectionNames.shipping),
+          url: shippingZonesListUrl(),
+          testId: "configurationMenuShipping",
         },
+
+
         {
           description: intl.formatMessage({
             id: "JPH/uP",
@@ -167,6 +147,20 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
         },
         {
           description: intl.formatMessage({
+            id: "19/lwV",
+            defaultMessage: "Determine attributes used to create product types",
+          }),
+          icon: <Attributes />,
+          permissions: [
+            PermissionEnum.MANAGE_PRODUCT_TYPES_AND_ATTRIBUTES,
+            PermissionEnum.MANAGE_PAGE_TYPES_AND_ATTRIBUTES,
+          ],
+          title: intl.formatMessage(sectionNames.attributes),
+          url: attributeListUrl(),
+          testId: "configuration-menu-attributes",
+        },
+/*         {
+          description: intl.formatMessage({
             id: "hpMcW8",
             defaultMessage: "Define how users can navigate through your store",
           }),
@@ -175,6 +169,16 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           title: intl.formatMessage(sectionNames.navigation),
           url: menuListUrl(),
           testId: "configuration-menu-navigation",
+        }, */
+        {
+          description: intl.formatMessage({
+            id: "EIULpW",
+            defaultMessage: "Manage how your store charges tax",
+          }),
+          icon: <Taxes />,
+          title: intl.formatMessage(sectionNames.taxes),
+          url: taxConfigurationListUrl(),
+          testId: "configuration-menu-taxes",
         },
         {
           description: intl.formatMessage({
@@ -204,7 +208,7 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           url: pluginListUrl(),
           testId: "configuration-plugins-pages",
         },
-        {
+/*         {
           description: intl.formatMessage({
             id: "Zz67wc",
             defaultMessage: "View and update your webhooks and events.",
@@ -213,7 +217,7 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           title: intl.formatMessage(sectionNames.webhooksAndEvents),
           url: CustomAppUrls.resolveAppListUrl(),
           testId: "configuration-menu-webhooks-and-events",
-        },
+        }, */
       ],
     },
   ];

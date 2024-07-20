@@ -5,11 +5,11 @@
   },
   "+2VydL": {
     "context": "card title",
-    "string": "Country exceptions"
+    "string": "国家和地区例外"
   },
   "+2VzH4": {
     "context": "avatar change button",
-    "string": "Change"
+    "string": "更改"
   },
   "+43JV5": {
     "context": "header",
@@ -17,7 +17,7 @@
   },
   "+5HkZN": {
     "context": "order, button",
-    "string": "Mark as paid"
+    "string": "标记为已支付"
   },
   "+7OsyM": {
     "context": "button",
@@ -29,7 +29,7 @@
   },
   "+B25o/": {
     "context": "dialog header",
-    "string": "Mark Order as Paid"
+    "string": "标记订单为已支付"
   },
   "+CeEe3": {
     "context": "order shipping method name",
@@ -184,7 +184,7 @@
   },
   "/5r4he": {
     "context": "label for button",
-    "string": "Add country"
+    "string": "添加国家和地区"
   },
   "/68iG8": {
     "context": "product export to csv file, header",
@@ -223,7 +223,7 @@
   },
   "/KWNJW": {
     "context": "order discount was updated event title",
-    "string": "订单折扣已更新："
+    "string": "订单折扣已更新 "
   },
   "/L8wzi": {
     "context": "dialog header",
@@ -510,7 +510,7 @@
     "string": "订单详情"
   },
   "19/lwV": {
-    "string": "确认创建商品类型的属性"
+    "string": "管理商品类型的属性"
   },
   "1BNKCZ": {
     "context": "sale channel",
@@ -1193,7 +1193,7 @@
   },
   "62Ywh2": {
     "context": "number of countries",
-    "string": "{number} Countries"
+    "string": "{number} 个国家和地区"
   },
   "64aQXZ": {
     "context": "product variants, full-screen title",
@@ -1448,7 +1448,7 @@
   },
   "8EGagh": {
     "context": "search box label",
-    "string": "Filter Countries"
+    "string": "筛选国家和地区"
   },
   "8F2D1H": {
     "context": "order refund amount, input button",
@@ -1593,7 +1593,7 @@
   },
   "9TAzb5": {
     "context": "order line discount added title",
-    "string": "{productName} 的折扣已添加："
+    "string": "{productName} 的折扣已添加 "
   },
   "9TbDQD": {
     "context": "order number label",
@@ -1693,7 +1693,7 @@
   },
   "A0Wlg7": {
     "context": "product discount removed title",
-    "string": "{productName} 的折扣已移除："
+    "string": "{productName} 的折扣已移除 "
   },
   "A7W4KO": {
     "string": "Catalog rule"
@@ -2011,7 +2011,7 @@
   },
   "CFT171": {
     "context": "card header title",
-    "string": "Country list"
+    "string": "国家和地区列表"
   },
   "CFlmRP": {
     "string": "Rule reword value is required"
@@ -2134,7 +2134,7 @@
   },
   "D5Wtf/": {
     "context": "table header column",
-    "string": "Country name"
+    "string": "国家和地区名称"
   },
   "D8nsBc": {
     "context": "no warehouses info",
@@ -3104,7 +3104,7 @@
     "string": "Successfully created new page"
   },
   "JPH/uP": {
-    "string": "定义在你的商店中使用的内容页的类型"
+    "string": "定义文章的类型"
   },
   "JQH+Iy": {
     "context": "resent code success message",
@@ -3235,14 +3235,14 @@
   },
   "KDvRBi": {
     "context": "button",
-    "string": "Install"
+    "string": "安装"
   },
   "KFv8hX": {
     "string": "An attribute already exists."
   },
   "KGsaGO": {
     "context": "tooltip",
-    "string": "This feature is in a preview state and can be subject to changes at later point"
+    "string": "此功能处于测试状态，之后可能会有改动。"
   },
   "KHZlmi": {
     "string": "折扣类型"
@@ -3253,7 +3253,7 @@
   },
   "KMxiiF": {
     "context": "button",
-    "string": "Retry"
+    "string": "重试"
   },
   "KN7zKn": {
     "string": "错误"
@@ -3267,7 +3267,7 @@
   },
   "KXkdMH": {
     "context": "order discount removed title",
-    "string": "订单折扣已移除："
+    "string": "订单折扣已移除 "
   },
   "KcsJKm": {
     "context": "error with activatation alert message",
@@ -3661,7 +3661,7 @@
   },
   "NgCb99": {
     "context": "order line discount updated title",
-    "string": "{productName} 的折扣已更新："
+    "string": "{productName} 的折扣已更新 "
   },
   "NgRa6m": {
     "string": "{channel} 渠道购买 {items} 物品有 {value} 折扣"
@@ -4623,7 +4623,7 @@
   },
   "UBuKZ9": {
     "context": "searchbar placeholder",
-    "string": "Country"
+    "string": "国家和地区"
   },
   "UJ97Lb": {
     "string": "Delete codes"
@@ -5482,7 +5482,7 @@
   },
   "Zptsep": {
     "context": "order was discounted event title",
-    "string": "折扣已添加："
+    "string": "折扣已添加 "
   },
   "ZrIt1W": {
     "string": "删除折扣"
@@ -5962,7 +5962,7 @@
   },
   "cvVIV/": {
     "context": "dialog header",
-    "string": "Assign Countries"
+    "string": "添加国家和地区"
   },
   "cvbqJu": {
     "context": "attribute",
@@ -6567,7 +6567,7 @@
     "string": "Refunded"
   },
   "hpMcW8": {
-    "string": "定义如何为用户在你的商店中浏览做站点导航"
+    "string": "定义商店的站点导航"
   },
   "hptDxW": {
     "context": "money",
@@ -7164,7 +7164,7 @@
   },
   "lnteBJ": {
     "context": "country rates list label for the default rate",
-    "string": "Country default rate"
+    "string": "国家和地区默认税率"
   },
   "lqIzC8": {
     "string": "This field needs to be unique"
@@ -7602,11 +7602,11 @@
   },
   "pGDYG5": {
     "context": "search label",
-    "string": "Search Countries"
+    "string": "搜索国家和地区"
   },
   "pGwvpX": {
     "context": "status",
-    "string": "Deactivated"
+    "string": "未激活"
   },
   "pOUOnw": {
     "context": "tab name",
@@ -8011,7 +8011,7 @@
   },
   "sHON47": {
     "context": "refunded products list title",
-    "string": "Products refunded"
+    "string": "退款的商品"
   },
   "sK1FPw": {
     "context": "categories section name",
@@ -8645,7 +8645,7 @@
   },
   "wgA48T": {
     "context": "country selection",
-    "string": "Countries A to Z"
+    "string": "国家和地区按首字母排列"
   },
   "whTEcF": {
     "context": "link",
@@ -9026,7 +9026,7 @@
   },
   "zZCCqz": {
     "context": "button",
-    "string": "Assign countries"
+    "string": "添加国家和地区"
   },
   "zb4eBO": {
     "context": "order total price",
