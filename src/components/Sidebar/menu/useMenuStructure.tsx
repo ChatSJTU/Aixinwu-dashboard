@@ -113,25 +113,25 @@ export function useMenuStructure() {
       type: "itemGroup",
     },
     {
-      children: [
-        {
-          label: intl.formatMessage(commonMessages.drafts),
-          permissions: [PermissionEnum.MANAGE_ORDERS],
-          id: "order-drafts",
-          url: orderDraftListUrl(),
-          type: "item",
-        },
-        ...mapToExtensionsItems(
-          extensions.NAVIGATION_ORDERS,
-          appExtensionsHeaderItem,
-        ),
-      ],
+      // children: [
+      //   {
+      //     label: intl.formatMessage(commonMessages.drafts),
+      //     permissions: [PermissionEnum.MANAGE_ORDERS],
+      //     id: "order-drafts",
+      //     url: orderDraftListUrl(),
+      //     type: "item",
+      //   },
+      //   ...mapToExtensionsItems(
+      //     extensions.NAVIGATION_ORDERS,
+      //     appExtensionsHeaderItem,
+      //   ),
+      // ],
       icon: <OrdersIcon {...iconSettings} />,
       label: intl.formatMessage(sectionNames.orders),
       permissions: [PermissionEnum.MANAGE_ORDERS],
       id: "orders",
       url: orderListUrl(),
-      type: "itemGroup",
+      type: "item",//"itemGroup",
     },
     {
       children: !isEmpty(extensions.NAVIGATION_CUSTOMERS) && [
