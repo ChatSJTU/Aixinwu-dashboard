@@ -193,6 +193,7 @@ export const defaultListSettings: AppListViewSettings = {
   },
   [ListViews.DONATION_LIST]: {
     rowNumber: PAGINATE_BY,
+    columns: ["barcode", "title", "value", "donator", "created", "status"],
   },
 };
 
