@@ -23,7 +23,8 @@ const DonationListView: React.FC<RouteComponentProps<{}>> = ({ location }) => {
   const params: DonationListUrlQueryParams = asSortParams(
     qs,
     DonationListUrlSortField,
-    "created"
+    DonationListUrlSortField.created,
+    false
   );
 
   return <DonationListViewComponent params={params} />;
