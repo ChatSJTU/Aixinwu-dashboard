@@ -92,7 +92,7 @@ const CollectionDetailsPage: React.FC<CollectionDetailsPageProps> = ({
               onChange={change}
             />
             <CardSpacer />
-            <Metadata data={data} onChange={handlers.changeMetadata} />
+            {/* <Metadata data={data} onChange={handlers.changeMetadata} /> */}
             <CardSpacer />
             <CollectionProducts
               disabled={disabled}

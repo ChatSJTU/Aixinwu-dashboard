@@ -400,7 +400,7 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                     "Add search engine title and description to make this product easier to find",
                 })}
               />
-              <Metadata data={data} onChange={handlers.changeMetadata} />
+              {/* <Metadata data={data} onChange={handlers.changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <ProductOrganization

@@ -282,10 +282,10 @@ export const TaxClassesPage: React.FC<TaxClassesPageProps> = props => {
                         )}
                       </Card>
                       <VerticalSpacer spacing={3} />
-                      <Metadata
+                      {/* <Metadata
                         data={data}
                         onChange={handlers.changeMetadata}
-                      />
+                      /> */}
                     </div>
                   )}
                 </Grid>

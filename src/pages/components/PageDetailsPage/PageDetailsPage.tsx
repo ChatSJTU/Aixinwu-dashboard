@@ -203,7 +203,7 @@ const PageDetailsPage: React.FC<PageDetailsPageProps> = ({
                 />
               )}
               <CardSpacer />
-              <Metadata data={data} onChange={handlers.changeMetadata} />
+              {/* <Metadata data={data} onChange={handlers.changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <VisibilityCard

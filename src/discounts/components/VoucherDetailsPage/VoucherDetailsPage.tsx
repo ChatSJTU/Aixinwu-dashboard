@@ -404,7 +404,7 @@ const VoucherDetailsPage: React.FC<VoucherDetailsPageProps> = ({
                 errors={errors}
                 onChange={change}
               />
-              <Metadata data={data} onChange={changeMetadata} />
+              {/* <Metadata data={data} onChange={changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <VoucherSummary

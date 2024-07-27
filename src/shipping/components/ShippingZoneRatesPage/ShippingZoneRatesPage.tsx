@@ -234,7 +234,7 @@ export const ShippingZoneRatesPage: React.FC<ShippingZoneRatesPageProps> = ({
               {...listProps}
             />
             <CardSpacer />
-            <Metadata data={data} onChange={changeMetadata} />
+            {/* <Metadata data={data} onChange={changeMetadata} /> */}
           </DetailPageLayout.Content>
           <DetailPageLayout.RightSidebar>
             <ChannelsAvailabilityCard

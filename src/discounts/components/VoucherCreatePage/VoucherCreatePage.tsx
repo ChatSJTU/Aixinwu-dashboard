@@ -193,7 +193,7 @@ const VoucherCreatePage: React.FC<VoucherCreatePageProps> = ({
             errors={errors}
             onChange={change}
           />
-          <Metadata data={data} onChange={changeMetadata} />
+          {/* <Metadata data={data} onChange={changeMetadata} /> */}
         </DetailPageLayout.Content>
         <DetailPageLayout.RightSidebar>
           <ChannelsAvailabilityCard

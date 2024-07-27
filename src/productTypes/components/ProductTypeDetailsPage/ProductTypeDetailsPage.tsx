@@ -237,7 +237,7 @@ const ProductTypeDetailsPage: React.FC<ProductTypeDetailsPageProps> = ({
                 </>
               )}
               <CardSpacer />
-              <Metadata data={data} onChange={changeMetadata} />
+              {/* <Metadata data={data} onChange={changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <ProductTypeShipping

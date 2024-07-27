@@ -373,7 +373,7 @@ const ProductVariantPage: React.FC<ProductVariantPageProps> = ({
                       onWarehouseConfigure={onWarehouseConfigure}
                     />
                     <CardSpacer />
-                    <Metadata data={data} onChange={handlers.changeMetadata} />
+                    {/* <Metadata data={data} onChange={handlers.changeMetadata} /> */}
                   </div>
                 </Grid>
                 <Savebar

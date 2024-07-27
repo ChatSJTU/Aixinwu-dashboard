@@ -184,7 +184,7 @@ const PageTypeDetailsPage: React.FC<PageTypeDetailsPageProps> = props => {
                     />
                   </Typography>
                 </div>
-                <Metadata data={data} onChange={changeMetadata} />
+                {/* <Metadata data={data} onChange={changeMetadata} /> */}
               </Grid>
             </DetailPageLayout.Content>
             <Savebar

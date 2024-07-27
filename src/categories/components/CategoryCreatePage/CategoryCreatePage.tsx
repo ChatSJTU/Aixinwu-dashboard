@@ -71,7 +71,7 @@ export const CategoryCreatePage: React.FC<CategoryCreatePageProps> = ({
                 disabled={disabled}
               />
               <CardSpacer />
-              <Metadata data={data} onChange={handlers.changeMetadata} />
+              {/* <Metadata data={data} onChange={handlers.changeMetadata} /> */}
             </Box>
           </DetailPageLayout.Content>
           <Savebar

@@ -129,7 +129,7 @@ const SaleCreatePage: React.FC<SaleCreatePageProps> = ({
                 errors={errors}
                 onChange={change}
               />
-              <Metadata data={data} onChange={changeMetadata} />
+              {/* <Metadata data={data} onChange={changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <ChannelsAvailabilityCard

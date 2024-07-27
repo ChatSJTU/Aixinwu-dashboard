@@ -311,7 +311,7 @@ export const ProductCreatePage: React.FC<ProductCreatePageProps> = ({
                 loading={loading}
                 onChange={change}
               />
-              <Metadata data={data} onChange={handlers.changeMetadata} />
+              {/* <Metadata data={data} onChange={handlers.changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <ProductOrganization

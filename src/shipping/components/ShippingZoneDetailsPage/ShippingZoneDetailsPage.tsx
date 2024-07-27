@@ -199,7 +199,7 @@ const ShippingZoneDetailsPage: React.FC<ShippingZoneDetailsPageProps> = ({
                 testId="add-weight-rate"
               />
               <CardSpacer />
-              <Metadata data={data} onChange={changeMetadata} />
+              {/* <Metadata data={data} onChange={changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <ShippingZoneSettingsCard

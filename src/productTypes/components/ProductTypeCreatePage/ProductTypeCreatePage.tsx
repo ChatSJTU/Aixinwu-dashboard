@@ -124,7 +124,7 @@ const ProductTypeCreatePage: React.FC<ProductTypeCreatePageProps> = ({
                 onFetchMore={onFetchMoreTaxClasses}
               />
               <CardSpacer />
-              <Metadata data={data} onChange={changeMetadata} />
+              {/* <Metadata data={data} onChange={changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <ProductTypeShipping

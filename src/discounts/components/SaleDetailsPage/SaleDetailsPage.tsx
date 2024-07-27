@@ -295,7 +295,7 @@ const SaleDetailsPage: React.FC<SaleDetailsPageProps> = ({
                 errors={errors}
                 onChange={change}
               />
-              <Metadata data={data} onChange={changeMetadata} />
+              {/* <Metadata data={data} onChange={changeMetadata} /> */}
             </DetailPageLayout.Content>
             <DetailPageLayout.RightSidebar>
               <SaleSummary selectedChannelId={selectedChannelId} sale={sale} />

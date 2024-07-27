@@ -135,7 +135,7 @@ export const CategoryUpdatePage: React.FC<CategoryUpdatePageProps> = ({
 
             <CardSpacer />
 
-            <Metadata data={data} onChange={handlers.changeMetadata} />
+            {/* <Metadata data={data} onChange={handlers.changeMetadata} /> */}
 
             <CardSpacer />
 
