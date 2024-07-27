@@ -388,7 +388,7 @@
   },
   "0VDwAP": {
     "context": "checkbox label",
-    "string": "向客户发送配送详情"
+    "string": "向用户发送配送详情"
   },
   "0VkxrS": {
     "string": "GraphQL环境"
@@ -819,7 +819,7 @@
     "string": "Gift Cards Issued"
   },
   "3d1RXL": {
-    "string": "此客户还没有地址"
+    "string": "此用户还没有地址"
   },
   "3dVKNR": {
     "context": "ProductTypeDeleteWarningDialog with items multiple description",
@@ -991,7 +991,7 @@
   },
   "4gT3eD": {
     "context": "navigator section header",
-    "string": "搜索客户"
+    "string": "搜索用户"
   },
   "4hl9rS": {
     "context": "variant price in channel",
@@ -1131,7 +1131,7 @@
   },
   "5blVMu": {
     "context": "e-mail or full name",
-    "string": "客户"
+    "string": "用户"
   },
   "5dLpx0": {
     "context": "references attribute type",
@@ -1527,7 +1527,7 @@
   },
   "945a4a": {
     "context": "column header",
-    "string": "客户邮箱"
+    "string": "用户邮箱"
   },
   "94oZR0": {
     "context": "deactivate app billing info",
@@ -2142,7 +2142,7 @@
   },
   "D95l71": {
     "context": "tab name",
-    "string": "所有客户"
+    "string": "所有用户"
   },
   "D9Rg+F": {
     "context": "window title",
@@ -2165,7 +2165,7 @@
   },
   "DHBlFi": {
     "context": "navigator customer mode description",
-    "string": "搜索客户"
+    "string": "搜索用户"
   },
   "DILs4b": {
     "string": "Unsupported media provider or incorrect URL"
@@ -2529,7 +2529,7 @@
     "string": "Your username and/or password are incorrect. Please try again."
   },
   "FpIcp9": {
-    "string": "找不到客户"
+    "string": "找不到用户"
   },
   "Ftz7VI": {
     "context": "input label, transaction amount",
@@ -3525,7 +3525,7 @@
   },
   "McN+wq": {
     "context": "customers section name",
-    "string": "客户"
+    "string": "用户"
   },
   "MdFdbd": {
     "string": "Delete rule"
@@ -3536,7 +3536,7 @@
   },
   "MgdgpT": {
     "context": "customer input label",
-    "string": "客户"
+    "string": "用户"
   },
   "MjUyhA": {
     "context": "section subheader",
@@ -3570,7 +3570,7 @@
     "string": "添加优惠"
   },
   "N2SbNc": {
-    "string": "{counter,plural,one 你确定要删除此客户吗？} other {你确定要删除{displayQuantity}个客户吗？}}"
+    "string": "{counter,plural,one 你确定要删除此用户吗？} other {你确定要删除{displayQuantity}个用户吗？}}"
   },
   "N3Zot1": {
     "context": "button",
@@ -3590,7 +3590,7 @@
   },
   "N76zUg": {
     "context": "page header",
-    "string": "新建客户"
+    "string": "新建用户"
   },
   "N7XGzW": {
     "context": "error message",
@@ -3993,7 +3993,7 @@
   },
   "PzXIXh": {
     "context": "order",
-    "string": "客户"
+    "string": "用户"
   },
   "Q/Nbku": {
     "context": "product field",
@@ -4093,7 +4093,7 @@
   },
   "QLVddq": {
     "context": "button",
-    "string": "新增客户"
+    "string": "新增用户"
   },
   "QM9P8G": {
     "context": "dialog header",
@@ -4150,7 +4150,7 @@
   },
   "QooeI/": {
     "context": "button",
-    "string": "新建客户"
+    "string": "新建用户"
   },
   "Qovenh": {
     "string": "不知名用户"
@@ -4578,7 +4578,7 @@
   },
   "TpPx7V": {
     "context": "navigator placeholder",
-    "string": "搜索客户"
+    "string": "搜索用户"
   },
   "TxYWkD": {
     "context": "page header, edit view",
@@ -4826,7 +4826,7 @@
     "string": "Fulfill anyway"
   },
   "VSztEE": {
-    "string": "取消此订单将释放未交付的单品，因此它们可以被其他客户购买。<b>取消订单时，订单将不会被退款 - 您需要人工操作。</b>你确定要取消这个订单吗？"
+    "string": "取消此订单将释放未交付的单品，因此它们可以被其他用户购买。<b>取消订单时，订单将不会被退款 - 您需要人工操作。</b>你确定要取消这个订单吗？"
   },
   "VTITVe": {
     "context": "section header",
@@ -4858,7 +4858,7 @@
     "string": "此用户组是该权限的最基本管理组"
   },
   "VrFy8e": {
-    "string": "客户无备注"
+    "string": "用户无备注"
   },
   "VsGcdP": {
     "context": "section header",
@@ -5252,7 +5252,7 @@
   },
   "Y7M1YQ": {
     "context": "section header",
-    "string": "客户"
+    "string": "用户"
   },
   "Y7UlMR": {
     "context": "app extensions subsection",
@@ -6089,7 +6089,7 @@
   },
   "e7Nyu7": {
     "context": "section header",
-    "string": "客户历史信息"
+    "string": "用户历史信息"
   },
   "e7yOai": {
     "context": "shipping address is not set in draft order",
@@ -6256,7 +6256,7 @@
   },
   "fjPWOA": {
     "context": "header",
-    "string": "客户信息"
+    "string": "用户信息"
   },
   "fkgack": {
     "context": "button, sends refund for transaction",
@@ -6470,7 +6470,7 @@
   },
   "h2Hta6": {
     "context": "caption",
-    "string": "如果打开, 客户将获得操作权限"
+    "string": "如果打开, 用户将获得操作权限"
   },
   "h2hEKV": {
     "context": "search gift card placeholder",
@@ -6545,10 +6545,10 @@
     "string": "无结果"
   },
   "hkENym": {
-    "string": "客户"
+    "string": "用户"
   },
   "hkSkNx": {
-    "string": "搜索客户"
+    "string": "搜索用户"
   },
   "hnBvH7": {
     "context": "copied to clipboard alert title",
@@ -6636,7 +6636,7 @@
   },
   "iEeIhY": {
     "context": "draft order",
-    "string": "客户"
+    "string": "用户"
   },
   "iFM716": {
     "context": "grant refund, refund card subtitle",
@@ -7004,7 +7004,7 @@
     "string": "Balance amount is missing"
   },
   "kdRcqU": {
-    "string": "搜索客户..."
+    "string": "搜索用户..."
   },
   "kgVqk1": {
     "string": "分类名"
@@ -7390,11 +7390,11 @@
   },
   "nX2pCU": {
     "context": "window title",
-    "string": "新增客户"
+    "string": "新增用户"
   },
   "nZDQbr": {
     "context": "column header",
-    "string": "客户姓名"
+    "string": "用户姓名"
   },
   "nayZY0": {
     "context": "returned event title",
@@ -8508,7 +8508,7 @@
   },
   "vf56In": {
     "context": "address type",
-    "string": "使用客户填写的地址"
+    "string": "使用用户填写的地址"
   },
   "vfG+nh": {
     "string": "密码确认"
@@ -8578,7 +8578,7 @@
     "string": "{count}/{max} 个订单"
   },
   "w3sGrD": {
-    "string": "客户的额外信息"
+    "string": "用户的额外信息"
   },
   "w424P4": {
     "context": "section header",
@@ -8617,7 +8617,7 @@
     "string": "是否发布"
   },
   "wNQzS/": {
-    "string": "这个客户的主要地址"
+    "string": "这个用户的主要地址"
   },
   "wOeIR4": {
     "context": "order history message",
