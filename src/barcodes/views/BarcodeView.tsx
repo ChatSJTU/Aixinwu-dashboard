@@ -2,7 +2,8 @@
 import { TopNav } from "@dashboard/components/AppLayout";
 import { WindowTitle } from "@dashboard/components/WindowTitle";
 import {
-  useUpdateDonationMutation,
+  useBarcodeBatchCreateMutation,
+  useBarcodeSingleCreateMutation,
 } from "@dashboard/graphql";
 import useNavigator from "@dashboard/hooks/useNavigator";
 import useNotifier from "@dashboard/hooks/useNotifier";
@@ -44,55 +45,70 @@ const BarcodeView: React.FC = () => {
   const intl = useIntl();
   const classes = useStyles();
 
-  const [count1, setCount1] = useState<number>(1);
+  const [count1, setCount1] = useState<number>(10);
   const [singleCode, setSingleCode] = useState<string>("");
   const [print, setPrint] = useState<boolean>(false);
   const [barcodes, setBarcodes] = useState<BarcodeProps[]>([]);
 
-  const [updateDonation, updateDonationOpts] = useUpdateDonationMutation({
+  const [barcodeBatchCreate, barcodeBatchCreateOpts] = useBarcodeBatchCreateMutation({
     onCompleted: data => {
-      if (data.donationUpdate.errors.length === 0) {
-        notify({
-          status: "success",
-          text: intl.formatMessage(commonMessages.savedChanges),
-        });
+      if (data.barcodeBatchCreate.errors.length === 0) {
+        setBarcodes(data.barcodeBatchCreate.barcodes.map(x=>({value:x.number.toString()}) as BarcodeProps));
+        setPrint(true);
       }
     },
+    onError: err => {
+      notify({
+        status: "error",
+        text: err.message,
+      });
+    }
   });
 
-  const updateData = async (data) => null;
-    // extractMutationErrors(
-    //   updateDonation({
-    //     variables: {
-    //       id,
-    //       input: {
-    //         email: data.email,
-    //         firstName: data.firstName,
-    //         isActive: data.isActive,
-    //         lastName: data.lastName,
-    //         note: data.note,
-    //         balance: data.balance,
-    //       },
-    //     },
-    //   }),
-    // );
-
-  // const handleSubmit = createMetadataUpdateHandler(
-  //   donation,
-  //   updateData,
-  //   variables => updateMetadata({ variables }),
-  //   variables => updatePrivateMetadata({ variables }),
-  // );
-  const handleSubmit = updateData;
+  const [barcodeSingleCreate, barcodeSingleCreateOpts] = useBarcodeSingleCreateMutation({
+    onCompleted: data => {
+      if (data.barcodeDefaultCreate.errors.length === 0) {
+        setBarcodes([data.barcodeDefaultCreate.barcode].map(x=>({value:x.number.toString()}) as BarcodeProps));
+        setPrint(true);
+      }
+    },
+    onError: err => {
+      notify({
+        status: "error",
+        text: err.message,
+      });
+    }
+  });
 
   const handleButtonBatchClick = () => {
-    setBarcodes([{value:"1111111"}]);
-    setPrint(true);
+    barcodeBatchCreate({
+      variables:{
+        count: count1
+      }
+    })
   };
 
+  function isNineDigitNumber(str) {
+    return /^\d{9}$/.test(str);
+  }
+
   const handleButtonSingleClick = () => {
-    setBarcodes([{value:singleCode}]);
-    setPrint(true);
+    if (!isNineDigitNumber(singleCode)) {
+      notify({
+        status: "warning",
+        text: intl.formatMessage({
+          id: "barcode-codeformat",
+          defaultMessage: "条形码必须是9位数字（前4位年份月份，后5位序号）",
+        }),
+      })
+      return
+    }
+
+    barcodeSingleCreate({
+      variables:{
+        number: Number(singleCode)
+      }
+    })
   };
 
   return (

@@ -1,19 +1,42 @@
 import { gql } from "@apollo/client";
 
-// export const updateDonation = gql`
-//   mutation UpdateDonation($id: ID!, $input: DonationUpdateInput!) {
-//     donationUpdate(id: $id, input: $input) {
-//       errors {
-//         code
-//         field
-//         message
-//       }
-//       donation {
-//         ...DonationDetails
-//       }
-//     }
-//   }
-// `;
+export const barcodeBatchCreate = gql`
+  mutation BarcodeBatchCreate($count: Int!) {
+    barcodeBatchCreate(count: $count) {
+      errors {
+        code
+        message
+        field
+      }
+      barcodes {
+        createdAt
+        id
+        number
+        used
+      }
+    }
+  }
+`;
+
+export const barcodeSingleCreate = gql`
+  mutation BarcodeSingleCreate($number: Int!) {
+    barcodeDefaultCreate(number: $number) {
+      created
+      usedBefore
+      barcode {
+        used
+        number
+        id
+        createdAt
+      }
+      errors {
+        code
+        message
+        field
+      }
+    }
+  }
+`;
 
 // export const createDonation = gql`
 //   mutation CreateDonation($input: DonationCreateInput!) {

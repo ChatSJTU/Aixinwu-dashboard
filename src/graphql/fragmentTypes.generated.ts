@@ -202,6 +202,7 @@
       "AttributeValueTranslatableContent",
       "AttributeValueTranslation",
       "BalanceEvent",
+      "Barcode",
       "Category",
       "CategoryTranslatableContent",
       "CategoryTranslation",

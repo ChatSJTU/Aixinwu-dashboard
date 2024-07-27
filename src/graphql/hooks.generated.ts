@@ -4669,6 +4669,94 @@ export function useUserDetailsLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type UserDetailsQueryHookResult = ReturnType<typeof useUserDetailsQuery>;
 export type UserDetailsLazyQueryHookResult = ReturnType<typeof useUserDetailsLazyQuery>;
 export type UserDetailsQueryResult = Apollo.QueryResult<Types.UserDetailsQuery, Types.UserDetailsQueryVariables>;
+export const BarcodeBatchCreateDocument = gql`
+    mutation BarcodeBatchCreate($count: Int!) {
+  barcodeBatchCreate(count: $count) {
+    errors {
+      code
+      message
+      field
+    }
+    barcodes {
+      createdAt
+      id
+      number
+      used
+    }
+  }
+}
+    `;
+export type BarcodeBatchCreateMutationFn = Apollo.MutationFunction<Types.BarcodeBatchCreateMutation, Types.BarcodeBatchCreateMutationVariables>;
+
+/**
+ * __useBarcodeBatchCreateMutation__
+ *
+ * To run a mutation, you first call `useBarcodeBatchCreateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useBarcodeBatchCreateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [barcodeBatchCreateMutation, { data, loading, error }] = useBarcodeBatchCreateMutation({
+ *   variables: {
+ *      count: // value for 'count'
+ *   },
+ * });
+ */
+export function useBarcodeBatchCreateMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.BarcodeBatchCreateMutation, Types.BarcodeBatchCreateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.BarcodeBatchCreateMutation, Types.BarcodeBatchCreateMutationVariables>(BarcodeBatchCreateDocument, options);
+      }
+export type BarcodeBatchCreateMutationHookResult = ReturnType<typeof useBarcodeBatchCreateMutation>;
+export type BarcodeBatchCreateMutationResult = Apollo.MutationResult<Types.BarcodeBatchCreateMutation>;
+export type BarcodeBatchCreateMutationOptions = Apollo.BaseMutationOptions<Types.BarcodeBatchCreateMutation, Types.BarcodeBatchCreateMutationVariables>;
+export const BarcodeSingleCreateDocument = gql`
+    mutation BarcodeSingleCreate($number: Int!) {
+  barcodeDefaultCreate(number: $number) {
+    created
+    usedBefore
+    barcode {
+      used
+      number
+      id
+      createdAt
+    }
+    errors {
+      code
+      message
+      field
+    }
+  }
+}
+    `;
+export type BarcodeSingleCreateMutationFn = Apollo.MutationFunction<Types.BarcodeSingleCreateMutation, Types.BarcodeSingleCreateMutationVariables>;
+
+/**
+ * __useBarcodeSingleCreateMutation__
+ *
+ * To run a mutation, you first call `useBarcodeSingleCreateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useBarcodeSingleCreateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [barcodeSingleCreateMutation, { data, loading, error }] = useBarcodeSingleCreateMutation({
+ *   variables: {
+ *      number: // value for 'number'
+ *   },
+ * });
+ */
+export function useBarcodeSingleCreateMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.BarcodeSingleCreateMutation, Types.BarcodeSingleCreateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.BarcodeSingleCreateMutation, Types.BarcodeSingleCreateMutationVariables>(BarcodeSingleCreateDocument, options);
+      }
+export type BarcodeSingleCreateMutationHookResult = ReturnType<typeof useBarcodeSingleCreateMutation>;
+export type BarcodeSingleCreateMutationResult = Apollo.MutationResult<Types.BarcodeSingleCreateMutation>;
+export type BarcodeSingleCreateMutationOptions = Apollo.BaseMutationOptions<Types.BarcodeSingleCreateMutation, Types.BarcodeSingleCreateMutationVariables>;
 export const CarouselUpdateDocument = gql`
     mutation CarouselUpdate($urls: [String!]!) {
   carouselSettingsUpdate(input: {urls: $urls}) {

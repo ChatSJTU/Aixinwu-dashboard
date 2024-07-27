@@ -802,6 +802,28 @@ export enum BalanceEventsEnum {
   REFUNDED = 'REFUNDED'
 }
 
+/** An enumeration. */
+export enum BarcodeErrorCode {
+  INVALID = 'INVALID'
+}
+
+export type BarcodeFilterInput = {
+  metadata?: InputMaybe<Array<MetadataFilter>>;
+  yearMonth?: InputMaybe<IntRangeInput>;
+};
+
+export enum BarcodeSortField {
+  /** Sort donations by creation date. */
+  CREATION_DATE = 'CREATION_DATE'
+}
+
+export type BarcodeSortingInput = {
+  /** Specifies the direction in which to sort barcodes. */
+  direction: OrderDirection;
+  /** Sort barcodes by the selected field. */
+  field: BarcodeSortField;
+};
+
 export type BulkAttributeValueInput = {
   /** The boolean value of an attribute to resolve. If the passed value is non-existent, it will be created. */
   boolean?: InputMaybe<Scalars['Boolean']>;
@@ -4512,7 +4534,6 @@ export enum OrderStatus {
   LEASED = 'LEASED',
   PARTIALLY_FULFILLED = 'PARTIALLY_FULFILLED',
   PARTIALLY_RETURNED = 'PARTIALLY_RETURNED',
-  REFUNDED = 'REFUNDED',
   RETURNED = 'RETURNED',
   UNCONFIRMED = 'UNCONFIRMED',
   UNFULFILLED = 'UNFULFILLED'
@@ -9069,6 +9090,20 @@ export type UserDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type UserDetailsQuery = { __typename: 'Query', me: { __typename: 'User', id: string, email: string, firstName: string, lastName: string, isStaff: boolean, restrictedAccessToChannels: boolean, metadata: Array<{ __typename: 'MetadataItem', key: string, value: string }>, userPermissions: Array<{ __typename: 'UserPermission', code: PermissionEnum, name: string }> | null, avatar: { __typename: 'Image', url: string } | null, accessibleChannels: Array<{ __typename: 'Channel', id: string, isActive: boolean, name: string, slug: string, currencyCode: string, defaultCountry: { __typename: 'CountryDisplay', code: string, country: string }, stockSettings: { __typename: 'StockSettings', allocationStrategy: AllocationStrategyEnum } }> | null } | null };
+
+export type BarcodeBatchCreateMutationVariables = Exact<{
+  count: Scalars['Int'];
+}>;
+
+
+export type BarcodeBatchCreateMutation = { __typename: 'Mutation', barcodeBatchCreate: { __typename: 'BarcodeBatchCreate', errors: Array<{ __typename: 'BarcodeError', code: BarcodeErrorCode, message: string | null, field: string | null }>, barcodes: Array<{ __typename: 'Barcode', createdAt: any | null, id: string, number: number | null, used: boolean | null }> } | null };
+
+export type BarcodeSingleCreateMutationVariables = Exact<{
+  number: Scalars['Int'];
+}>;
+
+
+export type BarcodeSingleCreateMutation = { __typename: 'Mutation', barcodeDefaultCreate: { __typename: 'BarcodeDefaultCreate', created: boolean, usedBefore: boolean, barcode: { __typename: 'Barcode', used: boolean | null, number: number | null, id: string, createdAt: any | null }, errors: Array<{ __typename: 'BarcodeError', code: BarcodeErrorCode, message: string | null, field: string | null }> } | null };
 
 export type CarouselUpdateMutationVariables = Exact<{
   urls: Array<Scalars['String']> | Scalars['String'];

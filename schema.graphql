@@ -3146,6 +3146,9 @@ type BalanceEvent implements Node {
   """User name of a balance event."""
   name: String
 
+  """The number of the balance event."""
+  number: Int
+
   """Type of a balance event."""
   type: String
 }
@@ -3205,6 +3208,106 @@ type BalanceUpdate {
   accountErrors: [AccountError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
   errors: [AccountError!]!
   user: User
+}
+
+"""Represents barcode."""
+type Barcode implements Node {
+  """The date and time when the barcode is created."""
+  createdAt: DateTime
+
+  """The ID of the barcode"""
+  id: ID!
+
+  """the number of the barcode"""
+  number: Int
+
+  """Whether the barcode is used or not."""
+  used: Boolean
+}
+
+"""
+Create barcodes. 
+
+Requires one of the following permissions: MANAGE_BARCODE.
+"""
+type BarcodeBatchCreate {
+  barcodeErrors: [BarcodeError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
+
+  """Barcodes created"""
+  barcodes: [Barcode!]!
+  errors: [BarcodeError!]!
+}
+
+type BarcodeCountableConnection {
+  edges: [BarcodeCountableEdge!]!
+
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """A total count of items in the collection."""
+  totalCount: Int
+}
+
+type BarcodeCountableEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Barcode!
+}
+
+"""
+Creates or get barcode 
+
+Requires one of the following permissions: MANAGE_BARCODE.
+"""
+type BarcodeDefaultCreate {
+  """The returned barcode"""
+  barcode: Barcode!
+  barcodeErrors: [BarcodeError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
+
+  """Whether this is created or not."""
+  created: Boolean!
+  errors: [BarcodeError!]!
+
+  """Whether this has been used before."""
+  usedBefore: Boolean!
+}
+
+type BarcodeError {
+  """The error code"""
+  code: BarcodeErrorCode!
+
+  """
+  Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+  """
+  field: String
+
+  """The error message."""
+  message: String
+}
+
+"""An enumeration."""
+enum BarcodeErrorCode {
+  INVALID
+}
+
+input BarcodeFilterInput {
+  metadata: [MetadataFilter!]
+  yearMonth: IntRangeInput
+}
+
+enum BarcodeSortField {
+  """Sort donations by creation date."""
+  CREATION_DATE
+}
+
+input BarcodeSortingInput {
+  """Specifies the direction in which to sort barcodes."""
+  direction: OrderDirection!
+
+  """Sort barcodes by the selected field."""
+  field: BarcodeSortField!
 }
 
 input BulkAttributeValueInput {
@@ -12578,6 +12681,23 @@ type Mutation {
   ): BalanceUpdate
 
   """
+  Create barcodes. 
+  
+  Requires one of the following permissions: MANAGE_BARCODE.
+  """
+  barcodeBatchCreate(count: Int!): BarcodeBatchCreate
+
+  """
+  Creates or get barcode 
+  
+  Requires one of the following permissions: MANAGE_BARCODE.
+  """
+  barcodeDefaultCreate(
+    """The number of the barcode."""
+    number: Int!
+  ): BarcodeDefaultCreate
+
+  """
   Updates site domain of the shop.
   
   DEPRECATED: this mutation will be removed in Saleor 4.0. Use `PUBLIC_URL` environment variable instead. 
@@ -19777,7 +19897,6 @@ enum OrderStatus {
   LEASED
   PARTIALLY_FULFILLED
   PARTIALLY_RETURNED
-  REFUNDED
   RETURNED
   UNCONFIRMED
   UNFULFILLED
@@ -26602,6 +26721,36 @@ type Query {
     """Sorting the balance events"""
     sortBy: BalanceEventSortingInput
   ): BalanceEventCountableConnection
+
+  """
+  Donations made by the user or collected by users if requested by staff.
+  """
+  barcodes(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """Slug of a channel for which the data should be returned."""
+    channel: String
+
+    """Filtering options for orders."""
+    filter: BarcodeFilterInput
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+
+    """Sort orders."""
+    sortBy: BarcodeSortingInput
+  ): BarcodeCountableConnection
 
   """Return the carousel of the current site."""
   carousel: Carousel
