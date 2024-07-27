@@ -241,12 +241,12 @@ const OrderDraftDetailsSummary: React.FC<
             )}
           </td>
         </tr>
-        <tr data-test-id="order-taxes-price">
+        {/* <tr data-test-id="order-taxes-price">
           <td>{intl.formatMessage(messages.taxes)}</td>
           <td className={classes.textRight}>
             <Money money={order.total.tax} />
           </td>
-        </tr>
+        </tr> */}
         <tr data-test-id="order-total-price">
           <td>{intl.formatMessage(messages.total)}</td>
           <td className={classes.textRight}>

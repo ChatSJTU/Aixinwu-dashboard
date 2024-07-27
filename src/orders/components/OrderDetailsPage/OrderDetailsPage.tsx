@@ -307,7 +307,7 @@ const OrderDetailsPage: React.FC<OrderDetailsPageProps> = props => {
               <CardSpacer />
               <OrderChannelSectionCard channel={order?.channel} />
               <CardSpacer />
-              {!isOrderUnconfirmed && (
+              {!isOrderUnconfirmed && false && (
                 <>
                   <OrderInvoiceList
                     invoices={order?.invoices}

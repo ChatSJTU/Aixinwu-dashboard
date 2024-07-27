@@ -305,7 +305,7 @@ const OrderCustomer: React.FC<OrderCustomerProps> = props => {
           </>
         )}
       </CardContent>
-      <Hr />
+      {/* <Hr />
       <CardContent>
         <div className={classes.sectionHeader}>
           <Typography className={classes.sectionHeaderTitle}>
@@ -352,7 +352,7 @@ const OrderCustomer: React.FC<OrderCustomerProps> = props => {
             )}
           </>
         )}
-      </CardContent>
+      </CardContent> */}
     </Card>
   );
 };

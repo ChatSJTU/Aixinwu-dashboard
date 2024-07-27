@@ -174,7 +174,7 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
               {<Money money={order?.shippingPrice.gross} /> ?? <Skeleton />}
             </div>
           </div>
-          <div>
+          {/* <div>
             <FormattedMessage {...orderPaymentMessages.taxes} />
             {order?.total.tax.amount > 0 && (
               <>
@@ -203,7 +203,7 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
             >
               {<Money money={order?.total.tax} /> ?? <Skeleton />}
             </div>
-          </div>
+          </div> */}
           <div className={classes.totalRow}>
             <FormattedMessage {...orderPaymentMessages.total} />
             <div className={classes.leftmostRightAlignedElement}>
@@ -237,27 +237,37 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
               </div>
             </div>
           )}
-          <div>
+          {/* <div>
             <FormattedMessage {...orderPaymentMessages.preauthorized} />
             <div className={classes.leftmostRightAlignedElement}>
               {<Money money={order?.totalAuthorized} /> ?? <Skeleton />}
             </div>
-          </div>
-          <div>
+          </div> */}
+          <div className={clsx(
+                classes.leftmostRightAlignedElement,
+                classes.totalRow,
+              )}>
             <FormattedMessage {...orderPaymentMessages.captured} />
-            <div className={classes.leftmostRightAlignedElement}>
+            <div className={clsx(
+              classes.leftmostRightAlignedElement
+            )}>
               {<Money money={order?.totalCaptured} /> ?? <Skeleton />}
             </div>
           </div>
           {!!refundedAmount?.amount && (
-            <div>
+            <div className={clsx(
+              classes.leftmostRightAlignedElement,
+              classes.totalRow,
+            )}>
               <FormattedMessage {...orderPaymentMessages.refunded} />
-              <div className={classes.leftmostRightAlignedElement}>
+              <div className={clsx(
+                classes.leftmostRightAlignedElement
+              )}>
                 {<Money money={refundedAmount} />}
               </div>
             </div>
           )}
-          <div
+          {/* <div
             className={clsx(
               { [classes.success]: order?.totalBalance.amount === 0 },
               classes.totalRow,
@@ -272,7 +282,7 @@ const OrderPayment: React.FC<OrderPaymentProps> = props => {
               )}
               {}
             </div>
-          </div>
+          </div> */}
         </div>
       </CardContent>
     </Card>
