@@ -24,7 +24,8 @@ const PageList: React.FC<RouteComponentProps<{}>> = ({ location }) => {
   const params: PageListUrlQueryParams = asSortParams(
     qs,
     PageListUrlSortField,
-    PageListUrlSortField.title,
+    PageListUrlSortField.created,
+    false
   );
   return <PageListComponent params={params} />;
 };

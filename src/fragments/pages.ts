@@ -6,6 +6,7 @@ export const pageFragment = gql`
     title
     slug
     isPublished
+    created
   }
 `;
 

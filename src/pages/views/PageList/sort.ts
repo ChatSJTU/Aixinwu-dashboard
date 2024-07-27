@@ -14,6 +14,8 @@ export function getSortQueryField(sort: PageListUrlSortField): PageSortField {
       return PageSortField.VISIBILITY;
     case PageListUrlSortField.slug:
       return PageSortField.SLUG;
+    case PageListUrlSortField.created:
+      return PageSortField.CREATED_AT;
     default:
       return undefined;
   }

@@ -26,6 +26,7 @@ export enum PageListUrlSortField {
   title = "title",
   slug = "slug",
   visible = "visible",
+  created = "created",
 }
 
 export enum PageListUrlFiltersEnum {

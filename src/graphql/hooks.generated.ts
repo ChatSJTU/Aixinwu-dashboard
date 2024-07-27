@@ -2192,6 +2192,7 @@ export const PageFragmentDoc = gql`
   title
   slug
   isPublished
+  created
 }
     `;
 export const FileFragmentDoc = gql`

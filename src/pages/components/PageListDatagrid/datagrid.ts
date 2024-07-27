@@ -1,4 +1,5 @@
 import {
+  dateCell,
   readonlyTextCell,
   tagsCell,
 } from "@dashboard/components/Datagrid/customCells/cells";
@@ -25,8 +26,11 @@ export const pageListStaticColumnsAdapter = (
       width: 450,
     },
     {
-      id: "slug",
-      title: intl.formatMessage(columnsMessages.slug),
+      id: "created",
+      title: intl.formatMessage({
+        id: "page-created",
+        defaultMessage: "创建日期"
+      }),
       width: 300,
     },
     {
@@ -62,6 +66,8 @@ export const createGetCellContent =
     switch (columnId) {
       case "title":
         return readonlyTextCell(rowData?.title ?? "");
+      case "created":
+        return dateCell(rowData?.created ?? "");
       case "slug":
         return readonlyTextCell(rowData?.slug ?? "");
       case "visible": {
