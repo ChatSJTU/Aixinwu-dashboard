@@ -90,7 +90,7 @@ export const defaultListSettings: AppListViewSettings = {
   },
   [ListViews.CUSTOMER_LIST]: {
     rowNumber: PAGINATE_BY,
-    columns: ["name", "email", "orders"],
+    columns: ["name", "code", "email", "orders"],
   },
   [ListViews.DRAFT_LIST]: {
     rowNumber: PAGINATE_BY,

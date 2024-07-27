@@ -6,6 +6,10 @@ export const customerFragment = gql`
     email
     firstName
     lastName
+    note
+    balance
+    userType
+    code
   }
 `;
 

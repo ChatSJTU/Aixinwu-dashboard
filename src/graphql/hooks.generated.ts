@@ -321,6 +321,10 @@ export const CustomerFragmentDoc = gql`
   email
   firstName
   lastName
+  note
+  balance
+  userType
+  code
 }
     `;
 export const AddressFragmentDoc = gql`

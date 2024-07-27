@@ -19,13 +19,22 @@ export const customerListStaticColumnsAdapter = (
     {
       id: "name",
       title: intl.formatMessage(columnsMessages.name),
-      width: 450,
+      width: 300,
+    },
+    {
+      id: "code",
+      title: intl.formatMessage({
+        id: "customer-code",
+        defaultMessage: "学号"
+      }),
+      width: 200,
     },
     {
       id: "email",
       title: intl.formatMessage(columnsMessages.email),
-      width: 450,
+      width: 400,
     },
+    
     ...(includeOrders
       ? [
           {
@@ -59,6 +68,8 @@ export const createGetCellContent =
     switch (columnId) {
       case "name":
         return readonlyTextCell(getUserName(rowData) ?? "");
+      case "code":
+        return readonlyTextCell(rowData?.code ?? "/");
       case "email":
         return readonlyTextCell(rowData?.email ?? "");
       case "orders":
