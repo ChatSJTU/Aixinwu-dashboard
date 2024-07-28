@@ -155,14 +155,14 @@ const DonationListPage: React.FC<DonationListPageProps> = ({
           onSearchChange={onSearchChange}
           actions={
             <Box display="flex" gap={4}>
-              {selectedDonationIds.length > 0 && (
+              {/* {selectedDonationIds.length > 0 && (
                 <BulkDeleteButton onClick={onDonationsDelete}>
                   <FormattedMessage
                     defaultMessage="删除捐赠"
                     id="donation-delete"
                   />
                 </BulkDeleteButton>
-              )}
+              )} */}
             </Box>
           }
         />

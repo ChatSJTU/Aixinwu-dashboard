@@ -187,7 +187,7 @@ export const DonationList: React.FC<DonationListProps> = ({ params }) => {
         hasPresetsChanged={hasPresetsChanged}
         onDonationsDelete={() => openModal("remove", { ids: selectedRowIds })}
       />
-      <ActionDialog
+      {/* <ActionDialog
         open={params.action === "remove" && selectedRowIds?.length > 0}
         onClose={closeModal}
         confirmButtonState={bulkRemoveDonationsOpts.status}
@@ -215,7 +215,7 @@ export const DonationList: React.FC<DonationListProps> = ({ params }) => {
             }}
           />
         </DialogContentText>
-      </ActionDialog>
+      </ActionDialog> */}
       <SaveFilterTabDialog
         open={params.action === "save-search"}
         confirmButtonState="default"
