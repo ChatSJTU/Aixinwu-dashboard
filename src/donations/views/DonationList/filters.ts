@@ -27,8 +27,8 @@ export function getFilterOpts(
 ): DonationListFilterOpts {
   return {
     donator: {
-      active: false,
-      value: ""
+      active: !!params?.donator,
+      value: params?.donator,
     }
     // joined: {
     //   active:
