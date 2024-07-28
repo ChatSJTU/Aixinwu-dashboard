@@ -9,6 +9,7 @@ import {
   createFilterTabUtils,
   createFilterUtils,
   getGteLteVariables,
+  getKeyValueQueryParam,
   getMinMaxQueryParam,
   getSingleValueQueryParam,
 } from "../../../utils/filters";
@@ -65,21 +66,6 @@ export function getFilterQueryParam(
 ): DonationListUrlFilters {
   const { name } = filter;
   return getSingleValueQueryParam(filter, DonationListUrlFiltersEnum.donator);
-  // switch (name) {
-  //   case DonationFilterKeys:
-  //     return getMinMaxQueryParam(
-  //       filter,
-  //       DonationListUrlFiltersEnum.joinedFrom,
-  //       DonationListUrlFiltersEnum.joinedTo,
-  //     );
-
-  //   case DonationFilterKeys.numberOfOrders:
-  //     return getMinMaxQueryParam(
-  //       filter,
-  //       DonationListUrlFiltersEnum.numberOfOrdersFrom,
-  //       DonationListUrlFiltersEnum.numberOfOrdersTo,
-  //     );
-  // }
 }
 
 export const storageUtils = createFilterTabUtils<string>(DONATION_FILTERS_KEY);
