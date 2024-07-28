@@ -67,6 +67,7 @@ export interface AppListViewSettings {
   [ListViews.PRODUCT_DETAILS]: ListSettings;
   [ListViews.VOUCHER_CODES]: ListSettings;
   [ListViews.DONATION_LIST]: ListSettings;
+  [ListViews.COINLOG_LIST]: ListSettings;
 }
 
 export const defaultListSettings: AppListViewSettings = {
@@ -194,6 +195,10 @@ export const defaultListSettings: AppListViewSettings = {
   [ListViews.DONATION_LIST]: {
     rowNumber: PAGINATE_BY,
     columns: ["barcode", "title", "value", "donator", "created", "status"],
+  },
+  [ListViews.COINLOG_LIST]: {
+    rowNumber: PAGINATE_BY,
+    columns: ["number", "user", "created", "balance", "type"],
   },
 };
 
