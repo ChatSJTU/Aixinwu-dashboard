@@ -2,13 +2,12 @@ import { dateCell, moneyCell, pillCell, readonlyTextCell } from "@dashboard/comp
 import { AvailableColumn } from "@dashboard/components/Datagrid/types";
 import { Donations } from "@dashboard/donations/types";
 import { DonationListUrlSortField } from "@dashboard/donations/urls";
-import { getStatusColor, getUserName } from "@dashboard/misc";
-import { RelayToFlat, Sort, StatusType } from "@dashboard/types";
+import { getStatusColor } from "@dashboard/misc";
+import { RelayToFlat, Sort } from "@dashboard/types";
 import { getColumnSortDirectionIcon } from "@dashboard/utils/columns/getColumnSortDirectionIcon";
 import { GridCell, Item } from "@glideapps/glide-data-grid";
 import { IntlShape, useIntl } from "react-intl";
 import { DefaultTheme, useTheme } from "@saleor/macaw-ui-next";
-import { columnsMessages } from "./messages";
 import { ListDonationsQuery } from "@dashboard/graphql";
 import { transformDonationStatus } from "@dashboard/donations/utils";
 
