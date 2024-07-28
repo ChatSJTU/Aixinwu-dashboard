@@ -97,7 +97,7 @@ export const useGetCellContent = (
       case "barcode":
         return readonlyTextCell(rowData?.barcode ?? "");
       case "donator":
-        return readonlyTextCell(rowData?.donator?.account ?? "/");
+        return readonlyTextCell(rowData?.donator?.firstName ?? "/");
       case "value":
         return moneyCell(rowData?.price.amount, "AXB");
       case "status":
