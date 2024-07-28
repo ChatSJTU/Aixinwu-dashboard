@@ -9239,6 +9239,18 @@ export type ChannelQueryVariables = Exact<{
 
 export type ChannelQuery = { __typename: 'Query', channel: { __typename: 'Channel', hasOrders: boolean, id: string, isActive: boolean, name: string, slug: string, currencyCode: string, warehouses: Array<{ __typename: 'Warehouse', id: string, name: string }>, orderSettings: { __typename: 'OrderSettings', markAsPaidStrategy: MarkAsPaidStrategyEnum, deleteExpiredOrdersAfter: any, allowUnpaidOrders: boolean }, paymentSettings: { __typename: 'PaymentSettings', defaultTransactionFlowStrategy: TransactionFlowStrategyEnum }, defaultCountry: { __typename: 'CountryDisplay', code: string, country: string }, stockSettings: { __typename: 'StockSettings', allocationStrategy: AllocationStrategyEnum } } | null };
 
+export type ListCoinlogsQueryVariables = Exact<{
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<BalanceEventFilterInput>;
+  sort?: InputMaybe<BalanceEventSortingInput>;
+}>;
+
+
+export type ListCoinlogsQuery = { __typename: 'Query', balanceEvents: { __typename: 'BalanceEventCountableConnection', edges: Array<{ __typename: 'BalanceEventCountableEdge', node: { __typename: 'BalanceEvent', account: string | null, balance: number | null, code: string | null, type: string | null, number: number | null, name: string | null, id: string, date: any | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
+
 export type CollectionUpdateMutationVariables = Exact<{
   id: Scalars['ID'];
   input: CollectionInput;

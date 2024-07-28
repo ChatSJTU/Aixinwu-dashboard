@@ -5485,6 +5485,70 @@ export function useChannelLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHook
 export type ChannelQueryHookResult = ReturnType<typeof useChannelQuery>;
 export type ChannelLazyQueryHookResult = ReturnType<typeof useChannelLazyQuery>;
 export type ChannelQueryResult = Apollo.QueryResult<Types.ChannelQuery, Types.ChannelQueryVariables>;
+export const ListCoinlogsDocument = gql`
+    query ListCoinlogs($after: String, $before: String, $first: Int, $last: Int, $filter: BalanceEventFilterInput, $sort: BalanceEventSortingInput) {
+  balanceEvents(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    filter: $filter
+    sortBy: $sort
+  ) {
+    edges {
+      node {
+        account
+        balance
+        code
+        type
+        number
+        name
+        id
+        date
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}
+    `;
+
+/**
+ * __useListCoinlogsQuery__
+ *
+ * To run a query within a React component, call `useListCoinlogsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useListCoinlogsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useListCoinlogsQuery({
+ *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      filter: // value for 'filter'
+ *      sort: // value for 'sort'
+ *   },
+ * });
+ */
+export function useListCoinlogsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.ListCoinlogsQuery, Types.ListCoinlogsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.ListCoinlogsQuery, Types.ListCoinlogsQueryVariables>(ListCoinlogsDocument, options);
+      }
+export function useListCoinlogsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.ListCoinlogsQuery, Types.ListCoinlogsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.ListCoinlogsQuery, Types.ListCoinlogsQueryVariables>(ListCoinlogsDocument, options);
+        }
+export type ListCoinlogsQueryHookResult = ReturnType<typeof useListCoinlogsQuery>;
+export type ListCoinlogsLazyQueryHookResult = ReturnType<typeof useListCoinlogsLazyQuery>;
+export type ListCoinlogsQueryResult = Apollo.QueryResult<Types.ListCoinlogsQuery, Types.ListCoinlogsQueryVariables>;
 export const CollectionUpdateDocument = gql`
     mutation CollectionUpdate($id: ID!, $input: CollectionInput!) {
   collectionUpdate(id: $id, input: $input) {
