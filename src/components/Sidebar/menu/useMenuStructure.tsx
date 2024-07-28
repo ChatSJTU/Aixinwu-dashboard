@@ -39,6 +39,7 @@ import DonationIcon from "@dashboard/icons/Donation";
 import { donationListUrl } from "@dashboard/donations/urls";
 import { barcodeManageUrl } from "@dashboard/barcodes/urls";
 import StatIcon from "@dashboard/icons/Stat";
+import { coinlogListUrl } from "@dashboard/coinlogs/urls";
 
 const iconSettings = {
   color: "default2",
@@ -233,7 +234,7 @@ export function useMenuStructure() {
             defaultMessage: "爱心币日志",
           }),
           id: "axb-log",
-          url: barcodeManageUrl(),
+          url: coinlogListUrl(),
           type: "item",
         },
         {
