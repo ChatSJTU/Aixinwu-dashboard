@@ -41,7 +41,7 @@ export interface DonationDetailsPageFormData {
 
 export interface DonationDetailsPageProps {
   donationId: string;
-  donation: DonationDetailQuery["donations"]["edges"][0]["node"];
+  donation: DonationDetailQuery["donation"];
   disabled: boolean;
   errors: AccountErrorFragment[];
   saveButtonBar: ConfirmButtonTransitionState;
@@ -71,7 +71,7 @@ const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
     status: donation?.status || "",
     title: donation?.title || "",
     price: donation?.price.amount || 0,
-    donator: donation?.donator || "/",
+    donator: donation?.donator || {firstName: "", code: "", id: ""},
     quantity: donation?.quantity || 0,
     created: donation?.createdAt || ""
   };

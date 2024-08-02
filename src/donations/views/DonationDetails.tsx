@@ -80,22 +80,24 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
     return <NotFoundPage backHref={donationListUrl()} />;
   }
 
-  const updateData = async (data: DonationDetailsPageFormData) => null;
-    // extractMutationErrors(
-    //   updateDonation({
-    //     variables: {
-    //       id,
-    //       input: {
-    //         email: data.email,
-    //         firstName: data.firstName,
-    //         isActive: data.isActive,
-    //         lastName: data.lastName,
-    //         note: data.note,
-    //         balance: data.balance,
-    //       },
-    //     },
-    //   }),
-    // );
+  const updateData = async (data: DonationDetailsPageFormData) => 
+    extractMutationErrors(
+      updateDonation({
+        variables: {
+          id,
+          input: {
+            title: data.title,
+            description: data.description,
+            barcode: data.barcode,
+            price: {
+              amount: data.price,
+              currency: "AXB"
+            },
+            quantity: data.quantity
+          },
+        },
+      }),
+    );
 
   // const handleSubmit = createMetadataUpdateHandler(
   //   donation,
