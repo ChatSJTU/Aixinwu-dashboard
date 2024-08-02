@@ -198,12 +198,12 @@ const Routes: React.FC = () => {
                     component={CollectionSection}
                   />
                   <SectionRoute
-                    permissions={[PermissionEnum.MANAGE_DONATIONS]}
+                    permissions={[PermissionEnum.ADD_DONATIONS]}
                     path="/donations"
                     component={DonationSection}
                   />
                   <SectionRoute
-                    permissions={[PermissionEnum.MANAGE_DONATIONS]}
+                    permissions={[PermissionEnum.ADD_DONATIONS]}
                     path="/barcodes"
                     component={BarcodeSection}
                   />
