@@ -1212,7 +1212,7 @@
     "string": "名称"
   },
   "6D+yYX": {
-    "string": "支付状态"
+    "string": "付款状态"
   },
   "6FLezz": {
     "string": "你确定要删除此折扣吗？"
@@ -3773,7 +3773,7 @@
   },
   "OGemtu": {
     "context": "payment status",
-    "string": "Partially refunded"
+    "string": "部分退款"
   },
   "OGm8wO": {
     "context": "button",
@@ -5516,7 +5516,7 @@
   },
   "a4qX2+": {
     "context": "order",
-    "string": "已创建"
+    "string": "创建日期"
   },
   "a55zOn": {
     "context": "section header",
@@ -6015,7 +6015,7 @@
   },
   "dOQB9o": {
     "context": "payment status",
-    "string": "取消"
+    "string": "已取消"
   },
   "dPYqy0": {
     "string": "我们目前正在导出您要求的CSV。一旦它可用，它将被发送到您的电子邮件地址。"

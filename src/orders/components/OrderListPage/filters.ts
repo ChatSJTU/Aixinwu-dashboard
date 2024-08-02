@@ -98,30 +98,30 @@ export function createFilterStructure(
   opts: OrderListFilterOpts,
 ): IFilter<OrderFilterKeys> {
   return [
-    {
-      ...createBooleanField(
-        OrderFilterKeys.clickAndCollect,
-        intl.formatMessage(messages.clickAndCollect),
-        opts.clickAndCollect.value,
-        {
-          negative: intl.formatMessage(commonMessages.no),
-          positive: intl.formatMessage(commonMessages.yes),
-        },
-      ),
-      active: opts.clickAndCollect.active,
-    },
-    {
-      ...createBooleanField(
-        OrderFilterKeys.preorder,
-        intl.formatMessage(messages.preorder),
-        opts.preorder.value,
-        {
-          negative: intl.formatMessage(commonMessages.no),
-          positive: intl.formatMessage(commonMessages.yes),
-        },
-      ),
-      active: opts.preorder.active,
-    },
+    // {
+    //   ...createBooleanField(
+    //     OrderFilterKeys.clickAndCollect,
+    //     intl.formatMessage(messages.clickAndCollect),
+    //     opts.clickAndCollect.value,
+    //     {
+    //       negative: intl.formatMessage(commonMessages.no),
+    //       positive: intl.formatMessage(commonMessages.yes),
+    //     },
+    //   ),
+    //   active: opts.clickAndCollect.active,
+    // },
+    // {
+    //   ...createBooleanField(
+    //     OrderFilterKeys.preorder,
+    //     intl.formatMessage(messages.preorder),
+    //     opts.preorder.value,
+    //     {
+    //       negative: intl.formatMessage(commonMessages.no),
+    //       positive: intl.formatMessage(commonMessages.yes),
+    //     },
+    //   ),
+    //   active: opts.preorder.active,
+    // },
     {
       ...createTextField(
         OrderFilterKeys.customer,
@@ -138,36 +138,35 @@ export function createFilterStructure(
       ),
       active: opts.created.active,
     },
-    {
-      ...createOptionsField(
-        OrderFilterKeys.giftCard,
-        intl.formatMessage(messages.giftCard),
-        opts.giftCard.value,
-        true,
-        [
-          {
-            label: intl.formatMessage(messages.giftCardOrdered),
-            value: OrderFilterGiftCard.bought,
-          },
-          {
-            label: intl.formatMessage(messages.giftCardPaid),
-            value: OrderFilterGiftCard.paid,
-          },
-        ],
-      ),
-      active: opts.giftCard.active,
-    },
+    // {
+    //   ...createOptionsField(
+    //     OrderFilterKeys.giftCard,
+    //     intl.formatMessage(messages.giftCard),
+    //     opts.giftCard.value,
+    //     true,
+    //     [
+    //       {
+    //         label: intl.formatMessage(messages.giftCardOrdered),
+    //         value: OrderFilterGiftCard.bought,
+    //       },
+    //       {
+    //         label: intl.formatMessage(messages.giftCardPaid),
+    //         value: OrderFilterGiftCard.paid,
+    //       },
+    //     ],
+    //   ),
+    //   active: opts.giftCard.active,
+    // },
     {
       ...createOptionsField(
         OrderFilterKeys.status,
-        intl.formatMessage(commonMessages.status),
+        intl.formatMessage({
+          id: "order-filter-status",
+          defaultMessage: "交付状态",
+        }),
         opts.status.value,
         true,
         [
-          {
-            label: intl.formatMessage(commonStatusMessages.cancelled),
-            value: OrderStatusFilter.CANCELED,
-          },
           {
             label: intl.formatMessage(orderStatusMessages.fulfilled),
             value: OrderStatusFilter.FULFILLED,
@@ -180,17 +179,21 @@ export function createFilterStructure(
             label: intl.formatMessage(orderStatusMessages.unfulfilled),
             value: OrderStatusFilter.UNFULFILLED,
           },
-          {
-            label: intl.formatMessage(orderStatusMessages.readyToCapture),
-            value: OrderStatusFilter.READY_TO_CAPTURE,
-          },
-          {
-            label: intl.formatMessage(orderStatusMessages.readyToFulfill),
-            value: OrderStatusFilter.READY_TO_FULFILL,
-          },
+          // {
+          //   label: intl.formatMessage(orderStatusMessages.readyToCapture),
+          //   value: OrderStatusFilter.READY_TO_CAPTURE,
+          // },
+          // {
+          //   label: intl.formatMessage(orderStatusMessages.readyToFulfill),
+          //   value: OrderStatusFilter.READY_TO_FULFILL,
+          // },
           {
             label: intl.formatMessage(orderStatusMessages.unconfirmed),
             value: OrderStatusFilter.UNCONFIRMED,
+          },
+          {
+            label: intl.formatMessage(commonStatusMessages.cancelled),
+            value: OrderStatusFilter.CANCELED,
           },
         ],
       ),
@@ -207,10 +210,10 @@ export function createFilterStructure(
             label: intl.formatMessage(paymentStatusMessages.paid),
             value: PaymentChargeStatusEnum.FULLY_CHARGED,
           },
-          {
-            label: intl.formatMessage(paymentStatusMessages.partiallyPaid),
-            value: PaymentChargeStatusEnum.PARTIALLY_CHARGED,
-          },
+          // {
+          //   label: intl.formatMessage(paymentStatusMessages.partiallyPaid),
+          //   value: PaymentChargeStatusEnum.PARTIALLY_CHARGED,
+          // },
           {
             label: intl.formatMessage(paymentStatusMessages.unpaid),
             value: PaymentChargeStatusEnum.NOT_CHARGED,
@@ -227,26 +230,26 @@ export function createFilterStructure(
             label: intl.formatMessage(commonStatusMessages.cancelled),
             value: PaymentChargeStatusEnum.CANCELLED,
           },
-          {
-            label: intl.formatMessage(paymentStatusMessages.pending),
-            value: PaymentChargeStatusEnum.PENDING,
-          },
-          {
-            label: intl.formatMessage(paymentStatusMessages.refused),
-            value: PaymentChargeStatusEnum.REFUSED,
-          },
+          // {
+          //   label: intl.formatMessage(paymentStatusMessages.pending),
+          //   value: PaymentChargeStatusEnum.PENDING,
+          // },
+          // {
+          //   label: intl.formatMessage(paymentStatusMessages.refused),
+          //   value: PaymentChargeStatusEnum.REFUSED,
+          // },
         ],
       ),
       active: opts.paymentStatus.active,
     },
-    {
-      ...createKeyValueField(
-        OrderFilterKeys.metadata,
-        intl.formatMessage(messages.metadata),
-        opts.metadata.value,
-      ),
-      active: opts.metadata.active,
-    },
+    // {
+    //   ...createKeyValueField(
+    //     OrderFilterKeys.metadata,
+    //     intl.formatMessage(messages.metadata),
+    //     opts.metadata.value,
+    //   ),
+    //   active: opts.metadata.active,
+    // },
     ...(opts?.channel?.choices?.length
       ? [
           {
