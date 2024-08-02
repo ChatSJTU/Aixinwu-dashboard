@@ -209,8 +209,40 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
             spellCheck: false,
           }}
         />
+        <Hr className={classes.hr} />
+        <Grid variant="uniform">
+          <TextField
+            disabled={disabled}
+            helperText={""}
+            error={false}
+            fullWidth
+            name="price"
+            onChange={onChange}
+            label={intl.formatMessage({
+              id: "donation-estimated",
+              defaultMessage: "爱心币估值",
+            })}
+            value={data.price}
+            type="number"
+          />
+          <TextField
+            disabled={disabled}
+            helperText={""}
+            error={false}
+            fullWidth
+            name="quantity"
+            onChange={onChange}
+            label={intl.formatMessage({
+              id: "donation-quantity",
+              defaultMessage: "数量",
+            })}
+            value={data.quantity}
+            type="number"
+          />
+        </Grid>
       </CardContent>
     </Card>
+    
     <RequirePermissions
       requiredPermissions={[PermissionEnum.MANAGE_DONATIONS]}
     >
