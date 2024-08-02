@@ -266,11 +266,11 @@ const OrderDetailsPage: React.FC<OrderDetailsPageProps> = props => {
                     onFulfillmentApprove(fulfillment.id)
                   }
                 >
-                  <Metadata
+                  {/* <Metadata
                     isLoading={loading}
                     data={data[fulfillment.id]}
                     onChange={x => handleChangeMetadata(x, fulfillment.id)}
-                  />
+                  /> */}
                 </OrderFulfilledProductsCard>
               ))}
               <OrderPaymentOrTransaction
@@ -283,11 +283,11 @@ const OrderDetailsPage: React.FC<OrderDetailsPageProps> = props => {
                 onMarkAsPaid={onMarkAsPaid}
                 onAddManualTransaction={onAddManualTransaction}
               />
-              <Metadata
+              {/* <Metadata
                 isLoading={loading}
                 data={data[order?.id]}
                 onChange={x => handleChangeMetadata(x, order?.id)}
-              />
+              /> */}
               <OrderHistory
                 history={order?.events}
                 orderCurrency={order?.total?.gross.currency}
