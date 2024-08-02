@@ -169,7 +169,6 @@ export const defaultListSettings: AppListViewSettings = {
       "quantity",
       "price",
       "total",
-      "metadata",
     ],
   },
   [ListViews.ORDER_DRAFT_DETAILS_LIST]: {
@@ -182,7 +181,6 @@ export const defaultListSettings: AppListViewSettings = {
       "quantity",
       "price",
       "total",
-      "metadata",
     ],
   },
   [ListViews.PRODUCT_DETAILS]: {

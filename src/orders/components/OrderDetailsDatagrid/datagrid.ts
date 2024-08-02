@@ -44,11 +44,11 @@ export const orderDetailsStaticColumnsAdapter = (
     title: intl.formatMessage(columnsMessages.total),
     width: 100,
   },
-  {
-    id: "metadata",
-    title: intl.formatMessage(commonMessages.metadata),
-    width: 150,
-  },
+  // {
+  //   id: "metadata",
+  //   title: intl.formatMessage(commonMessages.metadata),
+  //   width: 150,
+  // },
 ];
 
 interface GetCellContentProps {
