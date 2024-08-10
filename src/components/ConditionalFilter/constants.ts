@@ -4,35 +4,35 @@ import { LeftOperand } from "./LeftOperandsProvider";
 
 export const STATIC_CONDITIONS = {
   category: [
-    { type: "combobox", label: "is", value: "input-1" },
-    { type: "multiselect", label: "in", value: "input-2" },
+    { type: "combobox", op: "is", label: "等于", value: "input-1" },
+    { type: "multiselect", op: "in", label: "包含于", value: "input-2" },
   ],
   price: [
-    { type: "number", label: "is", value: "input-1" },
-    { type: "number", label: "lower", value: "input-2" },
-    { type: "number", label: "greater", value: "input-3" },
-    { type: "number.range", label: "between", value: "input-4" },
+    { type: "number", op: "is", label: "等于", value: "input-1" },
+    { type: "number", op: "lower", label: "小于", value: "input-2" },
+    { type: "number", op: "greater", label: "大于", value: "input-3" },
+    { type: "number.range", op: "between", label: "介于", value: "input-4" },
   ],
-  collection: [{ type: "multiselect", label: "in", value: "input-4" }],
-  channel: [{ type: "select", label: "is", value: "input-5" }],
+  collection: [{ type: "multiselect", op: "is", label: "等于", value: "input-4" }],
+  channel: [{ type: "select", op: "is", label: "等于", value: "input-5" }],
   productType: [
-    { type: "combobox", label: "is", value: "input-1" },
-    { type: "multiselect", label: "in", value: "input-2" },
+    { type: "combobox", op: "is", label: "等于", value: "input-1" },
+    { type: "multiselect", op: "in", label: "包含于", value: "input-2" },
   ],
-  isAvailable: [{ type: "select", label: "is", value: "input-1" }],
-  isPublished: [{ type: "select", label: "is", value: "input-1" }],
-  isVisibleInListing: [{ type: "select", label: "is", value: "input-1" }],
-  hasCategory: [{ type: "select", label: "is", value: "input-1" }],
-  giftCard: [{ type: "select", label: "is", value: "input-1" }],
+  isAvailable: [{ type: "select", op: "is", label: "等于", value: "input-1" }],
+  isPublished: [{ type: "select", op: "is", label: "等于", value: "input-1" }],
+  isVisibleInListing: [{ type: "select", op: "is", label: "等于", value: "input-1" }],
+  hasCategory: [{ type: "select", op: "is", label: "等于", value: "input-1" }],
+  giftCard: [{ type: "select", op: "is", label: "等于", value: "input-1" }],
   startDate: [
-    { type: "datetime", label: "lower", value: "input-1" },
-    { type: "datetime", label: "greater", value: "input-2" },
-    { type: "datetime.range", label: "between", value: "input-3" },
+    { type: "datetime", op: "lower", label: "小于", value: "input-1" },
+    { type: "datetime", op: "greater", label: "大于", value: "input-2" },
+    { type: "datetime.range", op: "between", label: "介于", value: "input-3" },
   ],
   endDate: [
-    { type: "datetime", label: "lower", value: "input-1" },
-    { type: "datetime", label: "greater", value: "input-2" },
-    { type: "datetime.range", label: "between", value: "input-3" },
+    { type: "datetime", op: "lower", label: "小于", value: "input-1" },
+    { type: "datetime", op: "greater", label: "大于", value: "input-2" },
+    { type: "datetime.range", op: "between", label: "介于", value: "input-3" },
   ],
 };
 
@@ -84,12 +84,12 @@ export const STATIC_PRODUCT_OPTIONS: LeftOperand[] = [
     type: "hasCategory",
     slug: "hasCategory",
   },
-  {
-    value: "giftCard",
-    label: "IsGiftcard",
-    type: "giftCard",
-    slug: "giftCard",
-  },
+  // {
+  //   value: "giftCard",
+  //   label: "IsGiftcard",
+  //   type: "giftCard",
+  //   slug: "giftCard",
+  // },
 ];
 
 export const STATIC_DISCOUNT_OPTIONS: LeftOperand[] = [

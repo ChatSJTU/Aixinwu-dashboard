@@ -89,7 +89,7 @@ export class UrlEntry {
     }
 
     const conditionIndex = CONDITIONS.findIndex(
-      el => el === conditionValue.label,
+      el => el === conditionValue.op,
     );
 
     return new UrlEntry(`${tokenSlug}${conditionIndex}.${paramName}`, slug);

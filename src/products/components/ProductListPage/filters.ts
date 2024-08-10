@@ -152,14 +152,14 @@ export function createFilterStructure(
       ),
       active: opts.channel.active,
     },
-    {
-      ...createKeyValueField(
-        ProductFilterKeys.metadata,
-        intl.formatMessage(messages.metadata),
-        opts.metadata.value,
-      ),
-      active: opts.metadata.active,
-    },
+    // {
+    //   ...createKeyValueField(
+    //     ProductFilterKeys.metadata,
+    //     intl.formatMessage(messages.metadata),
+    //     opts.metadata.value,
+    //   ),
+    //   active: opts.metadata.active,
+    // },
     {
       ...createOptionsField(
         ProductFilterKeys.productKind,

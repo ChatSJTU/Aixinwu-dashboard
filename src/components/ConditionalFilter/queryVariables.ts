@@ -26,17 +26,17 @@ const createStaticQueryPart = (
 ): StaticQueryPart => {
   if (!selected.conditionValue) return "";
 
-  const { label } = selected.conditionValue;
+  const { op } = selected.conditionValue;
   const { value } = selected;
 
-  if (label === "lower") {
+  if (op === "lower") {
     return { range: { lte: value } };
   }
-  if (label === "greater") {
+  if (op === "greater") {
     return { range: { gte: value } };
   }
 
-  if (isTuple(value) && label === "between") {
+  if (isTuple(value) && op === "between") {
     const [gte, lte] = value;
     return { range: { lte, gte } };
   }
@@ -99,18 +99,18 @@ const createAttributeQueryPart = (
 ): AttributeInput => {
   if (!selected.conditionValue) return { slug: attributeSlug };
 
-  const { label, type } = selected.conditionValue;
+  const { op, type } = selected.conditionValue;
   const { value } = selected;
 
-  if (label === "lower" && typeof value === "string") {
+  if (op === "lower" && typeof value === "string") {
     return { slug: attributeSlug, ...getQueryPartByType(value, type, "lte") };
   }
 
-  if (label === "greater" && typeof value === "string") {
+  if (op === "greater" && typeof value === "string") {
     return { slug: attributeSlug, ...getQueryPartByType(value, type, "gte") };
   }
 
-  if (isTuple(value) && label === "between") {
+  if (isTuple(value) && op === "between") {
     return {
       slug: attributeSlug,
       ...getRangeQueryPartByType(value, type),

@@ -10,6 +10,7 @@ export type AttributeInputType = keyof typeof ATTRIBUTE_INPUT_TYPE_CONDITIONS;
 
 export interface ConditionItem {
   type: string;
+  op: string;
   label: string;
   value: string;
 }
@@ -79,7 +80,7 @@ export class ConditionOptions extends Array<ConditionItem> {
   }
 
   public findByLabel(label: string) {
-    return this.find(f => f.label === label);
+    return this.find(f => f.op === label);
   }
 
   public first() {
