@@ -13,6 +13,7 @@ import DonationCreatePage, {
   DonationCreatePageSubmitData,
 } from "../components/DonationCreatePage";
 import { donationUrl } from "../urls";
+import { isNineDigitNumber } from "@dashboard/barcodes/utils";
 
 export const DonationCreate: React.FC = () => {
   const navigate = useNavigator();
@@ -34,8 +35,23 @@ export const DonationCreate: React.FC = () => {
     },
   });
 
-  const handleSubmit = (formData: DonationCreatePageSubmitData) =>
-    extractMutationErrors(
+  const handleSubmit = (formData: DonationCreatePageSubmitData) => {
+    if (!isNineDigitNumber(formData.barcode)) {
+      notify({
+        status: "warning",
+        text: intl.formatMessage({
+          id: "barcode-codeformat",
+          defaultMessage: "条码必须是9位数字（前4位年份月份，后5位序号）",
+        }),
+      })
+      return;
+    }
+    // if (getCurrentYearMonth() != data.barcode.substring(0,4)) {
+    //   setTmpData(data);
+    //   setIsBarcodeFormatDialogOpen(true);
+    //   return [];
+    // }
+    return extractMutationErrors(
       createDonation({
         variables: {
           input: {
@@ -53,7 +69,8 @@ export const DonationCreate: React.FC = () => {
         },
       }),
     );
-
+  }
+  
   return (
     <>
       <WindowTitle

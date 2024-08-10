@@ -7,15 +7,15 @@ import {
 } from "@dashboard/graphql";
 import useNavigator from "@dashboard/hooks/useNavigator";
 import useNotifier from "@dashboard/hooks/useNotifier";
-import { commonMessages } from "@dashboard/intl";
 import React, { useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
-import { Box, Button, ChevronRightIcon, Text } from "@saleor/macaw-ui-next";
+import { Button, Text } from "@saleor/macaw-ui-next";
 import Hr from "@dashboard/components/Hr";
 import { Card, CardContent, Grid, Slider, TextField, Typography } from "@material-ui/core";
 import CardTitle from "@dashboard/components/CardTitle";
 import { makeStyles } from "@saleor/macaw-ui";
 import BarcodePrinter, { BarcodeProps } from "@dashboard/components/BarcodePrinter/BarcodePrinter";
+import { isNineDigitNumber } from "../utils"
 
 const useStyles = makeStyles(
   theme => ({
@@ -87,10 +87,6 @@ const BarcodeView: React.FC = () => {
       }
     })
   };
-
-  function isNineDigitNumber(str) {
-    return /^\d{9}$/.test(str);
-  }
 
   const handleButtonSingleClick = () => {
     if (!isNineDigitNumber(singleCode)) {

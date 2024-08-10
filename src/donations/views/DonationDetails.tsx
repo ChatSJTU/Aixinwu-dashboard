@@ -14,7 +14,7 @@ import { commonMessages } from "@dashboard/intl";
 import { extractMutationErrors, getStringOrPlaceholder } from "@dashboard/misc";
 import createMetadataUpdateHandler from "@dashboard/utils/handlers/metadataUpdateHandler";
 import { DialogContentText } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import DonationDetailsPage, {
@@ -24,6 +24,7 @@ import { useDonationDetails } from "../hooks/useDonationDetails";
 import { DonationDetailsProvider } from "../providers/DonationDetailsProvider";
 import { donationListUrl, donationUrl, DonationUrlDialog, DonationUrlQueryParams } from "../urls";
 import createDialogActionHandlers from "@dashboard/utils/handlers/dialogActionHandlers";
+import { getCurrentYearMonth, isNineDigitNumber } from "@dashboard/barcodes/utils";
 
 interface DonationDetailsViewProps {
   id: string;
@@ -80,8 +81,26 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
     return <NotFoundPage backHref={donationListUrl()} />;
   }
 
-  const updateData = async (data: DonationDetailsPageFormData) => 
-    extractMutationErrors(
+  const [isBarcodeFormatDialogOpen, setIsBarcodeFormatDialogOpen] = useState<boolean>(false);
+  const [tmpData, setTmpData] = useState<DonationDetailsPageFormData | undefined>(undefined);
+
+  const updateData = async (data: DonationDetailsPageFormData) => {
+    if (!isNineDigitNumber(data.barcode)) {
+      notify({
+        status: "warning",
+        text: intl.formatMessage({
+          id: "barcode-codeformat",
+          defaultMessage: "条码必须是9位数字（前4位年份月份，后5位序号）",
+        }),
+      })
+      return;
+    }
+    if (getCurrentYearMonth() != data.barcode.substring(0,4)) {
+      setTmpData(data);
+      setIsBarcodeFormatDialogOpen(true);
+      return [];
+    }
+    return extractMutationErrors(
       updateDonation({
         variables: {
           id,
@@ -98,6 +117,29 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
         },
       }),
     );
+  }
+
+  const onBarcodeFormatDialogConfirm = () => {
+    setIsBarcodeFormatDialogOpen(false);
+    extractMutationErrors(
+      updateDonation({
+        variables: {
+          id,
+          input: {
+            title: tmpData.title,
+            description: tmpData.description,
+            barcode: tmpData.barcode,
+            price: {
+              amount: tmpData.price,
+              currency: "AXB"
+            },
+            quantity: tmpData.quantity
+          },
+        },
+      }),
+    );
+  };
+    
 
   // const handleSubmit = createMetadataUpdateHandler(
   //   donation,
@@ -176,6 +218,24 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
           <FormattedMessage
             id="donation-complete-reject"
             defaultMessage="确认拒绝该捐赠？"
+          />
+        </DialogContentText>
+      </ActionDialog>
+      <ActionDialog
+        open={isBarcodeFormatDialogOpen}
+        onClose={() => {setIsBarcodeFormatDialogOpen(false);}}
+        confirmButtonState="default"
+        onConfirm={onBarcodeFormatDialogConfirm}
+        variant="default"
+        title={intl.formatMessage({
+          id: "BarcodeFormatDialogTitle",
+          defaultMessage: "条码格式错误警告",
+        })}
+      >
+        <DialogContentText>
+          <FormattedMessage
+            id="BarcodeFormatDialogBody"
+            defaultMessage={`您输入的条码不符合格式要求，根据今天的日期，条码的前四位应该是 ${getCurrentYearMonth()}。是否忽略警告并继续？`}
           />
         </DialogContentText>
       </ActionDialog>
