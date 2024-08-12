@@ -33,7 +33,7 @@ export const orderListStaticColumnAdapter = (
     {
       id: "number",
       title: intl.formatMessage(columnsMessages.number),
-      width: 100,
+      width: 140,
     },
     {
       id: "date",
@@ -48,12 +48,12 @@ export const orderListStaticColumnAdapter = (
     {
       id: "payment",
       title: intl.formatMessage(columnsMessages.payment),
-      width: 200,
+      width: 120,
     },
     {
       id: "status",
       title: intl.formatMessage(columnsMessages.status),
-      width: 200,
+      width: 120,
     },
     {
       id: "total",

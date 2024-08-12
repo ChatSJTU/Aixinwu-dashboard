@@ -426,7 +426,7 @@
   },
   "0krqBj": {
     "context": "page header",
-    "string": "订单 #{orderNumber} - 退款"
+    "string": "订单 #{orderNumber} - 仅退款"
   },
   "0mhR+F": {
     "context": "Header row quantity label",
@@ -615,7 +615,7 @@
   },
   "26BKkX": {
     "context": "order status",
-    "string": "Partially returned"
+    "string": "部分退货退款"
   },
   "28GZnc": {
     "string": "搜索..."
@@ -2033,7 +2033,7 @@
   },
   "CLB1k9": {
     "context": "refund type",
-    "string": "退货退款"
+    "string": "按商品退款"
   },
   "CLeDae": {
     "context": "section header",
@@ -2825,7 +2825,7 @@
   },
   "HaQ8cg": {
     "context": "button",
-    "string": "退款"
+    "string": "仅退款"
   },
   "Hc58JL": {
     "context": "card title",
@@ -3216,7 +3216,7 @@
   },
   "K//bUK": {
     "context": "refund button",
-    "string": "退款"
+    "string": "仅退款"
   },
   "K/gnGg": {
     "string": "要禁用用户请选中此框。"
@@ -3375,7 +3375,7 @@
   },
   "LKpQYh": {
     "context": "refund type",
-    "string": "不退货退款"
+    "string": "任意金额退款"
   },
   "LLrOK3": {
     "context": "paragraph, description in manual refund card",
