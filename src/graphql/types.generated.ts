@@ -797,6 +797,7 @@ export enum BalanceEventsEnum {
   CONSECUTIVE_LOGIN = 'CONSECUTIVE_LOGIN',
   CONSUMED = 'CONSUMED',
   DONATION_GRANTED = 'DONATION_GRANTED',
+  DONATION_REJECTED = 'DONATION_REJECTED',
   FIRST_LOGIN = 'FIRST_LOGIN',
   MANUALLY_UPDATED = 'MANUALLY_UPDATED',
   REFUNDED = 'REFUNDED'
@@ -1884,6 +1885,20 @@ export type CustomerBulkUpdateInput = {
   input: CustomerInput;
 };
 
+export type CustomerEventFilterInput = {
+  date?: InputMaybe<DateRangeInput>;
+  metadata?: InputMaybe<Array<MetadataFilter>>;
+  type?: InputMaybe<CustomerEventsEnum>;
+  user?: InputMaybe<Scalars['String']>;
+};
+
+export type CustomerEventSortingInput = {
+  /** Specifies the direction in which to sort customers. */
+  direction: OrderDirection;
+  /** Sort customers by the selected field. */
+  field: EventSortField;
+};
+
 /** An enumeration. */
 export enum CustomerEventsEnum {
   ACCOUNT_ACTIVATED = 'ACCOUNT_ACTIVATED',
@@ -2118,7 +2133,7 @@ export type DonationCreateInput = {
   /** The description of the donation. */
   description: Scalars['String'];
   /** Student ID of the donator */
-  donator?: InputMaybe<Scalars['String']>;
+  donator: Scalars['String'];
   /** The name of the donator */
   name: Scalars['String'];
   /** The price of the donation. */
@@ -2143,6 +2158,8 @@ export type DonationFilterInput = {
   created?: InputMaybe<DateRangeInput>;
   donator?: InputMaybe<Scalars['String']>;
   metadata?: InputMaybe<Array<MetadataFilter>>;
+  number?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
   updated?: InputMaybe<DateRangeInput>;
 };
 
@@ -2660,6 +2677,12 @@ export type GlobalIdFilterInput = {
   /** The value included in. */
   oneOf?: InputMaybe<Array<Scalars['ID']>>;
 };
+
+export enum Granularity {
+  DAILY = 'DAILY',
+  MONTHLY = 'MONTHLY',
+  YEARLY = 'YEARLY'
+}
 
 /** Thumbnail formats for icon images. */
 export enum IconThumbnailFormatEnum {
@@ -4100,6 +4123,20 @@ export enum OrderErrorCode {
   VOID_INACTIVE_PAYMENT = 'VOID_INACTIVE_PAYMENT',
   ZERO_QUANTITY = 'ZERO_QUANTITY'
 }
+
+export type OrderEventFilterInput = {
+  date?: InputMaybe<DateRangeInput>;
+  metadata?: InputMaybe<Array<MetadataFilter>>;
+  type?: InputMaybe<OrderEventsEnum>;
+  user?: InputMaybe<Scalars['String']>;
+};
+
+export type OrderEventSortingInput = {
+  /** Specifies the direction in which to sort orders. */
+  direction: OrderDirection;
+  /** Sort orders by the selected field. */
+  field: EventSortField;
+};
 
 /** An enumeration. */
 export enum OrderEventsEmailsEnum {
@@ -9249,7 +9286,7 @@ export type ListCoinlogsQueryVariables = Exact<{
 }>;
 
 
-export type ListCoinlogsQuery = { __typename: 'Query', balanceEvents: { __typename: 'BalanceEventCountableConnection', edges: Array<{ __typename: 'BalanceEventCountableEdge', node: { __typename: 'BalanceEvent', account: string | null, balance: number | null, code: string | null, type: string | null, number: number | null, name: string | null, id: string, date: any | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
+export type ListCoinlogsQuery = { __typename: 'Query', balanceEvents: { __typename: 'BalanceEventCountableConnection', edges: Array<{ __typename: 'BalanceEventCountableEdge', node: { __typename: 'BalanceEvent', account: string | null, balance: number | null, code: string | null, type: string | null, number: string | null, name: string | null, id: string, date: any | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
 
 export type CollectionUpdateMutationVariables = Exact<{
   id: Scalars['ID'];

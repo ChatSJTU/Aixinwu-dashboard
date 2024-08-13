@@ -16,6 +16,7 @@ export interface ListFiltersProps<TKeys extends string = string>
   errorMessages?: FilterErrorMessages<TKeys>;
   filterStructure: IFilter<TKeys>;
   actions?: ReactNode;
+  searchDisabled?: boolean;
 }
 
 export const ListFilters = <TFilterKeys extends string = string>({
@@ -28,6 +29,7 @@ export const ListFilters = <TFilterKeys extends string = string>({
   onFilterAttributeFocus,
   errorMessages,
   actions,
+  searchDisabled,
 }: ListFiltersProps<TFilterKeys>) => {
   const isProductPage = window.location.pathname.includes("/products");
   const productListingPageFiltersFlag = useFlag("product_filters");
@@ -55,13 +57,13 @@ export const ListFilters = <TFilterKeys extends string = string>({
               onFilterAttributeFocus={onFilterAttributeFocus}
             />
           )}
-          <Box __width="320px">
+          {!searchDisabled && <Box __width="320px">
             <SearchInput
               initialSearch={initialSearch}
               placeholder={searchPlaceholder}
               onSearchChange={onSearchChange}
             />
-          </Box>
+          </Box>}
         </Box>
         <Box display="flex" justifyContent="flex-end">
           {actions}

@@ -29,27 +29,25 @@ export function getFilterOpts(
     donator: {
       active: !!params?.donator,
       value: params?.donator,
-    }
-    // joined: {
-    //   active:
-    //     [params.joinedFrom, params.joinedTo].some(
-    //       field => field !== undefined,
-    //     ) ?? false,
-    //   value: {
-    //     max: params.joinedTo ?? "",
-    //     min: params.joinedFrom ?? "",
-    //   },
-    // },
-    // numberOfOrders: {
-    //   active:
-    //     [params.numberOfOrdersFrom, params.numberOfOrdersTo].some(
-    //       field => field !== undefined,
-    //     ) ?? false,
-    //   value: {
-    //     max: params.numberOfOrdersTo ?? "",
-    //     min: params.numberOfOrdersFrom ?? "",
-    //   },
-    // },
+    },
+    title: {
+      active: !!params?.title,
+      value: params?.title,
+    },
+    number: {
+      active: !!params?.number,
+      value: params?.number,
+    },
+    created: {
+      active:
+        [params.createdFrom, params.createdTo].some(
+          field => field !== undefined,
+        ) ?? false,
+      value: {
+        max: params.createdTo ?? "",
+        min: params.createdFrom ?? "",
+      },
+    },
   };
 }
 
@@ -57,7 +55,13 @@ export function getFilterVariables(
   params: DonationListUrlFilters,
 ): DonationFilterInput {
   return {
-    donator: params.donator
+    created: getGteLteVariables({
+      gte: params.createdFrom,
+      lte: params.createdTo,
+    }),
+    title: params.title,
+    number: params.number,
+    donator: params.donator,
   };
 }
 
@@ -65,7 +69,25 @@ export function getFilterQueryParam(
   filter: FilterElement<DonationFilterKeys>,
 ): DonationListUrlFilters {
   const { name } = filter;
-  return getSingleValueQueryParam(filter, DonationListUrlFiltersEnum.donator);
+
+  switch (name) {
+    case DonationFilterKeys.created:
+      return getMinMaxQueryParam(
+        filter,
+        DonationListUrlFiltersEnum.createdFrom,
+        DonationListUrlFiltersEnum.createdTo,
+      );
+
+    case DonationFilterKeys.title:
+      return getSingleValueQueryParam(filter, DonationListUrlFiltersEnum.title);
+
+    case DonationFilterKeys.number:
+      return getSingleValueQueryParam(filter, DonationListUrlFiltersEnum.number);
+
+    case DonationFilterKeys.donator:
+      return getSingleValueQueryParam(filter, DonationListUrlFiltersEnum.donator);
+  }
+  
 }
 
 export const storageUtils = createFilterTabUtils<string>(DONATION_FILTERS_KEY);

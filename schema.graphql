@@ -3140,6 +3140,9 @@ type BalanceEvent implements Node {
   """Datetime of the event."""
   date: DateTime
 
+  """Delta of a balance event."""
+  delta: Float
+
   """The ID of the balance event."""
   id: ID!
 
@@ -3147,7 +3150,7 @@ type BalanceEvent implements Node {
   name: String
 
   """The number of the balance event."""
-  number: Int
+  number: String
 
   """Type of a balance event."""
   type: String
@@ -3191,6 +3194,7 @@ enum BalanceEventsEnum {
   CONSECUTIVE_LOGIN
   CONSUMED
   DONATION_GRANTED
+  DONATION_REJECTED
   FIRST_LOGIN
   MANUALLY_UPDATED
   REFUNDED
@@ -3308,6 +3312,17 @@ input BarcodeSortingInput {
 
   """Sort barcodes by the selected field."""
   field: BarcodeSortField!
+}
+
+type BaseReport {
+  """The amount total in the range"""
+  amountTotal: Float
+
+  """The total collection in the current range."""
+  collectionTotal: Int
+
+  """The items total in the range."""
+  quantitiesTotal: Int
 }
 
 input BulkAttributeValueInput {
@@ -7010,6 +7025,39 @@ type CustomerEvent implements Node {
   user: User
 }
 
+type CustomerEventCountableConnection {
+  edges: [CustomerEventCountableEdge!]!
+
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """A total count of items in the collection."""
+  totalCount: Int
+}
+
+type CustomerEventCountableEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: CustomerEvent!
+}
+
+input CustomerEventFilterInput {
+  date: DateRangeInput
+  metadata: [MetadataFilter!]
+  type: CustomerEventsEnum
+  user: String
+}
+
+input CustomerEventSortingInput {
+  """Specifies the direction in which to sort customers."""
+  direction: OrderDirection!
+
+  """Sort customers by the selected field."""
+  field: EventSortField!
+}
+
 """An enumeration."""
 enum CustomerEventsEnum {
   ACCOUNT_ACTIVATED
@@ -7672,7 +7720,7 @@ input DonationCreateInput {
   description: String!
 
   """Student ID of the donator"""
-  donator: String
+  donator: String!
 
   """The name of the donator"""
   name: String!
@@ -7725,6 +7773,8 @@ input DonationFilterInput {
   created: DateRangeInput
   donator: String
   metadata: [MetadataFilter!]
+  number: String
+  title: String
   updated: DateRangeInput
 }
 
@@ -9854,6 +9904,12 @@ input GlobalIDFilterInput {
 
   """The value included in."""
   oneOf: [ID!]
+}
+
+enum Granularity {
+  DAILY
+  MONTHLY
+  YEARLY
 }
 
 """Represents permission group data."""
@@ -18560,6 +18616,13 @@ type OrderEventDiscountObject {
   valueType: DiscountValueTypeEnum!
 }
 
+input OrderEventFilterInput {
+  date: DateRangeInput
+  metadata: [MetadataFilter!]
+  type: OrderEventsEnum
+  user: String
+}
+
 type OrderEventOrderLineObject {
   """The discount applied to the order line."""
   discount: OrderEventDiscountObject
@@ -18572,6 +18635,14 @@ type OrderEventOrderLineObject {
 
   """The variant quantity."""
   quantity: Int
+}
+
+input OrderEventSortingInput {
+  """Specifies the direction in which to sort orders."""
+  direction: OrderDirection!
+
+  """Sort orders by the selected field."""
+  field: EventSortField!
 }
 
 """An enumeration."""
@@ -26958,6 +27029,38 @@ type Query {
     where: CollectionWhereInput
   ): CollectionCountableConnection
 
+  """Customer Events"""
+  customerEvents(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """Filter the customer events"""
+    filter: CustomerEventFilterInput
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+
+    """Sorting the customer events"""
+    sortBy: CustomerEventSortingInput
+  ): CustomerEventCountableConnection
+
+  """
+  
+  
+  Requires one of the following permissions: MANAGE_USERS.
+  """
+  customerReports(date: DateTimeRangeInput!, granularity: Granularity!): [Int!]
+
   """
   List of the shop's customers.
   
@@ -27023,6 +27126,13 @@ type Query {
     """ID of the donation"""
     id: ID
   ): Donation
+
+  """
+  Donation Report
+  
+  Requires one of the following permissions: MANAGE_DONATIONS.
+  """
+  donationReports(date: DateTimeRangeInput!, granularity: Granularity!): [BaseReport!]
 
   """
   Donations made by the user or collected by users if requested by staff.
@@ -27350,6 +27460,38 @@ type Query {
     """The order's token."""
     token: UUID!
   ): Order @deprecated(reason: "This field will be removed in Saleor 4.0.")
+
+  """Order Events"""
+  orderEvents(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """Filter the order events"""
+    filter: OrderEventFilterInput
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+
+    """Sorting the order events"""
+    sortBy: OrderEventSortingInput
+  ): OrderEventCountableConnection
+
+  """
+  Order Report
+  
+  Requires one of the following permissions: MANAGE_ORDERS.
+  """
+  orderReports(date: DateTimeRangeInput!, granularity: Granularity!): [BaseReport!]
 
   """
   Order related settings from site settings. Returns `orderSettings` for the first `channel` in alphabetical order.

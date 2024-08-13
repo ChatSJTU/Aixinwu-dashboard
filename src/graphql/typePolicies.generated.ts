@@ -774,12 +774,13 @@ export type AttributeValueUpdatedFieldPolicy = {
 	recipient?: FieldPolicy<any> | FieldReadFunction<any>,
 	version?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type BalanceEventKeySpecifier = ('account' | 'balance' | 'code' | 'date' | 'id' | 'name' | 'number' | 'type' | BalanceEventKeySpecifier)[];
+export type BalanceEventKeySpecifier = ('account' | 'balance' | 'code' | 'date' | 'delta' | 'id' | 'name' | 'number' | 'type' | BalanceEventKeySpecifier)[];
 export type BalanceEventFieldPolicy = {
 	account?: FieldPolicy<any> | FieldReadFunction<any>,
 	balance?: FieldPolicy<any> | FieldReadFunction<any>,
 	code?: FieldPolicy<any> | FieldReadFunction<any>,
 	date?: FieldPolicy<any> | FieldReadFunction<any>,
+	delta?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	number?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -839,6 +840,12 @@ export type BarcodeErrorFieldPolicy = {
 	code?: FieldPolicy<any> | FieldReadFunction<any>,
 	field?: FieldPolicy<any> | FieldReadFunction<any>,
 	message?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type BaseReportKeySpecifier = ('amountTotal' | 'collectionTotal' | 'quantitiesTotal' | BaseReportKeySpecifier)[];
+export type BaseReportFieldPolicy = {
+	amountTotal?: FieldPolicy<any> | FieldReadFunction<any>,
+	collectionTotal?: FieldPolicy<any> | FieldReadFunction<any>,
+	quantitiesTotal?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type BulkProductErrorKeySpecifier = ('attributes' | 'channels' | 'code' | 'field' | 'index' | 'message' | 'values' | 'warehouses' | BulkProductErrorKeySpecifier)[];
 export type BulkProductErrorFieldPolicy = {
@@ -1628,6 +1635,17 @@ export type CustomerEventFieldPolicy = {
 	orderLine?: FieldPolicy<any> | FieldReadFunction<any>,
 	type?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type CustomerEventCountableConnectionKeySpecifier = ('edges' | 'pageInfo' | 'totalCount' | CustomerEventCountableConnectionKeySpecifier)[];
+export type CustomerEventCountableConnectionFieldPolicy = {
+	edges?: FieldPolicy<any> | FieldReadFunction<any>,
+	pageInfo?: FieldPolicy<any> | FieldReadFunction<any>,
+	totalCount?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type CustomerEventCountableEdgeKeySpecifier = ('cursor' | 'node' | CustomerEventCountableEdgeKeySpecifier)[];
+export type CustomerEventCountableEdgeFieldPolicy = {
+	cursor?: FieldPolicy<any> | FieldReadFunction<any>,
+	node?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type CustomerMetadataUpdatedKeySpecifier = ('issuedAt' | 'issuingPrincipal' | 'recipient' | 'user' | 'version' | CustomerMetadataUpdatedKeySpecifier)[];
 export type CustomerMetadataUpdatedFieldPolicy = {
@@ -5223,7 +5241,7 @@ export type PromotionUpdatedEventFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	type?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type QueryKeySpecifier = ('_entities' | '_service' | 'address' | 'addressValidationRules' | 'app' | 'appExtension' | 'appExtensions' | 'apps' | 'appsInstallations' | 'attribute' | 'attributes' | 'balanceEvents' | 'barcodes' | 'carousel' | 'categories' | 'category' | 'channel' | 'channels' | 'checkout' | 'checkoutLines' | 'checkouts' | 'collection' | 'collections' | 'customers' | 'digitalContent' | 'digitalContents' | 'donation' | 'donations' | 'draftOrders' | 'exportFile' | 'exportFiles' | 'giftCard' | 'giftCardCurrencies' | 'giftCardSettings' | 'giftCardTags' | 'giftCards' | 'homepageEvents' | 'me' | 'menu' | 'menuItem' | 'menuItems' | 'menus' | 'order' | 'orderByToken' | 'orderSettings' | 'orders' | 'ordersTotal' | 'page' | 'pageType' | 'pageTypes' | 'pages' | 'payment' | 'payments' | 'permissionGroup' | 'permissionGroups' | 'plugin' | 'plugins' | 'product' | 'productType' | 'productTypes' | 'productVariant' | 'productVariants' | 'products' | 'promotion' | 'promotions' | 'reportProductSales' | 'sale' | 'sales' | 'shippingZone' | 'shippingZones' | 'shop' | 'staffUsers' | 'statistics' | 'stock' | 'stocks' | 'taxClass' | 'taxClasses' | 'taxConfiguration' | 'taxConfigurations' | 'taxCountryConfiguration' | 'taxCountryConfigurations' | 'taxTypes' | 'transaction' | 'translation' | 'translations' | 'user' | 'voucher' | 'vouchers' | 'warehouse' | 'warehouses' | 'webhook' | 'webhookEvents' | 'webhookSamplePayload' | QueryKeySpecifier)[];
+export type QueryKeySpecifier = ('_entities' | '_service' | 'address' | 'addressValidationRules' | 'app' | 'appExtension' | 'appExtensions' | 'apps' | 'appsInstallations' | 'attribute' | 'attributes' | 'balanceEvents' | 'barcodes' | 'carousel' | 'categories' | 'category' | 'channel' | 'channels' | 'checkout' | 'checkoutLines' | 'checkouts' | 'collection' | 'collections' | 'customerEvents' | 'customerReports' | 'customers' | 'digitalContent' | 'digitalContents' | 'donation' | 'donationReports' | 'donations' | 'draftOrders' | 'exportFile' | 'exportFiles' | 'giftCard' | 'giftCardCurrencies' | 'giftCardSettings' | 'giftCardTags' | 'giftCards' | 'homepageEvents' | 'me' | 'menu' | 'menuItem' | 'menuItems' | 'menus' | 'order' | 'orderByToken' | 'orderEvents' | 'orderReports' | 'orderSettings' | 'orders' | 'ordersTotal' | 'page' | 'pageType' | 'pageTypes' | 'pages' | 'payment' | 'payments' | 'permissionGroup' | 'permissionGroups' | 'plugin' | 'plugins' | 'product' | 'productType' | 'productTypes' | 'productVariant' | 'productVariants' | 'products' | 'promotion' | 'promotions' | 'reportProductSales' | 'sale' | 'sales' | 'shippingZone' | 'shippingZones' | 'shop' | 'staffUsers' | 'statistics' | 'stock' | 'stocks' | 'taxClass' | 'taxClasses' | 'taxConfiguration' | 'taxConfigurations' | 'taxCountryConfiguration' | 'taxCountryConfigurations' | 'taxTypes' | 'transaction' | 'translation' | 'translations' | 'user' | 'voucher' | 'vouchers' | 'warehouse' | 'warehouses' | 'webhook' | 'webhookEvents' | 'webhookSamplePayload' | QueryKeySpecifier)[];
 export type QueryFieldPolicy = {
 	_entities?: FieldPolicy<any> | FieldReadFunction<any>,
 	_service?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -5248,10 +5266,13 @@ export type QueryFieldPolicy = {
 	checkouts?: FieldPolicy<any> | FieldReadFunction<any>,
 	collection?: FieldPolicy<any> | FieldReadFunction<any>,
 	collections?: FieldPolicy<any> | FieldReadFunction<any>,
+	customerEvents?: FieldPolicy<any> | FieldReadFunction<any>,
+	customerReports?: FieldPolicy<any> | FieldReadFunction<any>,
 	customers?: FieldPolicy<any> | FieldReadFunction<any>,
 	digitalContent?: FieldPolicy<any> | FieldReadFunction<any>,
 	digitalContents?: FieldPolicy<any> | FieldReadFunction<any>,
 	donation?: FieldPolicy<any> | FieldReadFunction<any>,
+	donationReports?: FieldPolicy<any> | FieldReadFunction<any>,
 	donations?: FieldPolicy<any> | FieldReadFunction<any>,
 	draftOrders?: FieldPolicy<any> | FieldReadFunction<any>,
 	exportFile?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -5269,6 +5290,8 @@ export type QueryFieldPolicy = {
 	menus?: FieldPolicy<any> | FieldReadFunction<any>,
 	order?: FieldPolicy<any> | FieldReadFunction<any>,
 	orderByToken?: FieldPolicy<any> | FieldReadFunction<any>,
+	orderEvents?: FieldPolicy<any> | FieldReadFunction<any>,
+	orderReports?: FieldPolicy<any> | FieldReadFunction<any>,
 	orderSettings?: FieldPolicy<any> | FieldReadFunction<any>,
 	orders?: FieldPolicy<any> | FieldReadFunction<any>,
 	ordersTotal?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -7451,6 +7474,10 @@ export type StrictTypedTypePolicies = {
 		keyFields?: false | BarcodeErrorKeySpecifier | (() => undefined | BarcodeErrorKeySpecifier),
 		fields?: BarcodeErrorFieldPolicy,
 	},
+	BaseReport?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | BaseReportKeySpecifier | (() => undefined | BaseReportKeySpecifier),
+		fields?: BaseReportFieldPolicy,
+	},
 	BulkProductError?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | BulkProductErrorKeySpecifier | (() => undefined | BulkProductErrorKeySpecifier),
 		fields?: BulkProductErrorFieldPolicy,
@@ -7854,6 +7881,14 @@ export type StrictTypedTypePolicies = {
 	CustomerEvent?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | CustomerEventKeySpecifier | (() => undefined | CustomerEventKeySpecifier),
 		fields?: CustomerEventFieldPolicy,
+	},
+	CustomerEventCountableConnection?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | CustomerEventCountableConnectionKeySpecifier | (() => undefined | CustomerEventCountableConnectionKeySpecifier),
+		fields?: CustomerEventCountableConnectionFieldPolicy,
+	},
+	CustomerEventCountableEdge?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | CustomerEventCountableEdgeKeySpecifier | (() => undefined | CustomerEventCountableEdgeKeySpecifier),
+		fields?: CustomerEventCountableEdgeFieldPolicy,
 	},
 	CustomerMetadataUpdated?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | CustomerMetadataUpdatedKeySpecifier | (() => undefined | CustomerMetadataUpdatedKeySpecifier),

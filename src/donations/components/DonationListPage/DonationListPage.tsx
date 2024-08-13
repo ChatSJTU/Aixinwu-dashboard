@@ -147,6 +147,7 @@ const DonationListPage: React.FC<DonationListPageProps> = ({
         <ListFilters
           filterStructure={structure}
           initialSearch={initialSearch}
+          searchDisabled={true}
           searchPlaceholder={intl.formatMessage({
             id: "donation-search",
             defaultMessage: "搜索捐赠...",

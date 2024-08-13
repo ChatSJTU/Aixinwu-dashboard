@@ -17,6 +17,10 @@ export const donationSection = "/donations/";
 export const donationListPath = donationSection;
 export enum DonationListUrlFiltersEnum {
   donator = "donator",
+  createdFrom = "createdFrom",
+  createdTo = "createdTo",
+  number = "number",
+  title = "title",
 }
 export type DonationListUrlFilters = Filters<DonationListUrlFiltersEnum>;
 export type DonationListUrlDialog = "remove" | TabActionDialog;
