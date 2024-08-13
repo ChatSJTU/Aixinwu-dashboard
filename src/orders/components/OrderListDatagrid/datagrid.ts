@@ -22,6 +22,7 @@ import { DefaultTheme, useTheme } from "@saleor/macaw-ui-next";
 import { IntlShape, useIntl } from "react-intl";
 
 import { columnsMessages } from "./messages";
+import { hueToPillColorDark, hueToPillColorLight, stringToHue } from "@dashboard/components/Datagrid/customCells/PillCell";
 
 export const orderListStaticColumnAdapter = (
   emptyColumn: AvailableColumn,
@@ -43,7 +44,12 @@ export const orderListStaticColumnAdapter = (
     {
       id: "customer",
       title: intl.formatMessage(columnsMessages.customer),
-      width: 200,
+      width: 150,
+    },
+    {
+      id: "channel",
+      title: intl.formatMessage(columnsMessages.channel),
+      width: 120,
     },
     {
       id: "payment",
@@ -99,6 +105,8 @@ export const useGetCellContent = ({ columns, orders }: GetCellContentProps) => {
         return getDateCellContent(rowData);
       case "customer":
         return getCustomerCellContent(rowData);
+      case "channel":
+        return getChannelCellContent(intl, theme, rowData);
       case "payment":
         return getPaymentCellContent(intl, theme, rowData);
       case "status":
@@ -149,6 +157,23 @@ export function getStatusCellContent(
   }
 
   return readonlyTextCell("-");
+}
+
+export function getChannelCellContent(
+  intl: IntlShape,
+  currentTheme: DefaultTheme,
+  rowData: RelayToFlat<OrderListQuery["orders"]>[number],
+) {
+  // rowData
+  const productType = rowData.channel.slug.includes("shared") ? "租赁商品" : "置换商品"
+  const channelType = rowData.channel.slug.includes("shared") ? "租赁" : "置换"
+
+  const hue = stringToHue(productType);
+  const color =
+  currentTheme === "defaultDark"
+      ? hueToPillColorDark(hue)
+      : hueToPillColorLight(hue);
+  return pillCell(channelType, color);
 }
 
 export function getPaymentCellContent(

@@ -11898,6 +11898,11 @@ export const OrderListDocument = gql`
         billingAddress {
           ...Address
         }
+        channel {
+          slug
+          name
+          id
+        }
         created
         id
         number

@@ -44,4 +44,8 @@ export const columnsMessages = defineMessages({
     id: "MJ2jZQ",
     defaultMessage: "Total",
   },
+  channel: {
+    id: "order-list-datagrid-channel",
+    defaultMessage: "类型",
+  },
 });

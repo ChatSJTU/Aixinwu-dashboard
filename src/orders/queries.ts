@@ -23,6 +23,11 @@ export const orderListQuery = gql`
           billingAddress {
             ...Address
           }
+          channel {
+            slug
+            name
+            id
+          }
           created
           id
           number
