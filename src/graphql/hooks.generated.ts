@@ -8863,6 +8863,48 @@ export function useCompleteDonationMutation(baseOptions?: ApolloReactHooks.Mutat
 export type CompleteDonationMutationHookResult = ReturnType<typeof useCompleteDonationMutation>;
 export type CompleteDonationMutationResult = Apollo.MutationResult<Types.CompleteDonationMutation>;
 export type CompleteDonationMutationOptions = Apollo.BaseMutationOptions<Types.CompleteDonationMutation, Types.CompleteDonationMutationVariables>;
+export const BarcodeCreateNextDocument = gql`
+    mutation BarcodeCreateNext {
+  barcodeBatchCreate(count: 1) {
+    errors {
+      code
+      message
+      field
+    }
+    barcodes {
+      createdAt
+      id
+      number
+      used
+    }
+  }
+}
+    `;
+export type BarcodeCreateNextMutationFn = Apollo.MutationFunction<Types.BarcodeCreateNextMutation, Types.BarcodeCreateNextMutationVariables>;
+
+/**
+ * __useBarcodeCreateNextMutation__
+ *
+ * To run a mutation, you first call `useBarcodeCreateNextMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useBarcodeCreateNextMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [barcodeCreateNextMutation, { data, loading, error }] = useBarcodeCreateNextMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useBarcodeCreateNextMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.BarcodeCreateNextMutation, Types.BarcodeCreateNextMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.BarcodeCreateNextMutation, Types.BarcodeCreateNextMutationVariables>(BarcodeCreateNextDocument, options);
+      }
+export type BarcodeCreateNextMutationHookResult = ReturnType<typeof useBarcodeCreateNextMutation>;
+export type BarcodeCreateNextMutationResult = Apollo.MutationResult<Types.BarcodeCreateNextMutation>;
+export type BarcodeCreateNextMutationOptions = Apollo.BaseMutationOptions<Types.BarcodeCreateNextMutation, Types.BarcodeCreateNextMutationVariables>;
 export const ListDonationsDocument = gql`
     query ListDonations($after: String, $before: String, $first: Int, $last: Int, $filter: DonationFilterInput, $sort: DonationSortingInput) {
   donations(

@@ -9921,6 +9921,11 @@ export type CompleteDonationMutationVariables = Exact<{
 
 export type CompleteDonationMutation = { __typename: 'Mutation', donationComplete: { __typename: 'DonationComplete', donation: { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null, errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }> } | null };
 
+export type BarcodeCreateNextMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BarcodeCreateNextMutation = { __typename: 'Mutation', barcodeBatchCreate: { __typename: 'BarcodeBatchCreate', errors: Array<{ __typename: 'BarcodeError', code: BarcodeErrorCode, message: string | null, field: string | null }>, barcodes: Array<{ __typename: 'Barcode', createdAt: any | null, id: string, number: number | null, used: boolean | null }> } | null };
+
 export type ListDonationsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;

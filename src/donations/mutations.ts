@@ -113,3 +113,21 @@ export const bulkRemoveCustomers = gql`
     }
   }
 `;
+
+export const barcodeCreateNext = gql`
+  mutation BarcodeCreateNext {
+    barcodeBatchCreate(count: 1) {
+      errors {
+        code
+        message
+        field
+      }
+      barcodes {
+        createdAt
+        id
+        number
+        used
+      }
+    }
+  }
+`;

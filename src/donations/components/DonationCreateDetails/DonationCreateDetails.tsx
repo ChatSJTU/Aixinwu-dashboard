@@ -1,9 +1,7 @@
 // @ts-strict-ignore
 import CardTitle from "@dashboard/components/CardTitle";
 import { AccountErrorFragment } from "@dashboard/graphql";
-import { commonMessages } from "@dashboard/intl";
 import { getFormErrors } from "@dashboard/utils/errors";
-import getAccountErrorMessage from "@dashboard/utils/errors/account";
 import { Card, CardContent, TextField } from "@material-ui/core";
 import { makeStyles } from "@saleor/macaw-ui";
 import React from "react";

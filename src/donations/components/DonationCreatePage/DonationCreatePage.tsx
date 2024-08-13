@@ -7,11 +7,12 @@ import Savebar from "@dashboard/components/Savebar";
 import { donationListUrl } from "@dashboard/donations/urls";
 import {
   AccountErrorFragment,
+  useBarcodeCreateNextMutation,
 } from "@dashboard/graphql";
 import { SubmitPromise } from "@dashboard/hooks/useForm";
 import useNavigator from "@dashboard/hooks/useNavigator";
 import { extractMutationErrors } from "@dashboard/misc";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import DonationCreateDetails from "../DonationCreateDetails";
 
@@ -28,16 +29,6 @@ export interface DonationCreatePageSubmitData
   extends DonationCreatePageFormData {
 }
 
-const initialForm: DonationCreatePageFormData = {
-  barcode: "",
-  description: "",
-  donator: "",
-  name: "",
-  price: 0,
-  quantity: 0,
-  title: "",
-};
-
 export interface DonationCreatePageProps {
   disabled: boolean;
   errors: AccountErrorFragment[];
@@ -53,6 +44,31 @@ const DonationCreatePage: React.FC<DonationCreatePageProps> = ({
 }: DonationCreatePageProps) => {
   const intl = useIntl();
   const navigate = useNavigator();
+
+  const [initialForm, setInitialForm] = useState<DonationCreatePageFormData>({
+    barcode: "",
+    description: "",
+    donator: "",
+    name: "",
+    price: 0,
+    quantity: 0,
+    title: "",
+  });
+
+  const [nextBarcode, nextBarcodeOpts] = useBarcodeCreateNextMutation({
+    onCompleted: resp => {
+      if (resp.barcodeBatchCreate.errors.length === 0) {
+        var copy = {...initialForm}
+        copy.barcode = resp.barcodeBatchCreate.barcodes[0].number.toString();
+        setInitialForm(copy);
+      }
+    },
+  });
+
+  useEffect(()=>{
+    if (!nextBarcodeOpts.called && !nextBarcodeOpts.loading)
+      nextBarcode();
+  });
 
   // const [countryDisplayName, setCountryDisplayName] = React.useState("");
   // const countryChoices = mapCountriesToChoices(countries);
@@ -94,7 +110,7 @@ const DonationCreatePage: React.FC<DonationCreatePageProps> = ({
       confirmLeave
       initial={initialForm}
       onSubmit={handleSubmit}
-      disabled={disabled}
+      disabled={disabled || nextBarcodeOpts.loading}
     >
       {({ change, set, data, isSaveDisabled, submit }) => {
         return (
