@@ -24,6 +24,14 @@ export const transformCoinlogType = (
           }),
           status: StatusType.SUCCESS,
         };
+      case "donation_rejected":
+        return {
+          localized: intl.formatMessage({
+            id: "donation-status-donation_rejected",
+            defaultMessage: "已拒绝捐赠",
+          }),
+          status: StatusType.ERROR,
+        };
       case "manually_updated":
         return {
           localized: intl.formatMessage({
