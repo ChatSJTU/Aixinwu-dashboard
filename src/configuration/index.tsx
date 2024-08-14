@@ -176,6 +176,7 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
             defaultMessage: "Manage how your store charges tax",
           }),
           icon: <Taxes />,
+          permissions: [PermissionEnum.MANAGE_TAXES],
           title: intl.formatMessage(sectionNames.taxes),
           url: taxConfigurationListUrl(),
           testId: "configuration-menu-taxes",
