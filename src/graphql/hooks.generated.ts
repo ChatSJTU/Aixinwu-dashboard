@@ -5499,6 +5499,7 @@ export const ListCoinlogsDocument = gql`
       node {
         account
         balance
+        delta
         code
         type
         number

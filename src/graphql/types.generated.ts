@@ -9286,7 +9286,7 @@ export type ListCoinlogsQueryVariables = Exact<{
 }>;
 
 
-export type ListCoinlogsQuery = { __typename: 'Query', balanceEvents: { __typename: 'BalanceEventCountableConnection', edges: Array<{ __typename: 'BalanceEventCountableEdge', node: { __typename: 'BalanceEvent', account: string | null, balance: number | null, code: string | null, type: string | null, number: string | null, name: string | null, id: string, date: any | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
+export type ListCoinlogsQuery = { __typename: 'Query', balanceEvents: { __typename: 'BalanceEventCountableConnection', edges: Array<{ __typename: 'BalanceEventCountableEdge', node: { __typename: 'BalanceEvent', account: string | null, balance: number | null, delta: number | null, code: string | null, type: string | null, number: string | null, name: string | null, id: string, date: any | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
 
 export type CollectionUpdateMutationVariables = Exact<{
   id: Scalars['ID'];

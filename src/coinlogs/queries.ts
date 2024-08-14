@@ -21,6 +21,7 @@ export const coinlogList = gql`
         node {
           account
           balance
+          delta
           code
           type
           number

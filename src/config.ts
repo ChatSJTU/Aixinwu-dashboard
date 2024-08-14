@@ -196,7 +196,7 @@ export const defaultListSettings: AppListViewSettings = {
   },
   [ListViews.COINLOG_LIST]: {
     rowNumber: PAGINATE_BY,
-    columns: ["number", "user", "created", "balance", "type"],
+    columns: ["number", "user", "created", "delta", "balance", "type"],
   },
 };
 

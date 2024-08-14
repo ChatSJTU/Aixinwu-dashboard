@@ -44,10 +44,18 @@ export const coinlogListStaticColumnsAdapter = (
       width: 300,
     },
     {
+      id: "delta",
+      title: intl.formatMessage({
+        id: "coinlog-column-delta",
+        defaultMessage: "爱心币增减",
+      }),
+      width: 150,
+    },
+    {
       id: "balance",
       title: intl.formatMessage({
-        id: "coinlog-column-value",
-        defaultMessage: "爱心币增减",
+        id: "coinlog-column-balance",
+        defaultMessage: "爱心币余额",
       }),
       width: 150,
     },
@@ -89,6 +97,8 @@ export const useGetCellContent = (
         return dateCell(rowData?.date ?? "");
       case "balance":
         return moneyCell(rowData?.balance, "AXB");
+      case "delta":
+        return moneyCell(rowData?.delta, "AXB");
       case "type":
         return getTypeCellContent(intl, theme, rowData);
       default:
