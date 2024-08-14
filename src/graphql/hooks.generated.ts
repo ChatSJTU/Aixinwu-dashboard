@@ -15775,6 +15775,119 @@ export function useGridWarehousesLazyQuery(baseOptions?: ApolloReactHooks.LazyQu
 export type GridWarehousesQueryHookResult = ReturnType<typeof useGridWarehousesQuery>;
 export type GridWarehousesLazyQueryHookResult = ReturnType<typeof useGridWarehousesLazyQuery>;
 export type GridWarehousesQueryResult = Apollo.QueryResult<Types.GridWarehousesQuery, Types.GridWarehousesQueryVariables>;
+export const OrderReportsDocument = gql`
+    query orderReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+  orderReports(date: {gte: $gte, lte: $lte}, granularity: $granularity) {
+    amountTotal
+    collectionTotal
+    quantitiesTotal
+  }
+}
+    `;
+
+/**
+ * __useOrderReportsQuery__
+ *
+ * To run a query within a React component, call `useOrderReportsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOrderReportsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOrderReportsQuery({
+ *   variables: {
+ *      gte: // value for 'gte'
+ *      lte: // value for 'lte'
+ *      granularity: // value for 'granularity'
+ *   },
+ * });
+ */
+export function useOrderReportsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<Types.OrderReportsQuery, Types.OrderReportsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.OrderReportsQuery, Types.OrderReportsQueryVariables>(OrderReportsDocument, options);
+      }
+export function useOrderReportsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.OrderReportsQuery, Types.OrderReportsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.OrderReportsQuery, Types.OrderReportsQueryVariables>(OrderReportsDocument, options);
+        }
+export type OrderReportsQueryHookResult = ReturnType<typeof useOrderReportsQuery>;
+export type OrderReportsLazyQueryHookResult = ReturnType<typeof useOrderReportsLazyQuery>;
+export type OrderReportsQueryResult = Apollo.QueryResult<Types.OrderReportsQuery, Types.OrderReportsQueryVariables>;
+export const CustomerReportsDocument = gql`
+    query customerReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+  customerReports(date: {gte: $gte, lte: $lte}, granularity: $granularity)
+}
+    `;
+
+/**
+ * __useCustomerReportsQuery__
+ *
+ * To run a query within a React component, call `useCustomerReportsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCustomerReportsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCustomerReportsQuery({
+ *   variables: {
+ *      gte: // value for 'gte'
+ *      lte: // value for 'lte'
+ *      granularity: // value for 'granularity'
+ *   },
+ * });
+ */
+export function useCustomerReportsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<Types.CustomerReportsQuery, Types.CustomerReportsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.CustomerReportsQuery, Types.CustomerReportsQueryVariables>(CustomerReportsDocument, options);
+      }
+export function useCustomerReportsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.CustomerReportsQuery, Types.CustomerReportsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.CustomerReportsQuery, Types.CustomerReportsQueryVariables>(CustomerReportsDocument, options);
+        }
+export type CustomerReportsQueryHookResult = ReturnType<typeof useCustomerReportsQuery>;
+export type CustomerReportsLazyQueryHookResult = ReturnType<typeof useCustomerReportsLazyQuery>;
+export type CustomerReportsQueryResult = Apollo.QueryResult<Types.CustomerReportsQuery, Types.CustomerReportsQueryVariables>;
+export const DonationReportsDocument = gql`
+    query donationReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+  donationReports(date: {gte: $gte, lte: $lte}, granularity: $granularity) {
+    amountTotal
+    collectionTotal
+    quantitiesTotal
+  }
+}
+    `;
+
+/**
+ * __useDonationReportsQuery__
+ *
+ * To run a query within a React component, call `useDonationReportsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDonationReportsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDonationReportsQuery({
+ *   variables: {
+ *      gte: // value for 'gte'
+ *      lte: // value for 'lte'
+ *      granularity: // value for 'granularity'
+ *   },
+ * });
+ */
+export function useDonationReportsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<Types.DonationReportsQuery, Types.DonationReportsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.DonationReportsQuery, Types.DonationReportsQueryVariables>(DonationReportsDocument, options);
+      }
+export function useDonationReportsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.DonationReportsQuery, Types.DonationReportsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.DonationReportsQuery, Types.DonationReportsQueryVariables>(DonationReportsDocument, options);
+        }
+export type DonationReportsQueryHookResult = ReturnType<typeof useDonationReportsQuery>;
+export type DonationReportsLazyQueryHookResult = ReturnType<typeof useDonationReportsLazyQuery>;
+export type DonationReportsQueryResult = Apollo.QueryResult<Types.DonationReportsQuery, Types.DonationReportsQueryVariables>;
 export const SearchAttributesDocument = gql`
     query SearchAttributes($after: String, $first: Int!, $query: String!) {
   search: attributes(after: $after, first: $first, filter: {search: $query}) {

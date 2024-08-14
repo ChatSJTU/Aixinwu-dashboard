@@ -11778,6 +11778,33 @@ export type GridWarehousesQueryVariables = Exact<{
 
 export type GridWarehousesQuery = { __typename: 'Query', availableWarehouses: { __typename: 'WarehouseCountableConnection', edges: Array<{ __typename: 'WarehouseCountableEdge', node: { __typename: 'Warehouse', id: string, name: string } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null, selectedWarehouses: { __typename: 'WarehouseCountableConnection', edges: Array<{ __typename: 'WarehouseCountableEdge', node: { __typename: 'Warehouse', id: string, name: string } }> } | null };
 
+export type OrderReportsQueryVariables = Exact<{
+  gte: Scalars['DateTime'];
+  lte: Scalars['DateTime'];
+  granularity: Granularity;
+}>;
+
+
+export type OrderReportsQuery = { __typename: 'Query', orderReports: Array<{ __typename: 'BaseReport', amountTotal: number | null, collectionTotal: number | null, quantitiesTotal: number | null }> | null };
+
+export type CustomerReportsQueryVariables = Exact<{
+  gte: Scalars['DateTime'];
+  lte: Scalars['DateTime'];
+  granularity: Granularity;
+}>;
+
+
+export type CustomerReportsQuery = { __typename: 'Query', customerReports: Array<number> | null };
+
+export type DonationReportsQueryVariables = Exact<{
+  gte: Scalars['DateTime'];
+  lte: Scalars['DateTime'];
+  granularity: Granularity;
+}>;
+
+
+export type DonationReportsQuery = { __typename: 'Query', donationReports: Array<{ __typename: 'BaseReport', amountTotal: number | null, collectionTotal: number | null, quantitiesTotal: number | null }> | null };
+
 export type SearchAttributesQueryVariables = Exact<{
   after?: InputMaybe<Scalars['String']>;
   first: Scalars['Int'];
