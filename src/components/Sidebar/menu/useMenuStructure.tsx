@@ -40,6 +40,7 @@ import { donationListUrl } from "@dashboard/donations/urls";
 import { barcodeManageUrl } from "@dashboard/barcodes/urls";
 import StatIcon from "@dashboard/icons/Stat";
 import { coinlogListUrl } from "@dashboard/coinlogs/urls";
+import { reportManageUrl } from "@dashboard/report/urls";
 
 const iconSettings = {
   color: "default2",
@@ -249,12 +250,12 @@ export function useMenuStructure() {
       ],
       icon: <StatIcon />,
       label: intl.formatMessage({
-        id: "stat",
+        id: "report",
         defaultMessage: "数据",
       }),
-      permissions: [PermissionEnum.MANAGE_ORDERS],
-      id: "stat",
-      url: donationListUrl(),
+      permissions: [PermissionEnum.MANAGE_ORDERS, PermissionEnum.MANAGE_USERS],
+      id: "report",
+      url: reportManageUrl(),
       type: "itemGroup",
     },
     {
