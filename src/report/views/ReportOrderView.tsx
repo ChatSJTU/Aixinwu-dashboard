@@ -2,6 +2,8 @@
 import { TopNav } from "@dashboard/components/AppLayout";
 import { WindowTitle } from "@dashboard/components/WindowTitle";
 import {
+  Granularity,
+  OrderReportsQuery,
   useOrderReportsLazyQuery,
 } from "@dashboard/graphql";
 import useNavigator from "@dashboard/hooks/useNavigator";
@@ -51,7 +53,7 @@ const useStyles = makeStyles(
   { name: "ReportOrderView" },
 );
 
-type GranularityType = "DAILY" | "MONTHLY" | "YEARLY";
+type GranularityType = "DAYLY" | "MONTHLY" | "YEARLY";
 
 const ReportOrderView: React.FC = () => {
   const navigate = useNavigator();
@@ -59,60 +61,62 @@ const ReportOrderView: React.FC = () => {
   const intl = useIntl();
   const classes = useStyles();
 
-  const [orderReportsQuery, orderReportsQueryOpts] = useOrderReportsLazyQuery();
   const [buttonState, setButtonState] = useState<ConfirmButtonTransitionState>("default");
-  const [granularity, setGranularity] = useState<GranularityType>("DAILY");
+  const [granularity, setGranularity] = useState<GranularityType>("DAYLY");
   const [startDate, setStartDate] = useState<string>(dayjs().format("YYYY-MM-DD"));
   const [endDate, setEndDate] = useState<string>(dayjs().format("YYYY-MM-DD"));
+  const [drawData, setDrawData] = useState<any[]>([]);
+  
+  const [orderReportsQuery, orderReportsQueryOpts] = useOrderReportsLazyQuery({
+    onCompleted: data => {
+      setButtonState("default");
+      doDraw(data.orderReports);
+    },
+    onError: err => {
+      setButtonState("default");
+      notify({
+        status: "error",
+        text: `${err.message}`,
+        title: "错误",
+      })
+    },
+    fetchPolicy: "no-cache"
+  });
   
   const onSubmit = () => { 
-
+    setButtonState("loading");
+    orderReportsQuery(
+      {
+        variables: {
+          gte: startDate,
+          lte: endDate,
+          granularity: granularity.replace('DAYLY', 'DAILY') as Granularity
+        }
+      }
+    );
   }
 
-  const data = [
-    {
-      name: 'Page A',
-      uv: 590,
-      pv: 800,
-      amt: 1400,
-      cnt: 490,
-    },
-    {
-      name: 'Page B',
-      uv: 868,
-      pv: 967,
-      amt: 1506,
-      cnt: 590,
-    },
-    {
-      name: 'Page C',
-      uv: 1397,
-      pv: 1098,
-      amt: 989,
-      cnt: 350,
-    },
-    {
-      name: 'Page D',
-      uv: 1480,
-      pv: 1200,
-      amt: 1228,
-      cnt: 480,
-    },
-    {
-      name: 'Page E',
-      uv: 1520,
-      pv: 1108,
-      amt: 1100,
-      cnt: 460,
-    },
-    {
-      name: 'Page F',
-      uv: 1400,
-      pv: 680,
-      amt: 1700,
-      cnt: 380,
-    },
-  ];
+  const doDraw = (data: OrderReportsQuery['orderReports']) => {
+    var addType = granularity.replace('LY', '').toLowerCase();
+    var s = dayjs(startDate);
+    var e = dayjs(endDate);
+
+    var index = 0;
+    var alldata = [];
+    while (s < e && index < data.length) {
+      var cur = {
+        name: s.format('YYYY-MM-DD'),
+        amountTotal: data[index].amountTotal ?? 0,
+        collectionTotal: data[index].collectionTotal ?? 0,
+        quantitiesTotal: data[index].quantitiesTotal ?? 0,
+      }
+      alldata.push(cur);
+      index = index + 1;
+      s = s.add(1, addType as dayjs.ManipulateType);
+    }
+    setDrawData(alldata);
+    console.log(alldata);
+  }
 
   function handleGranularityChange(event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void {
     setGranularity(event.target.value as GranularityType);
@@ -210,7 +214,7 @@ const ReportOrderView: React.FC = () => {
                 onChange={handleGranularityChange}
                 value={granularity}
               >
-                <MenuItem key="DAILY" value="DAILY">
+                <MenuItem key="DAYLY" value="DAYLY">
                   天
                 </MenuItem>
                 <MenuItem key="MONTHLY" value="MONTHLY">
@@ -247,7 +251,7 @@ const ReportOrderView: React.FC = () => {
             </Grid>
             <Grid item>
               <ConfirmButton
-              style={{height: "48px"}}
+                style={{height: "48px"}}
                 disabled={false}
                 labels={{error: "确定", confirm: "确定"}}
                 onClick={onSubmit}
@@ -262,7 +266,7 @@ const ReportOrderView: React.FC = () => {
           <ComposedChart
             width={500}
             height={400}
-            data={data}
+            data={drawData}
             margin={{
               top: 20,
               right: 20,
@@ -271,14 +275,30 @@ const ReportOrderView: React.FC = () => {
             }}
           >
             <CartesianGrid stroke="#f5f5f5" />
-            <XAxis dataKey="name" scale="band" />
-            <YAxis />
-            <Tooltip />
+            <XAxis dataKey="name" style={{fontSize: '12px'}}/>
+            <YAxis yAxisId="y1" style={{fontSize: '12px'}}/>
+            <YAxis yAxisId="y2" orientation="right" style={{fontSize: '12px'}}/>
+            <Tooltip labelStyle={{fontSize: '16px'}} contentStyle={{fontSize: '14px'}}/>
             <Legend />
-            <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" />
-            <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-            <Line type="monotone" dataKey="uv" stroke="#ff7300" />
-            <Scatter dataKey="cnt" fill="red" />
+            <Bar 
+              yAxisId="y1" 
+              dataKey="amountTotal" 
+              name="总销售额"
+              unit={" AXB"}
+              fontSize="20px"
+              fill="#303F9F" />
+            <Line 
+              yAxisId="y2" 
+              dataKey="collectionTotal" 
+              name="总订单数"
+              strokeWidth={4}
+              stroke="#E64A19"/>
+            <Line 
+              yAxisId="y2" 
+              strokeWidth={4}
+              dataKey="quantitiesTotal" 
+              name="总售货量"
+              stroke="#00796B"/>
           </ComposedChart>
         </ResponsiveContainer>
       </div>
