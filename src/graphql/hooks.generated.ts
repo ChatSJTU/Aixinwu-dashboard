@@ -15777,7 +15777,7 @@ export type GridWarehousesQueryHookResult = ReturnType<typeof useGridWarehousesQ
 export type GridWarehousesLazyQueryHookResult = ReturnType<typeof useGridWarehousesLazyQuery>;
 export type GridWarehousesQueryResult = Apollo.QueryResult<Types.GridWarehousesQuery, Types.GridWarehousesQueryVariables>;
 export const OrderReportsDocument = gql`
-    query orderReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+    query orderReports($gte: Date!, $lte: Date!, $granularity: Granularity!) {
   orderReports(date: {gte: $gte, lte: $lte}, granularity: $granularity) {
     amountTotal
     collectionTotal
@@ -15816,7 +15816,7 @@ export type OrderReportsQueryHookResult = ReturnType<typeof useOrderReportsQuery
 export type OrderReportsLazyQueryHookResult = ReturnType<typeof useOrderReportsLazyQuery>;
 export type OrderReportsQueryResult = Apollo.QueryResult<Types.OrderReportsQuery, Types.OrderReportsQueryVariables>;
 export const CustomerReportsDocument = gql`
-    query customerReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+    query customerReports($gte: Date!, $lte: Date!, $granularity: Granularity!) {
   customerReports(date: {gte: $gte, lte: $lte}, granularity: $granularity)
 }
     `;
@@ -15851,7 +15851,7 @@ export type CustomerReportsQueryHookResult = ReturnType<typeof useCustomerReport
 export type CustomerReportsLazyQueryHookResult = ReturnType<typeof useCustomerReportsLazyQuery>;
 export type CustomerReportsQueryResult = Apollo.QueryResult<Types.CustomerReportsQuery, Types.CustomerReportsQueryVariables>;
 export const DonationReportsDocument = gql`
-    query donationReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+    query donationReports($gte: Date!, $lte: Date!, $granularity: Granularity!) {
   donationReports(date: {gte: $gte, lte: $lte}, granularity: $granularity) {
     amountTotal
     collectionTotal

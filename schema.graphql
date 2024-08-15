@@ -20155,6 +20155,9 @@ type Page implements Node & ObjectWithMetadata {
   """Slug of the page."""
   slug: String!
 
+  """Text of the page"""
+  textContent: String
+
   """Title of the page."""
   title: String!
 
@@ -20280,6 +20283,9 @@ input PageCreateInput {
 
   """Page internal name."""
   slug: String
+
+  """Page Text Content"""
+  textContent: String
 
   """Page title."""
   title: String
@@ -20429,6 +20435,9 @@ input PageInput {
   """Page internal name."""
   slug: String
 
+  """Page Text Content"""
+  textContent: String
+
   """Page title."""
   title: String
 }
@@ -20577,6 +20586,9 @@ type PageTranslation implements Node {
   """Translated SEO title."""
   seoTitle: String
 
+  """Translated page text content."""
+  textContent: String
+
   """Translated page title."""
   title: String
 }
@@ -20590,6 +20602,9 @@ input PageTranslationInput {
   content: JSONString
   seoDescription: String
   seoTitle: String
+
+  """Translated page text content."""
+  textContent: String
   title: String
 }
 
@@ -27059,7 +27074,7 @@ type Query {
   
   Requires one of the following permissions: MANAGE_USERS.
   """
-  customerReports(date: DateTimeRangeInput!, granularity: Granularity!): [Int!]
+  customerReports(date: DateRangeInput!, granularity: Granularity!): [Int!]
 
   """
   List of the shop's customers.
@@ -27132,7 +27147,7 @@ type Query {
   
   Requires one of the following permissions: MANAGE_DONATIONS.
   """
-  donationReports(date: DateTimeRangeInput!, granularity: Granularity!): [BaseReport!]
+  donationReports(date: DateRangeInput!, granularity: Granularity!): [BaseReport!]
 
   """
   Donations made by the user or collected by users if requested by staff.
@@ -27491,7 +27506,7 @@ type Query {
   
   Requires one of the following permissions: MANAGE_ORDERS.
   """
-  orderReports(date: DateTimeRangeInput!, granularity: Granularity!): [BaseReport!]
+  orderReports(date: DateRangeInput!, granularity: Granularity!): [BaseReport!]
 
   """
   Order related settings from site settings. Returns `orderSettings` for the first `channel` in alphabetical order.
@@ -30711,6 +30726,9 @@ input StaffCreateInput {
 
   """A note about the user."""
   note: String
+
+  """Password of the staff"""
+  password: String
 
   """
   Fields required to update the user private metadata.

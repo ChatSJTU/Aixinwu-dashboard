@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const ReportOrder = gql`
-  query orderReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+  query orderReports($gte: Date!, $lte: Date!, $granularity: Granularity!) {
     orderReports(date: {gte: $gte, lte: $lte}, granularity: $granularity) {
         amountTotal
         collectionTotal
@@ -11,13 +11,13 @@ export const ReportOrder = gql`
 `;
 
 export const ReportUser = gql`
-  query customerReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+  query customerReports($gte: Date!, $lte: Date!, $granularity: Granularity!) {
     customerReports(date: {gte: $gte, lte: $lte}, granularity: $granularity)
   }
 `;
 
 export const ReportDonation = gql`
-  query donationReports($gte: DateTime!, $lte: DateTime!, $granularity: Granularity!) {
+  query donationReports($gte: Date!, $lte: Date!, $granularity: Granularity!) {
     donationReports(date: {gte: $gte, lte: $lte}, granularity: $granularity) {
         amountTotal
         collectionTotal

@@ -4635,6 +4635,8 @@ export type PageCreateInput = {
   seo?: InputMaybe<SeoInput>;
   /** Page internal name. */
   slug?: InputMaybe<Scalars['String']>;
+  /** Page Text Content */
+  textContent?: InputMaybe<Scalars['String']>;
   /** Page title. */
   title?: InputMaybe<Scalars['String']>;
 };
@@ -4685,6 +4687,8 @@ export type PageInput = {
   seo?: InputMaybe<SeoInput>;
   /** Page internal name. */
   slug?: InputMaybe<Scalars['String']>;
+  /** Page Text Content */
+  textContent?: InputMaybe<Scalars['String']>;
   /** Page title. */
   title?: InputMaybe<Scalars['String']>;
 };
@@ -4738,6 +4742,8 @@ export type PageTranslationInput = {
   content?: InputMaybe<Scalars['JSONString']>;
   seoDescription?: InputMaybe<Scalars['String']>;
   seoTitle?: InputMaybe<Scalars['String']>;
+  /** Translated page text content. */
+  textContent?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -6661,6 +6667,8 @@ export type StaffCreateInput = {
   metadata?: InputMaybe<Array<MetadataInput>>;
   /** A note about the user. */
   note?: InputMaybe<Scalars['String']>;
+  /** Password of the staff */
+  password?: InputMaybe<Scalars['String']>;
   /**
    * Fields required to update the user private metadata.
    *
@@ -11779,8 +11787,8 @@ export type GridWarehousesQueryVariables = Exact<{
 export type GridWarehousesQuery = { __typename: 'Query', availableWarehouses: { __typename: 'WarehouseCountableConnection', edges: Array<{ __typename: 'WarehouseCountableEdge', node: { __typename: 'Warehouse', id: string, name: string } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null, selectedWarehouses: { __typename: 'WarehouseCountableConnection', edges: Array<{ __typename: 'WarehouseCountableEdge', node: { __typename: 'Warehouse', id: string, name: string } }> } | null };
 
 export type OrderReportsQueryVariables = Exact<{
-  gte: Scalars['DateTime'];
-  lte: Scalars['DateTime'];
+  gte: Scalars['Date'];
+  lte: Scalars['Date'];
   granularity: Granularity;
 }>;
 
@@ -11788,8 +11796,8 @@ export type OrderReportsQueryVariables = Exact<{
 export type OrderReportsQuery = { __typename: 'Query', orderReports: Array<{ __typename: 'BaseReport', amountTotal: number | null, collectionTotal: number | null, quantitiesTotal: number | null }> | null };
 
 export type CustomerReportsQueryVariables = Exact<{
-  gte: Scalars['DateTime'];
-  lte: Scalars['DateTime'];
+  gte: Scalars['Date'];
+  lte: Scalars['Date'];
   granularity: Granularity;
 }>;
 
@@ -11797,8 +11805,8 @@ export type CustomerReportsQueryVariables = Exact<{
 export type CustomerReportsQuery = { __typename: 'Query', customerReports: Array<number> | null };
 
 export type DonationReportsQueryVariables = Exact<{
-  gte: Scalars['DateTime'];
-  lte: Scalars['DateTime'];
+  gte: Scalars['Date'];
+  lte: Scalars['Date'];
   granularity: Granularity;
 }>;
 
