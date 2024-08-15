@@ -11,6 +11,8 @@ import {
 } from "./urls";
 import ReportIndexView from "./views/ReportIndexView";
 import ReportOrderView from "./views/ReportOrderView";
+import ReportUserView from "./views/ReportUserView";
+import ReportDonationView from "./views/ReportDonationView";
 
 export const ReportSection: React.FC<{}> = () => {
   const intl = useIntl();
@@ -24,8 +26,8 @@ export const ReportSection: React.FC<{}> = () => {
       <Switch>
         <Route exact path={reportManagePath} component={ReportIndexView} />
         <Route exact path={reportOrderPath} component={ReportOrderView} />
-        {/* <Route exact path={reportUserPath} component={ReportUserView} />
-        <Route exact path={reportDonationPath} component={ReportDonationView} /> */}
+        <Route exact path={reportUserPath} component={ReportUserView} />
+        <Route exact path={reportDonationPath} component={ReportDonationView} />
       </Switch>
     </>
   );
