@@ -35,10 +35,13 @@ export const CarouselSettingsPage: React.FC = () => {
       text: intl.formatMessage(commonMessages.savedChanges),
     });
 
-  const [carouselUpdate, carouselUpdateOpts] = useCarouselUpdateMutation({
+  const [carouselUpdate] = useCarouselUpdateMutation({
     onCompleted: data => {
       if (data.carouselSettingsUpdate.errors.length !== 0) {
-        console.error(data.carouselSettingsUpdate.errors[0].message)
+        notify({
+          status: "error",
+          text: data.carouselSettingsUpdate.errors[0].message
+        })
       }
       else {
         notifySaved();
@@ -46,16 +49,22 @@ export const CarouselSettingsPage: React.FC = () => {
     },
   })
 
-  const [carouselUpload, carouselUploadOpts] = useSingleFileUploadMutation({
+  const [carouselUpload] = useSingleFileUploadMutation({
     onCompleted: data => {
       if (data.fileUpload.errors.length !== 0) {
-        console.error(data.fileUpload.errors[0].message)
+        notify({
+          status: "error",
+          text: data.fileUpload.errors[0].message
+        })
       }
       else if (!data.fileUpload.uploadedFile.url) {
-        console.error(intl.formatMessage({
-          id: "ase8dq",
-          defaultMessage: "Failed to fetch response url for uploaded"
-        }));
+        notify({
+          status: "error",
+          text: intl.formatMessage({
+            id: "ase8dq",
+            defaultMessage: "Failed to fetch response url for uploaded image!"
+          })
+        });
       }
       else {
         let url = data.fileUpload.uploadedFile.url;
@@ -93,18 +102,36 @@ export const CarouselSettingsPage: React.FC = () => {
   const handleCarouseUpload = (file: File) => {
     const maxFileSize = 10 * 1024 * 1024;
 
-    if(!file) {
-      console.error("Error: File does not exist!")
+    if (!file) {
+      notify({
+        status: "error",
+        text: intl.formatMessage({
+          id: "aiso87",
+          defaultMessage: "Error: File does not exist!"
+        })
+      })
       return;
     }
 
-    if(file.size > maxFileSize) {
-      console.error("Error: File size exceeds 10MB!")
+    if (file.size > maxFileSize) {
+      notify({
+        status: "error",
+        text: intl.formatMessage({
+          id: "9hg8yf",
+          defaultMessage: "Error: File size exceeds 10MB!"
+        })
+      })
       return;
     }
 
-    if(!['image/jpeg', 'image/png', 'image/gif'].includes(file.type) && !file.name.endsWith(".webp")) {
-      console.error("Error: File type is not image!")
+    if (!['image/jpeg', 'image/png', 'image/gif'].includes(file.type) && !file.name.endsWith(".webp")) {
+      notify({
+        status: "error",
+        text: intl.formatMessage({
+          id: "6t7y89",
+          defaultMessage: "Error: File type is not image!"
+        })
+      })
       return;
     }
 
@@ -132,7 +159,7 @@ export const CarouselSettingsPage: React.FC = () => {
         <ProductMedia
           media={carouselMedia}
           allowMultipleUpload={false}
-          getImageEditUrl={()=>''}
+          getImageEditUrl={() => ''}
           onImageDelete={handleCarouselDelete}
           onImageUpload={handleCarouseUpload}
           openMediaUrlModal={() => setModalOpen(true)}
