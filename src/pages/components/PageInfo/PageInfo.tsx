@@ -1,7 +1,6 @@
 // @ts-strict-ignore
 import CardTitle from "@dashboard/components/CardTitle";
 import FormSpacer from "@dashboard/components/FormSpacer";
-import RichTextEditor from "@dashboard/components/RichTextEditor";
 import { RichTextEditorLoading } from "@dashboard/components/RichTextEditor/RichTextEditorLoading";
 import { PageErrorFragment, useSingleFileUploadMutation } from "@dashboard/graphql";
 import { commonMessages } from "@dashboard/intl";
@@ -11,7 +10,7 @@ import getPageErrorMessage from "@dashboard/utils/errors/page";
 import { useRichTextContext } from "@dashboard/utils/richText/context";
 import { Card, CardContent, TextField } from "@material-ui/core";
 import { makeStyles } from "@saleor/macaw-ui";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from "quill-image-resize-module-react";
@@ -19,7 +18,6 @@ import ImageResize from "quill-image-resize-module-react";
 import { PageData } from "../PageDetailsPage/form";
 import './quill.css'
 import 'react-quill/dist/quill.snow.css';
-import { OutputBlockData, OutputData } from "@editorjs/editorjs";
 
 export interface PageInfoProps {
   data: PageData;
@@ -72,7 +70,8 @@ const PageInfo: React.FC<PageInfoProps> = props => {
   const intl = useIntl();
   const notify = useNotifier();
 
-  const { defaultValue, editorRef, isReadyForMount, handleChange } = useRichTextContext();
+  // const { defaultValue, editorRef, isReadyForMount, handleChange } = useRichTextContext();
+  const { defaultValue, editorRef, isReadyForMount } = useRichTextContext();
   const formErrors = getFormErrors(["title", "content"], errors);
 
   const [editorValue, setEditorValue] = useState<string>('');
@@ -214,11 +213,9 @@ const PageInfo: React.FC<PageInfoProps> = props => {
     }
   }
 
-  const handleQuillValueChange = (content, delta, source, editor) => {
+  const handleQuillValueChange = (content) => {
+    // parmas: content, delta, source, editor
     setEditorValue(content);
-    // if (editorRef.current) {
-    //   console.log(editorRef.current.getEditor().root.innerHTML)
-    // }
   }
 
   return (
