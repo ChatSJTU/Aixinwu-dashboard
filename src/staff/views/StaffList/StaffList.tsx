@@ -143,6 +143,7 @@ export const StaffList: React.FC<StaffListProps> = ({ params }) => {
       variables: {
         input: {
           addGroups: variables.permissionGroups,
+          password: variables.password,
           email: variables.email,
           firstName: variables.firstName,
           lastName: variables.lastName,

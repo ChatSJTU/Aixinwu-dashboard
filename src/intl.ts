@@ -102,6 +102,10 @@ export const commonMessages = defineMessages({
     id: "aI80kg",
     defaultMessage: "Properties",
   },
+  password: {
+    id: "password",
+    defaultMessage: "密码",
+  },
   readOnly: {
     id: "kFYlu2",
     defaultMessage: "Saleor runs in read-only mode. Changes not saved.",

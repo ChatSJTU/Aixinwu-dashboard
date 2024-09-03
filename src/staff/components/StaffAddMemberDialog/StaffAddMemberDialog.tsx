@@ -31,6 +31,7 @@ import { ExtendedFormHelperTextProps } from "./types";
 
 export interface AddMemberFormData {
   email: string;
+  password: string
   firstName: string;
   lastName: string;
   permissionGroups: string[];
@@ -38,6 +39,7 @@ export interface AddMemberFormData {
 
 const initialForm: AddMemberFormData = {
   email: "",
+  password: "",
   firstName: "",
   lastName: "",
   permissionGroups: [],
@@ -102,8 +104,8 @@ const StaffAddMemberDialog: React.FC<StaffAddMemberDialogProps> = props => {
           <>
             <DialogTitle disableTypography>
               <FormattedMessage
-                id="23g7PY"
-                defaultMessage="Invite Staff Member"
+                id="staff-invite-header"
+                defaultMessage="添加员工"
                 description="dialog header"
               />
             </DialogTitle>
@@ -135,6 +137,19 @@ const StaffAddMemberDialog: React.FC<StaffAddMemberDialogProps> = props => {
                   } as ExtendedFormHelperTextProps
                 }
               />
+              <FormSpacer />
+              <TextField
+                fullWidth
+                {...getFieldProps("password")}
+                type="password"
+                value={formData.password}
+                onChange={change}
+                FormHelperTextProps={
+                  {
+                    "data-test-id": "email-text-input-helper-text",
+                  } as ExtendedFormHelperTextProps
+                }
+              />
             </DialogContent>
             <hr className={classes.hr} />
             <DialogActions>
@@ -145,8 +160,8 @@ const StaffAddMemberDialog: React.FC<StaffAddMemberDialogProps> = props => {
                 transitionState={confirmButtonState}
               >
                 <FormattedMessage
-                  id="hw9Fah"
-                  defaultMessage="Send invite"
+                  id="staff-invite-send-button"
+                  defaultMessage="确认"
                   description="button"
                 />
               </ConfirmButton>
