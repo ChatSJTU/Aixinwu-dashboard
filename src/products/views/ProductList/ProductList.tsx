@@ -323,7 +323,7 @@ export const ProductList: React.FC<ProductListProps> = ({ params }) => {
     displayLoader: true,
     variables: {
       ...queryVariables,
-      hasChannel: !!selectedChannel,
+      hasChannel: true, //!!selectedChannel
     },
     skip: valueProvider.loading,
   });

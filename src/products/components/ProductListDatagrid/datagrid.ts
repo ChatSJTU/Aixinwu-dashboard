@@ -187,7 +187,7 @@ export function createGetCellContent({
 
     const channel = rowData?.channelListings?.find(
       listing => listing.channel.id === selectedChannelId,
-    );
+    ) ?? rowData?.channelListings?.find(_=>true);
 
     switch (columnId) {
       case "productType":
