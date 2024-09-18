@@ -219,7 +219,8 @@ const Routes: React.FC = () => {
                     component={CustomerSection}
                   />
                   <SectionRoute
-                    permissions={[PermissionEnum.MANAGE_ORDERS, PermissionEnum.MANAGE_USERS]}
+                    matchPermission="any"
+                    permissions={[PermissionEnum.MANAGE_ORDERS, PermissionEnum.MANAGE_USERS, PermissionEnum.MANAGE_DONATIONS]}
                     path="/reports"
                     component={ReportSection}
                   />
