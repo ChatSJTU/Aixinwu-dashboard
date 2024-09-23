@@ -95,6 +95,10 @@
 .ql-toolbar {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+  background-color: white;
 }
 
 .ql-container {
