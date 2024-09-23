@@ -6,9 +6,10 @@ import { ProductErrorFragment } from "@dashboard/graphql";
 import { commonMessages } from "@dashboard/intl";
 import { getFormErrors, getProductErrorMessage } from "@dashboard/utils/errors";
 import { useRichTextContext } from "@dashboard/utils/richText/context";
+import QuillEditor from "@dashboard/components/QuillEditor";
 import { OutputData } from "@editorjs/editorjs";
-import { Box, Input } from "@saleor/macaw-ui-next";
-import React from "react";
+import { Input } from "@saleor/macaw-ui-next";
+import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 interface ProductDetailsFormProps {
@@ -34,6 +35,14 @@ export const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({
   const { editorRef, defaultValue, isReadyForMount, handleChange } =
     useRichTextContext();
 
+  const [editorValue, setEditorValue] = useState<string>('');
+
+  useEffect(() => {
+    if (defaultValue) {
+      setEditorValue(defaultValue.blocks?.map(x => x.data.text).join('<br>'));
+    }
+  }, [defaultValue])
+
   return (
     <DashboardCard>
       <DashboardCard.Title>
@@ -56,7 +65,9 @@ export const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({
         />
 
         {isReadyForMount ? (
-          <RichTextEditor
+          <>
+            {/*
+            <RichTextEditor
             editorRef={editorRef}
             defaultValue={defaultValue}
             onChange={handleChange}
@@ -65,14 +76,23 @@ export const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({
             helperText={getProductErrorMessage(formErrors.description, intl)}
             label={intl.formatMessage(commonMessages.description)}
             name="description"
-          />
+            /> 
+          */}
+            <div style={{ marginBottom: '14px' }}>
+              <QuillEditor
+                editorRef={editorRef}
+                value={editorValue}
+              />
+            </div>
+          </>
+
         ) : (
           <RichTextEditorLoading
             label={intl.formatMessage(commonMessages.description)}
             name="description"
           />
         )}
-{/*           <Box __width="25%">
+        {/*           <Box __width="25%">
               <Input
                   label={intl.formatMessage({
                       id: "L7N+0y",
