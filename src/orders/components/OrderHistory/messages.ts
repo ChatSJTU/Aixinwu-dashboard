@@ -305,5 +305,10 @@ export const getEventMessage = (
       });
     case OrderEventsEnum.EXTERNAL_SERVICE_NOTIFICATION:
       return event.message;
+    case OrderEventsEnum.EXPIRED:
+      return intl.formatMessage({
+        id: "order-event-expired",
+        defaultMessage: "订单已过期",
+      });
   }
 };

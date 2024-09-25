@@ -195,6 +195,10 @@ export function createFilterStructure(
             label: intl.formatMessage(commonStatusMessages.cancelled),
             value: OrderStatusFilter.CANCELED,
           },
+          {
+            label: intl.formatMessage(commonStatusMessages.expired),
+            value: OrderStatusFilter.EXPIRED,
+          },
         ],
       ),
       active: opts.status.active,

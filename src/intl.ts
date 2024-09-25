@@ -615,6 +615,10 @@ export const commonStatusMessages = defineMessages({
     defaultMessage: "Deactivated",
     description: "status",
   },
+  expired: {
+    id: "expired",
+    defaultMessage: "已过期",
+  },
 });
 
 export const orderStatusMessages = defineMessages({
