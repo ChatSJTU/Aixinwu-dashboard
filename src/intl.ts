@@ -663,6 +663,14 @@ export const orderStatusMessages = defineMessages({
     defaultMessage: "Unfulfilled",
     description: "order status",
   },
+  leased: {
+    id: "order-status-leased",
+    defaultMessage: "已租出",
+  },
+  expired: {
+    id: "order-status-expired",
+    defaultMessage: "已过期",
+  },
 });
 
 export const paymentStatusMessages = defineMessages({

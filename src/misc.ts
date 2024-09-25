@@ -178,6 +178,16 @@ export const transformOrderStatus = (
         localized: intl.formatMessage(orderStatusMessages.returned),
         status: StatusType.INFO,
       };
+    case OrderStatus.LEASED:
+      return {
+        localized: intl.formatMessage(orderStatusMessages.leased),
+        status: StatusType.INFO,
+      };
+    case OrderStatus.EXPIRED:
+      return {
+        localized: intl.formatMessage(orderStatusMessages.expired),
+        status: StatusType.WARNING,
+      };
   }
   return {
     localized: status,
