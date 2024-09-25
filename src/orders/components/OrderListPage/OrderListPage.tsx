@@ -170,7 +170,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({
               />
             )}
 
-            {/* <Tooltip>
+            <Tooltip>
               <Tooltip.Trigger>
                 {extensionCreateButtonItems.length > 0 ? (
                   <ButtonWithDropdown
@@ -207,7 +207,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({
                   />
                 )}
               </Tooltip.Content>
-            </Tooltip> */}
+            </Tooltip>
 
             {hasLimits(limits, "orders") && (
               <LimitsInfo
