@@ -41,7 +41,7 @@ export interface FormData extends StockSettingsInput {
   warehousesToDisplay: ChannelWarehouses;
   defaultCountry: CountryCode;
   markAsPaidStrategy: MarkAsPaidStrategyEnum;
-  deleteExpiredOrdersAfter: number;
+  expireOrdersAfter: number;
   allowUnpaidOrders: boolean;
   defaultTransactionFlowStrategy: TransactionFlowStrategyEnum;
 }
@@ -83,7 +83,7 @@ export const ChannelForm: React.FC<ChannelFormProps> = ({
       "slug",
       "currencyCode",
       "defaultCountry",
-      "deleteExpiredOrdersAfter",
+      "expireOrdersAfter",
     ],
     errors,
   );
@@ -193,15 +193,14 @@ export const ChannelForm: React.FC<ChannelFormProps> = ({
         </Box>
         <Box paddingX={6}>
           <Input
-            name="deleteExpiredOrdersAfter"
-            data-test-id="delete-expired-order-input"
-            value={data.deleteExpiredOrdersAfter}
-            error={!!formErrors.deleteExpiredOrdersAfter}
+            name="expireOrdersAfter"
+            data-test-id="expired-order-input"
+            value={data.expireOrdersAfter}
+            error={!!formErrors.expireOrdersAfter}
             type="number"
             label="TTL"
             onChange={onChange}
             min={0}
-            max={120}
             // TODO: Should be removed after single autocomplete
             // select is migrated to macaw inputs
             __height={12.5}

@@ -116,7 +116,7 @@ export const ChannelDetails: React.FC<ChannelDetailsProps> = ({
     defaultCountry,
     allocationStrategy,
     markAsPaidStrategy,
-    deleteExpiredOrdersAfter,
+    expireOrdersAfter,
     allowUnpaidOrders,
     defaultTransactionFlowStrategy,
   }: FormData) => {
@@ -139,7 +139,7 @@ export const ChannelDetails: React.FC<ChannelDetailsProps> = ({
           },
           orderSettings: {
             markAsPaidStrategy,
-            deleteExpiredOrdersAfter,
+            expireOrdersAfter,
             allowUnpaidOrders,
           },
         },
