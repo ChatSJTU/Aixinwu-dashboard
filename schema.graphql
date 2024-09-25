@@ -3191,13 +3191,18 @@ input BalanceEventSortingInput {
 
 """An enumeration."""
 enum BalanceEventsEnum {
+  BONUS
   CONSECUTIVE_LOGIN
   CONSUMED
   DONATION_GRANTED
   DONATION_REJECTED
   FIRST_LOGIN
+  INVITE_NEW_USER
   MANUALLY_UPDATED
+  OTHER
+  POOR_SIGN
   REFUNDED
+  SPECIAL_EVENT
 }
 
 """
@@ -19975,6 +19980,7 @@ enum OrderStatus {
 
 enum OrderStatusFilter {
   CANCELED
+  EXPIRED
   FULFILLED
   PARTIALLY_FULFILLED
   READY_TO_CAPTURE
@@ -21869,6 +21875,7 @@ enum PermissionEnum {
   HANDLE_TAXES
   IMPERSONATE_USER
   MANAGE_APPS
+  MANAGE_BARCODE
   MANAGE_CHANNELS
   MANAGE_CHECKOUTS
   MANAGE_DISCOUNTS
@@ -33501,6 +33508,12 @@ type User implements Node & ObjectWithMetadata {
     """Return the elements in the list that come before the specified cursor."""
     before: String
 
+    """Slug of a channel for which the data should be returned."""
+    channel: String
+
+    """Filtering options for orders."""
+    filter: OrderFilterInput
+
     """
     Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
@@ -33510,6 +33523,9 @@ type User implements Node & ObjectWithMetadata {
     Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
     """
     last: Int
+
+    """Sort orders."""
+    sortBy: OrderSortingInput
   ): OrderCountableConnection
 
   """List of user's permission groups."""
