@@ -4586,7 +4586,7 @@
   },
   "U+79k0": {
     "context": "order expiration card description",
-    "string": "多少天后删除过期订单。可设置为1~120"
+    "string": "多少天后订单自动过期（未交付商品退货退款）。"
   },
   "U1eJIw": {
     "context": "order history message",
