@@ -143,7 +143,7 @@ const DonationCreateDetails: React.FC<DonationCreateDetailsProps> = props => {
             type="text"
             label={intl.formatMessage({
               id: "donation-donator-code",
-              defaultMessage: "学号",
+              defaultMessage: "学工号",
             })}
             value={data.donator}
             onChange={onChange}

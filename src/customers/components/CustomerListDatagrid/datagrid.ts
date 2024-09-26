@@ -25,7 +25,7 @@ export const customerListStaticColumnsAdapter = (
       id: "code",
       title: intl.formatMessage({
         id: "customer-code",
-        defaultMessage: "学号"
+        defaultMessage: "学工号"
       }),
       width: 200,
     },

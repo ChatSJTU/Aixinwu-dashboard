@@ -85,7 +85,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = props => {
             type="text"
             label={intl.formatMessage({
               id: "user-code",
-              defaultMessage: "学号"
+              defaultMessage: "学工号"
             })}
             value={data.code}
             onChange={onChange}
