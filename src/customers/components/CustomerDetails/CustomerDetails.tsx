@@ -3,6 +3,7 @@ import CardTitle from "@dashboard/components/CardTitle";
 import { ControlledCheckbox } from "@dashboard/components/ControlledCheckbox";
 import Skeleton from "@dashboard/components/Skeleton";
 import { AccountErrorFragment, CustomerDetailsQuery } from "@dashboard/graphql";
+import useLocale from "@dashboard/hooks/useLocale";
 import { maybe } from "@dashboard/misc";
 import { getFormErrors } from "@dashboard/utils/errors";
 import getAccountErrorMessage from "@dashboard/utils/errors/account";
@@ -46,6 +47,7 @@ const CustomerDetails: React.FC<CustomerDetailsProps> = props => {
 
   const classes = useStyles(props);
   const intl = useIntl();
+  const { locale } = useLocale();
 
   const formErrors = getFormErrors(["note"], errors);
 
@@ -67,7 +69,7 @@ const CustomerDetails: React.FC<CustomerDetailsProps> = props => {
                   defaultMessage="Active member since {date}"
                   description="section subheader"
                   values={{
-                    date: moment(customer.dateJoined).format("MMM YYYY"),
+                    date: moment(customer.dateJoined).locale(locale.replace("zh-Hans", "zh-cn")).format("l"),
                   }}
                 />
               </Typography>

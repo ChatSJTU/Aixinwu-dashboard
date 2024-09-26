@@ -97,13 +97,13 @@ export const createGetCellContent =
       case "start-date":
         return readonlyTextCell(
           rowData.startDate
-            ? moment(rowData.startDate).locale(locale).format("lll")
+            ? moment(rowData.startDate).locale(locale.replace("zh-Hans", "zh-cn")).format("lll")
             : PLACEHOLDER,
         );
       case "end-date":
         return readonlyTextCell(
           rowData.endDate
-            ? moment(rowData.endDate).locale(locale).format("lll")
+            ? moment(rowData.endDate).locale(locale.replace("zh-Hans", "zh-cn")).format("lll")
             : PLACEHOLDER,
         );
 

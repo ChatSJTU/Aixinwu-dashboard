@@ -9,7 +9,7 @@ function useDateLocalize(): LocalizeDate {
 
   return (date: string, format?: string) =>
     moment(date)
-      .locale(locale)
+      .locale(locale.replace("zh-Hans", "zh-cn"))
       .format(format || "ll");
 }
 

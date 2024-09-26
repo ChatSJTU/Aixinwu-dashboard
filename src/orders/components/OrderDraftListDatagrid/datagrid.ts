@@ -66,7 +66,7 @@ export const createGetCellContent =
         return readonlyTextCell(`#${rowData.number}`);
       case "date":
         return readonlyTextCell(
-          moment(rowData.created).locale(locale).format("lll"),
+          moment(rowData.created).locale(locale.replace("zh-Hans", "zh-cn")).format("lll"),
         );
       case "customer":
         return readonlyTextCell(getCustomerName(rowData));
