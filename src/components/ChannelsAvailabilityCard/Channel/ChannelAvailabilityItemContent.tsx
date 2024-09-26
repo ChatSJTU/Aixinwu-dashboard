@@ -16,6 +16,8 @@ import { useIntl } from "react-intl";
 
 import { ChannelOpts, ChannelsAvailabilityError, Messages } from "../types";
 import { availabilityItemMessages } from "./messages";
+import moment from "moment";
+import { getLocalTime } from "../utils";
 
 export interface ChannelContentProps {
   disabled?: boolean;
@@ -33,38 +35,38 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
   onChange,
 }) => {
   const {
-    availableForPurchase,
+    availableForPurchaseAt,
     isAvailableForPurchase: isAvailable,
     isPublished,
-    publicationDate,
+    publishedAt,
     visibleInListings,
     id,
   } = data;
   const formData = {
-    ...(availableForPurchase !== undefined ? { availableForPurchase } : {}),
+    ...(availableForPurchaseAt !== undefined ? { availableForPurchaseAt } : {}),
     ...(isAvailable !== undefined
       ? { isAvailableForPurchase: isAvailable }
       : {}),
     isPublished,
-    publicationDate,
+    publishedAt,
     ...(visibleInListings !== undefined ? { visibleInListings } : {}),
   };
   const dateNow = useCurrentDate();
   const localizeDate = useDateLocalize();
   const hasAvailableProps =
-    isAvailable !== undefined && availableForPurchase !== undefined;
+    isAvailable !== undefined && availableForPurchaseAt !== undefined;
   const [isPublicationDate, setPublicationDate] = useState(
-    publicationDate === null,
+    publishedAt === null,
   );
   const [isAvailableDate, setAvailableDate] = useState(false);
   const intl = useIntl();
-
+  console.log(formData)
   const visibleMessage = (date: string) =>
     intl.formatMessage(availabilityItemMessages.sinceDate, {
       date: localizeDate(date),
     });
   const formErrors = getFormErrors(
-    ["availableForPurchaseDate", "publicationDate"],
+    ["availableForPurchaseAt", "publishedAt"],
     errors,
   );
 
@@ -76,7 +78,7 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
           onChange(id, {
             ...formData,
             isPublished: value === "true",
-            publicationDate: value === "false" ? null : publicationDate,
+            publishedAt: value === "false" ? null : publishedAt,
           });
         }}
         disabled={disabled}
@@ -92,11 +94,11 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
           <Box display="flex" alignItems="baseline" gap={2}>
             <Text>{messages.visibleLabel}</Text>
             {isPublished &&
-              publicationDate &&
-              Date.parse(publicationDate) < dateNow && (
+              publishedAt &&
+              Date.parse(publishedAt) < dateNow && (
                 <Text variant="caption" color="default2">
                   {messages.visibleSecondLabel ||
-                    visibleMessage(publicationDate)}
+                    visibleMessage(publishedAt)}
                 </Text>
               )}
           </Box>
@@ -108,9 +110,9 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
         >
           <Box display="flex" alignItems="baseline" gap={2}>
             <Text>{messages.hiddenLabel}</Text>
-            {publicationDate &&
+            {publishedAt &&
               !isPublished &&
-              Date.parse(publicationDate) >= dateNow && (
+              Date.parse(publishedAt) >= dateNow && (
                 <Text variant="caption" color="default2">
                   {messages.hiddenSecondLabel}
                 </Text>
@@ -128,22 +130,22 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
           </Checkbox>
           {isPublicationDate && (
             <TextField
-              error={!!formErrors.publicationDate}
+              error={!!formErrors.publishedAt}
               disabled={disabled}
               label={intl.formatMessage(availabilityItemMessages.publishOn)}
               name={`channel:publicationDate:${id}`}
-              type="date"
+              type="datetime-local"
               fullWidth={true}
               helperText={
-                formErrors.publicationDate
-                  ? getProductErrorMessage(formErrors.publicationDate, intl)
+                formErrors.publishedAt
+                  ? getProductErrorMessage(formErrors.publishedAt, intl)
                   : ""
               }
-              value={publicationDate || ""}
+              value={getLocalTime(publishedAt) || ""}
               onChange={e =>
                 onChange(id, {
                   ...formData,
-                  publicationDate: e.target.value || null,
+                  publishedAt: moment(e.target.value).tz("Asia/Shanghai").format() || null,
                 })
               }
               InputLabelProps={{
@@ -163,8 +165,8 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
             onValueChange={value =>
               onChange(id, {
                 ...formData,
-                availableForPurchase:
-                  value === "false" ? null : availableForPurchase,
+                availableForPurchaseAt:
+                  value === "false" ? null : availableForPurchaseAt,
                 isAvailableForPurchase: value === "true",
               })
             }
@@ -179,10 +181,10 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
               <Box display="flex" __alignItems="baseline" gap={2}>
                 <Text>{messages.availableLabel}</Text>
                 {isAvailable &&
-                  availableForPurchase &&
-                  Date.parse(availableForPurchase) < dateNow && (
+                  availableForPurchaseAt &&
+                  Date.parse(availableForPurchaseAt) < dateNow && (
                     <Text variant="caption" color="default2">
-                      {visibleMessage(availableForPurchase)}
+                      {visibleMessage(availableForPurchaseAt)}
                     </Text>
                   )}
               </Box>
@@ -193,7 +195,7 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
             >
               <Box display="flex" __alignItems="baseline" gap={2}>
                 <Text>{messages.unavailableLabel}</Text>
-                {availableForPurchase && !isAvailable && (
+                {availableForPurchaseAt && !isAvailable && (
                   <Text variant="caption" color="default2">
                     {messages.availableSecondLabel}
                   </Text>
@@ -218,27 +220,27 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
               </Checkbox>
               {isAvailableDate && (
                 <TextField
-                  error={!!formErrors.availableForPurchaseDate}
+                  error={!!formErrors.availableForPurchaseAt}
                   disabled={disabled}
                   label={intl.formatMessage(
                     availabilityItemMessages.setAvailableOn,
                   )}
                   name={`channel:availableForPurchase:${id}`}
-                  type="date"
+                  type="datetime-local"
                   fullWidth={true}
                   helperText={
-                    formErrors.availableForPurchaseDate
+                    formErrors.availableForPurchaseAt
                       ? getProductErrorMessage(
-                          formErrors.availableForPurchaseDate,
+                          formErrors.availableForPurchaseAt,
                           intl,
                         )
                       : ""
                   }
-                  value={availableForPurchase || ""}
-                  onChange={e =>
+                  value={getLocalTime(availableForPurchaseAt) || ""}
+                  onChange={e => 
                     onChange(id, {
                       ...formData,
-                      availableForPurchase: e.target.value,
+                      availableForPurchaseAt: moment(e.target.value).tz("Asia/Shanghai").format(),
                     })
                   }
                   InputLabelProps={{

@@ -31,26 +31,26 @@ export interface ChannelData {
   id: string;
   name: string;
   isPublished?: boolean;
-  publicationDate?: string | null;
+  publishedAt?: string | null;
   currency?: string;
   variantsIds?: string[];
   price?: string;
   costPrice?: string;
-  availableForPurchase?: string;
+  availableForPurchaseAt?: string;
   isAvailableForPurchase?: boolean;
   visibleInListings?: boolean;
   preorderThreshold?: number;
   unitsSold?: number;
 }
 
-export interface ProductChannelListingData extends Channel {
-  isPublished: boolean;
-  publicationDate: string | null;
-  availableForPurchase: string;
-  isAvailableForPurchase: boolean;
-  visibleInListings: boolean;
-  currency?: string;
-}
+// export interface ProductChannelListingData extends Channel {
+//   isPublished: boolean;
+//   publicationDate: string | null;
+//   availableForPurchase: string;
+//   isAvailableForPurchase: boolean;
+//   visibleInListings: boolean;
+//   currency?: string;
+// }
 
 export interface ChannelPriceData {
   id: string;
@@ -303,7 +303,7 @@ export const createChannelsDataFromProduct = (productData?: ProductFragment) =>
       availableForPurchase,
       isAvailableForPurchase,
       visibleInListings,
-      publicationDate,
+      publishedAt,
       isPublished,
     }) => {
       const variantChannel = productData?.variants?.[0].channelListings!.find(
@@ -331,7 +331,7 @@ export const createChannelsDataFromProduct = (productData?: ProductFragment) =>
       return {
         availableForPurchase,
         isPublished: isProductPublished,
-        publicationDate,
+        publishedAt,
         variantsIds,
         costPrice: costPrice?.amount.toString() ?? "",
         currency: price ? price.currency : "",

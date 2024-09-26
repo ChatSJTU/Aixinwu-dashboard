@@ -85,7 +85,6 @@ export function getProductChannelsUpdateVariables(
   data: ProductUpdateSubmitData,
 ): ProductChannelListingUpdateMutationVariables {
   const channels = inferProductChannelsAfterUpdate(product, data);
-
   const dataUpdated = new Map<string, ProductChannelListingAddInput>();
   data.channels.updateChannels
     .map(listing => {
@@ -97,11 +96,11 @@ export function getProductChannelsUpdateVariables(
       ] as Array<keyof ProductChannelListingAddInput>;
 
       if (!listing.isAvailableForPurchase) {
-        fielsToPick.push("availableForPurchaseAt", "availableForPurchaseDate");
+        fielsToPick.push("availableForPurchaseAt");
       }
 
       if (!listing.isPublished) {
-        fielsToPick.push("publicationDate", "publishedAt");
+        fielsToPick.push("publishedAt");
       }
 
       return pick(
@@ -122,6 +121,10 @@ export function getProductChannelsUpdateVariables(
           data.availableForPurchaseDate !== null
             ? true
             : data.isAvailableForPurchase,
+        isPublished:
+          data.publishedAt !== null
+            ? true
+            : data.isPublished,
       };
     });
 

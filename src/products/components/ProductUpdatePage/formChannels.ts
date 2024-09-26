@@ -13,10 +13,10 @@ import { useCallback, useRef } from "react";
 import { ProductChannelsListingDialogSubmit } from "./ProductChannelsListingsDialog";
 
 const emptyListing: Omit<ProductChannelListingAddInput, "channelId"> = {
-  availableForPurchaseDate: null,
+  availableForPurchaseAt: null,
   isAvailableForPurchase: false,
   isPublished: false,
-  publicationDate: null,
+  publishedAt: null,
   visibleInListings: false,
 };
 
@@ -30,7 +30,7 @@ export const updateChannelsInput = (
       return {
         ...listing,
         ...data,
-        availableForPurchaseDate: data.availableForPurchase,
+        availableForPurchaseDate: data.availableForPurchaseAt,
       };
     }
     return listing;

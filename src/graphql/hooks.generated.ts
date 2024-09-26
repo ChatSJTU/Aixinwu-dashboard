@@ -289,8 +289,10 @@ export const ChannelListingProductWithoutPricingFragmentDoc = gql`
     fragment ChannelListingProductWithoutPricing on ProductChannelListing {
   isPublished
   publicationDate
+  publishedAt
   isAvailableForPurchase
   availableForPurchase
+  availableForPurchaseAt
   visibleInListings
   channel {
     id
@@ -628,7 +630,7 @@ export const ChannelDetailsFragmentDoc = gql`
   }
   orderSettings {
     markAsPaidStrategy
-    deleteExpiredOrdersAfter
+    expireOrdersAfter
     allowUnpaidOrders
   }
   paymentSettings {

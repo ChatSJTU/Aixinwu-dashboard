@@ -169,7 +169,7 @@ export const FormErrors = () => (
         "chargeTaxes",
         "collections",
         "name",
-        "publicationDate",
+        "publishedAt",
         "seoDescription",
         "seoTitle",
         "sku",

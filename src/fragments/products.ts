@@ -56,8 +56,10 @@ export const channelListingProductWithoutPricingFragment = gql`
   fragment ChannelListingProductWithoutPricing on ProductChannelListing {
     isPublished
     publicationDate
+    publishedAt
     isAvailableForPurchase
     availableForPurchase
+    availableForPurchaseAt
     visibleInListings
     channel {
       id

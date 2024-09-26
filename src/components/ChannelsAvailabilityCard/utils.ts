@@ -5,6 +5,12 @@ import { IntlShape } from "react-intl";
 
 import { publicationMessages } from "./messages";
 import { Messages } from "./types";
+import moment from "moment";
+
+export const getLocalTime = (t: string | null | undefined) => {
+  if (!t) return undefined;
+  return moment(t).format("YYYY-MM-DDTHH:mm");
+}
 
 export const getChannelsAvailabilityMessages = ({
   messages,
@@ -23,13 +29,13 @@ export const getChannelsAvailabilityMessages = ({
       [currVal.id]: {
         ...messages,
         availableDateText:
-          currVal.publicationDate && !currVal.isPublished
+          currVal.publishedAt && !currVal.isPublished
             ? intl.formatMessage(publicationMessages.willBecomePublishedOn, {
-                date: localizeDate(currVal.publicationDate),
+                date: localizeDate(currVal.publishedAt),
               })
-            : currVal.publicationDate
+            : currVal.publishedAt
             ? intl.formatMessage(publicationMessages.publishedSince, {
-                date: localizeDate(currVal.publicationDate),
+                date: localizeDate(currVal.publishedAt),
               })
             : currVal.isPublished
             ? intl.formatMessage(publicationMessages.published)
@@ -40,13 +46,13 @@ export const getChannelsAvailabilityMessages = ({
         availableSecondLabel: intl.formatMessage(
           publicationMessages.willBecomeAvailableOn,
           {
-            date: localizeDate(currVal.availableForPurchase),
+            date: localizeDate(currVal.availableForPurchaseAt),
           },
         ),
         hiddenSecondLabel: intl.formatMessage(
           publicationMessages.willBecomePublishedOn,
           {
-            date: localizeDate(currVal.publicationDate),
+            date: localizeDate(currVal.publishedAt),
           },
         ),
         setAvailabilityDateLabel: intl.formatMessage(

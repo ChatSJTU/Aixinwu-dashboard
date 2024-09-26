@@ -4,10 +4,10 @@ import {
 } from "@dashboard/graphql";
 
 export interface ChannelOpts {
-  availableForPurchase?: string;
+  availableForPurchaseAt?: string;
   isAvailableForPurchase?: boolean;
   isPublished: boolean;
-  publicationDate: string | null;
+  publishedAt: string | null;
   visibleInListings?: boolean;
 }
 
