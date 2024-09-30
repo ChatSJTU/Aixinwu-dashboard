@@ -198,7 +198,7 @@ const OrderCustomer: React.FC<OrderCustomerProps> = props => {
               {user.email}
             </Typography>
             <RequirePermissions
-              requiredPermissions={[PermissionEnum.MANAGE_USERS]}
+              oneOfPermissions={[PermissionEnum.MANAGE_USERS, PermissionEnum.READ_USERS]}
             >
               <div>
                 <Link

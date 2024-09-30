@@ -3,7 +3,7 @@ import AddressFormatter from "@dashboard/components/AddressFormatter";
 import { Button } from "@dashboard/components/Button";
 import CardTitle from "@dashboard/components/CardTitle";
 import { Hr } from "@dashboard/components/Hr";
-import { CustomerDetailsFragment } from "@dashboard/graphql";
+import { CustomerDetailsFragment, PermissionEnum } from "@dashboard/graphql";
 import { buttonMessages } from "@dashboard/intl";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from "@saleor/macaw-ui";
@@ -11,6 +11,7 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { maybe } from "../../../misc";
+import RequirePermissions from "@dashboard/components/RequirePermissions";
 
 const useStyles = makeStyles(
   theme => ({
@@ -43,14 +44,18 @@ const CustomerAddresses: React.FC<CustomerAddressesProps> = props => {
           description: "header",
         })}
         toolbar={
-          <Button
-            data-test-id="manage-addresses"
-            disabled={disabled}
-            variant="tertiary"
-            href={manageAddressHref}
+          <RequirePermissions
+            requiredPermissions={[PermissionEnum.MANAGE_GIFT_CARD]}
           >
-            <FormattedMessage {...buttonMessages.manage} />
-          </Button>
+            <Button
+              data-test-id="manage-addresses"
+              disabled={disabled}
+              variant="tertiary"
+              href={manageAddressHref}
+            >
+              <FormattedMessage {...buttonMessages.manage} />
+            </Button>
+          </RequirePermissions>
         }
       />
       {maybe(() => customer.defaultBillingAddress.id) !==

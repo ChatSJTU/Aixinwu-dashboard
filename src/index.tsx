@@ -214,7 +214,8 @@ const Routes: React.FC = () => {
                     component={CoinlogSection}
                   />
                   <SectionRoute
-                    permissions={[PermissionEnum.MANAGE_USERS]}
+                    permissions={[PermissionEnum.MANAGE_USERS, PermissionEnum.READ_USERS]}
+                    matchPermission="any"
                     path="/customers"
                     component={CustomerSection}
                   />

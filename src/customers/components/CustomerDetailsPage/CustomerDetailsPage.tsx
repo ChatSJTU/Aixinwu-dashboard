@@ -13,7 +13,7 @@ import Form from "@dashboard/components/Form";
 import { DetailPageLayout } from "@dashboard/components/Layouts";
 import { Metadata } from "@dashboard/components/Metadata/Metadata";
 import { MetadataFormData } from "@dashboard/components/Metadata/types";
-import RequirePermissions from "@dashboard/components/RequirePermissions";
+import RequirePermissions, { hasOneOfPermissions } from "@dashboard/components/RequirePermissions";
 import Savebar from "@dashboard/components/Savebar";
 import {
   customerAddressesUrl,
@@ -41,6 +41,7 @@ import CustomerInfo from "../CustomerInfo";
 import CustomerOrders from "../CustomerOrders";
 import CustomerStats from "../CustomerStats";
 import Title from "./Title";
+import { useUserPermissions } from "@dashboard/auth/hooks/useUserPermissions";
 
 export interface CustomerDetailsPageFormData extends MetadataFormData {
   firstName: string;
@@ -76,6 +77,7 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
 }: CustomerDetailsPageProps) => {
   const intl = useIntl();
   const navigate = useNavigator();
+  const userPermissions = useUserPermissions();
 
   const initialForm: CustomerDetailsPageFormData = {
     email: customer?.email || "",
@@ -163,18 +165,18 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
               <CardSpacer />
               <CustomerStats customer={customer} />
               <CardSpacer />
-              <RequirePermissions
+              {/* <RequirePermissions
                 requiredPermissions={[PermissionEnum.MANAGE_GIFT_CARD]}
               >
-                 {/* <CustomerGiftCardsCard />  */}
-              </RequirePermissions>
+                 <CustomerGiftCardsCard />
+              </RequirePermissions> */}
             </DetailPageLayout.RightSidebar>
             <Savebar
-              disabled={isSaveDisabled}
+              disabled={hasOneOfPermissions(userPermissions, [PermissionEnum.MANAGE_USERS]) ? isSaveDisabled : true}
               state={saveButtonBar}
               onSubmit={submit}
-              onCancel={() => navigate(customerListUrl())}
-              onDelete={onDelete}
+              onCancel={() => window.history.back()}
+              onDelete={hasOneOfPermissions(userPermissions, [PermissionEnum.MANAGE_USERS]) ? onDelete : undefined}
             />
           </DetailPageLayout>
         );
