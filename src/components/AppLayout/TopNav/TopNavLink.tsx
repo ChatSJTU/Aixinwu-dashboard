@@ -8,11 +8,13 @@ export const TopNavLink: React.FC<{
   to: string;
   variant?: Variant;
 }> = ({ to, variant = "secondary" }) => (
-  <Link to={to} className={sprinkles({ marginRight: 2 })}>
+  <Link 
+    to={"#"} className={sprinkles({ marginRight: 2 })}>
     <Button
       icon={<ArrowLeftIcon />}
       variant={variant}
       size="large"
+      onClick={()=>window.history.back()}
       data-test-id="app-header-back-button"
     />
   </Link>
