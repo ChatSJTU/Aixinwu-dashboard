@@ -125,7 +125,7 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
           />
         </Grid>
         <RequirePermissions
-          requiredPermissions={[PermissionEnum.MANAGE_USERS]}
+          oneOfPermissions={[PermissionEnum.MANAGE_USERS, PermissionEnum.READ_USERS]}
         >
           <div className={classes.profileLink}>
             <Link
