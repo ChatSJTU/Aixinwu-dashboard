@@ -800,6 +800,7 @@ export enum BalanceEventsEnum {
   DONATION_GRANTED = 'DONATION_GRANTED',
   DONATION_REJECTED = 'DONATION_REJECTED',
   FIRST_LOGIN = 'FIRST_LOGIN',
+  INVITATION_ACCEPTED = 'INVITATION_ACCEPTED',
   INVITE_NEW_USER = 'INVITE_NEW_USER',
   MANUALLY_UPDATED = 'MANUALLY_UPDATED',
   OTHER = 'OTHER',
@@ -2700,6 +2701,24 @@ export type IntRangeInput = {
   gte?: InputMaybe<Scalars['Int']>;
   /** Value less than or equal to. */
   lte?: InputMaybe<Scalars['Int']>;
+};
+
+export type InvitationFilterInput = {
+  createdAt?: InputMaybe<DateTimeRangeInput>;
+  expiredAt?: InputMaybe<DateTimeRangeInput>;
+  metadata?: InputMaybe<Array<MetadataFilter>>;
+};
+
+export enum InvitationSortField {
+  /** Sort invitations by created at. */
+  CREATED_AT = 'CREATED_AT'
+}
+
+export type InvitationsSortingInput = {
+  /** Specifies the direction in which to sort invitations. */
+  direction: OrderDirection;
+  /** Sort invitations by the selected field. */
+  field: InvitationSortField;
 };
 
 export type InvoiceCreateInput = {
@@ -4990,7 +5009,8 @@ export enum PermissionEnum {
   MANAGE_STAFF = 'MANAGE_STAFF',
   MANAGE_TAXES = 'MANAGE_TAXES',
   MANAGE_TRANSLATIONS = 'MANAGE_TRANSLATIONS',
-  MANAGE_USERS = 'MANAGE_USERS'
+  MANAGE_USERS = 'MANAGE_USERS',
+  READ_USERS = 'READ_USERS'
 }
 
 export type PermissionGroupCreateInput = {

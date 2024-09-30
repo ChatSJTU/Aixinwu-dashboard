@@ -366,6 +366,28 @@ input AccountInput {
 }
 
 """
+Create a new invitation for the customer. 
+
+Requires one of the following permissions: AUTHENTICATED_USER.
+"""
+type AccountInvitationCreate {
+  accountErrors: [AccountError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
+  errors: [AccountError!]!
+  invitation: Invitation
+}
+
+"""
+Create a new address for the customer. 
+
+Requires one of the following permissions: AUTHENTICATED_USER.
+"""
+type AccountInvitationDelete {
+  accountErrors: [AccountError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
+  errors: [AccountError!]!
+  invitation: Invitation
+}
+
+"""
 Register a new user.
 
 Triggers the following webhook events:
@@ -3197,6 +3219,7 @@ enum BalanceEventsEnum {
   DONATION_GRANTED
   DONATION_REJECTED
   FIRST_LOGIN
+  INVITATION_ACCEPTED
   INVITE_NEW_USER
   MANUALLY_UPDATED
   OTHER
@@ -7646,7 +7669,7 @@ type Donation implements Node {
   description: String
 
   """
-  The user who made the donation. Requires one of permissions: MANAGE_USERS, MANAGE_DONATIONS, fOWNER
+  The user who made the donation. Requires one of permissions: MANAGE_USERS, MANAGE_DONATIONS, OWNER, READ_USERS
   """
   donator: User
 
@@ -9998,6 +10021,58 @@ input IntRangeInput {
 
   """Value less than or equal to."""
   lte: Int
+}
+
+"""Represents invitation data."""
+type Invitation implements Node {
+  """Invitation code"""
+  code: String!
+
+  """Creation of the current invitation"""
+  createdAt: DateTime
+
+  """Expiration of the current invitation"""
+  expiredAt: DateTime
+
+  """The Id of the invitation"""
+  id: ID!
+}
+
+type InvitationCountableConnection {
+  edges: [InvitationCountableEdge!]!
+
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """A total count of items in the collection."""
+  totalCount: Int
+}
+
+type InvitationCountableEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Invitation!
+}
+
+input InvitationFilterInput {
+  createdAt: DateTimeRangeInput
+  expiredAt: DateTimeRangeInput
+  metadata: [MetadataFilter!]
+}
+
+enum InvitationSortField {
+  """Sort invitations by created at."""
+  CREATED_AT
+}
+
+input InvitationsSortingInput {
+  """Specifies the direction in which to sort invitations."""
+  direction: OrderDirection!
+
+  """Sort invitations by the selected field."""
+  field: InvitationSortField!
 }
 
 """Represents an Invoice."""
@@ -14251,6 +14326,23 @@ type Mutation {
     """Fields required to update a gift card."""
     input: GiftCardUpdateInput!
   ): GiftCardUpdate
+
+  """
+  Create a new invitation for the customer. 
+  
+  Requires one of the following permissions: AUTHENTICATED_USER.
+  """
+  invitationCreate: AccountInvitationCreate
+
+  """
+  Create a new address for the customer. 
+  
+  Requires one of the following permissions: AUTHENTICATED_USER.
+  """
+  invitationDelete(
+    """ID of the invitation code to delete."""
+    id: ID!
+  ): AccountInvitationDelete
 
   """
   Creates a ready to send invoice. 
@@ -21896,6 +21988,7 @@ enum PermissionEnum {
   MANAGE_TAXES
   MANAGE_TRANSLATIONS
   MANAGE_USERS
+  READ_USERS
 }
 
 """
@@ -28312,7 +28405,7 @@ type Query {
   """
   Look up a user by ID or email address.
   
-  Requires one of the following permissions: MANAGE_STAFF, MANAGE_USERS, MANAGE_ORDERS.
+  Requires one of the following permissions: MANAGE_STAFF, MANAGE_USERS, READ_USERS, MANAGE_ORDERS.
   """
   user(
     """Email address of the user."""
@@ -33414,7 +33507,7 @@ type User implements Node & ObjectWithMetadata {
   """
   List of events associated with the user.
   
-  Requires one of the following permissions: MANAGE_USERS, MANAGE_STAFF.
+  Requires one of the following permissions: MANAGE_USERS, MANAGE_STAFF, READ_USERS.
   """
   events: [CustomerEvent!]
 
@@ -33449,6 +33542,36 @@ type User implements Node & ObjectWithMetadata {
 
   """The ID of the user."""
   id: ID!
+
+  """
+  List of user's invitations. Requires one of the following permissions: AuthorizationFilters.AUTHENTICATED_USER.
+  """
+  invitations(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """Filtering options for invitations."""
+    filter: InvitationFilterInput
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+
+    """Sort invitations."""
+    sortBy: InvitationsSortingInput
+  ): InvitationCountableConnection
+
+  """Whom the user is invited by"""
+  invitedBy: String!
 
   """Determine if the user is active."""
   isActive: Boolean!
@@ -33494,7 +33617,7 @@ type User implements Node & ObjectWithMetadata {
   """
   A note about the customer.
   
-  Requires one of the following permissions: MANAGE_USERS, MANAGE_STAFF.
+  Requires one of the following permissions: MANAGE_USERS, MANAGE_STAFF, READ_USERS.
   """
   note: String
 
@@ -36786,7 +36909,7 @@ enum WeightUnitsEnum {
 scalar _Any
 
 """_Entity union as defined by Federation spec."""
-union _Entity = Address | App | Category | Collection | Group | Order | PageType | Product | ProductMedia | ProductType | ProductVariant | User
+union _Entity = Address | App | Category | Collection | Group | Invitation | Order | PageType | Product | ProductMedia | ProductType | ProductVariant | User
 
 """_Service manifest as defined by Federation spec."""
 type _Service {
