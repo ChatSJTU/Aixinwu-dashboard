@@ -37,6 +37,7 @@ import {
 } from "../../urls";
 
 export const ORDER_FILTERS_KEY = "orderFiltersPresets";
+export const ORDER_LIST_PRESETS_TAB_KEY = "orderListActiveTab";
 
 export function getFilterOpts(
   params: OrderListUrlFilters,

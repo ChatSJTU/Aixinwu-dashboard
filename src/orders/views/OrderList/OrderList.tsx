@@ -39,6 +39,7 @@ import {
   getFilterOpts,
   getFilterQueryParam,
   getFilterVariables,
+  ORDER_LIST_PRESETS_TAB_KEY,
   storageUtils,
 } from "./filters";
 import { DEFAULT_SORT_KEY, getSortQueryVariables } from "./sort";
@@ -60,6 +61,7 @@ export const OrderList: React.FC<OrderListProps> = ({ params }) => {
     onPresetDelete,
     onPresetSave,
     onPresetUpdate,
+    onPresetClear,
     getPresetNameToDelete,
     presets,
     selectedPreset,
@@ -69,6 +71,7 @@ export const OrderList: React.FC<OrderListProps> = ({ params }) => {
     getUrl: orderListUrl,
     storageUtils,
     reset: () => "",
+    storageKey: ORDER_LIST_PRESETS_TAB_KEY
   });
 
   usePaginationReset(orderListUrl, params, settings.rowNumber);
@@ -107,6 +110,7 @@ export const OrderList: React.FC<OrderListProps> = ({ params }) => {
     defaultSortField: DEFAULT_SORT_KEY,
     hasSortWithRank: true,
     keepActiveTab: true,
+    cleanupFn: () => { onPresetClear(); }
   });
 
   const [openModal, closeModal] = createDialogActionHandlers<

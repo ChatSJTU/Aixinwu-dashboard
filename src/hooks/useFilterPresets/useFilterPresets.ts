@@ -8,6 +8,7 @@ import { GetFilterTabsOutput, StorageUtils } from "@dashboard/utils/filters";
 import { prepareQs } from "@dashboard/utils/filters/qs";
 import { stringify } from "qs";
 import { useState } from "react";
+import useLocalStorage from "../useLocalStorage";
 
 export interface UseFilterPresets {
   presetIdToDelete: number | null;
@@ -16,6 +17,7 @@ export interface UseFilterPresets {
   selectedPreset: number | undefined;
   onPresetChange: (index: number) => void;
   onPresetDelete: () => void;
+  onPresetClear: () => void;
   onPresetSave: (data: SaveFilterTabDialogFormData) => void;
   onPresetUpdate: (tabName: string) => void;
   getPresetNameToDelete: () => string;
@@ -29,15 +31,18 @@ export const useFilterPresets = <
   reset,
   storageUtils,
   getUrl,
+  storageKey,
 }: {
   params: T;
   reset?: () => void;
   getUrl: () => string;
   storageUtils: StorageUtils<string>;
+  storageKey?: string;
 }): UseFilterPresets => {
   const navigate = useNavigator();
   const baseUrl = getUrl();
   const [presetIdToDelete, setPresetIdToDelete] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useLocalStorage(storageKey, "0");
 
   const presets = storageUtils.getFilterTabs();
 
@@ -51,6 +56,7 @@ export const useFilterPresets = <
     const currentPresets = storageUtils.getFilterTabs();
     const qs = new URLSearchParams(currentPresets[index - 1]?.data ?? "");
     qs.append("activeTab", index.toString());
+    setActiveTab((index).toString());
 
     navigate(
       baseUrl.endsWith("?")
@@ -85,6 +91,10 @@ export const useFilterPresets = <
           : baseUrl + "?" + stringify(currentParams),
       );
     }
+  };
+
+  const onPresetClear = () => {
+    setActiveTab("0");
   };
 
   const onPresetSave = (data: SaveFilterTabDialogFormData) => {
@@ -138,6 +148,7 @@ export const useFilterPresets = <
     selectedPreset,
     onPresetChange,
     onPresetDelete,
+    onPresetClear,
     onPresetSave,
     onPresetUpdate,
     hasPresetsChanged,

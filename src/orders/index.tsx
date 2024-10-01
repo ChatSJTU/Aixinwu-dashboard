@@ -34,19 +34,31 @@ import OrderRefundComponent from "./views/OrderRefund";
 import OrderReturnComponent from "./views/OrderReturn";
 import OrderSendRefundComponent from "./views/OrderSendRefund";
 import OrderSettings from "./views/OrderSettings";
+import { ORDER_LIST_PRESETS_TAB_KEY, storageUtils } from "./views/OrderList/filters";
 
 interface MatchParams {
   id?: string;
 }
 
 const OrderList: React.FC<RouteComponentProps<any>> = ({ location }) => {
-  const qs = parseQs(location.search.substr(1)) as any;
+  let qs = parseQs(location.search.substr(1)) as any;
+  const presets = storageUtils.getFilterTabs();
+  const activeTab = Number(localStorage.getItem(ORDER_LIST_PRESETS_TAB_KEY));
+
+  if (!isNaN(activeTab) && activeTab != 0 && presets.length > 0) {
+    if (presets[activeTab - 1]) {
+      qs = new URLSearchParams(presets[activeTab - 1]?.data ?? "");
+      qs.append("activeTab", activeTab);
+      qs = parseQs(qs.toString())
+    }
+  }
   const params: OrderListUrlQueryParams = asSortParams(
     qs,
     OrderListUrlSortField,
     OrderListUrlSortField.number,
     false,
   );
+
   return <OrderListComponent params={params} />;
 };
 const OrderDraftList: React.FC<RouteComponentProps<any>> = ({ location }) => {
