@@ -12,8 +12,11 @@ export const useStyles = makeStyles(
       fontWeight: 600 as 600,
       lineHeight: 1,
     },
-    userEmail: {
+    userInfoBold: {
       fontWeight: 600 as 600,
+      marginBottom: theme.spacing(1),
+    },
+    userInfo: {
       marginBottom: theme.spacing(1),
     },
   }),

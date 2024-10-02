@@ -1945,6 +1945,8 @@ export const OrderDetailsFragmentDoc = gql`
   user {
     id
     email
+    code
+    firstName
   }
   userEmail
   shippingMethods {

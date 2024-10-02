@@ -172,7 +172,7 @@ const OrderCustomer: React.FC<OrderCustomerProps> = props => {
             </Typography>
           ) : (
             <>
-              <Typography className={classes.userEmail}>{userEmail}</Typography>
+              <Typography className={classes.userInfoBold}>{userEmail}</Typography>
               <div>
                 <Link
                   underline={false}
@@ -192,10 +192,20 @@ const OrderCustomer: React.FC<OrderCustomerProps> = props => {
         ) : (
           <>
             <Typography
-              className={classes.userEmail}
-              data-test-id="customer-email"
+              className={classes.userInfoBold}
+            >
+              <span style={{fontSize: '16px'}}>{user.firstName}</span>&nbsp;&nbsp;
+              <span style={{fontSize: '14px'}}>{user.code}</span>
+            </Typography>
+            <Typography
+              className={classes.userInfo}
             >
               {user.email}
+            </Typography>
+            <Typography
+              className={classes.userInfo}
+            >
+              
             </Typography>
             <RequirePermissions
               oneOfPermissions={[PermissionEnum.MANAGE_USERS, PermissionEnum.READ_USERS]}
@@ -227,7 +237,7 @@ const OrderCustomer: React.FC<OrderCustomerProps> = props => {
           </>
         )}
       </CardContent>
-      {!!user && (
+      {/* {!!user && (
         <>
           <Hr />
           <CardContent>
@@ -261,7 +271,7 @@ const OrderCustomer: React.FC<OrderCustomerProps> = props => {
             )}
           </CardContent>
         </>
-      )}
+      )} */}
       <Hr />
       <CardContent>
         <div className={classes.sectionHeader}>
