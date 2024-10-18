@@ -8868,6 +8868,45 @@ export function useCompleteDonationMutation(baseOptions?: ApolloReactHooks.Mutat
 export type CompleteDonationMutationHookResult = ReturnType<typeof useCompleteDonationMutation>;
 export type CompleteDonationMutationResult = Apollo.MutationResult<Types.CompleteDonationMutation>;
 export type CompleteDonationMutationOptions = Apollo.BaseMutationOptions<Types.CompleteDonationMutation, Types.CompleteDonationMutationVariables>;
+export const BulkCompleteDonationsDocument = gql`
+    mutation BulkCompleteDonations($ids: [ID!]!, $accepted: Boolean!) {
+  donationBulkComplete(accepted: $accepted, ids: $ids) {
+    count
+    errors {
+      code
+      message
+      path
+    }
+  }
+}
+    `;
+export type BulkCompleteDonationsMutationFn = Apollo.MutationFunction<Types.BulkCompleteDonationsMutation, Types.BulkCompleteDonationsMutationVariables>;
+
+/**
+ * __useBulkCompleteDonationsMutation__
+ *
+ * To run a mutation, you first call `useBulkCompleteDonationsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useBulkCompleteDonationsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [bulkCompleteDonationsMutation, { data, loading, error }] = useBulkCompleteDonationsMutation({
+ *   variables: {
+ *      ids: // value for 'ids'
+ *      accepted: // value for 'accepted'
+ *   },
+ * });
+ */
+export function useBulkCompleteDonationsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.BulkCompleteDonationsMutation, Types.BulkCompleteDonationsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.BulkCompleteDonationsMutation, Types.BulkCompleteDonationsMutationVariables>(BulkCompleteDonationsDocument, options);
+      }
+export type BulkCompleteDonationsMutationHookResult = ReturnType<typeof useBulkCompleteDonationsMutation>;
+export type BulkCompleteDonationsMutationResult = Apollo.MutationResult<Types.BulkCompleteDonationsMutation>;
+export type BulkCompleteDonationsMutationOptions = Apollo.BaseMutationOptions<Types.BulkCompleteDonationsMutation, Types.BulkCompleteDonationsMutationVariables>;
 export const BarcodeCreateNextDocument = gql`
     mutation BarcodeCreateNext {
   barcodeBatchCreate(count: 1) {

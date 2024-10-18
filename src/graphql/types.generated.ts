@@ -9993,6 +9993,14 @@ export type CompleteDonationMutationVariables = Exact<{
 
 export type CompleteDonationMutation = { __typename: 'Mutation', donationComplete: { __typename: 'DonationComplete', donation: { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null, errors: Array<{ __typename: 'DonationError', code: DonationErrorCode, field: string | null, message: string | null }> } | null };
 
+export type BulkCompleteDonationsMutationVariables = Exact<{
+  ids: Array<Scalars['ID']> | Scalars['ID'];
+  accepted: Scalars['Boolean'];
+}>;
+
+
+export type BulkCompleteDonationsMutation = { __typename: 'Mutation', donationBulkComplete: { __typename: 'DonationBulkComplete', count: number, errors: Array<{ __typename: 'DonationBulkError', code: DonationErrorCode, message: string | null, path: string | null }> } | null };
+
 export type BarcodeCreateNextMutationVariables = Exact<{ [key: string]: never; }>;
 
 

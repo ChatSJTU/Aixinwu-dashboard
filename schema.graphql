@@ -5225,6 +5225,21 @@ type CheckoutCustomerDetach {
 }
 
 """
+Updates customer note in the existing checkout object.
+
+Added in Saleor 3.21.
+
+Triggers the following webhook events:
+- CHECKOUT_UPDATED (async): A checkout was updated.
+"""
+type CheckoutCustomerNoteUpdate {
+  """An updated checkout."""
+  checkout: Checkout
+  checkoutErrors: [CheckoutError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
+  errors: [CheckoutError!]!
+}
+
+"""
 Updates the delivery method (shipping method or pick up point) of the checkout.
 
 Added in Saleor 3.1.
@@ -7693,6 +7708,31 @@ type Donation implements Node {
 
   """The date and time when the donation was last updated."""
   updatedAt: DateTime
+}
+
+"""
+Complete donations 
+
+Requires one of the following permissions: MANAGE_DONATIONS.
+"""
+type DonationBulkComplete {
+  """Returns how many objects were updated."""
+  count: Int!
+  donationErrors: [DonationBulkError!]! @deprecated(reason: "This field will be removed in Saleor 4.0. Use `errors` field instead.")
+  errors: [DonationBulkError!]!
+}
+
+type DonationBulkError {
+  """The error code."""
+  code: DonationErrorCode!
+
+  """The error message."""
+  message: String
+
+  """
+  Path to field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+  """
+  path: String
 }
 
 """
@@ -13221,6 +13261,22 @@ type Mutation {
   ): CheckoutCustomerDetach
 
   """
+  Updates customer note in the existing checkout object.
+  
+  Added in Saleor 3.21.
+  
+  Triggers the following webhook events:
+  - CHECKOUT_UPDATED (async): A checkout was updated.
+  """
+  checkoutCustomerNoteUpdate(
+    """New customer note content."""
+    customerNote: String!
+
+    """The checkout's ID."""
+    id: ID!
+  ): CheckoutCustomerNoteUpdate
+
+  """
   Updates the delivery method (shipping method or pick up point) of the checkout.
   
   Added in Saleor 3.1.
@@ -13897,6 +13953,18 @@ type Mutation {
     """Fields required to create a new url."""
     input: DigitalContentUrlCreateInput!
   ): DigitalContentUrlCreate
+
+  """
+  Complete donations 
+  
+  Requires one of the following permissions: MANAGE_DONATIONS.
+  """
+  donationBulkComplete(
+    accepted: Boolean!
+
+    """List of donations to be updated."""
+    ids: [ID!]!
+  ): DonationBulkComplete
 
   """
   Complete a new donation.

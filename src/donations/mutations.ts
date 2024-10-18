@@ -45,70 +45,14 @@ export const completeDonation = gql`
   }
 `;
 
-export const setCustomerDefaultAddress = gql`
-  mutation SetCustomerDefaultAddress(
-    $addressId: ID!
-    $userId: ID!
-    $type: AddressTypeEnum!
-  ) {
-    addressSetDefault(addressId: $addressId, userId: $userId, type: $type) {
+export const bulkCompleteDonations = gql`
+  mutation BulkCompleteDonations($ids: [ID!]!, $accepted: Boolean!) {
+    donationBulkComplete(accepted: $accepted, ids: $ids) {
+      count
       errors {
-        ...AccountError
-      }
-      user {
-        ...CustomerAddresses
-      }
-    }
-  }
-`;
-
-export const createCustomerAddress = gql`
-  mutation CreateCustomerAddress($id: ID!, $input: AddressInput!) {
-    addressCreate(userId: $id, input: $input) {
-      errors {
-        ...AccountError
-      }
-      address {
-        ...Address
-      }
-      user {
-        ...CustomerAddresses
-      }
-    }
-  }
-`;
-
-export const updateCustomerAddress = gql`
-  mutation UpdateCustomerAddress($id: ID!, $input: AddressInput!) {
-    addressUpdate(id: $id, input: $input) {
-      errors {
-        ...AccountError
-      }
-      address {
-        ...Address
-      }
-    }
-  }
-`;
-
-export const removeCustomerAddress = gql`
-  mutation RemoveCustomerAddress($id: ID!) {
-    addressDelete(id: $id) {
-      errors {
-        ...AccountError
-      }
-      user {
-        ...CustomerAddresses
-      }
-    }
-  }
-`;
-
-export const bulkRemoveCustomers = gql`
-  mutation BulkRemoveCustomers($ids: [ID!]!) {
-    customerBulkDelete(ids: $ids) {
-      errors {
-        ...AccountError
+        code
+        message
+        path
       }
     }
   }
