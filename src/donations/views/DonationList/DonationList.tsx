@@ -3,8 +3,7 @@ import DeleteFilterTabDialog from "@dashboard/components/DeleteFilterTabDialog";
 import SaveFilterTabDialog from "@dashboard/components/SaveFilterTabDialog";
 import { WindowTitle } from "@dashboard/components/WindowTitle";
 import {
-  useBulkRemoveCustomersMutation,
-  useListCustomersQuery,
+  useBulkCompleteDonationsMutation,
   useListDonationsQuery,
 } from "@dashboard/graphql";
 import { useFilterPresets } from "@dashboard/hooks/useFilterPresets";
@@ -26,7 +25,7 @@ import { mapEdgesToItems } from "@dashboard/utils/maps";
 import { getSortParams } from "@dashboard/utils/sort";
 import { DialogContentText } from "@material-ui/core";
 import isEqual from "lodash/isEqual";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import {
@@ -42,6 +41,7 @@ import {
 } from "./filters";
 import { getSortQueryVariables } from "./sort";
 import DonationListPage from "@dashboard/donations/components/DonationListPage";
+import { Text, Box, Combobox, RadioGroup } from "@saleor/macaw-ui-next";
 
 interface DonationListProps {
   params: DonationListUrlQueryParams;
@@ -95,6 +95,7 @@ export const DonationList: React.FC<DonationListProps> = ({ params }) => {
     variables: queryVariables,
   });
   const donations = mapEdgesToItems(data?.donations);
+  const [bulkState, setBulkState] = useState<boolean>(true);
 
   const [changeFilters, resetFilters, handleSearchChange] =
     createFilterHandlers({
@@ -117,10 +118,10 @@ export const DonationList: React.FC<DonationListProps> = ({ params }) => {
     queryString: params,
   });
 
-  const [bulkRemoveDonations, bulkRemoveDonationsOpts] =
-    useBulkRemoveCustomersMutation({
+  const [bulkCompleteDonations, bulkCompleteDonationsOpts] =
+    useBulkCompleteDonationsMutation({
       onCompleted: data => {
-        if (data.customerBulkDelete?.errors.length === 0) {
+        if (data.donationBulkComplete?.errors.length === 0) {
           notify({
             status: "success",
             text: intl.formatMessage(commonMessages.savedChanges),
@@ -185,37 +186,65 @@ export const DonationList: React.FC<DonationListProps> = ({ params }) => {
         onSelectDonationIds={handleSetSelectedDonationIds}
         sort={getSortParams(params)}
         hasPresetsChanged={hasPresetsChanged}
-        onDonationsDelete={() => openModal("remove", { ids: selectedRowIds })}
+        onDonationsBulkAction={() => openModal("remove", { ids: selectedRowIds })}
       />
-      {/* <ActionDialog
+      <ActionDialog
         open={params.action === "remove" && selectedRowIds?.length > 0}
         onClose={closeModal}
-        confirmButtonState={bulkRemoveDonationsOpts.status}
+        confirmButtonState={bulkCompleteDonationsOpts.status}
         onConfirm={() =>
-          bulkRemoveDonations({
+          bulkCompleteDonations({
             variables: {
               ids: selectedRowIds,
+              accepted: bulkState
             },
           })
         }
-        variant="delete"
+        variant="default"
         title={intl.formatMessage({
-          id: "q8ep2I",
-          defaultMessage: "Delete Customers",
-          description: "dialog header",
+          id: "donation-bulk-complete",
+          defaultMessage: "批量完成捐赠",
         })}
       >
         <DialogContentText>
           <FormattedMessage
-            id="N2SbNc"
-            defaultMessage="{counter,plural,one{Are you sure you want to delete this customer?} other{Are you sure you want to delete {displayQuantity} customers?}}"
+            id="donation-bulk-action-tip"
+            defaultMessage="{counter,plural,one{请选择要设置捐赠的状态：} other{请设置已选中 {displayQuantity} 个捐赠的状态：}}"
             values={{
               counter: selectedRowIds?.length,
               displayQuantity: <strong>{selectedRowIds?.length}</strong>,
             }}
           />
+          <RadioGroup
+            marginTop={3}
+            value={bulkState ? "completed" : "rejected"}
+            onValueChange={(v)=>{setBulkState(v == "completed")}}
+            disabled={false}
+            display="flex"
+            flexDirection="row"
+            gap={3}
+          >
+            <RadioGroup.Item
+              id={`donation-completed`}
+              value="completed"
+              name="completed"
+            >
+              <Box display="flex" alignItems="baseline" gap={2}>
+                <Text>已完成</Text>
+              </Box>
+            </RadioGroup.Item>
+            <RadioGroup.Item
+              id={`donation-rejected`}
+              value="rejected"
+              name="rejected"
+            >
+              <Box display="flex" alignItems="baseline" gap={2}>
+                <Text>已拒绝</Text>
+              </Box>
+            </RadioGroup.Item>
+          </RadioGroup>
         </DialogContentText>
-      </ActionDialog> */}
+      </ActionDialog>
       <SaveFilterTabDialog
         open={params.action === "save-search"}
         confirmButtonState="default"

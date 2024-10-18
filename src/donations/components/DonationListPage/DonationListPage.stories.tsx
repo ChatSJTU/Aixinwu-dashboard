@@ -49,7 +49,7 @@ const props: DonationListPageProps = {
   loading: false,
   hasPresetsChanged: () => false,
   onSelectDonationIds: () => undefined,
-  onDonationsDelete: () => undefined,
+  onDonationsBulkAction: () => undefined,
 };
 
 const DonationListPage = (props: DonationListPageProps) => (

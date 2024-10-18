@@ -22,7 +22,7 @@ import {
   PageListProps,
   SortPage,
 } from "@dashboard/types";
-import { Box, Button, ChevronRightIcon } from "@saleor/macaw-ui-next";
+import { Box, Button, ChevronRightIcon, EditIcon } from "@saleor/macaw-ui-next";
 import React, { useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
@@ -41,7 +41,7 @@ export interface DonationListPageProps
   selectedDonationIds: string[];
   loading: boolean;
   onSelectDonationIds: (rows: number[], clearSelection: () => void) => void;
-  onDonationsDelete: () => void;
+  onDonationsBulkAction: () => void;
 }
 
 const DonationListPage: React.FC<DonationListPageProps> = ({
@@ -58,7 +58,7 @@ const DonationListPage: React.FC<DonationListPageProps> = ({
   filterPresets,
   selectedDonationIds,
   hasPresetsChanged,
-  onDonationsDelete,
+  onDonationsBulkAction,
   ...donationListProps
 }) => {
   const intl = useIntl();
@@ -156,14 +156,14 @@ const DonationListPage: React.FC<DonationListPageProps> = ({
           onSearchChange={onSearchChange}
           actions={
             <Box display="flex" gap={4}>
-              {/* {selectedDonationIds.length > 0 && (
-                <BulkDeleteButton onClick={onDonationsDelete}>
+              {selectedDonationIds.length > 0 && (
+                <BulkDeleteButton onClick={onDonationsBulkAction} icon={<EditIcon />}>
                   <FormattedMessage
-                    defaultMessage="删除捐赠"
-                    id="donation-delete"
+                    defaultMessage="批量完成捐赠"
+                    id="donation-bulk-complete"
                   />
                 </BulkDeleteButton>
-              )} */}
+              )}
             </Box>
           }
         />

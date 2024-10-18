@@ -5,12 +5,13 @@ interface ProductListDeleteButtonProps {
   onClick: () => void;
   disabled?: boolean;
   children: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 export const BulkDeleteButton = forwardRef<
   HTMLButtonElement,
   ProductListDeleteButtonProps
->(({ onClick, children, disabled }, ref) => {
+>(({ onClick, children, disabled, icon }, ref) => {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
   return (
@@ -26,7 +27,7 @@ export const BulkDeleteButton = forwardRef<
             setIsTooltipOpen(false);
           }}
           onClick={onClick}
-          icon={<TrashBinIcon />}
+          icon={icon ?? <TrashBinIcon />}
           variant="secondary"
           data-test-id="bulk-delete-button"
         />
