@@ -1,6 +1,6 @@
 import { sectionNames } from "@dashboard/intl";
 import { asSortParams } from "@dashboard/utils/sort";
-import { parse as parseQs } from "qs";
+import QueryString, { parse as parseQs } from "qs";
 import React from "react";
 import { useIntl } from "react-intl";
 import { Route, RouteComponentProps, Switch } from "react-router-dom";
@@ -41,19 +41,22 @@ interface MatchParams {
 }
 
 const OrderList: React.FC<RouteComponentProps<any>> = ({ location }) => {
-  let qs = parseQs(location.search.substr(1)) as any;
+  let qs = parseQs(location.search.substr(1)) as QueryString.ParsedQs;
   const presets = storageUtils.getFilterTabs();
   const activeTab = Number(localStorage.getItem(ORDER_LIST_PRESETS_TAB_KEY));
 
   if (!isNaN(activeTab) && activeTab != 0 && presets.length > 0) {
-    if (presets[activeTab - 1]) {
-      qs = new URLSearchParams(presets[activeTab - 1]?.data ?? "");
-      qs.append("activeTab", activeTab);
-      qs = parseQs(qs.toString())
+    if (!qs['activeTab']) {
+      if (presets[activeTab - 1]) {
+        var p = new URLSearchParams(presets[activeTab - 1]?.data ?? "");
+        p.append("activeTab", activeTab.toString());
+        qs = parseQs(p.toString())
+      }
     }
   }
+
   const params: OrderListUrlQueryParams = asSortParams(
-    qs,
+    qs as any,
     OrderListUrlSortField,
     OrderListUrlSortField.number,
     false,
