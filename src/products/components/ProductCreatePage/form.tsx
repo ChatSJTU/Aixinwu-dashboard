@@ -385,8 +385,15 @@ function useProductCreateForm(
     ),
   });
 
+  const auto_set_channels = (data: ProductCreateData) => {
+    if (!data.productType.metafield) return;
+    data.channelListings = data.channelListings.filter(c => c.slug == data.productType.metafield)
+  }
+
   const handleSubmit = async (data: ProductCreateData) => {
     const errors = validateProductCreateData(data);
+
+    auto_set_channels(data)
 
     setValidationErrors(errors);
 

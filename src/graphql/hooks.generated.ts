@@ -15248,6 +15248,7 @@ export const InitialProductFilterProductTypesDocument = gql`
       node {
         id
         name
+        metafield(key: "channel")
       }
     }
   }
@@ -15455,6 +15456,7 @@ export const ProductTypeDocument = gql`
       id
       name
     }
+    metafield(key: "channel")
   }
 }
     ${AttributeValueListFragmentDoc}`;

@@ -42,6 +42,7 @@ export interface ProductType {
   hasVariants: boolean;
   id: string;
   name: string;
+  metafield: string | null;
   productAttributes: ProductTypeQuery["productType"]["productAttributes"];
 }
 

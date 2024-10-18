@@ -48,6 +48,7 @@ export const initialProductFilterProductTypesQuery = gql`
         node {
           id
           name
+          metafield(key: "channel")
         }
       }
     }
@@ -154,6 +155,7 @@ export const productTypeQuery = gql`
         id
         name
       }
+      metafield(key: "channel")
     }
   }
 `;

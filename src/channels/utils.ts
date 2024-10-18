@@ -30,6 +30,7 @@ export interface Channel {
 export interface ChannelData {
   id: string;
   name: string;
+  slug: string;
   isPublished?: boolean;
   publishedAt?: string | null;
   currency?: string;
@@ -193,13 +194,14 @@ export const createChannelsData = (data?: ChannelFragment[]): ChannelData[] =>
     costPrice: "",
     currency: channel.currencyCode,
     id: channel.id,
-    isAvailableForPurchase: true,
+    isAvailableForPurchase: false,
     variantsIds: [],
-    isPublished: true,
+    isPublished: false,
     name: channel.name,
     price: "",
     publicationDate: null,
     visibleInListings: true,
+    slug: channel.slug,
   })) || [];
 
 export const createChannelsDataWithPrice = (
@@ -342,6 +344,7 @@ export const createChannelsDataFromProduct = (productData?: ProductFragment) =>
         visibleInListings: !!visibleInListings,
         soldUnits,
         preorderThreshold,
+        slug: channel.id
       };
     },
   ) || [];
