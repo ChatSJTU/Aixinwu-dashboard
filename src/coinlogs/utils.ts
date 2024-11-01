@@ -72,6 +72,46 @@ export const transformCoinlogType = (
           }),
           status: StatusType.WARNING,
         };
+      case "invite_new_user":
+        return {
+          localized: intl.formatMessage({
+            id: "donation-status-invite_new_user",
+            defaultMessage: "邀请新用户",
+          }),
+          status: StatusType.SUCCESS,
+        };
+      case "special_event":
+        return {
+          localized: intl.formatMessage({
+            id: "donation-status-special_event",
+            defaultMessage: "特殊活动",
+          }),
+          status: StatusType.WARNING,
+        };
+      case "bonus":
+        return {
+          localized: intl.formatMessage({
+            id: "donation-status-bonus",
+            defaultMessage: "特殊奖励",
+          }),
+          status: StatusType.WARNING,
+        };
+      case "poor_sign":
+        return {
+          localized: intl.formatMessage({
+            id: "donation-status-poor_sign",
+            defaultMessage: "贫困生奖励",
+          }),
+          status: StatusType.WARNING,
+        };
+      case "other":
+        return {
+          localized: intl.formatMessage({
+            id: "donation-status-other",
+            defaultMessage: "其他",
+          }),
+          status: StatusType.INFO,
+        };
     }
     return {
       localized: status,
