@@ -60,7 +60,7 @@ export const ChannelAvailabilityItemContent: React.FC<ChannelContentProps> = ({
   );
   const [isAvailableDate, setAvailableDate] = useState(false);
   const intl = useIntl();
-  console.log(formData)
+
   const visibleMessage = (date: string) =>
     intl.formatMessage(availabilityItemMessages.sinceDate, {
       date: localizeDate(date),

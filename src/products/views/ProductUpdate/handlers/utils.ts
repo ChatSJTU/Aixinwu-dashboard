@@ -118,7 +118,7 @@ export function getProductChannelsUpdateVariables(
       return {
         ...data,
         isAvailableForPurchase:
-          data.availableForPurchaseDate !== null
+          data.availableForPurchaseAt !== null
             ? true
             : data.isAvailableForPurchase,
         isPublished:
