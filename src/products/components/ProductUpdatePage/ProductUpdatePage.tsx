@@ -65,6 +65,7 @@ import {
   ProductUpdateHandlers,
   ProductUpdateSubmitData,
 } from "./types";
+import ProductPurchaseRestriction from "../ProductPurchaseRestriction";
 
 export interface ProductUpdatePageProps {
   channels: ChannelFragment[];
@@ -381,6 +382,13 @@ export const ProductUpdatePage: React.FC<ProductUpdatePageProps> = ({
                 onAttributeValuesSearch={onAttributeValuesSearch}
                 onChange={handlers.changeVariants}
                 onRowClick={onVariantShow}
+              />
+              <CardSpacer />
+              <ProductPurchaseRestriction
+                product={product}
+                data={data}
+                onChange={change}
+                onChangeMetadata={handlers.changeMetadata}
               />
               <CardSpacer />
               <SeoForm
