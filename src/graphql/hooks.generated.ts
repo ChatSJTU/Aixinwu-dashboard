@@ -327,6 +327,7 @@ export const CustomerFragmentDoc = gql`
   balance
   userType
   code
+  positions
 }
     `;
 export const AddressFragmentDoc = gql`

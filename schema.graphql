@@ -3219,7 +3219,6 @@ enum BalanceEventsEnum {
   DONATION_GRANTED
   DONATION_REJECTED
   FIRST_LOGIN
-  INVITATION_ACCEPTED
   INVITE_NEW_USER
   MANUALLY_UPDATED
   OTHER
@@ -20081,6 +20080,9 @@ input OrderSettingsUpdateInput {
 }
 
 enum OrderSortField {
+  """Sort orders by completed at."""
+  COMPLETED_AT
+
   """
   Sort orders by creation date. 
   
@@ -23408,6 +23410,63 @@ enum ProductErrorCode {
   VARIANT_NO_DIGITAL_CONTENT
 }
 
+"""Represents product events"""
+type ProductEvent {
+  """Datetime of the event."""
+  date: DateTime
+
+  """The ID of the product event."""
+  id: ID!
+
+  """The product of the event."""
+  product: Product
+
+  """The product name of the event"""
+  productName: String
+
+  """The type of the product event."""
+  type: String
+}
+
+type ProductEventCountableConnection {
+  edges: [ProductEventCountableEdge!]!
+
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """A total count of items in the collection."""
+  totalCount: Int
+}
+
+type ProductEventCountableEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: ProductEvent!
+}
+
+input ProductEventFilterInput {
+  date: DateRangeInput
+  metadata: [MetadataFilter!]
+  type: ProductEventsEnum
+  user: String
+}
+
+input ProductEventSortingInput {
+  """Specifies the direction in which to sort product_events."""
+  direction: OrderDirection!
+
+  """Sort product_events by the selected field."""
+  field: EventSortField!
+}
+
+"""An enumeration."""
+enum ProductEventsEnum {
+  PRODUCT_CREATED
+  PRODUCT_DELETED
+}
+
 """
 Event sent when product export is completed.
 
@@ -25226,6 +25285,67 @@ type ProductVariantDeleted implements Event {
 
   """Saleor version that triggered the event."""
   version: String
+}
+
+"""Represents product events"""
+type ProductVariantEvent {
+  """Datetime of the event."""
+  date: DateTime
+
+  """The ID of the product event."""
+  id: ID!
+
+  """The product of the event."""
+  productVariant: ProductVariant
+
+  """The product name of the event"""
+  productVariantName: String
+
+  """The changed stock."""
+  stockChanged: Int
+
+  """The type of the product event."""
+  type: String
+}
+
+type ProductVariantEventCountableConnection {
+  edges: [ProductVariantEventCountableEdge!]!
+
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """A total count of items in the collection."""
+  totalCount: Int
+}
+
+type ProductVariantEventCountableEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: ProductVariantEvent!
+}
+
+input ProductVariantEventFilterInput {
+  date: DateRangeInput
+  metadata: [MetadataFilter!]
+  type: ProductVariantEventsEnum
+  user: String
+}
+
+input ProductVariantEventSortingInput {
+  """Specifies the direction in which to sort product_variant_events."""
+  direction: OrderDirection!
+
+  """Sort product_variant_events by the selected field."""
+  field: EventSortField!
+}
+
+"""An enumeration."""
+enum ProductVariantEventsEnum {
+  PRODUCT_VARIANT_CREATED
+  PRODUCT_VARIANT_DELETED
+  PRODUCT_VARIANT_UPDATED
 }
 
 input ProductVariantFilterInput {
@@ -27928,6 +28048,31 @@ type Query {
     slug: String
   ): Product
 
+  """Product events"""
+  productEvents(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """Filter the product events"""
+    filter: ProductEventFilterInput
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+
+    """Sorting the product events"""
+    sortBy: ProductEventSortingInput
+  ): ProductEventCountableConnection
+
   """Look up a product type by ID."""
   productType(
     """ID of the product type."""
@@ -27979,6 +28124,31 @@ type Query {
     """SKU of the product variant."""
     sku: String
   ): ProductVariant
+
+  """Product variant events"""
+  productVariantEvents(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """Filter the product events"""
+    filter: ProductVariantEventFilterInput
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+
+    """Sorting the product events"""
+    sortBy: ProductVariantEventSortingInput
+  ): ProductVariantEventCountableConnection
 
   """
   List of product variants. Requires one of the following permissions to include the unpublished items: MANAGE_ORDERS, MANAGE_DISCOUNTS, MANAGE_PRODUCTS.
@@ -33721,6 +33891,9 @@ type User implements Node & ObjectWithMetadata {
 
   """List of user's permission groups."""
   permissionGroups: [Group!]
+
+  """The positions of the user. Defined by the OIDC provider"""
+  positions: [String]!
 
   """List of private metadata items. Requires staff permissions to access."""
   privateMetadata: [MetadataItem!]!
