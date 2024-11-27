@@ -10,6 +10,7 @@ export const customerFragment = gql`
     balance
     userType
     code
+    positions
   }
 `;
 

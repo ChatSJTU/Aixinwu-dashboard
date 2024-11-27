@@ -137,10 +137,12 @@ const CustomerDetailsPage: React.FC<CustomerDetailsPageProps> = ({
               />
               <CardSpacer />
               <CustomerInfo
+                customer={customer}
                 data={data}
                 disabled={disabled}
                 errors={errors}
                 onChange={change}
+                onChangeMetadata={changeMetadata}
               />
               <CardSpacer />
               <RequirePermissions
