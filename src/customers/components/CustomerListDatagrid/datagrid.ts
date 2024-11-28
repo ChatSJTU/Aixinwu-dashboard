@@ -1,4 +1,4 @@
-import { readonlyTextCell } from "@dashboard/components/Datagrid/customCells/cells";
+import { dateCell, readonlyTextCell } from "@dashboard/components/Datagrid/customCells/cells";
 import { AvailableColumn } from "@dashboard/components/Datagrid/types";
 import { Customers } from "@dashboard/customers/types";
 import { CustomerListUrlSortField } from "@dashboard/customers/urls";
@@ -19,7 +19,7 @@ export const customerListStaticColumnsAdapter = (
     {
       id: "name",
       title: intl.formatMessage(columnsMessages.name),
-      width: 300,
+      width: 200,
     },
     {
       id: "code",
@@ -32,7 +32,23 @@ export const customerListStaticColumnsAdapter = (
     {
       id: "email",
       title: intl.formatMessage(columnsMessages.email),
-      width: 400,
+      width: 300,
+    },
+    {
+      id: "date_joined",
+      title: intl.formatMessage({
+        id: "customer-date_joined",
+        defaultMessage: "注册日期"
+      }),
+      width: 240,
+    },
+    {
+      id: "last_login",
+      title: intl.formatMessage({
+        id: "customer-last_login",
+        defaultMessage: "最后活跃时间"
+      }),
+      width: 240,
     },
     
     ...(includeOrders
@@ -40,7 +56,7 @@ export const customerListStaticColumnsAdapter = (
           {
             id: "orders",
             title: intl.formatMessage(columnsMessages.orders),
-            width: 200,
+            width: 150,
           },
         ]
       : []),
@@ -72,6 +88,10 @@ export const createGetCellContent =
         return readonlyTextCell(rowData?.code ?? "/");
       case "email":
         return readonlyTextCell(rowData?.email ?? "");
+      case "date_joined":
+        return dateCell(rowData?.dateJoined ?? "");
+      case "last_login":
+        return dateCell(rowData?.lastLogin ?? "");
       case "orders":
         return readonlyTextCell(rowData?.orders?.totalCount?.toString() ?? "");
       default:
