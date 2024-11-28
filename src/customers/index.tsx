@@ -26,6 +26,8 @@ const CustomerListView: React.FC<RouteComponentProps<{}>> = ({ location }) => {
   const params: CustomerListUrlQueryParams = asSortParams(
     qs,
     CustomerListUrlSortField,
+    CustomerListUrlSortField.date_joined,
+    false
   );
 
   return <CustomerListViewComponent params={params} />;
