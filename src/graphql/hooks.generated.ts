@@ -328,6 +328,8 @@ export const CustomerFragmentDoc = gql`
   userType
   code
   positions
+  dateJoined
+  lastLogin
 }
     `;
 export const AddressFragmentDoc = gql`

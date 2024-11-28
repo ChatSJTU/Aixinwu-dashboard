@@ -5309,6 +5309,7 @@ enum CheckoutErrorCode {
   PRODUCT_UNAVAILABLE_FOR_PURCHASE
   QUANTITY_GREATER_THAN_LIMIT
   REQUIRED
+  REQUIREMENT_NOT_MEET
   SHIPPING_ADDRESS_NOT_SET
   SHIPPING_METHOD_NOT_APPLICABLE
   SHIPPING_METHOD_NOT_SET
@@ -34106,6 +34107,9 @@ enum UserSortField {
 
   """Sort users by first name."""
   FIRST_NAME
+
+  """Sort users by last login."""
+  LAST_LOGIN
 
   """Sort users by last modified at."""
   LAST_MODIFIED_AT

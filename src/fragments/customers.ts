@@ -11,6 +11,8 @@ export const customerFragment = gql`
     userType
     code
     positions
+    dateJoined
+    lastLogin
   }
 `;
 
