@@ -28,6 +28,8 @@ export enum CustomerListUrlSortField {
   name = "name",
   email = "email",
   orders = "orders",
+  date_joined = "date_joined",
+  last_login = "last_login",
 }
 export type CustomerListUrlSort = Sort<CustomerListUrlSortField>;
 export type CustomerListUrlQueryParams = ActiveTab &

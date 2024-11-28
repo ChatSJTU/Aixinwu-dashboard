@@ -1,5 +1,19 @@
 import { StatusType } from "@dashboard/types";
 import { IntlShape } from "react-intl";
+import { CustomerListUrlSortField } from "./urls";
+
+export function canBeSorted(sort: string) {
+  switch (sort) {
+    case CustomerListUrlSortField.date_joined:
+    case CustomerListUrlSortField.email:
+    case CustomerListUrlSortField.last_login:
+    case CustomerListUrlSortField.name:
+    case CustomerListUrlSortField.orders:
+      return true;
+    default:
+      return false;
+  }
+}
 
 export const transformUserType = (
     userType: string,

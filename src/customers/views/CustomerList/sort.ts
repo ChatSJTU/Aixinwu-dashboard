@@ -13,6 +13,10 @@ export function getSortQueryField(
       return UserSortField.LAST_NAME;
     case CustomerListUrlSortField.orders:
       return UserSortField.ORDER_COUNT;
+    case CustomerListUrlSortField.date_joined:
+      return UserSortField.CREATED_AT;
+    case CustomerListUrlSortField.last_login:
+      return UserSortField.LAST_LOGIN;
     default:
       return undefined;
   }

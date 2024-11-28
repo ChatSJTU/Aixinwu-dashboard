@@ -21,6 +21,7 @@ import {
   customerListStaticColumnsAdapter,
 } from "./datagrid";
 import { messages } from "./messages";
+import { canBeSorted } from "@dashboard/customers/utils";
 
 interface CustomerListDatagridProps
   extends ListProps,
@@ -118,7 +119,9 @@ export const CustomerListDatagrid = ({
     (col: number) => {
       const columnName = visibleColumns[col].id as CustomerListUrlSortField;
 
-      onSort(columnName);
+      if (canBeSorted(columnName)) {
+        onSort(columnName);
+      }
     },
     [visibleColumns, onSort],
   );
