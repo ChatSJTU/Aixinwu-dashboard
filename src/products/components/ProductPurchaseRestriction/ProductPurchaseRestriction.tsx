@@ -9,6 +9,8 @@ import AssignContainerDialog from "@dashboard/components/AssignContainerDialog";
 import { ParseUserPositions, transformUserPosition, UserPosition, userPositions } from "@dashboard/customers/utils";
 import { Box, Button } from "@saleor/macaw-ui-next";
 import { Pill } from "@dashboard/components/Pill";
+import { InputAdornment, TextField } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 
 interface ProductPurchaseRestrictionProps {
   product: ProductDetailsQuery["product"];
@@ -17,6 +19,14 @@ interface ProductPurchaseRestrictionProps {
   onChangeMetadata: FormChange;
 }
 
+export const useCommonStyles = makeStyles(
+  theme => ({
+    input: {
+      padding: "12px 0 9px 12px",
+    },
+  }),
+);
+
 export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProps> = ({
   product,
   data,
@@ -24,18 +34,27 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
   onChangeMetadata,
 }) => {
   const intl = useIntl();
+  const commonClasses = useCommonStyles({});
   const OnlyPoorKey = "only_poor";
   const AllowPositionsKey = "allow_positions";
+  const AllowDateDeltaKey = "allow_admission_date";
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [allUserPositions, setAllUserPositions] = useState<UserPosition[]>(userPositions);
   const [usePosition, setUsePosition] = useState<boolean>(false);
+  const [useDateDelta, setUseDateDelta] = useState<boolean>(false);
   const [positionInputs, setPositionInputs] = useState<UserPosition[]>([]);
+  const [dateDeltaInput, setDateDeltaInput] = useState<string>("0");
 
   useEffect(()=>{
     var positions = data?.metadata?.find(x=>x.key==AllowPositionsKey)?.value;
     if (positions && positions.length > 0) {
       setUsePosition(true);
       setPositionInputs(ParseUserPositions(positions));
+    }
+    var dateDelta = data?.metadata?.find(x=>x.key==AllowDateDeltaKey)?.value;
+    if (dateDelta && dateDelta.length > 0) {
+      setUseDateDelta(true);
+      setDateDeltaInput(dateDelta);
     }
   }, [data]);
 
@@ -84,6 +103,38 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
     });
   }
 
+  const onDateDeltaChange = (enable: boolean, value: string) => {
+    const key = "metadata";
+    const dataToUpdate: MetadataInput[] = data.metadata;
+    const value_norm = parseInt(value).toString();
+    if (enable) {
+      var dataCopy = (
+        dataToUpdate.some(x=>x.key == AllowDateDeltaKey) ? (
+          dataToUpdate.map(x=>(x.key == AllowDateDeltaKey ? {...x, value: value_norm} : x))
+        ) : dataToUpdate.concat({ key: AllowDateDeltaKey, value: value_norm })
+      );
+      onChangeMetadata({
+        target: {
+          name: key,
+          value: dataCopy,
+        },
+      });
+    }
+    else { //delete
+      var dataCopy = (
+        dataToUpdate.some(x=>x.key == AllowDateDeltaKey) ? (
+          dataToUpdate.filter(x=>(x.key != AllowDateDeltaKey))
+        ) : dataToUpdate
+      );
+      onChangeMetadata({
+        target: {
+          name: key,
+          value: dataCopy,
+        },
+      });
+    }
+  }
+
   return (
     <DashboardCard>
       <DashboardCard.Title>
@@ -95,17 +146,17 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
       <DashboardCard.Content>
         <Box display="grid" gap={2} marginTop={0}>
           <ControlledCheckbox
-          checked={data?.metadata?.find(x=>x.key==OnlyPoorKey)?.value == 'true'}
-          label={"仅限贫困生购买"}
-          name={OnlyPoorKey}
-          onChange={onOnlyPoorChange}
+            checked={data?.metadata?.find(x=>x.key==OnlyPoorKey)?.value == 'true'}
+            label={"仅限贫困生购买"}
+            name={OnlyPoorKey}
+            onChange={onOnlyPoorChange}
           />
           <Box display='flex' alignItems='center'>
             <ControlledCheckbox
-            checked={usePosition}
-            label={"仅限特定身份用户购买"}
-            name={AllowPositionsKey}
-            onChange={(e) => { setUsePosition(e.target.value); }}
+              checked={usePosition}
+              label={"仅限特定身份用户购买"}
+              name={AllowPositionsKey}
+              onChange={(e) => { setUsePosition(e.target.value); }}
             />
             <Button
               onClick={()=>{ setModalOpen(true); }}
@@ -124,6 +175,34 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
                         <Pill label={x.name} color='generic'/>
                     ))
                 ) : undefined
+            }
+          </Box>
+          <Box display='flex' alignItems='center'>
+            <ControlledCheckbox
+              checked={useDateDelta}
+              label={"限制入学时间"}
+              name={AllowDateDeltaKey}
+              onChange={(e) => { 
+                setUseDateDelta(e.target.value); 
+                onDateDeltaChange(e.target.value, dateDeltaInput);
+              }}
+            />
+            {
+              useDateDelta ? (
+                <TextField
+                  style={{ width: '100px' }}
+                  InputProps={{ 
+                    classes: { input: commonClasses.input }, 
+                    endAdornment: <InputAdornment position="end">天</InputAdornment> 
+                  }}
+                  value={dateDeltaInput}
+                  type="number"
+                  onChange={e => {
+                    setDateDeltaInput(e.target.value);
+                    onDateDeltaChange(useDateDelta, e.target.value);
+                  }}
+                />
+              ) : undefined
             }
           </Box>
         </Box>
