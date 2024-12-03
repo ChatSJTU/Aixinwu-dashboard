@@ -38,12 +38,15 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
   const OnlyPoorKey = "only_poor";
   const AllowPositionsKey = "allow_positions";
   const AllowDateDeltaKey = "allow_admission_date";
+  const CodeRegexKey = "code_regex";
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [allUserPositions, setAllUserPositions] = useState<UserPosition[]>(userPositions);
   const [usePosition, setUsePosition] = useState<boolean>(false);
   const [useDateDelta, setUseDateDelta] = useState<boolean>(false);
+  const [useCodeRegex, setUseCodeRegex] = useState<boolean>(false);
   const [positionInputs, setPositionInputs] = useState<UserPosition[]>([]);
   const [dateDeltaInput, setDateDeltaInput] = useState<string>("0");
+  const [codeRegexInput, setCodeRegexInput] = useState<string>("^$");
 
   useEffect(()=>{
     var positions = data?.metadata?.find(x=>x.key==AllowPositionsKey)?.value;
@@ -135,6 +138,37 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
     }
   }
 
+  const onCodeRegexChange = (enable: boolean, value: string) => {
+    const key = "metadata";
+    const dataToUpdate: MetadataInput[] = data.metadata;
+    if (enable) {
+      var dataCopy = (
+        dataToUpdate.some(x=>x.key == CodeRegexKey) ? (
+          dataToUpdate.map(x=>(x.key == CodeRegexKey ? {...x, value: value} : x))
+        ) : dataToUpdate.concat({ key: CodeRegexKey, value: value })
+      );
+      onChangeMetadata({
+        target: {
+          name: key,
+          value: dataCopy,
+        },
+      });
+    }
+    else { //delete
+      var dataCopy = (
+        dataToUpdate.some(x=>x.key == CodeRegexKey) ? (
+          dataToUpdate.filter(x=>(x.key != CodeRegexKey))
+        ) : dataToUpdate
+      );
+      onChangeMetadata({
+        target: {
+          name: key,
+          value: dataCopy,
+        },
+      });
+    }
+  }
+
   return (
     <DashboardCard>
       <DashboardCard.Title>
@@ -200,6 +234,33 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
                   onChange={e => {
                     setDateDeltaInput(e.target.value);
                     onDateDeltaChange(useDateDelta, e.target.value);
+                  }}
+                />
+              ) : undefined
+            }
+          </Box>
+          <Box display='flex' alignItems='center'>
+            <ControlledCheckbox
+              checked={useCodeRegex}
+              label={"限制学号"}
+              name={CodeRegexKey}
+              onChange={(e) => { 
+                setUseCodeRegex(e.target.value); 
+                onCodeRegexChange(e.target.value, codeRegexInput);
+              }}
+            />
+            {
+              useCodeRegex ? (
+                <TextField
+                  style={{ width: '200px' }}
+                  InputProps={{ 
+                    classes: { input: commonClasses.input }, 
+                  }}
+                  value={codeRegexInput}
+                  type="text"
+                  onChange={e => {
+                    setCodeRegexInput(e.target.value);
+                    onCodeRegexChange(useCodeRegex, e.target.value);
                   }}
                 />
               ) : undefined
