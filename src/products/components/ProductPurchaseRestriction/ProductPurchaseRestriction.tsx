@@ -59,6 +59,11 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
       setUseDateDelta(true);
       setDateDeltaInput(dateDelta);
     }
+    var codeRegex = data?.metadata?.find(x=>x.key==CodeRegexKey)?.value;
+    if (codeRegex && codeRegex.length > 0) {
+      setUseCodeRegex(true);
+      setCodeRegexInput(codeRegex);
+    }
   }, [data]);
 
   useEffect(()=>{
