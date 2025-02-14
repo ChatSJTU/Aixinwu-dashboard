@@ -30,7 +30,7 @@ export const productVariantEventListStaticColumnsAdapter = (
       id: "user",
       title: intl.formatMessage({
         id: "productVariantEvent-column-user",
-        defaultMessage: "用户",
+        defaultMessage: "操作人",
       }),
       width: 100,
     },
@@ -64,7 +64,7 @@ export const productVariantEventListStaticColumnsAdapter = (
         id: "productVariantEvent-column-message",
         defaultMessage: "描述",
       }),
-      width: 500,
+      width: 800,
     },
   ].map(column => ({
     ...column,
