@@ -328,7 +328,7 @@
   },
   "/z9uo1": {
     "context": "order returned success message",
-    "string": "Successfully returned products!"
+    "string": "成功退回商品！"
   },
   "01+5kQ": {
     "string": "Mark as paid"
@@ -1716,7 +1716,7 @@
   },
   "AKv2BI": {
     "context": "order refund subtitle",
-    "string": "退回的商品不增加库存"
+    "string": "退回的商品无法再次交付（如有需要请重新下单）"
   },
   "AMlXrQ": {
     "context": "submit button",
@@ -4692,7 +4692,7 @@
   },
   "Uo5/Ov": {
     "context": "order return subtitle",
-    "string": "退回的商品不增加库存"
+    "string": "退回的商品无法再次交付（如有需要请重新下单）"
   },
   "Uo5MoU": {
     "context": "product field",
@@ -6564,7 +6564,7 @@
   },
   "hoii+4": {
     "context": "heading, sum of all completed refunds from transactions in order",
-    "string": "Refunded"
+    "string": "仅退款"
   },
   "hpMcW8": {
     "string": "定义商店的站点导航"
@@ -7398,7 +7398,7 @@
   },
   "nayZY0": {
     "context": "returned event title",
-    "string": "Products were returned by"
+    "string": "商品被退回"
   },
   "nf3XSt": {
     "context": "attribute internal name",
