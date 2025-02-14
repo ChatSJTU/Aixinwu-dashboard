@@ -13693,6 +13693,73 @@ export function usePluginLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookO
 export type PluginQueryHookResult = ReturnType<typeof usePluginQuery>;
 export type PluginLazyQueryHookResult = ReturnType<typeof usePluginLazyQuery>;
 export type PluginQueryResult = Apollo.QueryResult<Types.PluginQuery, Types.PluginQueryVariables>;
+export const ListProductEventsDocument = gql`
+    query ListProductEvents($after: String, $before: String, $first: Int, $last: Int, $filter: ProductEventFilterInput, $sort: ProductEventSortingInput) {
+  productEvents(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    filter: $filter
+    sortBy: $sort
+  ) {
+    totalCount
+    edges {
+      node {
+        date
+        id
+        message
+        productName
+        type
+        user {
+          id
+          firstName
+          account
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}
+    `;
+
+/**
+ * __useListProductEventsQuery__
+ *
+ * To run a query within a React component, call `useListProductEventsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useListProductEventsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useListProductEventsQuery({
+ *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      filter: // value for 'filter'
+ *      sort: // value for 'sort'
+ *   },
+ * });
+ */
+export function useListProductEventsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.ListProductEventsQuery, Types.ListProductEventsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.ListProductEventsQuery, Types.ListProductEventsQueryVariables>(ListProductEventsDocument, options);
+      }
+export function useListProductEventsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.ListProductEventsQuery, Types.ListProductEventsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.ListProductEventsQuery, Types.ListProductEventsQueryVariables>(ListProductEventsDocument, options);
+        }
+export type ListProductEventsQueryHookResult = ReturnType<typeof useListProductEventsQuery>;
+export type ListProductEventsLazyQueryHookResult = ReturnType<typeof useListProductEventsLazyQuery>;
+export type ListProductEventsQueryResult = Apollo.QueryResult<Types.ListProductEventsQuery, Types.ListProductEventsQueryVariables>;
 export const ProductTypeDeleteDocument = gql`
     mutation ProductTypeDelete($id: ID!) {
   productTypeDelete(id: $id) {
@@ -14140,6 +14207,74 @@ export function useProductTypeCreateDataLazyQuery(baseOptions?: ApolloReactHooks
 export type ProductTypeCreateDataQueryHookResult = ReturnType<typeof useProductTypeCreateDataQuery>;
 export type ProductTypeCreateDataLazyQueryHookResult = ReturnType<typeof useProductTypeCreateDataLazyQuery>;
 export type ProductTypeCreateDataQueryResult = Apollo.QueryResult<Types.ProductTypeCreateDataQuery, Types.ProductTypeCreateDataQueryVariables>;
+export const ListProductVariantEventsDocument = gql`
+    query ListProductVariantEvents($after: String, $before: String, $first: Int, $last: Int, $filter: ProductVariantEventFilterInput, $sort: ProductVariantEventSortingInput) {
+  productVariantEvents(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    filter: $filter
+    sortBy: $sort
+  ) {
+    totalCount
+    edges {
+      node {
+        date
+        id
+        message
+        productVariantName
+        stockChanged
+        type
+        user {
+          id
+          firstName
+          account
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}
+    `;
+
+/**
+ * __useListProductVariantEventsQuery__
+ *
+ * To run a query within a React component, call `useListProductVariantEventsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useListProductVariantEventsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useListProductVariantEventsQuery({
+ *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      filter: // value for 'filter'
+ *      sort: // value for 'sort'
+ *   },
+ * });
+ */
+export function useListProductVariantEventsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.ListProductVariantEventsQuery, Types.ListProductVariantEventsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.ListProductVariantEventsQuery, Types.ListProductVariantEventsQueryVariables>(ListProductVariantEventsDocument, options);
+      }
+export function useListProductVariantEventsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.ListProductVariantEventsQuery, Types.ListProductVariantEventsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.ListProductVariantEventsQuery, Types.ListProductVariantEventsQueryVariables>(ListProductVariantEventsDocument, options);
+        }
+export type ListProductVariantEventsQueryHookResult = ReturnType<typeof useListProductVariantEventsQuery>;
+export type ListProductVariantEventsLazyQueryHookResult = ReturnType<typeof useListProductVariantEventsLazyQuery>;
+export type ListProductVariantEventsQueryResult = Apollo.QueryResult<Types.ListProductVariantEventsQuery, Types.ListProductVariantEventsQueryVariables>;
 export const ProductMediaCreateDocument = gql`
     mutation ProductMediaCreate($product: ID!, $image: Upload, $alt: String, $mediaUrl: String) {
   productMediaCreate(

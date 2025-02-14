@@ -93853,6 +93853,18 @@
             "deprecationReason": null
           },
           {
+            "name": "message",
+            "description": "The message of the product event.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "product",
             "description": "The product of the event.",
             "args": [],
@@ -93883,6 +93895,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "user",
+            "description": "The user of the event.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "User",
               "ofType": null
             },
             "isDeprecated": false,
@@ -94126,6 +94150,12 @@
           },
           {
             "name": "PRODUCT_DELETED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRODUCT_UPDATED",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -101521,6 +101551,18 @@
             "deprecationReason": null
           },
           {
+            "name": "message",
+            "description": "The message of the product event.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "productVariant",
             "description": "The product of the event.",
             "args": [],
@@ -101563,6 +101605,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "user",
+            "description": "The user of the event.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "User",
               "ofType": null
             },
             "isDeprecated": false,
@@ -101806,6 +101860,18 @@
           },
           {
             "name": "PRODUCT_VARIANT_DELETED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRODUCT_VARIANT_PRICE_UPDATED",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRODUCT_VARIANT_STOCK_CHANGED",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

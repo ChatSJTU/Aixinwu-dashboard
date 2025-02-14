@@ -4539,13 +4539,15 @@ export type ProductErrorFieldPolicy = {
 	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	values?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ProductEventKeySpecifier = ('date' | 'id' | 'product' | 'productName' | 'type' | ProductEventKeySpecifier)[];
+export type ProductEventKeySpecifier = ('date' | 'id' | 'message' | 'product' | 'productName' | 'type' | 'user' | ProductEventKeySpecifier)[];
 export type ProductEventFieldPolicy = {
 	date?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	product?: FieldPolicy<any> | FieldReadFunction<any>,
 	productName?: FieldPolicy<any> | FieldReadFunction<any>,
-	type?: FieldPolicy<any> | FieldReadFunction<any>
+	type?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type ProductEventCountableConnectionKeySpecifier = ('edges' | 'pageInfo' | 'totalCount' | ProductEventCountableConnectionKeySpecifier)[];
 export type ProductEventCountableConnectionFieldPolicy = {
@@ -4933,14 +4935,16 @@ export type ProductVariantDeletedFieldPolicy = {
 	recipient?: FieldPolicy<any> | FieldReadFunction<any>,
 	version?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ProductVariantEventKeySpecifier = ('date' | 'id' | 'productVariant' | 'productVariantName' | 'stockChanged' | 'type' | ProductVariantEventKeySpecifier)[];
+export type ProductVariantEventKeySpecifier = ('date' | 'id' | 'message' | 'productVariant' | 'productVariantName' | 'stockChanged' | 'type' | 'user' | ProductVariantEventKeySpecifier)[];
 export type ProductVariantEventFieldPolicy = {
 	date?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	message?: FieldPolicy<any> | FieldReadFunction<any>,
 	productVariant?: FieldPolicy<any> | FieldReadFunction<any>,
 	productVariantName?: FieldPolicy<any> | FieldReadFunction<any>,
 	stockChanged?: FieldPolicy<any> | FieldReadFunction<any>,
-	type?: FieldPolicy<any> | FieldReadFunction<any>
+	type?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type ProductVariantEventCountableConnectionKeySpecifier = ('edges' | 'pageInfo' | 'totalCount' | ProductVariantEventCountableConnectionKeySpecifier)[];
 export type ProductVariantEventCountableConnectionFieldPolicy = {

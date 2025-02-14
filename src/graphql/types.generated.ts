@@ -5457,7 +5457,8 @@ export type ProductEventSortingInput = {
 /** An enumeration. */
 export enum ProductEventsEnum {
   PRODUCT_CREATED = 'PRODUCT_CREATED',
-  PRODUCT_DELETED = 'PRODUCT_DELETED'
+  PRODUCT_DELETED = 'PRODUCT_DELETED',
+  PRODUCT_UPDATED = 'PRODUCT_UPDATED'
 }
 
 export enum ProductFieldEnum {
@@ -6007,6 +6008,8 @@ export type ProductVariantEventSortingInput = {
 export enum ProductVariantEventsEnum {
   PRODUCT_VARIANT_CREATED = 'PRODUCT_VARIANT_CREATED',
   PRODUCT_VARIANT_DELETED = 'PRODUCT_VARIANT_DELETED',
+  PRODUCT_VARIANT_PRICE_UPDATED = 'PRODUCT_VARIANT_PRICE_UPDATED',
+  PRODUCT_VARIANT_STOCK_CHANGED = 'PRODUCT_VARIANT_STOCK_CHANGED',
   PRODUCT_VARIANT_UPDATED = 'PRODUCT_VARIANT_UPDATED'
 }
 
@@ -11463,6 +11466,18 @@ export type PluginQueryVariables = Exact<{
 
 export type PluginQuery = { __typename: 'Query', plugin: { __typename: 'Plugin', id: string, name: string, description: string, globalConfiguration: { __typename: 'PluginConfiguration', active: boolean, configuration: Array<{ __typename: 'ConfigurationItem', name: string, value: string | null, type: ConfigurationTypeFieldEnum | null, helpText: string | null, label: string | null }> | null, channel: { __typename: 'Channel', id: string, name: string, slug: string } | null } | null, channelConfigurations: Array<{ __typename: 'PluginConfiguration', active: boolean, configuration: Array<{ __typename: 'ConfigurationItem', name: string, value: string | null, type: ConfigurationTypeFieldEnum | null, helpText: string | null, label: string | null }> | null, channel: { __typename: 'Channel', id: string, name: string, slug: string } | null }> } | null };
 
+export type ListProductEventsQueryVariables = Exact<{
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<ProductEventFilterInput>;
+  sort?: InputMaybe<ProductEventSortingInput>;
+}>;
+
+
+export type ListProductEventsQuery = { __typename: 'Query', productEvents: { __typename: 'ProductEventCountableConnection', totalCount: number | null, edges: Array<{ __typename: 'ProductEventCountableEdge', node: { __typename: 'ProductEvent', date: any | null, id: string, message: string | null, productName: string | null, type: string | null, user: { __typename: 'User', id: string, firstName: string, account: string } | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
+
 export type ProductTypeDeleteMutationVariables = Exact<{
   id: Scalars['ID'];
 }>;
@@ -11548,6 +11563,18 @@ export type ProductTypeCreateDataQueryVariables = Exact<{ [key: string]: never; 
 
 
 export type ProductTypeCreateDataQuery = { __typename: 'Query', shop: { __typename: 'Shop', defaultWeightUnit: WeightUnitsEnum | null } | null };
+
+export type ListProductVariantEventsQueryVariables = Exact<{
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<ProductVariantEventFilterInput>;
+  sort?: InputMaybe<ProductVariantEventSortingInput>;
+}>;
+
+
+export type ListProductVariantEventsQuery = { __typename: 'Query', productVariantEvents: { __typename: 'ProductVariantEventCountableConnection', totalCount: number | null, edges: Array<{ __typename: 'ProductVariantEventCountableEdge', node: { __typename: 'ProductVariantEvent', date: any | null, id: string, message: string | null, productVariantName: string | null, stockChanged: number | null, type: string | null, user: { __typename: 'User', id: string, firstName: string, account: string } | null } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
 
 export type ProductMediaCreateMutationVariables = Exact<{
   product: Scalars['ID'];

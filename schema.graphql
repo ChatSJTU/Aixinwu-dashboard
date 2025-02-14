@@ -23419,6 +23419,9 @@ type ProductEvent {
   """The ID of the product event."""
   id: ID!
 
+  """The message of the product event."""
+  message: String
+
   """The product of the event."""
   product: Product
 
@@ -23427,6 +23430,9 @@ type ProductEvent {
 
   """The type of the product event."""
   type: String
+
+  """The user of the event."""
+  user: User
 }
 
 type ProductEventCountableConnection {
@@ -23466,6 +23472,7 @@ input ProductEventSortingInput {
 enum ProductEventsEnum {
   PRODUCT_CREATED
   PRODUCT_DELETED
+  PRODUCT_UPDATED
 }
 
 """
@@ -25296,6 +25303,9 @@ type ProductVariantEvent {
   """The ID of the product event."""
   id: ID!
 
+  """The message of the product event."""
+  message: String
+
   """The product of the event."""
   productVariant: ProductVariant
 
@@ -25307,6 +25317,9 @@ type ProductVariantEvent {
 
   """The type of the product event."""
   type: String
+
+  """The user of the event."""
+  user: User
 }
 
 type ProductVariantEventCountableConnection {
@@ -25346,6 +25359,8 @@ input ProductVariantEventSortingInput {
 enum ProductVariantEventsEnum {
   PRODUCT_VARIANT_CREATED
   PRODUCT_VARIANT_DELETED
+  PRODUCT_VARIANT_PRICE_UPDATED
+  PRODUCT_VARIANT_STOCK_CHANGED
   PRODUCT_VARIANT_UPDATED
 }
 
