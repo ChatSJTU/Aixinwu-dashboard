@@ -68,6 +68,8 @@ export interface AppListViewSettings {
   [ListViews.VOUCHER_CODES]: ListSettings;
   [ListViews.DONATION_LIST]: ListSettings;
   [ListViews.COINLOG_LIST]: ListSettings;
+  [ListViews.PRODUCT_EVENT_LIST]: ListSettings;
+  [ListViews.PRODUCT_VARIANT_EVENT_LIST]: ListSettings;
 }
 
 export const defaultListSettings: AppListViewSettings = {
@@ -197,6 +199,14 @@ export const defaultListSettings: AppListViewSettings = {
   [ListViews.COINLOG_LIST]: {
     rowNumber: PAGINATE_BY,
     columns: ["number", "user", "created", "delta", "balance", "type"],
+  },
+  [ListViews.PRODUCT_EVENT_LIST]: {
+    rowNumber: PAGINATE_BY,
+    columns: ["number", "user", "date", "type", "product-name", "message"],
+  },
+  [ListViews.PRODUCT_VARIANT_EVENT_LIST]: {
+    rowNumber: PAGINATE_BY,
+    columns: ["number", "user", "date", "type", "variant-name", "message"],
   },
 };
 

@@ -52,6 +52,8 @@ export enum ListViews {
   VOUCHER_CODES = "VOUCHER_CODES",
   DONATION_LIST = "DONATION_LIST",
   COINLOG_LIST = "COINLOG_LIST",
+  PRODUCT_EVENT_LIST = "PRODUCT_EVENT_LIST",
+  PRODUCT_VARIANT_EVENT_LIST = "PRODUCT_VARIANT_EVENT_LIST",
 }
 
 export interface ListProps<TColumns extends string = string> {

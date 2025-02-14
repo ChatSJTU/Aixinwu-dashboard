@@ -41,6 +41,8 @@ import { barcodeManageUrl } from "@dashboard/barcodes/urls";
 import StatIcon from "@dashboard/icons/Stat";
 import { coinlogListUrl } from "@dashboard/coinlogs/urls";
 import { reportManageUrl } from "@dashboard/report/urls";
+import { productEventListUrl } from "@dashboard/productEvents/urls";
+import { productVariantEventListUrl } from "@dashboard/productVariantEvents/urls";
 
 const iconSettings = {
   color: "default2",
@@ -240,11 +242,20 @@ export function useMenuStructure() {
         },
         {
           label: intl.formatMessage({
-            id: "system-log",
-            defaultMessage: "操作日志",
+            id: "product-event-log",
+            defaultMessage: "商品日志",
           }),
-          id: "system-log",
-          url: barcodeManageUrl(),
+          id: "product-event-log",
+          url: productEventListUrl(),
+          type: "item",
+        },
+        {
+          label: intl.formatMessage({
+            id: "product-variant-event-log",
+            defaultMessage: "商品品种日志",
+          }),
+          id: "product-variant-event-log",
+          url: productVariantEventListUrl(),
           type: "item",
         },
       ],
