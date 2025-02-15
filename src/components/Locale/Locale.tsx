@@ -112,7 +112,7 @@ function getKeyValueJson(messages: LocaleMessages): Record<string, string> {
   }
 }
 
-const defaultLocale = Locale.EN;
+const defaultLocale = Locale.ZH_HANS;
 
 export interface LocaleContextType {
   locale: Locale;
@@ -128,18 +128,19 @@ const { Consumer: LocaleConsumer, Provider: RawLocaleProvider } = LocaleContext;
 const LocaleProvider: React.FC = ({ children }) => {
   const [locale, setLocale] = useLocalStorage("locale", defaultLocale);
   const [messages, setMessages] = React.useState(undefined);
+  const [currentLocale, setCurrentLocale] = React.useState(Locale.EN);
 
   React.useEffect(() => {
     async function changeLocale() {
-      if (locale !== defaultLocale) {
+      if (locale !== currentLocale) {
         // It seems like Webpack is unable to use aliases for lazy imports
         const mod = await import(`../../../locale/${locale}.json`);
+        setCurrentLocale(locale)
         setMessages(mod.default);
       } else {
         setMessages(undefined);
       }
     }
-
     changeLocale();
   }, [locale]);
 
