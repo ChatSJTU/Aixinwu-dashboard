@@ -15,12 +15,14 @@ export interface InvoiceGenerateParams {
 
 export interface OnCompletedTaskData {
   status: TaskStatus;
+  url: string | null;
+  message: string | null;
 }
 export type OnCompletedTaskFn = (data: OnCompletedTaskData) => void;
 
 export interface QueuedTask {
   id: number;
-  handle: () => Promise<TaskStatus>;
+  handle: () => Promise<OnCompletedTaskData>;
   status: TaskStatus;
   onCompleted: OnCompletedTaskFn;
   onError: (error: Error) => void;
@@ -29,7 +31,7 @@ export interface QueuedTask {
 export interface TaskData {
   generateInvoice?: InvoiceGenerateParams;
   id?: string;
-  handle?: () => Promise<TaskStatus>;
+  handle?: () => Promise<OnCompletedTaskData>;
   onCompleted?: OnCompletedTaskFn;
   onError?: () => void;
 }

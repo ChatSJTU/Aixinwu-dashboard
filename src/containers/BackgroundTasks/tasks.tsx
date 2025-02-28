@@ -12,10 +12,14 @@ import { IntlShape } from "react-intl";
 import messages from "./messages";
 import {
   InvoiceGenerateParams,
+  OnCompletedTaskData,
   QueuedTask,
   TaskData,
   TaskStatus,
 } from "./types";
+import React from "react";
+import { ExternalLinkIcon } from "@saleor/macaw-ui-next";
+import { Link } from "@material-ui/core";
 
 function getTaskStatus(jobStatus: JobStatusEnum): TaskStatus {
   switch (jobStatus) {
@@ -29,13 +33,11 @@ function getTaskStatus(jobStatus: JobStatusEnum): TaskStatus {
 }
 
 export async function handleTask(task: QueuedTask): Promise<TaskStatus> {
-  let status = TaskStatus.PENDING;
+  let res: OnCompletedTaskData = null;
   try {
-    status = await task.handle();
-    if (status !== TaskStatus.PENDING) {
-      task.onCompleted({
-        status,
-      });
+    res = await task.handle();
+    if (res.status !== TaskStatus.PENDING) {
+      task.onCompleted(res);
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -45,7 +47,7 @@ export async function handleTask(task: QueuedTask): Promise<TaskStatus> {
     }
   }
 
-  return status;
+  return res.status;
 }
 
 export function handleError(error: Error) {
@@ -82,37 +84,38 @@ export function queueInvoiceGenerate(
   notify: IMessageContext,
   intl: IntlShape,
 ) {
-  if (!generateInvoice) {
-    throw new Error("generateInvoice is required when creating custom task");
-  }
-  tasks.current = [
-    ...tasks.current,
-    {
-      handle: async () => {
-        const result = await fetch();
-        const status = result.data.order.invoices.find(
-          invoice => invoice.id === generateInvoice.invoiceId,
-        ).status;
+  throw new Error("not implemented");
+  // if (!generateInvoice) {
+  //   throw new Error("generateInvoice is required when creating custom task");
+  // }
+  // tasks.current = [
+  //   ...tasks.current,
+  //   {
+  //     handle: async () => {
+  //       const result = await fetch();
+  //       const status = result.data.order.invoices.find(
+  //         invoice => invoice.id === generateInvoice.invoiceId,
+  //       ).status;
 
-        return getTaskStatus(status);
-      },
-      id,
-      onCompleted: data =>
-        data.status === TaskStatus.SUCCESS
-          ? notify({
-              status: "success",
-              text: intl.formatMessage(messages.invoiceGenerateFinishedText),
-              title: intl.formatMessage(messages.invoiceGenerateFinishedTitle),
-            })
-          : notify({
-              status: "error",
-              text: intl.formatMessage(commonMessages.somethingWentWrong),
-              title: intl.formatMessage(messages.invoiceGenerationFailedTitle),
-            }),
-      onError: handleError,
-      status: TaskStatus.PENDING,
-    },
-  ];
+  //       return getTaskStatus(status);
+  //     },
+  //     id,
+  //     onCompleted: data =>
+  //       data.status === TaskStatus.SUCCESS
+  //         ? notify({
+  //             status: "success",
+  //             text: intl.formatMessage(messages.invoiceGenerateFinishedText),
+  //             title: intl.formatMessage(messages.invoiceGenerateFinishedTitle),
+  //           })
+  //         : notify({
+  //             status: "error",
+  //             text: intl.formatMessage(commonMessages.somethingWentWrong),
+  //             title: intl.formatMessage(messages.invoiceGenerationFailedTitle),
+  //           }),
+  //     onError: handleError,
+  //     status: TaskStatus.PENDING,
+  //   },
+  // ];
 }
 
 export function queueExport(
@@ -129,20 +132,28 @@ export function queueExport(
         const result = await fetch();
         const status = result.data.exportFile.status;
 
-        return getTaskStatus(status);
+        return {
+          status: getTaskStatus(status),
+          message: result.data.exportFile.message,
+          url: result.data.exportFile.url,
+        } as OnCompletedTaskData;
       },
       id,
       onCompleted: data =>
         data.status === TaskStatus.SUCCESS
           ? notify({
               status: "success",
-              text: intl.formatMessage(messages.exportFinishedText),
+              text: (<div>
+                导出完成：<Link href={data.url!} target="_blank"><ExternalLinkIcon size="small"></ExternalLinkIcon>点击下载文件</Link>。您也可以稍后前往“数据——导出的数据”页面查看。
+              </div>),
               title: intl.formatMessage(messages.exportFinishedTitle),
+              autohide: null
             })
           : notify({
               status: "error",
               text: intl.formatMessage(commonMessages.somethingWentWrong),
               title: intl.formatMessage(messages.exportFailedTitle),
+              autohide: null
             }),
       onError: handleError,
       status: TaskStatus.PENDING,

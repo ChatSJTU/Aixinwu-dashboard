@@ -15,7 +15,7 @@ import {
 } from "./tasks";
 import { QueuedTask, Task, TaskData, TaskStatus } from "./types";
 
-export const backgroundTasksRefreshTime = 15 * 1000;
+export const backgroundTasksRefreshTime = 8 * 1000;
 
 export function useBackgroundTasks(
   apolloClient: Pick<ApolloClient<any>, "query">,

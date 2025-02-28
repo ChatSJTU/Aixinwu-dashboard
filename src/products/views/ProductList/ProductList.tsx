@@ -503,7 +503,6 @@ export const ProductList: React.FC<ProductListProps> = ({ params }) => {
             variables: {
               input: {
                 ...data,
-                ...filterVariables,
                 ids: selectedRowIds,
               },
             },

@@ -9610,7 +9610,7 @@ export type CheckExportFileStatusQueryVariables = Exact<{
 }>;
 
 
-export type CheckExportFileStatusQuery = { __typename: 'Query', exportFile: { __typename: 'ExportFile', id: string, status: JobStatusEnum } | null };
+export type CheckExportFileStatusQuery = { __typename: 'Query', exportFile: { __typename: 'ExportFile', id: string, status: JobStatusEnum, message: string | null, url: string | null } | null };
 
 export type CheckOrderInvoicesStatusQueryVariables = Exact<{
   id: Scalars['ID'];

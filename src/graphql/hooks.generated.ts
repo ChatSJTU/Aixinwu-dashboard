@@ -6813,6 +6813,8 @@ export const CheckExportFileStatusDocument = gql`
   exportFile(id: $id) {
     id
     status
+    message
+    url
   }
 }
     `;

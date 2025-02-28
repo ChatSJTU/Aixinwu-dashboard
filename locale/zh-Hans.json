@@ -1085,7 +1085,7 @@
   },
   "5QKsu+": {
     "context": "waiting for export to end, header",
-    "string": "Exporting CSV"
+    "string": "正在导出为 CSV"
   },
   "5R4VMl": {
     "context": "draft created from replace event title",
@@ -1297,7 +1297,7 @@
   },
   "6xC/Ls": {
     "context": "informations about product seo, header",
-    "string": "SEO信息"
+    "string": "基本信息"
   },
   "6xNl6V": {
     "string": "Add code"
@@ -3115,7 +3115,7 @@
   },
   "JTcz2G": {
     "context": "csv file exporting has finished, header",
-    "string": "Exporting CSV finished"
+    "string": "导出数据完成"
   },
   "JUQwne": {
     "context": "order",
@@ -6018,7 +6018,7 @@
     "string": "已取消"
   },
   "dPYqy0": {
-    "string": "我们目前正在导出您要求的CSV。一旦它可用，它将被发送到您的电子邮件地址。"
+    "string": "我们目前正在导出您要求的CSV，请耐心等待。完成后，您会看到一条通知。"
   },
   "dS8Adx": {
     "context": "product",
@@ -7011,7 +7011,7 @@
   },
   "ki7Mr8": {
     "context": "product export to csv file, header",
-    "string": "Export Settings"
+    "string": "导出设置"
   },
   "kkIw+l": {
     "context": "replacement created order history message draft number",
@@ -7119,7 +7119,7 @@
   },
   "lQRnYK": {
     "context": "selectt all options",
-    "string": "权限"
+    "string": "全部"
   },
   "lSd5Zo": {
     "context": "app permissions label",
@@ -8847,7 +8847,7 @@
     "string": "Unpublish Pages"
   },
   "yHeZRQ": {
-    "string": "Product Export Failed"
+    "string": "商品数据导出失败"
   },
   "yHwvLL": {
     "context": "voucher uses",

@@ -120,7 +120,7 @@ const ProductExportDialog: React.FC<ProductExportDialogProps> = ({
   >([]);
   const [selectedChannels, setSelectedChannels] = React.useState([]);
   const { change, data, reset, submit } = useForm(initialForm, onSubmit);
-
+  console.log(data)
   useModalDialogOpen(open, {
     onClose: () => {
       reset();

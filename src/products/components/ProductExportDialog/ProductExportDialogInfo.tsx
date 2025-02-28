@@ -35,10 +35,10 @@ export const warehouseNamePrefix = "warehouse-";
 const maxChips = 4;
 
 const inventoryFields = [
-  ProductFieldEnum.PRODUCT_WEIGHT,
+  // ProductFieldEnum.PRODUCT_WEIGHT,
   ProductFieldEnum.VARIANT_ID,
   ProductFieldEnum.VARIANT_SKU,
-  ProductFieldEnum.VARIANT_WEIGHT,
+  // ProductFieldEnum.VARIANT_WEIGHT,
 ];
 
 const useStyles = makeStyles(
@@ -319,6 +319,24 @@ const ProductExportDialogInfo: React.FC<ProductExportDialogInfoProps> = ({
         />
       </Typography>
       <div className={classes.scrollArea}>
+      <FieldAccordion
+          className={classes.accordion}
+          title={intl.formatMessage({
+            id: "6xC/Ls",
+            defaultMessage: "SEO Information",
+            description: "informations about product seo, header",
+          })}
+          data={data}
+          fields={[
+            ProductFieldEnum.NAME,
+            ProductFieldEnum.DESCRIPTION,
+            ProductFieldEnum.PRODUCT_MEDIA,
+            ProductFieldEnum.VARIANT_MEDIA,
+          ]}
+          onChange={handleFieldChange}
+          onToggleAll={handleToggleAllFields}
+          data-test-id="seo"
+        />
         <Accordion
           className={classes.accordion}
           title={intl.formatMessage(sectionNames.channels)}
@@ -383,7 +401,7 @@ const ProductExportDialogInfo: React.FC<ProductExportDialogInfoProps> = ({
           onToggleAll={handleToggleAllFields}
           data-test-id="organization"
         />
-        <Accordion
+        {/* <Accordion
           className={classes.accordion}
           title={intl.formatMessage(sectionNames.attributes)}
           quickPeek={
@@ -478,7 +496,7 @@ const ProductExportDialogInfo: React.FC<ProductExportDialogInfoProps> = ({
           onChange={handleFieldChange}
           onToggleAll={handleToggleAllFields}
           data-test-id="financial"
-        />
+        /> */}
         <Accordion
           className={classes.accordion}
           title={intl.formatMessage({
@@ -617,23 +635,6 @@ const ProductExportDialogInfo: React.FC<ProductExportDialogInfoProps> = ({
             </Option>
           ))}
         </Accordion>
-        <FieldAccordion
-          title={intl.formatMessage({
-            id: "6xC/Ls",
-            defaultMessage: "SEO Information",
-            description: "informations about product seo, header",
-          })}
-          data={data}
-          fields={[
-            ProductFieldEnum.DESCRIPTION,
-            ProductFieldEnum.NAME,
-            ProductFieldEnum.PRODUCT_MEDIA,
-            ProductFieldEnum.VARIANT_MEDIA,
-          ]}
-          onChange={handleFieldChange}
-          onToggleAll={handleToggleAllFields}
-          data-test-id="seo"
-        />
       </div>
     </>
   );

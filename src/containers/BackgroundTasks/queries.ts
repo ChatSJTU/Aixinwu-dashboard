@@ -5,6 +5,8 @@ export const checkExportFileStatus = gql`
     exportFile(id: $id) {
       id
       status
+      message
+      url
     }
   }
 `;
