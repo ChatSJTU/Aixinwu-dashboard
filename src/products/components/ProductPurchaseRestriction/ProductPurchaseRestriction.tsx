@@ -11,6 +11,7 @@ import { Box, Button } from "@saleor/macaw-ui-next";
 import { Pill } from "@dashboard/components/Pill";
 import { InputAdornment, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import dayjs from 'dayjs';
 
 interface ProductPurchaseRestrictionProps {
   product: ProductDetailsQuery["product"];
@@ -38,14 +39,17 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
   const OnlyPoorKey = "only_poor";
   const AllowPositionsKey = "allow_positions";
   const AllowDateDeltaKey = "allow_admission_date";
+  const MaxGraduateDateKey = "allow_graduate_date";
   const CodeRegexKey = "code_regex";
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [allUserPositions, setAllUserPositions] = useState<UserPosition[]>(userPositions);
   const [usePosition, setUsePosition] = useState<boolean>(false);
   const [useDateDelta, setUseDateDelta] = useState<boolean>(false);
+  const [useMaxGraduateDate, setUseMaxGraduateDate] = useState<boolean>(false);
   const [useCodeRegex, setUseCodeRegex] = useState<boolean>(false);
   const [positionInputs, setPositionInputs] = useState<UserPosition[]>([]);
   const [dateDeltaInput, setDateDeltaInput] = useState<string>("0");
+  const [maxGraduateDateInput, setMaxGraduateDateInput] = useState<string>(dayjs().format("YYYY-MM-DD"));
   const [codeRegexInput, setCodeRegexInput] = useState<string>("^$");
 
   useEffect(()=>{
@@ -58,6 +62,11 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
     if (dateDelta && dateDelta.length > 0) {
       setUseDateDelta(true);
       setDateDeltaInput(dateDelta);
+    }
+    var maxGraduateDate = data?.metadata?.find(x=>x.key==MaxGraduateDateKey)?.value;
+    if (maxGraduateDate && maxGraduateDate.length > 0) {
+      setUseMaxGraduateDate(true);
+      setMaxGraduateDateInput(maxGraduateDate);
     }
     var codeRegex = data?.metadata?.find(x=>x.key==CodeRegexKey)?.value;
     if (codeRegex && codeRegex.length > 0) {
@@ -132,6 +141,38 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
       var dataCopy = (
         dataToUpdate.some(x=>x.key == AllowDateDeltaKey) ? (
           dataToUpdate.filter(x=>(x.key != AllowDateDeltaKey))
+        ) : dataToUpdate
+      );
+      onChangeMetadata({
+        target: {
+          name: key,
+          value: dataCopy,
+        },
+      });
+    }
+  }
+
+  const onMaxGraduateDateChange = (enable: boolean, value: string) => {
+    const key = "metadata";
+    const dataToUpdate: MetadataInput[] = data.metadata;
+    const value_norm = dayjs(value).format('YYYY-MM-DD');
+    if (enable) {
+      var dataCopy = (
+        dataToUpdate.some(x=>x.key == MaxGraduateDateKey) ? (
+          dataToUpdate.map(x=>(x.key == MaxGraduateDateKey ? {...x, value: value_norm} : x))
+        ) : dataToUpdate.concat({ key: MaxGraduateDateKey, value: value_norm })
+      );
+      onChangeMetadata({
+        target: {
+          name: key,
+          value: dataCopy,
+        },
+      });
+    }
+    else { //delete
+      var dataCopy = (
+        dataToUpdate.some(x=>x.key == MaxGraduateDateKey) ? (
+          dataToUpdate.filter(x=>(x.key != MaxGraduateDateKey))
         ) : dataToUpdate
       );
       onChangeMetadata({
@@ -239,6 +280,34 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
                   onChange={e => {
                     setDateDeltaInput(e.target.value);
                     onDateDeltaChange(useDateDelta, e.target.value);
+                  }}
+                />
+              ) : undefined
+            }
+          </Box>
+          <Box display='flex' alignItems='center'>
+            <ControlledCheckbox
+              checked={useMaxGraduateDate}
+              label={"限制毕业时间"}
+              name={MaxGraduateDateKey}
+              onChange={(e) => { 
+                setUseMaxGraduateDate(e.target.value); 
+                onMaxGraduateDateChange(e.target.value, maxGraduateDateInput);
+              }}
+            />
+            {
+              useMaxGraduateDate ? (
+                <TextField
+                  style={{ width: '200px' }}
+                  InputProps={{ 
+                    classes: { input: commonClasses.input }, 
+                    startAdornment: <InputAdornment position="start">最晚</InputAdornment> 
+                  }}
+                  value={maxGraduateDateInput}
+                  type="date"
+                  onChange={e => {
+                    setMaxGraduateDateInput(e.target.value);
+                    onMaxGraduateDateChange(useMaxGraduateDate, e.target.value);
                   }}
                 />
               ) : undefined
