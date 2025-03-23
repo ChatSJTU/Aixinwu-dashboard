@@ -26,6 +26,7 @@ import {
 } from "./PillCell";
 import { StatusCell } from "./StatusCell";
 import { ThumbnailCell } from "./ThumbnailCell";
+import { URLCell } from "./UrlCell";
 
 const common = {
   allowOverlay: true,
@@ -124,6 +125,22 @@ export function buttonCell(title: string, cb: () => void): CustomCell {
       title,
       onClick: cb,
     },
+  };
+}
+
+export function urlCell(url: string, cb: () => void): URLCell {
+  return {
+    kind: GridCellKind.Custom,
+    cursor: "pointer",
+    allowOverlay: true,
+    copyData: url,
+    readonly: false,
+    data: {
+      kind: "url-cell",
+      url: url,
+      hovered: true,
+      onClick: cb,
+    }
   };
 }
 

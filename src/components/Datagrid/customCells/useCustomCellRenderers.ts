@@ -11,6 +11,7 @@ import { numberCellRenderer } from "./NumberCell";
 import { pillCellRenderer } from "./PillCell";
 import { statusCellRenderer } from "./StatusCell";
 import { thumbnailCellRenderer } from "./ThumbnailCell";
+import { urlCellRenderer } from "./UrlCell";
 
 export function useCustomCellRenderers() {
   const { locale } = useLocale();
@@ -19,6 +20,7 @@ export function useCustomCellRenderers() {
 
   const renderers = useMemo(
     () => [
+      urlCellRenderer(),
       pillCellRenderer(),
       statusCellRenderer(themeValues),
       moneyCellRenderer(locale),

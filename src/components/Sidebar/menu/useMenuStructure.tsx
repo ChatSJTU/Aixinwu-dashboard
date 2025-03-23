@@ -43,6 +43,7 @@ import { coinlogListUrl } from "@dashboard/coinlogs/urls";
 import { reportManageUrl } from "@dashboard/report/urls";
 import { productEventListUrl } from "@dashboard/productEvents/urls";
 import { productVariantEventListUrl } from "@dashboard/productVariantEvents/urls";
+import { exportFileListUrl } from "@dashboard/exportFiles/urls";
 
 const iconSettings = {
   color: "default2",
@@ -231,6 +232,15 @@ export function useMenuStructure() {
     // getAppSection(),
     {
       children: [
+        {
+          label: intl.formatMessage({
+            id: "exportfile-log",
+            defaultMessage: "数据导出日志",
+          }),
+          id: "exportfile-log",
+          url: exportFileListUrl(),
+          type: "item",
+        },
         {
           label: intl.formatMessage({
             id: "axb-log",

@@ -89,6 +89,25 @@ export function getGteLteVariables<T>(variables: GteLte<T>): GteLte<T> | null {
   return null;
 }
 
+export function getGteLteDateTimeVariables<T>(variables: GteLte<T>): GteLte<T> | null {
+  if (
+    !![variables.gte, variables.lte].some(
+      v =>
+        v !== undefined &&
+        v !== null &&
+        v !== "" &&
+        !(typeof v === "number" && isNaN(v)),
+    )
+  ) {
+    return {
+      gte: variables.gte + "T00:00:00Z",
+      lte: variables.lte + "T23:59:59Z",
+    } as GteLte<T>
+  }
+
+  return null;
+}
+
 export function getSingleValueQueryParam<
   TKey extends string,
   TUrlKey extends string,
