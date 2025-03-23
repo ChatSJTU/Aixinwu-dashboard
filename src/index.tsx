@@ -81,6 +81,7 @@ import { warehouseSection } from "./warehouses/urls";
 import { DonationSection } from "./donations";
 import { BarcodeSection } from "./barcodes";
 import { CoinlogSection } from "./coinlogs";
+import { ExportFileSection } from "./exportFiles";
 import { ReportSection } from "./report";
 import { ProductEventSection } from "./productEvents";
 import { ProductVariantEventSection } from "./productVariantEvents";
@@ -214,6 +215,11 @@ const Routes: React.FC = () => {
                     permissions={[PermissionEnum.MANAGE_USERS]}
                     path="/coinlogs"
                     component={CoinlogSection}
+                  />
+                  <SectionRoute
+                    permissions={[PermissionEnum.MANAGE_ORDERS]}
+                    path="/exportfiles"
+                    component={ExportFileSection}
                   />
                   <SectionRoute
                     permissions={[PermissionEnum.MANAGE_PRODUCTS]}

@@ -54,6 +54,7 @@ export enum ListViews {
   COINLOG_LIST = "COINLOG_LIST",
   PRODUCT_EVENT_LIST = "PRODUCT_EVENT_LIST",
   PRODUCT_VARIANT_EVENT_LIST = "PRODUCT_VARIANT_EVENT_LIST",
+  EXPORTFILE_LIST = "EXPORTFILE_LIST",
 }
 
 export interface ListProps<TColumns extends string = string> {

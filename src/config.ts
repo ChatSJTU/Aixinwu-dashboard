@@ -70,6 +70,7 @@ export interface AppListViewSettings {
   [ListViews.COINLOG_LIST]: ListSettings;
   [ListViews.PRODUCT_EVENT_LIST]: ListSettings;
   [ListViews.PRODUCT_VARIANT_EVENT_LIST]: ListSettings;
+  [ListViews.EXPORTFILE_LIST]: ListSettings;
 }
 
 export const defaultListSettings: AppListViewSettings = {
@@ -208,6 +209,10 @@ export const defaultListSettings: AppListViewSettings = {
     rowNumber: PAGINATE_BY,
     columns: ["number", "user", "date", "type", "variant-name", "message"],
   },
+  [ListViews.EXPORTFILE_LIST]: {
+    rowNumber: PAGINATE_BY,
+    columns: ["message", "status", "url", "createdAt"]
+  }
 };
 
 export const APP_VERSION =
