@@ -10073,6 +10073,18 @@ export type DonationDetailQueryVariables = Exact<{
 
 export type DonationDetailQuery = { __typename: 'Query', donation: { __typename: 'Donation', id: string, number: string | null, barcode: string | null, createdAt: any | null, description: string | null, quantity: number | null, status: string | null, title: string | null, updatedAt: any | null, price: { __typename: 'Money', amount: number, currency: string } | null, donator: { __typename: 'User', id: string, account: string, firstName: string, code: string } | null } | null };
 
+export type ListExportsQueryVariables = Exact<{
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  filter?: InputMaybe<ExportFileFilterInput>;
+  sort?: InputMaybe<ExportFileSortingInput>;
+}>;
+
+
+export type ListExportsQuery = { __typename: 'Query', exportFiles: { __typename: 'ExportFileCountableConnection', edges: Array<{ __typename: 'ExportFileCountableEdge', cursor: string, node: { __typename: 'ExportFile', id: string, message: string | null, status: JobStatusEnum, url: string | null, updatedAt: any, createdAt: any } }>, pageInfo: { __typename: 'PageInfo', endCursor: string | null, hasNextPage: boolean, hasPreviousPage: boolean, startCursor: string | null } } | null };
+
 export type FileUploadMutationVariables = Exact<{
   file: Scalars['Upload'];
 }>;
