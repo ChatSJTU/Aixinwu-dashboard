@@ -43,7 +43,7 @@ export enum OrderListFitersWithKeyValueValues {
 export type OrderListUrlFilters = Filters<OrderListUrlFiltersEnum> &
   FiltersWithMultipleValues<OrderListUrlFiltersWithMultipleValues> &
   FiltersWithKeyValueValues<OrderListFitersWithKeyValueValues>;
-export type OrderListUrlDialog = "cancel" | CreateOrderDialog | TabActionDialog;
+export type OrderListUrlDialog = "cancel" | "export" | CreateOrderDialog | TabActionDialog;
 export enum OrderListUrlSortField {
   number = "number",
   customer = "customer",

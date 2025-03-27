@@ -24,8 +24,6 @@ export const urlCellRenderer = (): CustomRenderer<URLCell> => ({
         const textColor = hoverX ? theme.accentColor : theme.textDark;
         const iconColor = hoverX ? theme.accentColor : theme.textDark;
 
-        console.log(hoverX)
-
         // 绘制下载图标
         ctx.beginPath();
         ctx.strokeStyle = iconColor;
@@ -72,7 +70,6 @@ export const urlCellRenderer = (): CustomRenderer<URLCell> => ({
     needsHover: true,
 
     onClick: (args: { cell: URLCell }) => {
-        // console.log(args.cell.data)
         args.cell.data.onClick.call(args.cell)
         return undefined
     }

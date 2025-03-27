@@ -50,6 +50,7 @@ export const orderListQuery = gql`
         startCursor
         endCursor
       }
+      totalCount
     }
   }
 `;
@@ -233,6 +234,14 @@ export const orderRefundData = gql`
           }
         }
       }
+    }
+  }
+`;
+
+export const orderCountQuery = gql`
+  query OrderCount($filter: OrderFilterInput, $channel: String) {
+    orders(filter: $filter, channel: $channel) {
+      totalCount
     }
   }
 `;

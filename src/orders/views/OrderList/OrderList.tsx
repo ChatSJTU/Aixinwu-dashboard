@@ -6,7 +6,9 @@ import DeleteFilterTabDialog from "@dashboard/components/DeleteFilterTabDialog";
 import SaveFilterTabDialog from "@dashboard/components/SaveFilterTabDialog";
 import { useShopLimitsQuery } from "@dashboard/components/Shop/queries";
 import {
+  useOrderCountQuery,
   useOrderDraftCreateMutation,
+  useOrderExportMutation,
   useOrderListQuery,
 } from "@dashboard/graphql";
 import { useFilterHandlers } from "@dashboard/hooks/useFilterHandlers";
@@ -43,6 +45,9 @@ import {
   storageUtils,
 } from "./filters";
 import { DEFAULT_SORT_KEY, getSortQueryVariables } from "./sort";
+import useBackgroundTask from "@dashboard/hooks/useBackgroundTask";
+import { Task } from "@dashboard/containers/BackgroundTasks/types";
+import OrderExportDialog from "@dashboard/orders/components/OrderExportDialog";
 
 interface OrderListProps {
   params: OrderListUrlQueryParams;
@@ -80,6 +85,7 @@ export const OrderList: React.FC<OrderListProps> = ({ params }) => {
   const { channel, availableChannels } = useAppChannel(false);
   const user = useUser();
   const channels = user?.user?.accessibleChannels ?? [];
+  const { queue } = useBackgroundTask();
 
   const [createOrder] = useOrderDraftCreateMutation({
     onCompleted: data => {
@@ -119,11 +125,11 @@ export const OrderList: React.FC<OrderListProps> = ({ params }) => {
   >(navigate, orderListUrl, params);
 
   const paginationState = createPaginationState(settings.rowNumber, params);
-
+  const filterVariables = getFilterVariables(params);
   const queryVariables = React.useMemo(
     () => ({
       ...paginationState,
-      filter: getFilterVariables(params),
+      filter: filterVariables,
       sort: getSortQueryVariables(params),
     }),
     [params, settings.rowNumber],
@@ -140,6 +146,33 @@ export const OrderList: React.FC<OrderListProps> = ({ params }) => {
   });
 
   const handleSort = createSortHandler(navigate, orderListUrl, params);
+
+  const [exportOrders, exportOrdersOpts] = useOrderExportMutation({
+    onCompleted: data => {
+      if (data.exportOrders.errors.length === 0) {
+        notify({
+          text: intl.formatMessage({
+            id: "dPYqy0",
+            defaultMessage:
+              "We are currently exporting your requested CSV. As soon as it is available it will be sent to your email address",
+          }),
+          title: intl.formatMessage({
+            id: "5QKsu+",
+            defaultMessage: "Exporting CSV",
+            description: "waiting for export to end, header",
+          }),
+        });
+        queue(Task.EXPORT, {
+          id: data.exportOrders.exportFile.id,
+        });
+        closeModal();
+      }
+    },
+  });
+
+  const countAllOrders = useOrderCountQuery({
+    skip: params.action !== "export",
+  });
 
   return (
     <PaginatorContext.Provider value={paginationValues}>
@@ -169,6 +202,41 @@ export const OrderList: React.FC<OrderListProps> = ({ params }) => {
         onSettingsOpen={() => navigate(orderSettingsPath)}
         params={params}
         hasPresetsChanged={hasPresetsChanged()}
+        onExport={() => openModal("export")}
+      />
+      <OrderExportDialog
+        // attributes={
+        //   mapEdgesToItems(searchAttributes?.result?.data?.search) || []
+        // }
+        // hasMore={data.orders.pageInfo.hasNextPage}
+        // loading={
+        //   loading
+        // }
+        // onFetch={data.search}
+        // onFetchMore={searchAttributes.loadMore}
+        currentFilterVars={filterVariables}
+        open={params.action === "export"}
+        confirmButtonState={exportOrdersOpts.status}
+        errors={exportOrdersOpts.data?.exportOrders.errors || []}
+        // orderQuantity={{
+        //   all: exportOrdersOpts.data?.exportOrders?.totalCount,
+        //   filter: data?.orders?.totalCount,
+        // }}
+        orderQuantity={{
+          all: countAllOrders.data?.orders?.totalCount,
+          filter: data?.orders?.totalCount,
+        }}
+        // channels={availableChannels}
+        onClose={closeModal}
+        onSubmit={data =>
+          exportOrders({
+            variables: {
+              input: {
+                ...data,
+              },
+            },
+          })
+        }
       />
       <SaveFilterTabDialog
         open={params.action === "save-search"}

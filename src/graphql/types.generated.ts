@@ -11210,7 +11210,7 @@ export type OrderListQueryVariables = Exact<{
 }>;
 
 
-export type OrderListQuery = { __typename: 'Query', orders: { __typename: 'OrderCountableConnection', edges: Array<{ __typename: 'OrderCountableEdge', node: { __typename: 'Order', created: any, id: string, number: string, paymentStatus: PaymentChargeStatusEnum, status: OrderStatus, userEmail: string | null, billingAddress: { __typename: 'Address', city: string, cityArea: string, companyName: string, countryArea: string, firstName: string, id: string, lastName: string, phone: string | null, postalCode: string, streetAddress1: string, streetAddress2: string, country: { __typename: 'CountryDisplay', code: string, country: string } } | null, channel: { __typename: 'Channel', slug: string, name: string, id: string }, total: { __typename: 'TaxedMoney', gross: { __typename: 'Money', amount: number, currency: string } } } }>, pageInfo: { __typename: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string | null, endCursor: string | null } } | null };
+export type OrderListQuery = { __typename: 'Query', orders: { __typename: 'OrderCountableConnection', totalCount: number | null, edges: Array<{ __typename: 'OrderCountableEdge', node: { __typename: 'Order', created: any, id: string, number: string, paymentStatus: PaymentChargeStatusEnum, status: OrderStatus, userEmail: string | null, billingAddress: { __typename: 'Address', city: string, cityArea: string, companyName: string, countryArea: string, firstName: string, id: string, lastName: string, phone: string | null, postalCode: string, streetAddress1: string, streetAddress2: string, country: { __typename: 'CountryDisplay', code: string, country: string } } | null, channel: { __typename: 'Channel', slug: string, name: string, id: string }, total: { __typename: 'TaxedMoney', gross: { __typename: 'Money', amount: number, currency: string } } } }>, pageInfo: { __typename: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string | null, endCursor: string | null } } | null };
 
 export type OrderDraftListQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;
@@ -11276,6 +11276,14 @@ export type OrderRefundDataQueryVariables = Exact<{
 
 
 export type OrderRefundDataQuery = { __typename: 'Query', order: { __typename: 'Order', id: string, number: string, total: { __typename: 'TaxedMoney', gross: { __typename: 'Money', amount: number, currency: string } }, totalCaptured: { __typename: 'Money', amount: number, currency: string }, shippingPrice: { __typename: 'TaxedMoney', gross: { __typename: 'Money', amount: number, currency: string } }, lines: Array<{ __typename: 'OrderLine', quantityToFulfill: number, id: string, productName: string, quantity: number, unitPrice: { __typename: 'TaxedMoney', gross: { __typename: 'Money', amount: number, currency: string } }, thumbnail: { __typename: 'Image', url: string } | null }>, fulfillments: Array<{ __typename: 'Fulfillment', id: string, status: FulfillmentStatus, fulfillmentOrder: number, lines: Array<{ __typename: 'FulfillmentLine', id: string, quantity: number, orderLine: { __typename: 'OrderLine', id: string, productName: string, quantity: number, unitPrice: { __typename: 'TaxedMoney', gross: { __typename: 'Money', amount: number, currency: string } }, thumbnail: { __typename: 'Image', url: string } | null } | null }> | null }> } | null };
+
+export type OrderCountQueryVariables = Exact<{
+  filter?: InputMaybe<OrderFilterInput>;
+  channel?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type OrderCountQuery = { __typename: 'Query', orders: { __typename: 'OrderCountableConnection', totalCount: number | null } | null };
 
 export type ChannelUsabilityDataQueryVariables = Exact<{
   channel: Scalars['String'];

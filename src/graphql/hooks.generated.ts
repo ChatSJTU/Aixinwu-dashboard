@@ -12118,6 +12118,7 @@ export const OrderListDocument = gql`
       startCursor
       endCursor
     }
+    totalCount
   }
 }
     ${AddressFragmentDoc}`;
@@ -12583,6 +12584,42 @@ export function useOrderRefundDataLazyQuery(baseOptions?: ApolloReactHooks.LazyQ
 export type OrderRefundDataQueryHookResult = ReturnType<typeof useOrderRefundDataQuery>;
 export type OrderRefundDataLazyQueryHookResult = ReturnType<typeof useOrderRefundDataLazyQuery>;
 export type OrderRefundDataQueryResult = Apollo.QueryResult<Types.OrderRefundDataQuery, Types.OrderRefundDataQueryVariables>;
+export const OrderCountDocument = gql`
+    query OrderCount($filter: OrderFilterInput, $channel: String) {
+  orders(filter: $filter, channel: $channel) {
+    totalCount
+  }
+}
+    `;
+
+/**
+ * __useOrderCountQuery__
+ *
+ * To run a query within a React component, call `useOrderCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOrderCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOrderCountQuery({
+ *   variables: {
+ *      filter: // value for 'filter'
+ *      channel: // value for 'channel'
+ *   },
+ * });
+ */
+export function useOrderCountQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.OrderCountQuery, Types.OrderCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.OrderCountQuery, Types.OrderCountQueryVariables>(OrderCountDocument, options);
+      }
+export function useOrderCountLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.OrderCountQuery, Types.OrderCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.OrderCountQuery, Types.OrderCountQueryVariables>(OrderCountDocument, options);
+        }
+export type OrderCountQueryHookResult = ReturnType<typeof useOrderCountQuery>;
+export type OrderCountLazyQueryHookResult = ReturnType<typeof useOrderCountLazyQuery>;
+export type OrderCountQueryResult = Apollo.QueryResult<Types.OrderCountQuery, Types.OrderCountQueryVariables>;
 export const ChannelUsabilityDataDocument = gql`
     query ChannelUsabilityData($channel: String!) {
   products(channel: $channel) {

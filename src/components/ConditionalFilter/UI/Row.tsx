@@ -30,7 +30,6 @@ export const RowComponent = ({
   error,
 }: RowProps) => {
   const constrain = getItemConstraint(item.constraint);
-  console.log(item)
   return (
     <Box
       display="grid"

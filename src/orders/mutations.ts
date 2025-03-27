@@ -627,3 +627,16 @@ export const createManualTransactionRefund = gql`
     }
   }
 `;
+
+export const orderExportMutation = gql`
+  mutation OrderExport($input: ExportOrdersInput!) {
+    exportOrders(input: $input) {
+      exportFile {
+        ...ExportFile
+      }
+      errors {
+        ...ExportError
+      }
+    }
+  }
+`;

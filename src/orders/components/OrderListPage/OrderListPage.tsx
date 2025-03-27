@@ -54,6 +54,7 @@ export interface OrderListPageProps
   params: OrderListUrlQueryParams;
   onTabUpdate: (tabName: string) => void;
   onTabDelete: (tabIndex: number) => void;
+  onExport: () => void;
 }
 
 const OrderListPage: React.FC<OrderListPageProps> = ({
@@ -73,6 +74,7 @@ const OrderListPage: React.FC<OrderListPageProps> = ({
   onAll,
   currentTab,
   hasPresetsChanged,
+  onExport,
   ...listProps
 }) => {
   const intl = useIntl();
@@ -164,6 +166,14 @@ const OrderListPage: React.FC<OrderListPageProps> = ({
                       description: "button",
                     }),
                     onSelect: onSettingsOpen,
+                  },
+                  {
+                    label: intl.formatMessage({
+                      id: "order-list-button-export",
+                      defaultMessage: "导出订单",
+                      description: "button",
+                    }),
+                    onSelect: onExport,
                   },
                   ...extensionMenuItems,
                 ]}
