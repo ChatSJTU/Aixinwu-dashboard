@@ -14,16 +14,16 @@ const ServiceWorker: React.FC = () => {
 
   React.useEffect(() => {
     if (updateAvailable) {
-      notify({
-        title: formatMessage(messages.newVersionTitle),
-        text: formatMessage(messages.newVersionContent),
-        actionBtn: {
-          label: formatMessage(messages.refresh),
-          action: update,
-        },
-        autohide: null,
-        status: "warning",
-      });
+      // notify({
+      //   title: formatMessage(messages.newVersionTitle),
+      //   text: formatMessage(messages.newVersionContent),
+      //   actionBtn: {
+      //     label: formatMessage(messages.refresh),
+      //     action: update,
+      //   },
+      //   autohide: null,
+      //   status: "warning",
+      // });
     }
   }, [updateAvailable]);
 
