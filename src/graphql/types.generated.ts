@@ -2379,6 +2379,19 @@ export type ExportInfoInput = {
   warehouses?: InputMaybe<Array<Scalars['ID']>>;
 };
 
+export type ExportOrdersInput = {
+  /** List of order fields witch should be exported. */
+  fields?: InputMaybe<Array<OrderFieldEnum>>;
+  /** Type of exported file. */
+  fileType: FileTypesEnum;
+  /** Filtering options for orders. */
+  filter?: InputMaybe<OrderFilterInput>;
+  /** List of orders IDs to export. */
+  ids?: InputMaybe<Array<Scalars['ID']>>;
+  /** Determine which orders should be exported. */
+  scope: ExportScope;
+};
+
 export type ExportProductsInput = {
   /** Input with info about fields which should be exported. */
   exportInfo?: InputMaybe<ExportInfoInput>;
@@ -4226,6 +4239,26 @@ export enum OrderEventsEnum {
   TRANSACTION_MARK_AS_PAID_FAILED = 'TRANSACTION_MARK_AS_PAID_FAILED',
   TRANSACTION_REFUND_REQUESTED = 'TRANSACTION_REFUND_REQUESTED',
   UPDATED_ADDRESS = 'UPDATED_ADDRESS'
+}
+
+export enum OrderFieldEnum {
+  ADDRESS_FIRST_NAME = 'ADDRESS_FIRST_NAME',
+  ADDRESS_PHONE = 'ADDRESS_PHONE',
+  ADDRESS_STREET_ADDRESS_1 = 'ADDRESS_STREET_ADDRESS_1',
+  CHARGE_STATUS = 'CHARGE_STATUS',
+  CREATED_AT = 'CREATED_AT',
+  CUSTOMER_NOTE = 'CUSTOMER_NOTE',
+  NUMBER = 'NUMBER',
+  ORDERLINE_PRODUCT_NAME = 'ORDERLINE_PRODUCT_NAME',
+  ORDERLINE_QUANTITY = 'ORDERLINE_QUANTITY',
+  ORDERLINE_TOTAL_PRICE_GROSS_AMOUNT = 'ORDERLINE_TOTAL_PRICE_GROSS_AMOUNT',
+  STATUS = 'STATUS',
+  TOTAL_GROSS_AMOUNT = 'TOTAL_GROSS_AMOUNT',
+  USER_ACCOUNT = 'USER_ACCOUNT',
+  USER_CODE = 'USER_CODE',
+  USER_EMAIL = 'USER_EMAIL',
+  USER_FIRST_NAME = 'USER_FIRST_NAME',
+  USER_TYPE = 'USER_TYPE'
 }
 
 export type OrderFilterInput = {
@@ -8019,6 +8052,8 @@ export enum WebhookEventTypeAsyncEnum {
   ORDER_CREATED = 'ORDER_CREATED',
   /** An order is expired. */
   ORDER_EXPIRED = 'ORDER_EXPIRED',
+  /** An order export is completed. */
+  ORDER_EXPORT_COMPLETED = 'ORDER_EXPORT_COMPLETED',
   /** An order is fulfilled. */
   ORDER_FULFILLED = 'ORDER_FULFILLED',
   /** Payment is made and an order is fully paid. */
@@ -8434,6 +8469,8 @@ export enum WebhookEventTypeEnum {
   ORDER_CREATED = 'ORDER_CREATED',
   /** An order is expired. */
   ORDER_EXPIRED = 'ORDER_EXPIRED',
+  /** An order export is completed. */
+  ORDER_EXPORT_COMPLETED = 'ORDER_EXPORT_COMPLETED',
   /** Filter shipping methods for order. */
   ORDER_FILTER_SHIPPING_METHODS = 'ORDER_FILTER_SHIPPING_METHODS',
   /** An order is fulfilled. */
@@ -8836,6 +8873,7 @@ export enum WebhookSampleEventTypeEnum {
   ORDER_CONFIRMED = 'ORDER_CONFIRMED',
   ORDER_CREATED = 'ORDER_CREATED',
   ORDER_EXPIRED = 'ORDER_EXPIRED',
+  ORDER_EXPORT_COMPLETED = 'ORDER_EXPORT_COMPLETED',
   ORDER_FULFILLED = 'ORDER_FULFILLED',
   ORDER_FULLY_PAID = 'ORDER_FULLY_PAID',
   ORDER_FULLY_REFUNDED = 'ORDER_FULLY_REFUNDED',
@@ -11154,6 +11192,13 @@ export type CreateManualTransactionRefundMutationVariables = Exact<{
 
 
 export type CreateManualTransactionRefundMutation = { __typename: 'Mutation', transactionCreate: { __typename: 'TransactionCreate', transaction: { __typename: 'TransactionItem', id: string, pspReference: string, actions: Array<TransactionActionEnum>, name: string, externalUrl: string, events: Array<{ __typename: 'TransactionEvent', id: string, pspReference: string, type: TransactionEventTypeEnum | null, message: string, createdAt: any, externalUrl: string, amount: { __typename: 'Money', amount: number, currency: string }, createdBy: { __typename: 'App', id: string, name: string | null } | { __typename: 'User', id: string, email: string, firstName: string, isActive: boolean, lastName: string, avatar: { __typename: 'Image', url: string } | null } | null }>, authorizedAmount: { __typename: 'Money', amount: number, currency: string }, chargedAmount: { __typename: 'Money', amount: number, currency: string }, refundedAmount: { __typename: 'Money', amount: number, currency: string }, canceledAmount: { __typename: 'Money', amount: number, currency: string }, authorizePendingAmount: { __typename: 'Money', amount: number, currency: string }, chargePendingAmount: { __typename: 'Money', amount: number, currency: string }, refundPendingAmount: { __typename: 'Money', amount: number, currency: string }, cancelPendingAmount: { __typename: 'Money', amount: number, currency: string } } | null, errors: Array<{ __typename: 'TransactionCreateError', field: string | null, message: string | null, code: TransactionCreateErrorCode }> } | null };
+
+export type OrderExportMutationVariables = Exact<{
+  input: ExportOrdersInput;
+}>;
+
+
+export type OrderExportMutation = { __typename: 'Mutation', exportOrders: { __typename: 'ExportOrders', exportFile: { __typename: 'ExportFile', id: string, status: JobStatusEnum, url: string | null } | null, errors: Array<{ __typename: 'ExportError', code: ExportErrorCode, field: string | null, message: string | null }> } | null };
 
 export type OrderListQueryVariables = Exact<{
   first?: InputMaybe<Scalars['Int']>;

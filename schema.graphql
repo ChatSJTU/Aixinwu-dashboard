@@ -8487,6 +8487,41 @@ input ExportInfoInput {
 }
 
 """
+Export orders to csv file. 
+
+Requires one of the following permissions: MANAGE_ORDERS.
+
+Triggers the following webhook events:
+- NOTIFY_USER (async): A notification for the exported file.
+- ORDER_EXPORT_COMPLETED (async): A notification for the exported file.
+"""
+type ExportOrders {
+  errors: [ExportError!]!
+
+  """
+  The newly created export file job which is responsible for export data.
+  """
+  exportFile: ExportFile
+}
+
+input ExportOrdersInput {
+  """List of order fields witch should be exported."""
+  fields: [OrderFieldEnum!]
+
+  """Type of exported file."""
+  fileType: FileTypesEnum!
+
+  """Filtering options for orders."""
+  filter: OrderFilterInput
+
+  """List of orders IDs to export."""
+  ids: [ID!]
+
+  """Determine which orders should be exported."""
+  scope: ExportScope!
+}
+
+"""
 Export products to csv file. 
 
 Requires one of the following permissions: MANAGE_PRODUCTS.
@@ -14117,6 +14152,20 @@ type Mutation {
   ): ExportGiftCards
 
   """
+  Export orders to csv file. 
+  
+  Requires one of the following permissions: MANAGE_ORDERS.
+  
+  Triggers the following webhook events:
+  - NOTIFY_USER (async): A notification for the exported file.
+  - ORDER_EXPORT_COMPLETED (async): A notification for the exported file.
+  """
+  exportOrders(
+    """Fields required to export orders data."""
+    input: ExportOrdersInput!
+  ): ExportOrders
+
+  """
   Export products to csv file. 
   
   Requires one of the following permissions: MANAGE_PRODUCTS.
@@ -18900,6 +18949,44 @@ type OrderExpired implements Event {
   version: String
 }
 
+"""Event sent when order export is completed."""
+type OrderExportCompleted implements Event {
+  """The export file for orders."""
+  export: ExportFile
+
+  """Time of the event."""
+  issuedAt: DateTime
+
+  """The user or application that triggered the event."""
+  issuingPrincipal: IssuingPrincipal
+
+  """The application receiving the webhook."""
+  recipient: App
+
+  """Saleor version that triggered the event."""
+  version: String
+}
+
+enum OrderFieldEnum {
+  ADDRESS_FIRST_NAME
+  ADDRESS_PHONE
+  ADDRESS_STREET_ADDRESS_1
+  CHARGE_STATUS
+  CREATED_AT
+  CUSTOMER_NOTE
+  NUMBER
+  ORDERLINE_PRODUCT_NAME
+  ORDERLINE_QUANTITY
+  ORDERLINE_TOTAL_PRICE_GROSS_AMOUNT
+  STATUS
+  TOTAL_GROSS_AMOUNT
+  USER_ACCOUNT
+  USER_CODE
+  USER_EMAIL
+  USER_FIRST_NAME
+  USER_TYPE
+}
+
 input OrderFilterInput {
   authorizeStatus: [OrderAuthorizeStatusEnum!]
   channels: [ID!]
@@ -23422,7 +23509,7 @@ type ProductEvent {
   """The message of the product event."""
   message: String
 
-  """The product of the event."""
+  """The product to which the event belongs."""
   product: Product
 
   """The product name of the event"""
@@ -35911,6 +35998,9 @@ enum WebhookEventTypeAsyncEnum {
   """An order is expired."""
   ORDER_EXPIRED
 
+  """An order export is completed."""
+  ORDER_EXPORT_COMPLETED
+
   """An order is fulfilled."""
   ORDER_FULFILLED
 
@@ -36474,6 +36564,9 @@ enum WebhookEventTypeEnum {
   """An order is expired."""
   ORDER_EXPIRED
 
+  """An order export is completed."""
+  ORDER_EXPORT_COMPLETED
+
   """Filter shipping methods for order."""
   ORDER_FILTER_SHIPPING_METHODS
 
@@ -36973,6 +37066,7 @@ enum WebhookSampleEventTypeEnum {
   ORDER_CONFIRMED
   ORDER_CREATED
   ORDER_EXPIRED
+  ORDER_EXPORT_COMPLETED
   ORDER_FULFILLED
   ORDER_FULLY_PAID
   ORDER_FULLY_REFUNDED

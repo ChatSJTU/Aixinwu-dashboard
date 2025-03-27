@@ -91,6 +91,7 @@
       "OrderConfirmed",
       "OrderCreated",
       "OrderExpired",
+      "OrderExportCompleted",
       "OrderFilterShippingMethods",
       "OrderFulfilled",
       "OrderFullyPaid",

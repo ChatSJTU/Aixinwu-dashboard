@@ -12036,6 +12036,45 @@ export function useCreateManualTransactionRefundMutation(baseOptions?: ApolloRea
 export type CreateManualTransactionRefundMutationHookResult = ReturnType<typeof useCreateManualTransactionRefundMutation>;
 export type CreateManualTransactionRefundMutationResult = Apollo.MutationResult<Types.CreateManualTransactionRefundMutation>;
 export type CreateManualTransactionRefundMutationOptions = Apollo.BaseMutationOptions<Types.CreateManualTransactionRefundMutation, Types.CreateManualTransactionRefundMutationVariables>;
+export const OrderExportDocument = gql`
+    mutation OrderExport($input: ExportOrdersInput!) {
+  exportOrders(input: $input) {
+    exportFile {
+      ...ExportFile
+    }
+    errors {
+      ...ExportError
+    }
+  }
+}
+    ${ExportFileFragmentDoc}
+${ExportErrorFragmentDoc}`;
+export type OrderExportMutationFn = Apollo.MutationFunction<Types.OrderExportMutation, Types.OrderExportMutationVariables>;
+
+/**
+ * __useOrderExportMutation__
+ *
+ * To run a mutation, you first call `useOrderExportMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useOrderExportMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [orderExportMutation, { data, loading, error }] = useOrderExportMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useOrderExportMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.OrderExportMutation, Types.OrderExportMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.OrderExportMutation, Types.OrderExportMutationVariables>(OrderExportDocument, options);
+      }
+export type OrderExportMutationHookResult = ReturnType<typeof useOrderExportMutation>;
+export type OrderExportMutationResult = Apollo.MutationResult<Types.OrderExportMutation>;
+export type OrderExportMutationOptions = Apollo.BaseMutationOptions<Types.OrderExportMutation, Types.OrderExportMutationVariables>;
 export const OrderListDocument = gql`
     query OrderList($first: Int, $after: String, $last: Int, $before: String, $filter: OrderFilterInput, $sort: OrderSortingInput) {
   orders(
