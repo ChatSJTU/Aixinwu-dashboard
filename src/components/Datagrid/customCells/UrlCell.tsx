@@ -34,7 +34,7 @@ export const urlCellRenderer = (): CustomRenderer<URLCell> => ({
         const iconSize = 14;
         const fontSize = 14;
         const frameOffset = 8; 
-        const maxFrameWidth = 80;
+        const maxFrameWidth = 70;
         const iconX = x + 14;
         const iconY = y + height / 2 + iconSize / 2;
 

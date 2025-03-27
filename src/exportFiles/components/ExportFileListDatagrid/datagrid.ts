@@ -30,12 +30,12 @@ export const exportFileListStaticColumnsAdapter = (
     },
     */
     {
-      id: "message",
+      id: "createdAt",
       title: intl.formatMessage({
-        id: "exportfile-column-message",
-        defaultMessage: "描述",
+        id: "exportfile-column-created",
+        defaultMessage: "创建时间",
       }),
-      width: 200,
+      width: 240,
     },
     {
       id: "status",
@@ -49,19 +49,18 @@ export const exportFileListStaticColumnsAdapter = (
       id: "url",
       title: intl.formatMessage({
         id: "exportfile-column-url",
-        defaultMessage: "URL",
+        defaultMessage: "文件",
       }),
-      width: 100,
+      width: 120,
     },
     {
-      id: "createdAt",
+      id: "message",
       title: intl.formatMessage({
-        id: "exportfile-column-created",
-        defaultMessage: "创建时间",
+        id: "exportfile-column-message",
+        defaultMessage: "描述",
       }),
       width: 200,
     },
-    
   ].map(column => ({
     ...column,
     icon: getColumnSortDirectionIcon(sort, column.id),
