@@ -75,3 +75,12 @@ export const barcodeCreateNext = gql`
     }
   }
 `;
+
+export const renderCertificate = gql`
+mutation RenderCertificate($donationId: ID!) {
+  certificateRender(donationId: $donationId) {
+    certificatePng
+    certificatePdf
+  }
+}
+`;

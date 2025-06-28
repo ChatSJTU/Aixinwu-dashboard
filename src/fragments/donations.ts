@@ -21,5 +21,9 @@ export const donationDetailsFragment = gql`
       firstName
       code
     }
+    certificate {
+      id
+      name
+    }
   }
 `;

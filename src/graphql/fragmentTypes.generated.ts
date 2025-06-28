@@ -207,6 +207,7 @@
       "Category",
       "CategoryTranslatableContent",
       "CategoryTranslation",
+      "Certificate",
       "Channel",
       "Checkout",
       "CheckoutLine",

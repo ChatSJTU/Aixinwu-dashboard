@@ -112,7 +112,8 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
               amount: data.price,
               currency: "AXB"
             },
-            quantity: data.quantity
+            quantity: data.quantity,
+            templateId: data.certificate
           },
         },
       }),

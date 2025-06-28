@@ -37,6 +37,7 @@ export interface DonationDetailsPageFormData {
   };
   quantity: number;
   created: string;
+  certificate: string;
 }
 
 export interface DonationDetailsPageProps {
@@ -73,7 +74,8 @@ const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
     price: donation?.price.amount || 0,
     donator: donation?.donator || {firstName: "", code: "", id: ""},
     quantity: donation?.quantity || 0,
-    created: donation?.createdAt || ""
+    created: donation?.createdAt || "",
+    certificate: donation?.certificate.id || ""
   };
 
   // const { makeChangeHandler: makeMetadataChangeHandler } =

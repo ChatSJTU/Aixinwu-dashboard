@@ -8,6 +8,7 @@ import { donationListUrl } from "@dashboard/donations/urls";
 import {
   AccountErrorFragment,
   useBarcodeCreateNextMutation,
+  useListCertificatesQuery,
 } from "@dashboard/graphql";
 import { SubmitPromise } from "@dashboard/hooks/useForm";
 import useNavigator from "@dashboard/hooks/useNavigator";
@@ -15,6 +16,7 @@ import { extractMutationErrors } from "@dashboard/misc";
 import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import DonationCreateDetails from "../DonationCreateDetails";
+import { mapEdgesToItems } from "@dashboard/utils/maps";
 
 export interface DonationCreatePageFormData {
   barcode: string,
@@ -24,6 +26,7 @@ export interface DonationCreatePageFormData {
   price: number,
   quantity: number,
   title: string,
+  certificate: string,
 }
 export interface DonationCreatePageSubmitData
   extends DonationCreatePageFormData {
@@ -53,6 +56,13 @@ const DonationCreatePage: React.FC<DonationCreatePageProps> = ({
     price: 0,
     quantity: 0,
     title: "",
+    certificate: "",
+  });
+
+  const { data: certs, loading} = useListCertificatesQuery({
+    variables: {
+      first: 100,
+    },
   });
 
   const [nextBarcode, nextBarcodeOpts] = useBarcodeCreateNextMutation({
@@ -68,7 +78,14 @@ const DonationCreatePage: React.FC<DonationCreatePageProps> = ({
   useEffect(()=>{
     if (!nextBarcodeOpts.called && !nextBarcodeOpts.loading)
       nextBarcode();
-  });
+    if (!initialForm.certificate && certs?.certificates?.totalCount) {
+      setInitialForm({
+        ...initialForm, 
+        certificate: 
+          mapEdgesToItems(certs.certificates).sort((x,y) => x.number - y.number)[0].id
+      });
+    }
+  }, [nextBarcodeOpts.called, nextBarcodeOpts.loading, initialForm, certs]);
 
   // const [countryDisplayName, setCountryDisplayName] = React.useState("");
   // const countryChoices = mapCountriesToChoices(countries);
@@ -128,6 +145,7 @@ const DonationCreatePage: React.FC<DonationCreatePageProps> = ({
                   data={data}
                   disabled={disabled}
                   errors={errors}
+                  certs={certs?.certificates}
                   onChange={change}
                 />
               </div>

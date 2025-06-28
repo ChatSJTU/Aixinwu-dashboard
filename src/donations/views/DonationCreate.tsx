@@ -65,6 +65,7 @@ export const DonationCreate: React.FC = () => {
             },
             quantity: formData.quantity,
             title: formData.title,
+            templateId: formData.certificate,
           },
         },
       }),

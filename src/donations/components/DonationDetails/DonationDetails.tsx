@@ -1,22 +1,16 @@
 // @ts-strict-ignore
 import CardTitle from "@dashboard/components/CardTitle";
-import { ControlledCheckbox } from "@dashboard/components/ControlledCheckbox";
-import Skeleton from "@dashboard/components/Skeleton";
-import { AccountErrorFragment, DonationDetailQuery, PermissionEnum } from "@dashboard/graphql";
-import { maybe } from "@dashboard/misc";
+import { AccountErrorFragment, PermissionEnum, useListCertificatesQuery } from "@dashboard/graphql";
 import { getFormErrors } from "@dashboard/utils/errors";
-import getAccountErrorMessage from "@dashboard/utils/errors/account";
-import { Card, CardContent, TextField, Typography } from "@material-ui/core";
+import { Card, CardContent, TextField } from "@material-ui/core";
 import { makeStyles } from "@saleor/macaw-ui";
-import moment from "moment-timezone";
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { DonationDetailsPageFormData } from "../DonationDetailsPage";
 import CardSpacer from "@dashboard/components/CardSpacer";
 import Hr from "@dashboard/components/Hr";
 import Grid from "@dashboard/components/Grid";
 import { commonMessages } from "@dashboard/intl";
-import { DateTime } from "@dashboard/components/Date";
 import FormSpacer from "@dashboard/components/FormSpacer";
 import RequirePermissions from "@dashboard/components/RequirePermissions";
 import { Button } from "@saleor/macaw-ui-next";
@@ -25,6 +19,8 @@ import { DonationUrlDialog, DonationUrlQueryParams } from "@dashboard/donations/
 import Link from "@dashboard/components/Link";
 import { customerUrl } from "@dashboard/customers/urls";
 import { Donation } from "@dashboard/donations/types";
+import { mapEdgesToItems, mapNodeToChoice } from "@dashboard/utils/maps";
+import { Combobox } from "@dashboard/components/Combobox";
 
 const useStyles = makeStyles(
   theme => ({
@@ -49,6 +45,18 @@ const useStyles = makeStyles(
     sectionHeader: {
       marginBottom: theme.spacing(),
     },
+    combobox: {
+      paddingTop: theme.spacing(4),
+      "& > div > label > div": {
+        width: "100% !important",
+      },
+      "& > div > label > div > div > input": {
+        flex: "1",
+      },
+      "& > div > label > div > div > div": {
+        marginTop: "-8px",
+      },
+    },
   }),
   { name: "DonationDetails" },
 );
@@ -71,6 +79,24 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
 
   const formErrors = getFormErrors(["note"], errors);
 
+  const { data: certs, loading} = useListCertificatesQuery({
+    variables: {
+      first: 100,
+    },
+  });
+
+  const selectedCert = useMemo(()=>{
+    if (!certs)
+      return undefined;
+    var cert = mapEdgesToItems(certs.certificates).find(x => x.id == data.certificate);
+    if (!cert)
+      return undefined;
+    return {
+      label: cert.name,
+      value: cert.id
+    }
+  }, [certs, data]);
+  
   return (
     <>
     {/* <Card>
@@ -242,6 +268,39 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
         </Grid>
       </CardContent>
     </Card>
+
+    <RequirePermissions
+      requiredPermissions={[PermissionEnum.MANAGE_DONATIONS]}
+    >
+      <Card>
+        <CardTitle
+          title={
+            <FormattedMessage
+              id="donation-info-certificate"
+              defaultMessage="捐赠证书"
+            />
+          }
+        />
+        <CardContent className={classes.combobox}>
+          <Combobox
+            name="certificate"
+            label={intl.formatMessage({
+              id: "donation-certificate",
+              defaultMessage: "证书模板",
+            })}
+            options={certs ? mapNodeToChoice(
+              mapEdgesToItems(certs.certificates), null
+            ) : []}
+            value={selectedCert}
+            onChange={onChange}
+            fetchOptions={() => {}}
+            endAdornment={() => 
+              <Link onClick={() => {}}>预览证书</Link>
+            }
+          />
+        </CardContent>
+      </Card>
+    </RequirePermissions>
     
     <RequirePermissions
       requiredPermissions={[PermissionEnum.MANAGE_DONATIONS]}

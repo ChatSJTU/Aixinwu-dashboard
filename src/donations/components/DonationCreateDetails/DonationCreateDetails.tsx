@@ -1,10 +1,10 @@
 // @ts-strict-ignore
 import CardTitle from "@dashboard/components/CardTitle";
-import { AccountErrorFragment } from "@dashboard/graphql";
+import { AccountErrorFragment, ListCertificatesQuery, useListCertificatesQuery } from "@dashboard/graphql";
 import { getFormErrors } from "@dashboard/utils/errors";
 import { Card, CardContent, TextField } from "@material-ui/core";
 import { makeStyles } from "@saleor/macaw-ui";
-import React from "react";
+import React, { useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { DonationCreatePageFormData } from "../DonationCreatePage";
@@ -12,6 +12,8 @@ import FormSpacer from "@dashboard/components/FormSpacer";
 import CardSpacer from "@dashboard/components/CardSpacer";
 import Hr from "@dashboard/components/Hr";
 import Grid from "@dashboard/components/Grid";
+import { mapEdgesToItems, mapNodeToChoice } from "@dashboard/utils/maps";
+import { Combobox } from "@dashboard/components/Combobox";
 
 const useStyles = makeStyles(
   theme => ({
@@ -46,15 +48,28 @@ const useStyles = makeStyles(
 export interface DonationCreateDetailsProps {
   data: DonationCreatePageFormData;
   disabled: boolean;
+  certs: ListCertificatesQuery['certificates'];
   errors: AccountErrorFragment[];
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
 const DonationCreateDetails: React.FC<DonationCreateDetailsProps> = props => {
-  const { data, disabled, errors, onChange } = props;
+  const { data, disabled, certs, errors, onChange } = props;
 
   const classes = useStyles(props);
   const intl = useIntl();
+
+  const selectedCert = useMemo(()=>{
+    if (!certs)
+      return undefined;
+    var cert = mapEdgesToItems(certs).find(x => x.id == data.certificate);
+    if (!cert)
+      return undefined;
+    return {
+      label: cert.name,
+      value: cert.id
+    }
+  }, [certs, data]);
 
   const formErrors = getFormErrors(
     ["donationFirstName", "donationLastName", "email"],
@@ -250,6 +265,31 @@ const DonationCreateDetails: React.FC<DonationCreateDetailsProps> = props => {
             type="number"
           />
         </Grid>
+      </CardContent>
+    </Card>
+    <Card>
+      <CardTitle
+        title={
+          <FormattedMessage
+            id="donation-info-certificate"
+            defaultMessage="捐赠证书"
+          />
+        }
+      />
+      <CardContent className={classes.content}>
+        <Combobox
+          name="certificate"
+          label={intl.formatMessage({
+            id: "donation-certificate",
+            defaultMessage: "证书模板",
+          })}
+          options={certs ? mapNodeToChoice(
+            mapEdgesToItems(certs), null
+          ) : []}
+          value={selectedCert}
+          onChange={onChange}
+          fetchOptions={() => {}}
+        />
       </CardContent>
     </Card>
     </>

@@ -39,3 +39,36 @@ export const donationDetails = gql`
     }
   }
 `;
+
+export const certificateList = gql`
+  query ListCertificates(
+    $after: String
+    $before: String
+    $first: Int
+    $last: Int
+  ) {
+    certificates(
+      after: $after
+      before: $before
+      first: $first
+      last: $last
+    ) {
+      edges {
+        node {
+          createdAt
+          id
+          name
+          number
+          templateFilename
+        }
+      }
+      totalCount
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+    }
+  }
+`;

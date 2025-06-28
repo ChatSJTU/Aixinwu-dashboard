@@ -697,6 +697,10 @@ export const DonationDetailsFragmentDoc = gql`
     firstName
     code
   }
+  certificate {
+    id
+    name
+  }
 }
     `;
 export const AttributeErrorFragmentDoc = gql`
@@ -8954,6 +8958,40 @@ export function useBarcodeCreateNextMutation(baseOptions?: ApolloReactHooks.Muta
 export type BarcodeCreateNextMutationHookResult = ReturnType<typeof useBarcodeCreateNextMutation>;
 export type BarcodeCreateNextMutationResult = Apollo.MutationResult<Types.BarcodeCreateNextMutation>;
 export type BarcodeCreateNextMutationOptions = Apollo.BaseMutationOptions<Types.BarcodeCreateNextMutation, Types.BarcodeCreateNextMutationVariables>;
+export const RenderCertificateDocument = gql`
+    mutation RenderCertificate($donationId: ID!) {
+  certificateRender(donationId: $donationId) {
+    certificatePng
+    certificatePdf
+  }
+}
+    `;
+export type RenderCertificateMutationFn = Apollo.MutationFunction<Types.RenderCertificateMutation, Types.RenderCertificateMutationVariables>;
+
+/**
+ * __useRenderCertificateMutation__
+ *
+ * To run a mutation, you first call `useRenderCertificateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRenderCertificateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [renderCertificateMutation, { data, loading, error }] = useRenderCertificateMutation({
+ *   variables: {
+ *      donationId: // value for 'donationId'
+ *   },
+ * });
+ */
+export function useRenderCertificateMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<Types.RenderCertificateMutation, Types.RenderCertificateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<Types.RenderCertificateMutation, Types.RenderCertificateMutationVariables>(RenderCertificateDocument, options);
+      }
+export type RenderCertificateMutationHookResult = ReturnType<typeof useRenderCertificateMutation>;
+export type RenderCertificateMutationResult = Apollo.MutationResult<Types.RenderCertificateMutation>;
+export type RenderCertificateMutationOptions = Apollo.BaseMutationOptions<Types.RenderCertificateMutation, Types.RenderCertificateMutationVariables>;
 export const ListDonationsDocument = gql`
     query ListDonations($after: String, $before: String, $first: Int, $last: Int, $filter: DonationFilterInput, $sort: DonationSortingInput) {
   donations(
@@ -9046,6 +9084,59 @@ export function useDonationDetailLazyQuery(baseOptions?: ApolloReactHooks.LazyQu
 export type DonationDetailQueryHookResult = ReturnType<typeof useDonationDetailQuery>;
 export type DonationDetailLazyQueryHookResult = ReturnType<typeof useDonationDetailLazyQuery>;
 export type DonationDetailQueryResult = Apollo.QueryResult<Types.DonationDetailQuery, Types.DonationDetailQueryVariables>;
+export const ListCertificatesDocument = gql`
+    query ListCertificates($after: String, $before: String, $first: Int, $last: Int) {
+  certificates(after: $after, before: $before, first: $first, last: $last) {
+    edges {
+      node {
+        createdAt
+        id
+        name
+        number
+        templateFilename
+      }
+    }
+    totalCount
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
+    }
+  }
+}
+    `;
+
+/**
+ * __useListCertificatesQuery__
+ *
+ * To run a query within a React component, call `useListCertificatesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useListCertificatesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useListCertificatesQuery({
+ *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *   },
+ * });
+ */
+export function useListCertificatesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Types.ListCertificatesQuery, Types.ListCertificatesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<Types.ListCertificatesQuery, Types.ListCertificatesQueryVariables>(ListCertificatesDocument, options);
+      }
+export function useListCertificatesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Types.ListCertificatesQuery, Types.ListCertificatesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<Types.ListCertificatesQuery, Types.ListCertificatesQueryVariables>(ListCertificatesDocument, options);
+        }
+export type ListCertificatesQueryHookResult = ReturnType<typeof useListCertificatesQuery>;
+export type ListCertificatesLazyQueryHookResult = ReturnType<typeof useListCertificatesLazyQuery>;
+export type ListCertificatesQueryResult = Apollo.QueryResult<Types.ListCertificatesQuery, Types.ListCertificatesQueryVariables>;
 export const ListExportsDocument = gql`
     query ListExports($after: String, $before: String, $first: Int, $last: Int, $filter: ExportFileFilterInput, $sort: ExportFileSortingInput) {
   exportFiles(
