@@ -4074,6 +4074,50 @@ input CategoryWhereInput {
   metadata: [MetadataFilter!]
 }
 
+"""Represents certificate."""
+type Certificate implements Node {
+  """The date and time when the certificate was created."""
+  createdAt: DateTime
+
+  """The ID of the certificate."""
+  id: ID!
+
+  """The name of the certificate."""
+  name: String!
+
+  """The number of the certificate."""
+  number: Int
+
+  """The filename of the certificate template."""
+  templateFilename: String
+}
+
+type CertificateCountableConnection {
+  edges: [CertificateCountableEdge!]!
+
+  """Pagination data for this connection."""
+  pageInfo: PageInfo!
+
+  """A total count of items in the collection."""
+  totalCount: Int
+}
+
+type CertificateCountableEdge {
+  """A cursor for use in pagination."""
+  cursor: String!
+
+  """The item at the end of the edge."""
+  node: Certificate!
+}
+
+type CertificateRender {
+  """The rendered certificate in PDF format."""
+  certificatePdf: String
+
+  """The rendered certificate in PNG format."""
+  certificatePng: String
+}
+
 """Represents channel."""
 type Channel implements Node & ObjectWithMetadata {
   """
@@ -7677,6 +7721,9 @@ type Donation implements Node {
   """Barcode of the donation."""
   barcode: String
 
+  """The associated certificate of the donation."""
+  certificate: Certificate
+
   """The date and time when the donation was created."""
   createdAt: DateTime
 
@@ -7687,6 +7734,9 @@ type Donation implements Node {
   The user who made the donation. Requires one of permissions: MANAGE_USERS, MANAGE_DONATIONS, OWNER, READ_USERS
   """
   donator: User
+
+  """Indicates if the donation has an associated certificate."""
+  hasCertificate: Boolean
 
   """The ID of the donation."""
   id: ID!
@@ -7784,6 +7834,9 @@ input DonationCreateInput {
   """The barcode of the donation."""
   barcode: String!
 
+  """The ID of the certificate associated with the donation."""
+  certificate: ID
+
   """The description of the donation."""
   description: String!
 
@@ -7798,6 +7851,9 @@ input DonationCreateInput {
 
   """The quantity of the donation."""
   quantity: Int!
+
+  """The template of the donation"""
+  templateId: ID
 
   """The title of the donation."""
   title: String!
@@ -7885,6 +7941,9 @@ input DonationUpdateInput {
 
   """The quantity of the donation."""
   quantity: Int
+
+  """The template of the donation"""
+  templateId: ID
 
   """The title of the donation."""
   title: String
@@ -8378,11 +8437,17 @@ type ExportFile implements Job & Node {
   """List of events associated with the export."""
   events: [ExportEvent!]
 
+  """The type of the file that is exported."""
+  exportType: String
+
   """The ID of the export file."""
   id: ID!
 
   """Job message."""
   message: String
+
+  """The number of the export file."""
+  number: Int
 
   """Job status."""
   status: JobStatusEnum!
@@ -12983,6 +13048,10 @@ type Mutation {
     """Fields required to update a category."""
     input: CategoryInput!
   ): CategoryUpdate
+  certificateRender(
+    """ID of the donation."""
+    donationId: ID!
+  ): CertificateRender
 
   """
   Activate a channel. 
@@ -27277,6 +27346,25 @@ type Query {
     """Slug of the category"""
     slug: String
   ): Category
+
+  """Certificates created by staff."""
+  certificates(
+    """Return the elements in the list that come after the specified cursor."""
+    after: String
+
+    """Return the elements in the list that come before the specified cursor."""
+    before: String
+
+    """
+    Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    first: Int
+
+    """
+    Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 10000 objects in a single query.
+    """
+    last: Int
+  ): CertificateCountableConnection
 
   """Look up a channel by ID or slug."""
   channel(
