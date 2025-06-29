@@ -51,6 +51,7 @@ export interface DonationDetailsPageProps {
     data: DonationDetailsPageFormData,
   ) => SubmitPromise<AccountErrorFragment[]>;
   onDelete: () => void;
+  onRenderCertificate: () => void;
 }
 
 const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
@@ -61,7 +62,8 @@ const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
   saveButtonBar,
   onSubmit,
   onDelete,
-  onOpenModal
+  onOpenModal,
+  onRenderCertificate
 }: DonationDetailsPageProps) => {
   const intl = useIntl();
   const navigate = useNavigator();
@@ -125,6 +127,7 @@ const DonationDetailsPage: React.FC<DonationDetailsPageProps> = ({
                 onOpenModal={onOpenModal}
                 onChange={change}
                 onProfileView={() => navigate(customerUrl(donation.donator.id))}
+                onRenderCertificate={onRenderCertificate}
               />
               {/* <CardSpacer />
               <DonationInfo

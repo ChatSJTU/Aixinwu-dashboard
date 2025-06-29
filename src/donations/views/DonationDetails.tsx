@@ -4,6 +4,7 @@ import NotFoundPage from "@dashboard/components/NotFoundPage";
 import { WindowTitle } from "@dashboard/components/WindowTitle";
 import {
   useCompleteDonationMutation,
+  useRenderCertificateMutation,
   useUpdateDonationMutation,
   useUpdateMetadataMutation,
   useUpdatePrivateMetadataMutation,
@@ -74,6 +75,15 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
     },
   });
 
+  const [renderCertificate, renderCertificateOpts] = useRenderCertificateMutation({
+    onCompleted: data => {
+      setIsCertDialogOpen(true);
+      if (data.certificateRender.certificatePng) {
+        setCertPng(data.certificateRender.certificatePng);
+      }
+    },
+  });
+
   const [updateMetadata] = useUpdateMetadataMutation({});
   const [updatePrivateMetadata] = useUpdatePrivateMetadataMutation({});
 
@@ -82,6 +92,8 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
   }
 
   const [isBarcodeFormatDialogOpen, setIsBarcodeFormatDialogOpen] = useState<boolean>(false);
+  const [certPng, setCertPng] = useState<string | undefined>(undefined);
+  const [isCertDialogOpen, setIsCertDialogOpen] = useState<boolean>(false);
   const [tmpData, setTmpData] = useState<DonationDetailsPageFormData | undefined>(undefined);
 
   const updateData = async (data: DonationDetailsPageFormData) => {
@@ -164,6 +176,7 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
         saveButtonBar={updateDonationOpts.status}
         onOpenModal={openModal}
         onSubmit={handleSubmit}
+        onRenderCertificate={() => {renderCertificate({variables: {donationId: id}});}}
         onDelete={() => {}
           // navigate(
           //   donationUrl(id, {
@@ -239,6 +252,24 @@ const DonationDetailsViewInner: React.FC<DonationDetailsViewProps> = ({
             defaultMessage={`您输入的条码不符合格式要求，根据今天的日期，条码的前四位应该是 ${getCurrentYearMonth()}。是否忽略警告并继续？`}
           />
         </DialogContentText>
+      </ActionDialog>
+      <ActionDialog
+        open={isCertDialogOpen}
+        onClose={() => {setIsCertDialogOpen(false);}}
+        confirmButtonState="default"
+        onConfirm={() => {}}
+        variant="info"
+        backButtonText="确认"
+        title={intl.formatMessage({
+          id: "CertDialogTitle",
+          defaultMessage: "捐赠证书预览",
+        })}
+      >
+        {
+          certPng ? (
+            <img src={certPng}></img>
+          ) : "无法获取证书"
+        }
       </ActionDialog>
     </>
   );

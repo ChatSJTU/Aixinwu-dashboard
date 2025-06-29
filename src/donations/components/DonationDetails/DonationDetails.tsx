@@ -69,10 +69,11 @@ export interface DonationDetailsProps {
   onChange: (event: React.ChangeEvent<any>) => void;
   onOpenModal: OpenModalFunction<DonationUrlDialog, DonationUrlQueryParams>;
   onProfileView: () => void;
+  onRenderCertificate: () => void;
 }
 
 const DonationDetails: React.FC<DonationDetailsProps> = props => {
-  const { donation, data, disabled, errors, onChange, onOpenModal, onProfileView } = props;
+  const { donation, data, disabled, errors, onChange, onOpenModal, onProfileView, onRenderCertificate } = props;
 
   const classes = useStyles(props);
   const intl = useIntl();
@@ -295,7 +296,7 @@ const DonationDetails: React.FC<DonationDetailsProps> = props => {
             onChange={onChange}
             fetchOptions={() => {}}
             endAdornment={() => 
-              <Link onClick={() => {}}>预览证书</Link>
+              <Link onClick={onRenderCertificate}>预览证书</Link>
             }
           />
         </CardContent>
