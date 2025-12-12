@@ -135,6 +135,7 @@ export const transformPaymentStatus = (
 
 export const transformOrderStatus = (
   status: string,
+  isSharedChannel: boolean,
   intl: IntlShape,
 ): { localized: string; status: StatusType } => {
   switch (status) {
@@ -169,15 +170,27 @@ export const transformOrderStatus = (
         status: StatusType.ERROR,
       };
     case OrderStatus.PARTIALLY_RETURNED:
-      return {
-        localized: intl.formatMessage(orderStatusMessages.partiallyReturned),
-        status: StatusType.INFO,
-      };
+      if (isSharedChannel)
+        return {
+          localized: intl.formatMessage(orderStatusMessages.sharePartiallyReturned),
+          status: StatusType.INFO,
+        };
+      else
+        return {
+          localized: intl.formatMessage(orderStatusMessages.partiallyReturned),
+          status: StatusType.INFO,
+        };
     case OrderStatus.RETURNED:
-      return {
-        localized: intl.formatMessage(orderStatusMessages.returned),
-        status: StatusType.INFO,
-      };
+      if (isSharedChannel)
+        return {
+          localized: intl.formatMessage(orderStatusMessages.shareReturned),
+          status: StatusType.INFO,
+        };
+      else
+        return {
+          localized: intl.formatMessage(orderStatusMessages.returned),
+          status: StatusType.INFO,
+        };
     case OrderStatus.LEASED:
       return {
         localized: intl.formatMessage(orderStatusMessages.leased),

@@ -35,8 +35,8 @@ const Title: React.FC<TitleProps> = props => {
   if (!order) {
     return null;
   }
-
-  const { localized, status } = transformOrderStatus(order.status, intl);
+  const isSharedChannel = order.channel.slug.includes("shared");
+  const { localized, status } = transformOrderStatus(order.status, isSharedChannel, intl);
 
   return (
     <div className={classes.container}>

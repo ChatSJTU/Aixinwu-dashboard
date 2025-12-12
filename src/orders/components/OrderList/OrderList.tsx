@@ -91,7 +91,7 @@ export const OrderList: React.FC<OrderListProps> = props => {
     ? orders.map(order => ({
         ...order,
         paymentStatus: transformPaymentStatus(order.paymentStatus, intl),
-        status: transformOrderStatus(order.status, intl),
+        status: transformOrderStatus(order.status, order.channel.slug.includes("shared"), intl),
       }))
     : undefined;
   return (

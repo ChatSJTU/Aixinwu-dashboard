@@ -146,7 +146,8 @@ export function getStatusCellContent(
   currentTheme: DefaultTheme,
   rowData: RelayToFlat<OrderListQuery["orders"]>[number],
 ) {
-  const orderStatus = transformOrderStatus(rowData.status, intl);
+  const isSharedChannel = rowData.channel.slug.includes("shared");
+  const orderStatus = transformOrderStatus(rowData.status, isSharedChannel, intl);
 
   if (orderStatus) {
     const color = getStatusColor({

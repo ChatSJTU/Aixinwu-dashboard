@@ -186,8 +186,8 @@ export const orderGrantRefundEditUrl = (orderId: string, refundId: string) =>
     encodeURIComponent(refundId),
   );
 
-export const orderReturnUrl = (id: string) =>
-  orderReturnPath(encodeURIComponent(id));
+export const orderReturnUrl = (id: string, refund: boolean) =>
+  orderReturnPath(encodeURIComponent(id)) + `?refund=${refund}`;
 
 export const orderGiftCardBoughtPath = () =>
   orderListUrl({

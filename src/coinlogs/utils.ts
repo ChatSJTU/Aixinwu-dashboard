@@ -100,7 +100,7 @@ export const transformCoinlogType = (
         return {
           localized: intl.formatMessage({
             id: "donation-status-poor_sign",
-            defaultMessage: "贫困生奖励",
+            defaultMessage: "困难生奖励",
           }),
           status: StatusType.WARNING,
         };

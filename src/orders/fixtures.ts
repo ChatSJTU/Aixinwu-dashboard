@@ -2186,7 +2186,7 @@ export const draftOrderWithTransactions: OrderDetailsFragment = {
 
 export const flatOrders = orders.map(order => ({
   ...order,
-  orderStatus: transformOrderStatus(order.status, {
+  orderStatus: transformOrderStatus(order.status, false, {
     formatMessage: (message: MessageDescriptor) => message.defaultMessage,
   } as any),
   paymentStatus: transformPaymentStatus(order.paymentStatus, {

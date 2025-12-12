@@ -35,6 +35,7 @@ import OrderReturnComponent from "./views/OrderReturn";
 import OrderSendRefundComponent from "./views/OrderSendRefund";
 import OrderSettings from "./views/OrderSettings";
 import { ORDER_LIST_PRESETS_TAB_KEY, storageUtils } from "./views/OrderList/filters";
+import { parseBoolean } from "@dashboard/misc";
 
 interface MatchParams {
   id?: string;
@@ -115,9 +116,21 @@ const OrderSendRefund: React.FC<RouteComponentProps<MatchParams>> = ({
   />
 );
 
-const OrderReturn: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => (
-  <OrderReturnComponent orderId={decodeURIComponent(match.params.id ?? "")} />
-);
+const OrderReturn: React.FC<RouteComponentProps<MatchParams>> = ({
+  location,
+  match,
+}) => {
+  const qs = parseQs(location.search.substring(1)) as any;
+  const params: Record<string, any> = qs;
+  const refund = parseBoolean(params.refund, true);
+
+  return (
+    <OrderReturnComponent 
+      orderId={decodeURIComponent(match.params.id ?? "")}
+      refund={refund}
+    />
+  )
+};
 
 const OrderGrantRefund: React.FC<RouteComponentProps<MatchParams>> = ({
   match,

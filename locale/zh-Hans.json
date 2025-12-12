@@ -65,7 +65,7 @@
   },
   "+RjQjs": {
     "context": "return button",
-    "string": "退换货"
+    "string": "退回商品"
   },
   "+SYLEL": {
     "context": "refunded fulfillment, section header",
@@ -5757,7 +5757,7 @@
   },
   "bgO+7G": {
     "context": "order return amount button",
-    "string": "退换货"
+    "string": "退回商品"
   },
   "bh+Keo": {
     "string": "{numberOfFields} Translations, {numberOfTranslatedFields} Completed"
@@ -7398,7 +7398,7 @@
   },
   "nayZY0": {
     "context": "returned event title",
-    "string": "商品被退回"
+    "string": "商品已退回"
   },
   "nf3XSt": {
     "context": "attribute internal name",
@@ -7851,7 +7851,7 @@
   },
   "rH4pi3": {
     "context": "page header",
-    "string": "退换货"
+    "string": "退回商品"
   },
   "rHQmCt": {
     "context": "column picker section header",
@@ -8278,7 +8278,7 @@
   },
   "uN88fb": {
     "context": "button, submit form",
-    "string": "退换货"
+    "string": "退回商品"
   },
   "uQNm59": {
     "context": "add header,button",

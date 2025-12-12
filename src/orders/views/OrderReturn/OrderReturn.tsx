@@ -9,7 +9,7 @@ import useNotifier from "@dashboard/hooks/useNotifier";
 import { commonMessages } from "@dashboard/intl";
 import { extractMutationErrors } from "@dashboard/misc";
 import OrderReturnPage from "@dashboard/orders/components/OrderReturnPage";
-import { OrderReturnFormData } from "@dashboard/orders/components/OrderReturnPage/form";
+import { getOrderRefundPageFormData, OrderReturnFormData } from "@dashboard/orders/components/OrderReturnPage/form";
 import { orderHasTransactions } from "@dashboard/orders/types";
 import { orderUrl } from "@dashboard/orders/urls";
 import React from "react";
@@ -20,9 +20,10 @@ import ReturnFormDataParser from "./utils";
 
 interface OrderReturnProps {
   orderId: string;
+  refund: boolean;
 }
 
-const OrderReturn: React.FC<OrderReturnProps> = ({ orderId }) => {
+const OrderReturn: React.FC<OrderReturnProps> = ({ orderId, refund }) => {
   const navigate = useNavigator();
   const notify = useNotifier();
   const intl = useIntl();
@@ -96,6 +97,7 @@ const OrderReturn: React.FC<OrderReturnProps> = ({ orderId }) => {
       loading={loading || returnCreateOpts.loading}
       onSubmit={handleSubmit}
       submitStatus={returnCreateOpts.status}
+      initialForm={getOrderRefundPageFormData(refund)}
     />
   );
 };

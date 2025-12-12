@@ -90,6 +90,7 @@ const OrderFulfilledProductsCard: React.FC<
               orderId={order?.id}
               status={fulfillment?.status}
               trackingNumber={fulfillment?.trackingNumber}
+              isSharedChannel={order?.channel.slug.includes("shared")}
               orderIsPaid={order?.isPaid}
               fulfillmentAllowUnpaid={fulfillmentAllowUnpaid}
               onTrackingCodeAdd={onTrackingCodeAdd}

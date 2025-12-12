@@ -4,7 +4,7 @@ const useStyles = makeStyles(
   theme => ({
     actions: {
       flexDirection: "row-reverse",
-      padding: theme.spacing(2, 0),
+      padding: theme.spacing(0, 0),
     },
     deleteIcon: {
       height: 40,

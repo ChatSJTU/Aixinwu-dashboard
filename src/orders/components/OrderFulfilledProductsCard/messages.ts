@@ -6,6 +6,11 @@ export const actionButtonsMessages = defineMessages({
     defaultMessage: "Refund",
     description: "refund button",
   },
+  return: {
+    id: "+RjQjs",
+    defaultMessage: "Return",
+    description: "return button",
+  },
   editTracking: {
     id: "dTkmON",
     defaultMessage: "Edit tracking",

@@ -2,7 +2,7 @@
 import { Button } from "@dashboard/components/Button";
 import { FulfillmentStatus } from "@dashboard/graphql";
 import { buttonMessages, commonMessages } from "@dashboard/intl";
-import { orderPaymentRefundUrl } from "@dashboard/orders/urls";
+import { orderPaymentRefundUrl, orderReturnUrl } from "@dashboard/orders/urls";
 import { CardActions, Typography } from "@material-ui/core";
 import React from "react";
 import { FormattedMessage } from "react-intl";
@@ -15,6 +15,7 @@ interface AcionButtonsProps {
   status: FulfillmentStatus;
   trackingNumber?: string;
   orderIsPaid?: boolean;
+  isSharedChannel: boolean;
   fulfillmentAllowUnpaid: boolean;
   hasTransactions: boolean;
   onTrackingCodeAdd: () => any;
@@ -30,6 +31,7 @@ const statusesToShow = [
 const ActionButtons: React.FC<AcionButtonsProps> = ({
   orderId,
   status,
+  isSharedChannel,
   trackingNumber,
   orderIsPaid,
   fulfillmentAllowUnpaid,
@@ -63,10 +65,21 @@ const ActionButtons: React.FC<AcionButtonsProps> = ({
   }
 
   if (status === FulfillmentStatus.RETURNED && !hasTransactions) {
+    return null;
+    // return (
+    //   <CardActions>
+    //     <Button variant="primary" href={orderPaymentRefundUrl(orderId)}>
+    //       <FormattedMessage {...actionButtonsMessages.refund} />
+    //     </Button>
+    //   </CardActions>
+    // );
+  }
+
+  if (status === FulfillmentStatus.FULFILLED) {
     return (
-      <CardActions>
-        <Button variant="primary" href={orderPaymentRefundUrl(orderId)}>
-          <FormattedMessage {...actionButtonsMessages.refund} />
+      <CardActions className={classes.actions}>
+        <Button variant="primary" href={orderReturnUrl(orderId, !isSharedChannel)}>
+          <FormattedMessage {...actionButtonsMessages.return} />
         </Button>
       </CardActions>
     );

@@ -65,19 +65,21 @@ export type UseOrderRefundFormResult = CommonUseFormResultWithHandlers<
 >;
 
 interface OrderReturnProps {
+  initialForm: OrderReturnData;
   children: (props: UseOrderRefundFormResult) => React.ReactNode;
   order: OrderDetailsFragment;
   onSubmit: (data: OrderRefundSubmitData) => SubmitPromise;
 }
 
-const getOrderRefundPageFormData = (): OrderReturnData => ({
+export const getOrderRefundPageFormData = (refund: boolean): OrderReturnData => ({
   amount: undefined,
-  amountCalculationMode: OrderRefundAmountCalculationMode.AUTOMATIC,
+  amountCalculationMode: refund ? OrderRefundAmountCalculationMode.AUTOMATIC : OrderRefundAmountCalculationMode.NONE,
   refundShipmentCosts: false,
 });
 
 function useOrderReturnForm(
   order: OrderDetailsFragment,
+  initialForm: OrderReturnData = undefined,
   onSubmit: (data: OrderRefundSubmitData) => SubmitPromise,
 ): UseOrderRefundFormResult {
   const {
@@ -86,7 +88,7 @@ function useOrderReturnForm(
     triggerChange,
     formId,
     setIsSubmitDisabled,
-  } = useForm(getOrderRefundPageFormData(), undefined, {
+  } = useForm(initialForm ?? getOrderRefundPageFormData(), undefined, {
     confirmLeave: true,
   });
 
@@ -275,8 +277,9 @@ const OrderReturnForm: React.FC<OrderReturnProps> = ({
   children,
   order,
   onSubmit,
+  initialForm,
 }) => {
-  const props = useOrderReturnForm(order as OrderDetailsFragment, onSubmit);
+  const props = useOrderReturnForm(order as OrderDetailsFragment, initialForm, onSubmit);
 
   return <form>{children(props)}</form>;
 };

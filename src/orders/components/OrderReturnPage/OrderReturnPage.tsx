@@ -14,7 +14,7 @@ import { useIntl } from "react-intl";
 import OrderAmount from "../OrderRefundReturnAmount";
 import { getReturnProductsAmountValues } from "../OrderRefundReturnAmount/utils";
 import { SubmitCard } from "./components";
-import OrderRefundForm, { OrderRefundSubmitData } from "./form";
+import OrderRefundForm, { OrderRefundSubmitData, OrderReturnData } from "./form";
 import { orderReturnMessages } from "./messages";
 import ItemsCard from "./OrderReturnRefundItemsCard/ReturnItemsCard";
 import {
@@ -26,6 +26,7 @@ import {
 
 export interface OrderReturnPageProps {
   order: OrderDetailsFragment;
+  initialForm: OrderReturnData;
   loading: boolean;
   errors?: OrderErrorFragment[];
   onSubmit: (data: OrderRefundSubmitData) => SubmitPromise;
@@ -33,11 +34,11 @@ export interface OrderReturnPageProps {
 }
 
 const OrderRefundPage: React.FC<OrderReturnPageProps> = props => {
-  const { order, loading, errors = [], onSubmit, submitStatus } = props;
+  const { order, loading, errors = [], onSubmit, submitStatus, initialForm } = props;
 
   const intl = useIntl();
   return (
-    <OrderRefundForm order={order} onSubmit={onSubmit}>
+    <OrderRefundForm order={order} onSubmit={onSubmit} initialForm={initialForm}>
       {({ data, handlers, change, submit, isSaveDisabled }) => (
         <DetailPageLayout>
           <TopNav

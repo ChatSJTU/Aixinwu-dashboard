@@ -175,6 +175,8 @@ export const OrderNormalDetails: React.FC<OrderNormalDetailsProps> = ({
 
   const errors = orderUpdate.opts.data?.orderUpdate.errors || [];
 
+  const isSharedChannel = order?.channel.slug.includes("shared");
+
   return (
     <>
       <WindowTitle
@@ -190,7 +192,7 @@ export const OrderNormalDetails: React.FC<OrderNormalDetailsProps> = ({
         )}
       />
       <OrderDetailsPage
-        onOrderReturn={() => navigate(orderReturnUrl(id))}
+        onOrderReturn={() => navigate(orderReturnUrl(id, !isSharedChannel))}
         loading={
           loading ||
           updateMetadataOpts.loading ||

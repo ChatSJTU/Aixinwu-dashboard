@@ -27,7 +27,7 @@ function getOrdersModeActions(
   if (isQueryValidOrderNumber(query) && maybe(() => order.id === gqlId)) {
     return [
       {
-        extraInfo: transformOrderStatus(order.status, intl).localized,
+        extraInfo: transformOrderStatus(order.status, false, intl).localized,
         label: intl.formatMessage(messages.goToOrder, {
           orderNumber: query,
         }),

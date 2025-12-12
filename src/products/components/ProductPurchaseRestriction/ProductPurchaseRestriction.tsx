@@ -227,7 +227,7 @@ export const ProductPurchaseRestriction: React.FC<ProductPurchaseRestrictionProp
         <Box display="grid" gap={2} marginTop={0}>
           <ControlledCheckbox
             checked={data?.metadata?.find(x=>x.key==OnlyPoorKey)?.value == 'true'}
-            label={"仅限贫困生购买"}
+            label={"仅限困难生购买"}
             name={OnlyPoorKey}
             onChange={onOnlyPoorChange}
           />

@@ -182,7 +182,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = props => {
           </Typography>
           <ControlledCheckbox
             checked={data?.privateMetadata?.find(x=>x.key=='is_poor')?.value == 'true'}
-            label={"贫困生"}
+            label={"困难生"}
             name="is_poor"
             onChange={onPoorChange}
           />

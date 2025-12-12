@@ -675,6 +675,14 @@ export const orderStatusMessages = defineMessages({
     id: "order-status-expired",
     defaultMessage: "已过期",
   },
+  shareReturned: {
+    id: "order-status-shareReturned",
+    defaultMessage: "已归还",
+  },  
+  sharePartiallyReturned: {
+    id: "order-status-sharePartiallyReturned",
+    defaultMessage: "部分归还",
+  },
 });
 
 export const paymentStatusMessages = defineMessages({
